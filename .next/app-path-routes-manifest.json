@@ -1,1 +1,1 @@
-{"/_not-found/page":"/_not-found","/page":"/","/blog/[slug]/page":"/blog/[slug]","/blog/page":"/blog","/[slug]/page":"/[slug]","/contacto/page":"/contacto"}
+{"/_not-found/page":"/_not-found","/[slug]/page":"/[slug]","/api/revalidate/route":"/api/revalidate","/page":"/","/blog/[slug]/page":"/blog/[slug]","/blog/page":"/blog"}
