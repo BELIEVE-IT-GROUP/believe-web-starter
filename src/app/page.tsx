@@ -17,7 +17,7 @@ const demoBlocks = [
     id: 'hero-1',
     blockType: 'hero',
     headline: 'Construimos webs que convierten',
-    subheadline: 'Believe Agency CMS + Next.js 15 + Flowbite Pro. Multi-tenant, ISR, live preview.',
+    subheadline: 'Believe Agency: CMS multi-tenant + Next.js + Flowbite Pro. Desplegado en minutos, escalable para siempre.',
     badge: 'Nuevo: believe-web-starter',
     ctas: [
       { text: 'Ver documentación', url: '#', style: 'primary' },
@@ -27,28 +27,30 @@ const demoBlocks = [
   {
     id: 'features-1',
     blockType: 'features',
-    headline: 'Todo lo que necesitas',
-    subheadline: '15 bloques listos para usar, conectados a Payload CMS multi-tenant.',
+    headline: 'Todo lo que necesitás',
+    subheadline: 'Un stack completo para agencies y studios. CMS real conectado, no placeholder.',
     items: [
-      { icon: '⚡', title: 'ISR + Revalidation', description: 'Páginas estáticas que se actualizan en segundos.' },
-      { icon: '🎨', title: 'Flowbite Pro', description: 'Componentes premium con diseño profesional.' },
-      { icon: '🏢', title: 'Multi-tenant', description: 'Un CMS, múltiples clientes aislados.' },
-      { icon: '👁', title: 'Live Preview', description: 'Edición visual en tiempo real desde el CMS.' },
-      { icon: '📱', title: 'Responsive', description: 'Mobile-first, optimizado para todos los dispositivos.' },
-      { icon: '🔒', title: 'Type-safe', description: 'TypeScript end-to-end con tipos generados.' },
+      { icon: 'zap', title: 'ISR + Revalidation', description: 'Contenido estático que se actualiza en segundos via webhook.' },
+      { icon: 'palette', title: 'Flowbite Pro', description: '15 bloquepremium con diseño profesional listos para usar.' },
+      { icon: 'building', title: 'Multi-tenant Real', description: 'Cada cliente ve solo su contenido. Un CMS, múltiples marcas.' },
+      { icon: 'eye', title: 'Live Preview', description: 'Editá en el CMS y ve los cambios en tiempo real.' },
+      { icon: 'smartphone', title: 'Mobile-first', description: 'Responsive por defecto. Optimizado para todos los dispositivos.' },
+      { icon: 'shield', title: 'Type-safe', description: 'TypeScript end-to-end. Tipos autogenerados desde el schema.' },
     ],
   },
   {
     id: 'cta-1',
     blockType: 'cta',
     headline: 'Empezá hoy',
-    subheadline: 'Cloná el repo, configurá tu tenant y tené tu web corriendo en minutos.',
+    subheadline: 'Cloná el repo, conectá tu tenant y tené tu web corriendo en minutos.',
     cta: { text: 'Ver en GitHub', url: 'https://github.com/BELIEVE-IT-GROUP/believe-web-starter' },
   },
 ]
 
 export default async function HomePage() {
   const page = await getPageBySlug('home')
+  // NOTE: Payload blocks requieren creación via admin por la complejidad de relaciones polimórficas.
+  // Cuando se agreguen bloques desde el admin del CMS, se consumirán automáticamente.
   const blocks = page?.blocks?.length ? page.blocks : demoBlocks
 
   return <BlockRenderer blocks={blocks} />
