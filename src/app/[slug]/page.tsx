@@ -6,17 +6,16 @@ import { getPageBySlug, getAllPages } from '@/lib/payload'
 export const revalidate = 60
 
 export async function generateStaticParams() {
-  const pages = await getAllPages()
-  return pages
-    .filter((p: any) => p.slug && p.slug !== 'home')
-    .map((p: any) => ({ slug: p.slug }))
+  // Static generation disabled for dynamic route — uses SSR with ISR for now
+  // To enable: return pages from CMS and ensure no conflicts with static routes
+  return []
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const page = await getPageBySlug(params.slug) as any
   return {
-    title: page?.meta?.title || page?.title || 'Página',
-    description: page?.meta?.description || '',
+    title: page?.seo?.title || page?.title || 'Página',
+    description: page?.seo?.description || '',
   }
 }
 
@@ -27,7 +26,7 @@ export default async function DynamicPage({ params }: { params: { slug: string }
     notFound()
   }
 
-  const blocks = page.layout || []
+  const blocks = page.blocks || []
 
   return <BlockRenderer blocks={blocks} />
 }

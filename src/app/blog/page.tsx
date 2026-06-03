@@ -78,7 +78,7 @@ export default async function BlogPage() {
                   </Link>
                 )}
                 <div className="flex items-center gap-2 text-sm text-gray-500">
-                  {post.category && <span className="font-medium text-primary-600">{post.category.name || post.category}</span>}
+                  {post.category && <span className="font-medium text-primary-600">{typeof post.category === 'string' ? post.category : post.category.name}</span>}
                   {post.publishedAt && (
                     <span>{new Date(post.publishedAt).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
                   )}

@@ -1,9 +1,15 @@
 import { Metadata } from 'next'
 import { BlockRenderer } from '@/components/blocks/BlockRenderer'
+import { getPageBySlug } from '@/lib/payload'
 
-export const metadata: Metadata = {
-  title: 'Believe Agency',
-  description: 'Web construida con believe-web-starter',
+export const revalidate = 60
+
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await getPageBySlug('home')
+  return {
+    title: page?.seo?.title || page?.title || 'Believe Agency',
+    description: page?.seo?.description || 'Web construida con believe-web-starter',
+  }
 }
 
 const demoBlocks = [
@@ -41,6 +47,9 @@ const demoBlocks = [
   },
 ]
 
-export default function HomePage() {
-  return <BlockRenderer blocks={demoBlocks} />
+export default async function HomePage() {
+  const page = await getPageBySlug('home')
+  const blocks = page?.blocks?.length ? page.blocks : demoBlocks
+
+  return <BlockRenderer blocks={blocks} />
 }

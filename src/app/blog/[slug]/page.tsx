@@ -14,8 +14,8 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const post = await getPostBySlug(params.slug)
   return {
-    title: post?.title || 'Post no encontrado',
-    description: post?.excerpt || '',
+    title: post?.seo?.title || post?.title || 'Post no encontrado',
+    description: post?.seo?.description || post?.excerpt || '',
   }
 }
 
@@ -129,14 +129,18 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
     notFound()
   }
 
+  const categoryName = typeof displayPost.category === 'string'
+    ? displayPost.category
+    : displayPost.category?.name
+
   return (
     <article className="min-h-screen bg-white">
       <section className="bg-gray-50 py-16 lg:py-24">
         <div className="mx-auto max-w-screen-md px-4">
           <div className="flex items-center gap-3 text-sm text-gray-500">
-            {displayPost.category && (
+            {categoryName && (
               <span className="font-medium text-primary-600">
-                {displayPost.category.name || displayPost.category}
+                {categoryName}
               </span>
             )}
             {displayPost.publishedAt && (
