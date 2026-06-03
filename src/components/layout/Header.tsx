@@ -1,8 +1,22 @@
 import Link from 'next/link'
-import { getTenant } from '@/lib/payload'
+import { getTenant, getAllPages } from '@/lib/payload'
 
 export async function Header() {
   const tenant = await getTenant()
+  const pages = await getAllPages()
+
+  const navPages = pages
+    .filter((p: any) => p.slug !== 'home')
+    .slice(0, 4)
+
+  const defaultNav = [
+    { slug: 'blog', title: 'Blog' },
+    { slug: 'contacto', title: 'Contacto' },
+  ]
+
+  const navItems = navPages.length > 0
+    ? navPages.map((p: any) => ({ slug: p.slug, title: p.title }))
+    : defaultNav
 
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur">
@@ -14,9 +28,11 @@ export async function Header() {
           <Link href="/" className="hover:text-primary-600">
             Home
           </Link>
-          <Link href="/blog" className="hover:text-primary-600">
-            Blog
-          </Link>
+          {navItems.map((item) => (
+            <Link key={item.slug} href={`/${item.slug}`} className="hover:text-primary-600">
+              {item.title}
+            </Link>
+          ))}
         </div>
         <Link
           href="/contacto"
