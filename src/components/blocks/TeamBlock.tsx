@@ -1,8 +1,58 @@
-export function TeamBlock(props: any) {
+import Image from 'next/image'
+
+export function TeamBlock(props: {
+  headline?: string
+  subheadline?: string
+  members?: {
+    name: string
+    role?: string
+    bio?: string
+    photo?: { url: string }
+    social?: { platform: string; url: string }[]
+  }[]
+}) {
+  const { headline, subheadline, members } = props
+
   return (
-    <section className="py-12">
+    <section className="bg-white py-16 lg:py-24">
       <div className="mx-auto max-w-screen-xl px-4">
-        <p className="text-sm text-gray-400">{props.blockType} — TODO</p>
+        {(headline || subheadline) && (
+          <div className="mb-12 text-center">
+            {headline && (
+              <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">
+                {headline}
+              </h2>
+            )}
+            {subheadline && <p className="text-lg text-gray-500">{subheadline}</p>}
+          </div>
+        )}
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {members?.map((m, i) => (
+            <div key={i} className="text-center">
+              {m.photo?.url && (
+                <Image
+                  src={m.photo.url}
+                  width={200}
+                  height={200}
+                  alt={m.name}
+                  className="mx-auto mb-4 rounded-full object-cover"
+                />
+              )}
+              <h3 className="text-lg font-bold text-gray-900">{m.name}</h3>
+              {m.role && <p className="text-primary-600">{m.role}</p>}
+              {m.bio && <p className="mt-2 text-sm text-gray-500">{m.bio}</p>}
+              {m.social && m.social.length > 0 && (
+                <div className="mt-4 flex justify-center gap-3">
+                  {m.social.map((s, j) => (
+                    <a key={j} href={s.url} className="text-gray-400 hover:text-gray-600">
+                      {s.platform}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )

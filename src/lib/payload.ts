@@ -24,8 +24,8 @@ export async function fetchPayload<T = any>(
 
 export async function getPageBySlug(slug: string) {
   try {
-    const { docs } = await fetchPayload<{ docs: any[] }>('pages')
-    return docs.find((p: any) => p.slug === slug) || null
+    const { docs } = await fetchPayload<{ docs: any[] }>(`pages?where[slug][equals]=${encodeURIComponent(slug)}`)
+    return docs[0] || null
   } catch {
     return null
   }
