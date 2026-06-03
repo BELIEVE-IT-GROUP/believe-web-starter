@@ -8,25 +8,25 @@ export async function fetchPayload<T = any>(
   options?: RequestInit
 ): Promise<T | null> {
   // Skip fetch if no auth available - use demo data
+  return null as T | null
+}
+
+export async function getPageBySlug(slug: string): Promise<any | null> {
   return null
 }
 
-export async function getPageBySlug(slug: string) {
-  return null
-}
-
-export async function getAllPages() {
+export async function getAllPages(): Promise<any[]> {
   return []
 }
 
-export async function getPostBySlug(slug: string) {
+export async function getPostBySlug(slug: string): Promise<any | null> {
   return null
 }
 
-export async function getAllPosts(limit = 100) {
+export async function getAllPosts(limit = 100): Promise<any[]> {
   return []
 }
 
-export async function getTenant() {
+export async function getTenant(): Promise<any | null> {
   return null
 }

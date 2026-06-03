@@ -13,7 +13,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const page = await getPageBySlug(params.slug)
+  const page = await getPageBySlug(params.slug) as any
   return {
     title: page?.meta?.title || page?.title || 'Página',
     description: page?.meta?.description || '',
@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 export default async function DynamicPage({ params }: { params: { slug: string } }) {
-  const page = await getPageBySlug(params.slug)
+  const page: any = await getPageBySlug(params.slug)
 
   if (!page) {
     notFound()
