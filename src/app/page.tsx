@@ -1,20 +1,11 @@
 import { Metadata } from 'next'
 import { BlockRenderer } from '@/components/blocks/BlockRenderer'
-import { getPageBySlug, getTenant } from '@/lib/payload'
 
-export const revalidate = 60
-
-export async function generateMetadata(): Promise<Metadata> {
-  const page = await getPageBySlug('home')
-  const tenant = await getTenant()
-
-  return {
-    title: page?.meta?.title || tenant?.name || 'Believe Agency',
-    description: page?.meta?.description || 'Web construida con believe-web-starter',
-  }
+export const metadata: Metadata = {
+  title: 'Believe Agency',
+  description: 'Web construida con believe-web-starter',
 }
 
-// Demo content fallback when CMS is not available
 const demoBlocks = [
   {
     id: 'hero-1',
@@ -50,9 +41,6 @@ const demoBlocks = [
   },
 ]
 
-export default async function HomePage() {
-  const page = await getPageBySlug('home')
-  const blocks = page?.layout || demoBlocks
-
-  return <BlockRenderer blocks={blocks} />
+export default function HomePage() {
+  return <BlockRenderer blocks={demoBlocks} />
 }

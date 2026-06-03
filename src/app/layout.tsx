@@ -19,9 +19,54 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className={inter.variable}>
-      <head>
-        <TenantStyleInjector />
-      </head>
+      <body className="bg-white text-gray-900 antialiased">
+        <Header />
+        <main>{children}</main>
+        <Footer />
+      </body>
+    </html>
+  )
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="es" className={inter.variable}>
+      <body className="bg-white text-gray-900 antialiased">
+        <Header />
+        <main>{children}</main>
+        <Footer />
+      </body>
+    </html>
+  )
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="es" className={inter.variable}>
+      <body className="bg-white text-gray-900 antialiased">
+        <Header />
+        <main>{children}</main>
+        <Footer />
+      </body>
+    </html>
+  )
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="es" className={inter.variable}>
       <body className="bg-white text-gray-900 antialiased">
         <Header />
         <main>{children}</main>

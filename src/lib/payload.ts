@@ -7,7 +7,6 @@ export async function fetchPayload<T = any>(
   path: string,
   options?: RequestInit
 ): Promise<T | null> {
-  // Skip fetch if no auth available - use demo data
   return null as T | null
 }
 

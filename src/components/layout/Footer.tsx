@@ -1,12 +1,8 @@
-import { getTenant } from '@/lib/payload'
-
-export async function Footer() {
-  const tenant = await getTenant()
-
+export function Footer() {
   return (
     <footer className="bg-gray-900 py-12 text-white">
       <div className="mx-auto flex max-w-screen-xl flex-col items-center px-4 text-center">
-        <p className="text-2xl font-bold">{tenant?.name || 'Believe'}</p>
+        <p className="text-2xl font-bold">Believe</p>
         <p className="mt-4 text-gray-400">
           Construido con believe-web-starter
         </p>
@@ -19,7 +15,7 @@ export async function Footer() {
           </a>
         </div>
         <p className="mt-8 text-xs text-gray-500">
-          © {new Date().getFullYear()} {tenant?.name || 'Believe Global'}. Todos los derechos reservados.
+          © {new Date().getFullYear()} Believe Global. Todos los derechos reservados.
         </p>
       </div>
     </footer>
