@@ -14,7 +14,7 @@ export const dynamic = 'force-dynamic'
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { secret, paths, tags } = body
+    const { secret } = body
 
     const expectedSecret = process.env.REVALIDATE_SECRET
     if (!expectedSecret) {
@@ -31,8 +31,10 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const hasPaths = Array.isArray(paths) && paths.length > 0
-    const hasTags = Array.isArray(tags) && tags.length > 0
+    const paths = normalizePaths(body)
+    const tags = normalizeTags(body)
+    const hasPaths = paths.length > 0
+    const hasTags = tags.length > 0
 
     if (!hasPaths && !hasTags) {
       return NextResponse.json(
@@ -86,6 +88,33 @@ export async function POST(request: NextRequest) {
       { status: 500 }
     )
   }
+}
+
+function normalizePaths(body: any): string[] {
+  if (Array.isArray(body.paths)) return body.paths
+
+  if (body.collection === 'pages') {
+    const slug = body.slug
+    return !slug || slug === 'home' || slug === '/' ? ['/'] : [`/${slug}`]
+  }
+
+  if (body.collection === 'posts') {
+    return body.slug ? ['/blog', `/blog/${body.slug}`] : ['/blog']
+  }
+
+  if (body.collection === 'settings') {
+    return ['/']
+  }
+
+  return []
+}
+
+function normalizeTags(body: any): string[] {
+  if (Array.isArray(body.tags)) return body.tags
+  if (body.collection === 'pages') return ['payload_pages']
+  if (body.collection === 'posts') return ['payload_posts']
+  if (body.collection === 'settings') return ['payload_settings']
+  return []
 }
 
 export async function GET() {

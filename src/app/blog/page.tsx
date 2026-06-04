@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { getAllPosts } from '@/lib/payload'
+import { getAllPosts, getMediaUrl } from '@/lib/payload'
 
 export const revalidate = 60
 
@@ -10,39 +10,8 @@ export const metadata: Metadata = {
   description: 'Artículos, insights y recursos sobre marketing digital.',
 }
 
-const demoPosts = [
-  {
-    id: '1',
-    title: 'Cómo construir un CMS multi-tenant con Payload',
-    slug: 'cms-multitenant-payload',
-    excerpt: 'Aprendé a estructurar un CMS que sirva a múltiples clientes desde una única instancia, con aislamiento total de datos.',
-    publishedAt: '2026-05-20T10:00:00.000Z',
-    coverImage: null,
-    category: { name: 'Desarrollo' },
-  },
-  {
-    id: '2',
-    title: 'Next.js 14 vs 15: qué cambió realmente',
-    slug: 'nextjs-14-vs-15',
-    excerpt: 'Un análisis práctico de las nuevas features de Next.js 15 y si vale la pena migrar tu proyecto actual.',
-    publishedAt: '2026-05-15T08:00:00.000Z',
-    coverImage: null,
-    category: { name: 'Frontend' },
-  },
-  {
-    id: '3',
-    title: 'Flowbite Blocks Pro: review honesto',
-    slug: 'flowbite-blocks-pro-review',
-    excerpt: 'Analizamos si vale la pena pagar por los componentes premium de Flowbite en proyectos reales.',
-    publishedAt: '2026-05-10T14:00:00.000Z',
-    coverImage: null,
-    category: { name: 'Diseño' },
-  },
-]
-
 export default async function BlogPage() {
   const posts = await getAllPosts()
-  const displayPosts = posts.length > 0 ? posts : demoPosts
 
   return (
     <div className="min-h-screen bg-white">
@@ -57,13 +26,14 @@ export default async function BlogPage() {
 
       <section className="py-16 lg:py-24">
         <div className="mx-auto max-w-screen-xl px-4">
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {displayPosts.map((post) => (
+          {posts.length ? (
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {posts.map((post) => (
               <article key={post.id} className="group flex flex-col">
-                {post.coverImage?.url ? (
+                {getMediaUrl(post.coverImage) ? (
                   <Link href={`/blog/${post.slug}`}>
                     <Image
-                      src={post.coverImage.url}
+                      src={getMediaUrl(post.coverImage)}
                       width={400}
                       height={250}
                       alt={post.title}
@@ -94,8 +64,16 @@ export default async function BlogPage() {
                   Leer más →
                 </Link>
               </article>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <div className="rounded-lg border border-gray-200 bg-gray-50 p-8 text-center">
+              <h2 className="text-xl font-semibold text-gray-900">No hay artículos publicados</h2>
+              <p className="mt-2 text-gray-500">
+                Publica posts desde Payload CMS para alimentar esta sección.
+              </p>
+            </div>
+          )}
         </div>
       </section>
     </div>

@@ -1,10 +1,13 @@
+import { getContainerClassName, getSectionProps, type BlockAppearance } from './appearance'
+
 export function VideoEmbedBlock(props: {
   headline?: string
   videoUrl?: string
   caption?: string
   autoplay?: boolean
+  appearance?: BlockAppearance
 }) {
-  const { headline, videoUrl, caption } = props
+  const { headline, videoUrl, caption, appearance } = props
 
   const embedUrl = videoUrl?.includes('youtube.com/watch?v=')
     ? videoUrl.replace('watch?v=', 'embed/')
@@ -13,8 +16,8 @@ export function VideoEmbedBlock(props: {
     : videoUrl
 
   return (
-    <section className="bg-white py-16 lg:py-24">
-      <div className="mx-auto max-w-screen-xl px-4">
+    <section {...getSectionProps(appearance, { background: 'bg-white' })}>
+      <div className={getContainerClassName(appearance)}>
         {headline && (
           <h2 className="mb-8 text-center text-3xl font-bold text-gray-900 md:text-4xl">
             {headline}

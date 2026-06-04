@@ -2,7 +2,8 @@ import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { getPostBySlug, getAllPosts } from '@/lib/payload'
+import { RichTextRenderer } from '@/components/richtext/RichTextRenderer'
+import { getPostBySlug, getAllPosts, getMediaUrl } from '@/lib/payload'
 
 export const revalidate = 60
 
@@ -19,119 +20,16 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-const demoPosts: Record<string, any> = {
-  'cms-multitenant-payload': {
-    title: 'Cómo construir un CMS multi-tenant con Payload',
-    publishedAt: '2026-05-20T10:00:00.000Z',
-    category: { name: 'Desarrollo' },
-    coverImage: null,
-    content: {
-      root: {
-        type: 'root',
-        children: [
-          {
-            type: 'paragraph',
-            children: [
-              { type: 'text', text: 'Construir un CMS multi-tenant no tiene que ser complicado. Con Payload CMS 3 y el plugin oficial de multi-tenancy, podés aislar completamente los datos de cada cliente mientras compartís la misma instalación.' },
-            ],
-          },
-          {
-            type: 'heading',
-            tag: 'h2',
-            children: [{ type: 'text', text: '¿Por qué multi-tenant?' }],
-          },
-          {
-            type: 'paragraph',
-            children: [
-              { type: 'text', text: 'La arquitectura multi-tenant permite reducir costos de infraestructura, simplificar updates y mantener un único codebase para todos tus clientes. Cada tenant ve solo sus datos, pero detrás todo corre en el mismo servidor.' },
-            ],
-          },
-        ],
-      },
-    },
-  },
-  'nextjs-14-vs-15': {
-    title: 'Next.js 14 vs 15: qué cambió realmente',
-    publishedAt: '2026-05-15T08:00:00.000Z',
-    category: { name: 'Frontend' },
-    coverImage: null,
-    content: {
-      root: {
-        type: 'root',
-        children: [
-          {
-            type: 'paragraph',
-            children: [
-              { type: 'text', text: 'Next.js 15 trae mejoras significativas en el renderizado parcial, caching automático más inteligente y mejoras en el desarrollo local. Pero no todo es más rápido: algunos patrones de App Router cambiaron y requieren atención.' },
-            ],
-          },
-        ],
-      },
-    },
-  },
-  'flowbite-blocks-pro-review': {
-    title: 'Flowbite Blocks Pro: review honesto',
-    publishedAt: '2026-05-10T14:00:00.000Z',
-    category: { name: 'Diseño' },
-    coverImage: null,
-    content: {
-      root: {
-        type: 'root',
-        children: [
-          {
-            type: 'paragraph',
-            children: [
-              { type: 'text', text: 'Después de usar Flowbite Blocks Pro en 3 proyectos reales, puedo decir que vale la pena si necesitás velocidad. Los componentes son sólidos, responsive por defecto y con buena accesibilidad. La contra: algunos bloques pueden sentirse genéricos.' },
-            ],
-          },
-        ],
-      },
-    },
-  },
-}
-
-function ContentRenderer({ content }: { content: any }) {
-  if (!content?.root?.children) return null
-
-  return (
-    <div className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-600">
-      {content.root.children.map((node: any, i: number) => {
-        if (node.type === 'paragraph') {
-          return (
-            <p key={i}>
-              {node.children?.map((child: any, j: number) =>
-                child.type === 'text' ? <span key={j}>{child.text}</span> : null
-              )}
-            </p>
-          )
-        }
-        if (node.type === 'heading') {
-          const Tag = node.tag || 'h2'
-          return (
-            <Tag key={i} className="mb-4 mt-8 text-2xl font-bold text-gray-900">
-              {node.children?.map((child: any, j: number) =>
-                child.type === 'text' ? <span key={j}>{child.text}</span> : null
-              )}
-            </Tag>
-          )
-        }
-        return null
-      })}
-    </div>
-  )
-}
-
 export default async function BlogPostPage({ params }: { params: { slug: string } }) {
   const post = await getPostBySlug(params.slug)
-  const displayPost = post || demoPosts[params.slug]
 
-  if (!displayPost) {
+  if (!post) {
     notFound()
   }
 
-  const categoryName = typeof displayPost.category === 'string'
-    ? displayPost.category
-    : displayPost.category?.name
+  const categoryName = typeof post.category === 'string'
+    ? post.category
+    : post.category?.name
 
   return (
     <article className="min-h-screen bg-white">
@@ -143,23 +41,23 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
                 {categoryName}
               </span>
             )}
-            {displayPost.publishedAt && (
-              <span>{new Date(displayPost.publishedAt).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+            {post.publishedAt && (
+              <span>{new Date(post.publishedAt).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
             )}
           </div>
           <h1 className="mt-4 text-3xl font-extrabold text-gray-900 md:text-4xl lg:text-5xl">
-            {displayPost.title}
+            {post.title}
           </h1>
         </div>
       </section>
 
-      {displayPost.coverImage?.url && (
+      {getMediaUrl(post.coverImage) && (
         <div className="mx-auto max-w-screen-lg px-4">
           <Image
-            src={displayPost.coverImage.url}
+            src={getMediaUrl(post.coverImage)}
             width={1200}
             height={600}
-            alt={displayPost.title}
+            alt={post.title}
             className="w-full rounded-lg object-cover"
           />
         </div>
@@ -167,7 +65,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 
       <section className="py-12 lg:py-16">
         <div className="mx-auto max-w-screen-md px-4">
-          <ContentRenderer content={displayPost.content} />
+          <RichTextRenderer data={post.content} />
         </div>
       </section>
 

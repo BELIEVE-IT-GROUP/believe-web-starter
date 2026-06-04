@@ -1,18 +1,28 @@
 import Image from 'next/image'
 
+import { RichTextRenderer } from '@/components/richtext/RichTextRenderer'
+import { getMediaUrl } from '@/lib/payload'
+
+import { getContainerClassName, getSectionProps, type BlockAppearance } from './appearance'
+
 export function SplitContentBlock(props: {
   layout?: string
   headline?: string
-  body?: string
+  body?: unknown
   image?: { url: string; alt?: string }
+  imagePosition?: string
+  cta?: { text?: string; url?: string }
   ctas?: { text: string; url: string; style: string }[]
+  appearance?: BlockAppearance
 }) {
-  const { layout = 'image-right', headline, body, image, ctas } = props
-  const isImageLeft = layout === 'image-left'
+  const { layout = 'image-right', headline, body, image, imagePosition, cta, ctas, appearance } = props
+  const imageUrl = getMediaUrl(image)
+  const isImageLeft = layout === 'image-left' || imagePosition === 'left'
+  const actions = ctas?.length ? ctas : cta?.text ? [{ ...cta, style: 'primary' }] : []
 
   return (
-    <section className="bg-white py-16 lg:py-24">
-      <div className="mx-auto max-w-screen-xl px-4">
+    <section {...getSectionProps(appearance, { background: 'bg-white' })}>
+      <div className={getContainerClassName(appearance)}>
         <div className={`flex flex-col items-center gap-12 lg:flex-row ${isImageLeft ? 'lg:flex-row-reverse' : ''}`}>
           <div className="flex-1">
             {headline && (
@@ -20,10 +30,14 @@ export function SplitContentBlock(props: {
                 {headline}
               </h2>
             )}
-            {body && <p className="mb-6 text-lg text-gray-500">{body}</p>}
-            {ctas && ctas.length > 0 && (
+            {body ? (
+              <div className="mb-6 text-lg">
+                <RichTextRenderer data={body} />
+              </div>
+            ) : null}
+            {actions.length > 0 && (
               <div className="flex flex-wrap gap-4">
-                {ctas.map((cta, i) => (
+                {actions.map((cta, i) => (
                   <a
                     key={i}
                     href={cta.url || '#'}
@@ -39,13 +53,13 @@ export function SplitContentBlock(props: {
               </div>
             )}
           </div>
-          {image?.url && (
+          {imageUrl && (
             <div className="flex-1">
               <Image
-                src={image.url}
+                src={imageUrl}
                 width={600}
                 height={400}
-                alt={image.alt || ''}
+                alt={image?.alt || ''}
                 className="rounded-lg shadow-lg"
               />
             </div>

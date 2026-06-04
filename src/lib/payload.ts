@@ -1,10 +1,19 @@
 const PAYLOAD_URL = process.env.NEXT_PUBLIC_PAYLOAD_URL || 'https://cms.believe-global.com'
 const TENANT_ID = process.env.NEXT_PUBLIC_TENANT_ID || ''
+const TENANT_SLUG = process.env.NEXT_PUBLIC_TENANT_SLUG || ''
+
+export function getMediaUrl(media?: { url?: string } | string | null): string {
+  const url = typeof media === 'string' ? media : media?.url
+  if (!url) return ''
+  if (url.startsWith('http://') || url.startsWith('https://')) return url
+  if (url.startsWith('/')) return `${PAYLOAD_URL}${url}`
+  return url
+}
 
 // Generic fetch wrapper for Payload REST API
 export async function fetchPayload<T = any>(
   path: string,
-  options?: RequestInit
+  options?: RequestInit & { next?: { revalidate?: number; tags?: string[] } }
 ): Promise<T | null> {
   try {
     const url = `${PAYLOAD_URL}${path}`
@@ -14,7 +23,7 @@ export async function fetchPayload<T = any>(
         'Content-Type': 'application/json',
         ...(options?.headers || {}),
       },
-      next: { revalidate: 60 },
+      next: options?.next || { revalidate: 60 },
     })
 
     if (!res.ok) {
@@ -33,8 +42,9 @@ export async function fetchPayload<T = any>(
 function buildQuery(params: Record<string, string | number | undefined>): string {
   const search = new URLSearchParams()
 
-  // Add tenant filter if configured
-  if (TENANT_ID) {
+  if (TENANT_SLUG) {
+    search.set('where[tenant][slug][equals]', TENANT_SLUG)
+  } else if (TENANT_ID) {
     search.set('where[tenant][equals]', TENANT_ID)
   }
 
@@ -72,7 +82,9 @@ export async function getPageBySlug(slug: string): Promise<Page | null> {
     limit: 1,
   })
 
-  const data = await fetchPayload<{ docs: Page[] }>(`/api/pages${qs}`)
+  const data = await fetchPayload<{ docs: Page[] }>(`/api/pages${qs}`, {
+    next: { revalidate: 60, tags: ['payload_pages'] },
+  })
   return data?.docs?.[0] || null
 }
 
@@ -83,7 +95,9 @@ export async function getAllPages(): Promise<Page[]> {
     limit: 100,
   })
 
-  const data = await fetchPayload<{ docs: Page[] }>(`/api/pages${qs}`)
+  const data = await fetchPayload<{ docs: Page[] }>(`/api/pages${qs}`, {
+    next: { revalidate: 60, tags: ['payload_pages'] },
+  })
   return data?.docs || []
 }
 
@@ -116,7 +130,9 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
     limit: 1,
   })
 
-  const data = await fetchPayload<{ docs: Post[] }>(`/api/posts${qs}`)
+  const data = await fetchPayload<{ docs: Post[] }>(`/api/posts${qs}`, {
+    next: { revalidate: 60, tags: ['payload_posts'] },
+  })
   return data?.docs?.[0] || null
 }
 
@@ -128,7 +144,9 @@ export async function getAllPosts(limit = 100): Promise<Post[]> {
     limit,
   })
 
-  const data = await fetchPayload<{ docs: Post[] }>(`/api/posts${qs}`)
+  const data = await fetchPayload<{ docs: Post[] }>(`/api/posts${qs}`, {
+    next: { revalidate: 60, tags: ['payload_posts'] },
+  })
   return data?.docs || []
 }
 
@@ -190,8 +208,71 @@ export interface Tenant {
 }
 
 export async function getTenant(): Promise<Tenant | null> {
+  if (TENANT_SLUG) {
+    const qs = new URLSearchParams()
+    qs.set('where[slug][equals]', TENANT_SLUG)
+    qs.set('depth', '1')
+    qs.set('limit', '1')
+
+    const data = await fetchPayload<{ docs: Tenant[] }>(`/api/tenants?${qs.toString()}`)
+    return data?.docs?.[0] || null
+  }
+
   if (!TENANT_ID) return null
 
   const data = await fetchPayload<Tenant>(`/api/tenants/${TENANT_ID}?depth=0`)
   return data || null
+}
+
+export interface SiteSettings {
+  id: string
+  siteName: string
+  domain?: string
+  previewUrl?: string
+  header?: {
+    templateId?: string
+    logo?: Media
+    navLinks?: { label: string; url: string; newTab?: boolean }[]
+    cta?: { label?: string; url?: string }
+  }
+  footer?: {
+    templateId?: string
+    text?: string
+    links?: { label: string; url: string; group?: string }[]
+  }
+  theme?: {
+    primaryColor?: string
+    accentColor?: string
+    defaultOgImage?: Media
+  }
+  socialLinks?: { platform: string; url: string }[]
+  contact?: {
+    defaultDestinationEmail?: string
+    publicEmail?: string
+    phone?: string
+    address?: string
+    mapUrl?: string
+  }
+  newsletter?: {
+    listId?: string
+    successMessage?: string
+  }
+  analytics?: {
+    gaMeasurementId?: string
+    googleTagManagerId?: string
+    metaPixelId?: string
+  }
+}
+
+export async function getSettings(): Promise<SiteSettings | null> {
+  const qs = buildQuery({
+    depth: 2,
+    limit: 1,
+  })
+
+  const data = await fetchPayload<{ docs: SiteSettings[] }>(`/api/settings${qs}`, {
+    next: { revalidate: 60, tags: ['payload_settings'] },
+  })
+
+  return data?.docs?.[0] || null
 }

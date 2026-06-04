@@ -1,27 +1,49 @@
-import Link from 'next/link'
+'use client'
 
-export function Header() {
+import Link from 'next/link'
+import Image from 'next/image'
+import { Button, Navbar } from 'flowbite-react'
+import type { SiteSettings } from '@/lib/payload'
+
+export function Header({ settings }: { settings?: SiteSettings | null }) {
+  const navLinks = settings?.header?.navLinks?.length
+    ? settings.header.navLinks
+    : [
+        { label: 'Home', url: '/' },
+        { label: 'Blog', url: '/blog' },
+      ]
+  const cta = settings?.header?.cta
+  const logo = settings?.header?.logo
+  const siteName = settings?.siteName || 'Believe'
+
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur">
-      <nav className="mx-auto flex max-w-screen-xl items-center justify-between px-4 py-4">
-        <Link href="/" className="text-xl font-bold text-primary-600">
-          Believe
-        </Link>
-        <div className="hidden items-center gap-6 font-medium text-gray-600 md:flex">
-          <Link href="/" className="hover:text-primary-600">
-            Home
-          </Link>
-          <Link href="/blog" className="hover:text-primary-600">
-            Blog
-          </Link>
+    <Navbar fluid rounded={false} className="sticky top-0 z-50 border-b border-gray-200 bg-white/90 backdrop-blur">
+      <div className="mx-auto flex w-full max-w-screen-xl items-center justify-between px-4">
+        <Navbar.Brand as={Link} href="/">
+          {logo?.url ? (
+            <Image src={logo.url} alt={logo.alt || siteName} width={132} height={40} className="mr-3 h-8 w-auto object-contain" />
+          ) : (
+            <span className="self-center whitespace-nowrap text-xl font-bold text-primary-600">
+              {siteName}
+            </span>
+          )}
+        </Navbar.Brand>
+        <div className="flex md:order-2">
+          {cta?.label && cta?.url && (
+            <Button as={Link} href={cta.url} color="info" size="sm">
+              {cta.label}
+            </Button>
+          )}
+          <Navbar.Toggle />
         </div>
-        <Link
-          href="/contacto"
-          className="rounded-full bg-primary-600 px-4 py-2 text-sm font-medium text-white hover:bg-primary-700"
-        >
-          Contacto
-        </Link>
-      </nav>
-    </header>
+        <Navbar.Collapse>
+          {navLinks.map((link) => (
+            <Navbar.Link key={`${link.label}-${link.url}`} as={Link} href={link.url} target={link.newTab ? '_blank' : undefined}>
+              {link.label}
+            </Navbar.Link>
+          ))}
+        </Navbar.Collapse>
+      </div>
+    </Navbar>
   )
 }

@@ -1,13 +1,16 @@
+import { getContainerClassName, getSectionProps, type BlockAppearance } from './appearance'
+
 export function StatsBlock(props: {
   headline?: string
   items?: { label: string; value: string }[]
   layout?: string
+  appearance?: BlockAppearance
 }) {
-  const { headline, items, layout = 'grid' } = props
+  const { headline, items, layout = 'grid', appearance } = props
 
   return (
-    <section className="bg-gray-50 py-16 lg:py-24">
-      <div className="mx-auto max-w-screen-xl px-4">
+    <section {...getSectionProps(appearance, { background: 'bg-gray-50' })}>
+      <div className={getContainerClassName(appearance)}>
         {headline && (
           <h2 className="mb-12 text-center text-3xl font-bold text-gray-900 md:text-4xl">
             {headline}

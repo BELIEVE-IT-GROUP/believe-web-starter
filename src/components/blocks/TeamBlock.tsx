@@ -1,5 +1,9 @@
 import Image from 'next/image'
 
+import { getMediaUrl } from '@/lib/payload'
+
+import { getContainerClassName, getSectionProps, type BlockAppearance } from './appearance'
+
 export function TeamBlock(props: {
   headline?: string
   subheadline?: string
@@ -10,12 +14,13 @@ export function TeamBlock(props: {
     photo?: { url: string }
     social?: { platform: string; url: string }[]
   }[]
+  appearance?: BlockAppearance
 }) {
-  const { headline, subheadline, members } = props
+  const { headline, subheadline, members, appearance } = props
 
   return (
-    <section className="bg-white py-16 lg:py-24">
-      <div className="mx-auto max-w-screen-xl px-4">
+    <section {...getSectionProps(appearance, { background: 'bg-white' })}>
+      <div className={getContainerClassName(appearance)}>
         {(headline || subheadline) && (
           <div className="mb-12 text-center">
             {headline && (
@@ -29,9 +34,9 @@ export function TeamBlock(props: {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {members?.map((m, i) => (
             <div key={i} className="text-center">
-              {m.photo?.url && (
+              {getMediaUrl(m.photo) && (
                 <Image
-                  src={m.photo.url}
+                  src={getMediaUrl(m.photo)}
                   width={200}
                   height={200}
                   alt={m.name}
