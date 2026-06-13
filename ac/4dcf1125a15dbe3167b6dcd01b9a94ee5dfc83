@@ -1,0 +1,39 @@
+believe-web-plugin/INSTALL.md
+  s_86c06f00f11ac8::t_5ac352bd4ebe4d 1-150
+believe-web-plugin/skills/believe-web/references/brief-schema.json
+  s_86c06f00f11ac8::t_9fbd7d19671fd8 1-235
+believe-web-plugin/skills/believe-web/references/mcp-tools.md
+  s_86c06f00f11ac8::t_d59870bea5ca84 1-175
+believe-web-plugin/README.md
+  s_86c06f00f11ac8::t_894f2c72f69824 1-95
+believe-web-plugin/.mcp.json
+  s_86c06f00f11ac8::t_f098d22edb8ddb 1-8
+believe-web-plugin/.claude-plugin/plugin.json
+  s_86c06f00f11ac8::t_ed530bd19509bb 1-32
+believe-web-plugin/skills/believe-web/SKILL.md
+  s_86c06f00f11ac8::t_e10da1e539afb3 1-28,30-203
+  s_86c06f00f11ac8::t_e38aaff1b4fc59 29
+believe-web-plugin/skills/believe-web/references/block-catalog.md
+  s_86c06f00f11ac8::t_6fdc37fcf84d25 2-32
+  s_86c06f00f11ac8::t_e6195eeb689e5f 1
+believe-web-plugin/skills/believe-web/references/composition-playbook.md
+  s_86c06f00f11ac8::t_9f1b915e59725b 14-26,29,31,33-34,36,38,51,53,56,58,60,62
+  s_86c06f00f11ac8::t_a779e7b3cce069 1-13,28,30,32,35,37,39-50,52,54-55,57,59,61,63-195,197-205
+  s_86c06f00f11ac8::t_e6195eeb689e5f 27,196
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "ac4dcf1125a15dbe3167b6dcd01b9a94ee5dfc83",
+  "prompts": {},
+  "sessions": {
+    "s_86c06f00f11ac8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "cab5c659-d488-459b-aad8-18b0f1b23ec2",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
