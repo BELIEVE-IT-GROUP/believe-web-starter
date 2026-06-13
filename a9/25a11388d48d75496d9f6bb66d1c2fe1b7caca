@@ -1,0 +1,64 @@
+believe-cms-mcp/src/coolify.ts
+  s_86c06f00f11ac8::t_a41f4188a44554 1-151
+believe-cms-mcp/package.json
+  s_86c06f00f11ac8::t_04116f179aea7b 1-30
+.dockerignore
+  s_86c06f00f11ac8::t_5ee10a423a0e8b 11
+believe-cms-mcp/src/tools/cms_deploy.ts
+  s_86c06f00f11ac8::t_304ca52712299f 1-166
+believe-cms-mcp/package-lock.json
+  s_86c06f00f11ac8::t_691edff9486bed 1-1197
+believe-cms-mcp/src/tools/cms_provision_leads.ts
+  s_86c06f00f11ac8::t_5b1fed9e7085ac 1-437,439-467
+  s_86c06f00f11ac8::t_c48f22fa0173c5 438
+believe-cms-mcp/src/tools/cms_create_page.ts
+  s_86c06f00f11ac8::t_cab0c84be69daf 1-127
+believe-cms-mcp/tsconfig.json
+  s_86c06f00f11ac8::t_ea9f3306b6fbc0 1-21
+believe-cms-mcp/src/tools/cms_list_block_templates.ts
+  s_86c06f00f11ac8::t_ea6f7ab0af3fc9 1-45
+believe-cms-mcp/src/flowbite-catalog.json
+  s_86c06f00f11ac8::t_491df17de740b8 1-4066
+believe-cms-mcp/README.md
+  s_86c06f00f11ac8::t_101497f53ef9a0 1-94
+tsconfig.json
+  s_86c06f00f11ac8::t_bf956f01f61305 21
+believe-cms-mcp/.gitignore
+  s_86c06f00f11ac8::t_90d7eb1e9e6401 1-5
+believe-cms-mcp/src/config.ts
+  s_86c06f00f11ac8::t_02b355c82381d2 1-104
+believe-cms-mcp/src/catalog.ts
+  s_86c06f00f11ac8::t_de73efe99e5ccc 1-98
+believe-cms-mcp/src/tools/cms_create_tenant.ts
+  s_86c06f00f11ac8::t_eebcd1d55b953b 1-91
+believe-cms-mcp/src/cms.ts
+  s_86c06f00f11ac8::t_6cdeb00abf68fe 1-229
+believe-cms-mcp/src/tools/_types.ts
+  s_86c06f00f11ac8::t_4b0715287e1b3c 1-45
+believe-cms-mcp/src/tools/_blocks.ts
+  s_86c06f00f11ac8::t_0d7ab3c36bfb1c 1-70
+believe-cms-mcp/src/index.ts
+  s_86c06f00f11ac8::t_f7acf1379b33b2 89,95,102
+  s_86c06f00f11ac8::t_de56b4f62f356f 15
+  s_86c06f00f11ac8::t_9008e38d8381eb 1-14,16-88,90-94,96-101,103-118
+believe-cms-mcp/src/tools/cms_seed_content.ts
+  s_86c06f00f11ac8::t_25dcb41704ffc9 1-151
+believe-cms-mcp/src/tools/cms_set_theme_from_dna.ts
+  s_86c06f00f11ac8::t_ec7e1be05ffc8d 1-244
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "a925a11388d48d75496d9f6bb66d1c2fe1b7caca",
+  "prompts": {},
+  "sessions": {
+    "s_86c06f00f11ac8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "cab5c659-d488-459b-aad8-18b0f1b23ec2",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
