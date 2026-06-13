@@ -1,0 +1,21 @@
+src/flowbite/catalog.generated.json
+  s_86c06f00f11ac8::t_c67bffe04f4555 1-4066
+scripts/extract-flowbite-catalog.mjs
+  s_86c06f00f11ac8::t_3debd0b25daf6a 1-115
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "d1f55c8156e15162ddfc8a100d5eacae3133acec",
+  "prompts": {},
+  "sessions": {
+    "s_86c06f00f11ac8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "cab5c659-d488-459b-aad8-18b0f1b23ec2",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
