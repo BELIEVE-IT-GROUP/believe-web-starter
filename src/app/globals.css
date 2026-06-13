@@ -4,25 +4,31 @@
 
 @layer base {
   :root {
-    /* Sistema Believe: Believe Blue 700 + Cyan 400 senal */
+    /* Fallbacks Believe (brandbook 2026). El tenant los overridea via <style> en el <head>
+       (A2 getThemeVars), que al ser unlayered gana sobre @layer base. */
     --color-primary: #0c3bb9;
     --color-accent: #00aaff;
+    --brand-paper: #fafaf7;
+    --brand-ink: #1a1a1a;
+    --brand-signal: #00aaff;
+    --font-display: var(--font-fraunces);
+    --font-body: var(--font-inter);
   }
 
   body {
-    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-body), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
     font-size: 17px;
     line-height: 1.6;
-    color: #1a1a1a;
-    background-color: #fafaf7;
+    color: var(--brand-ink, #1a1a1a);
+    background-color: var(--brand-paper, #fafaf7);
   }
 
-  /* Headlines editoriales en Fraunces (brandbook: Fraunces dice lo importante) */
+  /* Headlines editoriales (brandbook: el display dice lo importante). Tenant override via --font-display. */
   h1, h2, h3, h4, .font-display {
-    font-family: var(--font-fraunces), Georgia, Cambria, serif;
+    font-family: var(--font-display, var(--font-fraunces)), Georgia, Cambria, serif;
     font-weight: 500;
     letter-spacing: -0.015em;
-    color: #1a1a1a;
+    color: var(--brand-ink, #1a1a1a);
   }
   h1 { font-variation-settings: "opsz" 144; line-height: 1.02; }
   h2 { font-variation-settings: "opsz" 110; line-height: 1.06; }

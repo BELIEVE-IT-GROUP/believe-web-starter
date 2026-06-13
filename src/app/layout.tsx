@@ -4,6 +4,7 @@ import './globals.css'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { getSettings } from '@/lib/payload'
+import { getThemeVars, getGoogleFontsHref } from '@/lib/theme'
 
 // Tipografia Believe (brandbook 2026): Fraunces display, Inter body, JetBrains Mono data
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
@@ -31,29 +32,21 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   const settings = await getSettings()
+  const themeVars = getThemeVars(settings)
+  const googleFontsHref = getGoogleFontsHref(settings)
 
   return (
     <html lang="es" className={`${inter.variable} ${fraunces.variable} ${jetbrains.variable}`}>
+      <head>
+        {/* A2 — identidad del tenant (DNA Maasy): CSS vars en :root + fuentes Google dinámicas. */}
+        {themeVars ? <style dangerouslySetInnerHTML={{ __html: `:root{${themeVars}}` }} /> : null}
+        {googleFontsHref ? <link rel="stylesheet" href={googleFontsHref} /> : null}
+      </head>
       <body className="grain bg-paper font-sans text-ink-900 antialiased">
-        <TenantTheme settings={settings} />
         <Header settings={settings} />
         <main>{children}</main>
         <Footer settings={settings} />
       </body>
     </html>
-  )
-}
-
-function TenantTheme({ settings }: { settings: Awaited<ReturnType<typeof getSettings>> }) {
-  const primary = settings?.theme?.primaryColor
-  const accent = settings?.theme?.accentColor
-  if (!primary && !accent) return null
-
-  return (
-    <style
-      dangerouslySetInnerHTML={{
-        __html: `:root{${primary ? `--color-primary:${primary};` : ''}${accent ? `--color-accent:${accent};` : ''}}`,
-      }}
-    />
   )
 }

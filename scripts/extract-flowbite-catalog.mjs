@@ -18,7 +18,11 @@ import { fileURLToPath } from 'node:url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const REPO_ROOT = resolve(__dirname, '..')
-const CMS_REPO = resolve(REPO_ROOT, process.env.CMS_REPO || '../believe-cms-multitenant')
+// El repo canónico (no el worktree) para resolver el sibling believe-cms-multitenant.
+const CANONICAL_ROOT = REPO_ROOT.replace(/\/\.claude\/worktrees\/[^/]+$/, '')
+const CMS_REPO = process.env.CMS_REPO
+  ? resolve(process.env.CMS_REPO)
+  : resolve(CANONICAL_ROOT, '..', 'believe-cms-multitenant')
 const FLOWBITE_SRC = join(CMS_REPO, 'flowbite-react-blocks-1.8.0-beta', 'app')
 const REGISTRY_TS = join(CMS_REPO, 'src', 'flowbite', 'registry.ts')
 const CATALOG_TS = join(CMS_REPO, 'src', 'flowbite', 'catalog.ts')
