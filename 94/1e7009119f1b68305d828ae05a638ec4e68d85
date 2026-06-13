@@ -1,0 +1,90 @@
+src/flowbite/blocks/hero/crypto.tsx
+  s_86c06f00f11ac8::t_df2745f5e5b71c 20,22
+src/flowbite/blocks/footer/default.tsx
+  s_86c06f00f11ac8::t_82ba5e8326207c 3-27,32-35,38-42,45-47
+src/flowbite/blocks/team/carousel-slider.tsx
+  s_86c06f00f11ac8::t_27d6a246288c68 67,84
+  s_86c06f00f11ac8::t_48fa02d1ea1814 114
+src/flowbite/blocks/hero/search-datepicker.tsx
+  s_86c06f00f11ac8::t_df2745f5e5b71c 18
+src/flowbite/blocks/team/grid-clean.tsx
+  s_86c06f00f11ac8::t_6add0cfa5ed64e 73
+  s_86c06f00f11ac8::t_f48a71e26f986b 107
+  s_86c06f00f11ac8::t_ddf57770418d10 54
+src/flowbite/blocks/logo-cloud/default.tsx
+  s_86c06f00f11ac8::t_1db63bf074b851 10
+src/flowbite/blocks/footer/flowbite-footer.tsx
+  s_86c06f00f11ac8::t_7f4278688160cf 1-102,109,112,115,118-122,124-127,130-145,149-151
+src/flowbite/blocks/hero/email-signup-video.tsx
+  s_86c06f00f11ac8::t_df2745f5e5b71c 15
+src/flowbite/blocks/hero/storefront-background-image.tsx
+  s_86c06f00f11ac8::t_df2745f5e5b71c 23-24,31
+src/flowbite/blocks/header/user-dropdown.tsx
+  s_86c06f00f11ac8::t_3a4b4649b5dd98 14-47,51,53,55,58,83,95,97,169,172,182-191
+  s_86c06f00f11ac8::t_05e3fecbccf8d8 170
+src/flowbite/blocks/header/mega-dropdown.tsx
+  s_86c06f00f11ac8::t_169eb352b66d69 69
+  s_86c06f00f11ac8::t_7fbd3da78bfac0 5-31,35,37,39,42,48,51,53-54,64-68,70-73,124,213-222
+  s_86c06f00f11ac8::t_74865c9cd2f9ee 74
+src/flowbite/ported.ts
+  s_86c06f00f11ac8::t_7823d8b80d4861 2-5,7,9-13,60-66,73-80,151
+src/flowbite/blocks/footer/sitemap-logo.tsx
+  s_86c06f00f11ac8::t_d65bde2904dd8e 3-88,95-98,102-113,119-121,124-128
+src/flowbite/blocks/footer/sitemap-links.tsx
+  s_86c06f00f11ac8::t_78e606cb675e24 1-107,112-127,132,135,138-140,145-149,151-154
+src/flowbite/blocks/pricing/tabs-selector.tsx
+  s_86c06f00f11ac8::t_82f32186f32e08 142
+src/flowbite/blocks/hero/storefront-default.tsx
+  s_86c06f00f11ac8::t_2546ee4fe2e6b8 54
+src/flowbite/blocks/header/default.tsx
+  s_86c06f00f11ac8::t_6ad0954cb53978 5-32,36,38,40,43,49,52,54-55,65-74
+src/flowbite/blocks/footer/newsletter.tsx
+  s_86c06f00f11ac8::t_10ec329f8db95a 5-64,69-114,118,120,142,144,152,159-162,166-168,182-184,186,193,197,217
+src/flowbite/blocks/footer/pre-footer-cta.tsx
+  s_86c06f00f11ac8::t_c7bfc9f3623d4a 5-74,79,83,86,89,92,96-111,116,119,122-124,139-141,143,150,154,174
+src/flowbite/blocks/hero/screenshot-download.tsx
+  s_86c06f00f11ac8::t_df2745f5e5b71c 22,24
+src/flowbite/blocks/header/centered.tsx
+  s_86c06f00f11ac8::t_0ea45353ff9d7e 5-36,41,44,68,84,86,88,91,96,99,125,143,146,148-149,159-168
+src/flowbite/blocks/header/search.tsx
+  s_86c06f00f11ac8::t_5bc43602db21b5 183
+  s_86c06f00f11ac8::t_a5f219a6fb5f62 6-30,34,36,38,41,52,85-88,90,93-95,97,99,101,103-105,162,167,178-182,184-187
+src/flowbite/blocks/faq/customer-service.tsx
+  s_86c06f00f11ac8::t_eb91a451d128df 34
+  s_86c06f00f11ac8::t_fc39bedca53899 42,50,58,66,74,82,90,98,106
+src/flowbite/blocks/footer/social-media.tsx
+  s_86c06f00f11ac8::t_7259cce33e2b05 1-84,90,93,96-102,104,107,125-126,128,136,143-145,150-154,156-158
+src/flowbite/blocks/hero/background-cover-ctas.tsx
+  s_86c06f00f11ac8::t_df2745f5e5b71c 25
+src/flowbite/blocks/header/dropdown.tsx
+  s_86c06f00f11ac8::t_fa38b2d08745ce 6-35,39,41,43,46,52,55,57-58,68-73,75-90,92-103
+src/flowbite/blocks/header/mega-menu.tsx
+  s_86c06f00f11ac8::t_1db63bf074b851 24
+  s_86c06f00f11ac8::t_7291989490dc92 5-23,25-73,77,79,81,84,105-106,110-111,115-116,121,124,127-131,133-136,143-180,235,237-239,241,243-260,262-263,265-266,268,270-275,277-285,287-318,320-340,343-351,353-373,380
+src/flowbite/blocks/testimonials/tabs.tsx
+  s_86c06f00f11ac8::t_7bf715f78142a5 81
+src/flowbite/blocks/logo-cloud/cards-cta.tsx
+  s_86c06f00f11ac8::t_1db63bf074b851 13
+src/flowbite/blocks/header/sub-navbar.tsx
+  s_86c06f00f11ac8::t_55a8def30d4de1 6-46,50,52,54,57,62,65,68,71,74,77,83-91,94-119
+src/flowbite/blocks/hero/signup-cta.tsx
+  s_86c06f00f11ac8::t_b3229244f0f1df 107
+src/flowbite/blocks/hero/cover-image-ctas.tsx
+  s_86c06f00f11ac8::t_df2745f5e5b71c 21
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "941e7009119f1b68305d828ae05a638ec4e68d85",
+  "prompts": {},
+  "sessions": {
+    "s_86c06f00f11ac8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "cab5c659-d488-459b-aad8-18b0f1b23ec2",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
