@@ -1,0 +1,419 @@
+src/flowbite/blocks/faq/customer-service.tsx
+  s_86c06f00f11ac8::t_d6f8f732e322e7 1-2
+  s_86c06f00f11ac8::t_dad1ba5892850b 16-127,132,135-183,187,189
+src/flowbite/blocks/cta/tabs-mobile-app.tsx
+  s_86c06f00f11ac8::t_e1620f70794508 1-2,5-33
+  s_86c06f00f11ac8::t_377d7704666a7b 142,145,150-165,168,173,177-179
+  s_86c06f00f11ac8::t_8bd37152af2efb 78,81,86-101,104,109,113-115
+  s_86c06f00f11ac8::t_a6858aad3dcbc0 212,217,224,227-229,231-235,239-256,260-263,269,272
+  s_86c06f00f11ac8::t_bc70b61354f882 195,200
+src/flowbite/blocks/blog-list/card-with-image.tsx
+  s_86c06f00f11ac8::t_77463d9f38a637 3-60
+  s_86c06f00f11ac8::t_4802fe087a3591 66,69,73-103,106-107
+src/flowbite/blocks/hero/email-signup-video.tsx
+  s_86c06f00f11ac8::t_15806744910475 115-116
+  s_86c06f00f11ac8::t_ae3d2bf68b3d27 89
+  s_86c06f00f11ac8::t_645934967efec1 3-22,29,32
+  s_86c06f00f11ac8::t_51934c21e09fff 53,63
+src/flowbite/blocks/cta/banner-launch.tsx
+  s_86c06f00f11ac8::t_981251b0a903f2 20,25,28,31,34
+  s_86c06f00f11ac8::t_80a29a854e3d10 1-2
+  s_86c06f00f11ac8::t_bb14b090b244d3 6-14
+src/flowbite/blocks/logo-cloud/4-columns.tsx
+  s_86c06f00f11ac8::t_f715d7493eb9d1 1-2,70-87,89-101,103
+  s_86c06f00f11ac8::t_975c8fe773acf6 5-35,41,44,48,52
+src/flowbite/blocks/stats/default.tsx
+  s_86c06f00f11ac8::t_b7fc0c65600f1c 1-12,17-22
+src/flowbite/blocks/blog-list/list-with-heading.tsx
+  s_86c06f00f11ac8::t_761b36e62f4069 60,63,67-89,91-102,104-110,112-113,115-116
+  s_86c06f00f11ac8::t_61a2374b43d80f 3-54
+src/flowbite/blocks/hero/storefront-full-slider.tsx
+  s_86c06f00f11ac8::t_34fca986ccc092 1-2,7-55,60-62,64-66,68-74,76-84,86-120,122,124-165,167-171,173
+src/flowbite/blocks/hero/visual-image-heading.tsx
+  s_86c06f00f11ac8::t_76680aa928462c 3-22,28,31,36,40,55,61-62
+src/flowbite/blocks/testimonials/carousel-slider.tsx
+  s_86c06f00f11ac8::t_ba278829f31a61 1-2,5-57,63,66,121-154,156-157
+src/flowbite/blocks/pricing/horizontal.tsx
+  s_86c06f00f11ac8::t_5aab6b7458bf74 3-35,42,45,49-54,57-62,65-70,77,80,82,84,87-89
+src/flowbite/blocks/contact/default.tsx
+  s_86c06f00f11ac8::t_1473d2519122c2 56
+  s_86c06f00f11ac8::t_0133c73e97fb7e 3-9,14,17
+src/flowbite/blocks/blog-list/publisher-related-carousel.tsx
+  s_86c06f00f11ac8::t_ec45a21df76951 121-123
+  s_86c06f00f11ac8::t_35a3e8fd77b85b 7-74
+  s_86c06f00f11ac8::t_d6f8f732e322e7 1-2
+  s_86c06f00f11ac8::t_fe16a9b7c7c93c 82
+  s_86c06f00f11ac8::t_55efb17ca8af8c 139-144,146-196
+  s_86c06f00f11ac8::t_f276fbec7f8c44 99-101
+src/flowbite/blocks/features/rounded-icons.tsx
+  s_86c06f00f11ac8::t_ceb4f45101103c 3-37,43,46,51-73,75,79-80
+src/flowbite/blocks/split-content/card-images.tsx
+  s_86c06f00f11ac8::t_f817aee96962c0 1-39
+  s_86c06f00f11ac8::t_4378afbf5b3b5c 45,48,51
+  s_86c06f00f11ac8::t_51186b95e597ea 67-81,83
+src/flowbite/blocks/contact/background-image.tsx
+  s_86c06f00f11ac8::t_48661d3798f642 3-14,17-20,23,26
+  s_86c06f00f11ac8::t_c38fb7ecae9fe9 115,132,138,141,161,189
+src/flowbite/blocks/video-embed/content-video.tsx
+  s_86c06f00f11ac8::t_f4e9952e01326d 1-10,15,18,23-24
+src/flowbite/blocks/contact/company-information.tsx
+  s_86c06f00f11ac8::t_a5aa22a23bb0bf 350,358,373
+  s_86c06f00f11ac8::t_80a29a854e3d10 1-2
+  s_86c06f00f11ac8::t_cdc8302032fb02 13-25,51,53,78,103,107
+src/flowbite/blocks/pricing/tabs-selector.tsx
+  s_86c06f00f11ac8::t_7d6ac198382f36 7-82,90,96,104,107,120-127,131-155,157
+src/flowbite/blocks/features/alternate.tsx
+  s_86c06f00f11ac8::t_029403f52b8e87 1-40,46,52,59,61-63,67,75,80,82-84
+  s_86c06f00f11ac8::t_de07e73798a1f8 41-45,47-51
+src/flowbite/blocks/gallery/image-gallery.tsx
+  s_86c06f00f11ac8::t_a3e6c5b89710dc 1-18,23,26,31-32,35-36,40-41,45-46,50-51,55-56
+src/flowbite/blocks/cta/default.tsx
+  s_86c06f00f11ac8::t_e7ce69a903e703 3-10
+  s_86c06f00f11ac8::t_00eab6c391d482 16,19,22-23
+  s_86c06f00f11ac8::t_4bdf580c9c89c7 39
+src/flowbite/blocks/testimonials/tabs.tsx
+  s_86c06f00f11ac8::t_2ea0e26662256b 1-2,5-68,95-141
+src/flowbite/blocks/features/default.tsx
+  s_86c06f00f11ac8::t_024520c5cd0e27 1-9,16-27,30-31,37,40,44-61,63
+  s_86c06f00f11ac8::t_de07e73798a1f8 10-15,28-29
+src/flowbite/blocks/testimonials/blockquote.tsx
+  s_86c06f00f11ac8::t_c1cbc7aba5eb62 3-24,41,45,51,54
+src/flowbite/blocks/hero/carousel.tsx
+  s_86c06f00f11ac8::t_98d3715b3716fd 1-2,5-27,35,38,42,48
+  s_86c06f00f11ac8::t_fe43ca2408900e 59,64
+  s_86c06f00f11ac8::t_dcee4d794b8894 91-93
+src/flowbite/blocks/hero/search-datepicker.tsx
+  s_86c06f00f11ac8::t_bef8282442a469 6-21,24,28,31,34,37
+src/flowbite/blocks/header/mega-dropdown.tsx
+  s_86c06f00f11ac8::t_80a29a854e3d10 1-2
+src/flowbite/blocks/gallery/portfolio-default.tsx
+  s_86c06f00f11ac8::t_d3a7ceb47e6600 3-29,35,38,42-58
+src/flowbite/blocks/footer/pre-footer-cta.tsx
+  s_86c06f00f11ac8::t_80a29a854e3d10 1-2
+src/flowbite/blocks/newsletter/modal-signup.tsx
+  s_86c06f00f11ac8::t_10a3b1cf2699ff 6-15,21,26,52,55,79,91
+src/flowbite/blocks/testimonials/cards.tsx
+  s_86c06f00f11ac8::t_31ed400e657463 4
+  s_86c06f00f11ac8::t_6a3d0677fe0457 3,5-82,88,91,95-127,131
+src/flowbite/blocks/cta/mobile-app.tsx
+  s_86c06f00f11ac8::t_34c0b1d5374b8d 45
+  s_86c06f00f11ac8::t_9d64c91fc63a44 50
+  s_86c06f00f11ac8::t_61e65af709c4f9 3-14
+  s_86c06f00f11ac8::t_7850b4e3140643 20,23,27
+  s_86c06f00f11ac8::t_4e2927a45e0686 68
+  s_86c06f00f11ac8::t_82ecdc7645f990 75-76
+src/flowbite/blocks/cta/email-signup.tsx
+  s_86c06f00f11ac8::t_fab9812e0f6fe4 22,25,27,37,48,52,54,57,62,64
+  s_86c06f00f11ac8::t_d2ca4283a758b4 3-16
+scripts/build-flowbite-blocks.mjs
+  s_86c06f00f11ac8::t_1d5d313d398da9 92
+  s_86c06f00f11ac8::t_b7a9389d83a1c9 44,47-53
+src/flowbite/blocks/hero/book-cover.tsx
+  s_86c06f00f11ac8::t_8e07b847db9308 3-26,34-35,38,42,48,50
+  s_86c06f00f11ac8::t_480df22951b173 114-115
+  s_86c06f00f11ac8::t_ca29dc707527d1 98,104
+src/flowbite/blocks/split-content/heading-description.tsx
+  s_86c06f00f11ac8::t_b4431b52a1b5d8 1-10,16,19,22,25,28
+src/flowbite/blocks/hero/app-preview-ctas.tsx
+  s_86c06f00f11ac8::t_3174136e1ce0a7 3-22
+  s_86c06f00f11ac8::t_e5171ca9399b6e 27,30,33-34,40,43
+  s_86c06f00f11ac8::t_a0d3c791d41d0b 60-61,65-66
+src/flowbite/blocks/logo-cloud/cards-cta.tsx
+  s_86c06f00f11ac8::t_c2aca0c1d7c85b 39,42
+  s_86c06f00f11ac8::t_d83c91f1201845 1-8,13,16,20,23
+src/flowbite/blocks/hero/video-embed-cta.tsx
+  s_86c06f00f11ac8::t_d80a76349efdc8 3-24,29,32,35-36,44
+  s_86c06f00f11ac8::t_5fc7ebb509746f 118,127-128
+src/flowbite/blocks/faq/help-center-search.tsx
+  s_86c06f00f11ac8::t_eb111c6952df73 4-67,73,76,84,88,92-105
+src/flowbite/blocks/team/default.tsx
+  s_86c06f00f11ac8::t_f95a87db20e5ef 37-129
+  s_86c06f00f11ac8::t_5ef89e0e9fe0e5 1-23
+  s_86c06f00f11ac8::t_88f6281afb677a 131
+  s_86c06f00f11ac8::t_aae39911bd7657 29,32,36
+src/flowbite/blocks/faq/help-center.tsx
+  s_86c06f00f11ac8::t_2366409f78ec83 3-72,78,81,106,110,114-138,140-141,143
+src/flowbite/blocks/blog-list/default.tsx
+  s_86c06f00f11ac8::t_16dec3aaf1aa3f 49,51,54,57,62-63,66,69,104,106,109,112,117-118,122,126
+  s_86c06f00f11ac8::t_29e6698b187145 3-25
+  s_86c06f00f11ac8::t_aed61922c384d7 31,34
+src/flowbite/blocks/features/image-list.tsx
+  s_86c06f00f11ac8::t_67eb1d9352e760 1-49,55,60,62,64-111,113
+src/flowbite/blocks/hero/phone-mockup-download.tsx
+  s_86c06f00f11ac8::t_a25eb053f22b4d 3-26,33-34,37
+  s_86c06f00f11ac8::t_1e5a4b6183154d 145,151
+  s_86c06f00f11ac8::t_9322c04672c964 101,106
+  s_86c06f00f11ac8::t_926bd00d276e3e 42,67
+src/flowbite/blocks/pricing/default.tsx
+  s_86c06f00f11ac8::t_0bdfb8dce522a8 3-58,64,67,71-97
+src/flowbite/blocks/pricing/feature-list.tsx
+  s_86c06f00f11ac8::t_1698b6f79d1772 3-66,72,75
+  s_86c06f00f11ac8::t_d904a8ebdd31c9 78-88,90,98,102,104,107-109,113,115,118-119,122-141
+src/flowbite/blocks/cta/cards-icons.tsx
+  s_86c06f00f11ac8::t_a9159b6e4f1f28 3-23
+  s_86c06f00f11ac8::t_0ecd98942d4a96 28,31,34,37-41,43-63
+src/flowbite/blocks/blog-list/publisher-related-horizontal.tsx
+  s_86c06f00f11ac8::t_6f5e5e25067fae 1-30
+  s_86c06f00f11ac8::t_a38cb6592f4f4d 38,41-48,50-65
+src/flowbite/blocks/features/card-list.tsx
+  s_86c06f00f11ac8::t_72a7dd51d2b302 3-37,43,46
+  s_86c06f00f11ac8::t_e83db6f74e436e 50-65
+src/flowbite/blocks/features/comparison.tsx
+  s_86c06f00f11ac8::t_24213e9a0f827d 1-28,35,38,41,44,60-91
+src/flowbite/blocks/hero/storefront-grid-view.tsx
+  s_86c06f00f11ac8::t_1badb7b4db7e56 3-96,100-112,114-115,117-125,127-153
+src/flowbite/blocks/blog-list/centered-posts.tsx
+  s_86c06f00f11ac8::t_446cbc6eb28815 54,57,61-97,99-100
+  s_86c06f00f11ac8::t_9169db4b191f9a 3-48
+src/flowbite/blocks/team/description.tsx
+  s_86c06f00f11ac8::t_0758e58ec7319b 1-23,29,32,35,39-60,62-79,81-94,96-113,115-130,132
+src/flowbite/blocks/header/search.tsx
+  s_86c06f00f11ac8::t_80a29a854e3d10 1-2
+src/flowbite/blocks/testimonials/grid-layout-cards.tsx
+  s_86c06f00f11ac8::t_2682f6e01556e4 3-21,31-42,45,47-49,51,55-56,58-77,83,86,91,94,97
+  s_86c06f00f11ac8::t_de07e73798a1f8 22-30,43-44,46,50,52-54,57
+src/flowbite/blocks/newsletter/popup-email.tsx
+  s_86c06f00f11ac8::t_496da526348da3 6-14,20,55,58,82,94
+src/flowbite/blocks/team/grid-clean.tsx
+  s_86c06f00f11ac8::t_a0d884ee4b21f3 1-26,32,35,39-125
+src/flowbite/blocks/hero/illustration-email-signup.tsx
+  s_86c06f00f11ac8::t_d8c535fe8117a1 58
+  s_86c06f00f11ac8::t_881ef9a447980f 83-84
+  s_86c06f00f11ac8::t_fb77bb7a7780b4 3-20,26,29
+  s_86c06f00f11ac8::t_cfa4051aa4c8ca 50
+src/flowbite/blocks/pricing/toggle.tsx
+  s_86c06f00f11ac8::t_20d462e72f7583 6-62,64,71,74,78,88,93-119
+src/flowbite/blocks/header/default.tsx
+  s_86c06f00f11ac8::t_80a29a854e3d10 1-2
+src/flowbite/blocks/features/cta-list.tsx
+  s_86c06f00f11ac8::t_f134c4266f06db 1-33,38,41,44-45,47,52,54-62,64-75
+src/flowbite/blocks/faq/accordion.tsx
+  s_86c06f00f11ac8::t_b7502e437c1d9f 40,44-55
+  s_86c06f00f11ac8::t_d77087e3fd34af 5-35
+  s_86c06f00f11ac8::t_80a29a854e3d10 1-2
+src/flowbite/blocks/contact/address-location.tsx
+  s_86c06f00f11ac8::t_fa9a23d731a45a 3-13,19,22
+  s_86c06f00f11ac8::t_d8f9b6ea08bb25 98
+  s_86c06f00f11ac8::t_719ae6caaa6b4e 122-123
+  s_86c06f00f11ac8::t_718f40dd09087e 145
+  s_86c06f00f11ac8::t_bf349d57aa47ab 167
+src/flowbite/blocks/hero/search-bar.tsx
+  s_86c06f00f11ac8::t_afe36d501b7e85 117,122
+  s_86c06f00f11ac8::t_b22e900a3c13d1 95
+  s_86c06f00f11ac8::t_be72670099e075 4-31,38,42,46
+  s_86c06f00f11ac8::t_2caa7dee51e91f 129-143,145
+  s_86c06f00f11ac8::t_fc9fc1d343f04b 62,65
+src/flowbite/blocks/blog-list/publisher-related-default.tsx
+  s_86c06f00f11ac8::t_038296cff1bb9e 1-30
+  s_86c06f00f11ac8::t_7b3215237bae06 38,41-63
+src/flowbite/blocks/cta/qr-code.tsx
+  s_86c06f00f11ac8::t_706a63a1cf6428 1-9
+  s_86c06f00f11ac8::t_b1bcb528e34555 15,18,21-22,26-27
+src/flowbite/blocks/gallery/portfolio-carousel.tsx
+  s_86c06f00f11ac8::t_56ba176e00a949 204
+  s_86c06f00f11ac8::t_4f7730704913cd 1-2,5-128,135,138,141,145-147,149-151
+  s_86c06f00f11ac8::t_02f501f3fb082f 157-158,162-163,168-169,171
+  s_86c06f00f11ac8::t_9daa72d126f555 175-201,203
+src/flowbite/blocks/video-embed/hero-email-video.tsx
+  s_86c06f00f11ac8::t_d3e6f96c0114e5 107
+  s_86c06f00f11ac8::t_3620757250a841 3-12,14
+  s_86c06f00f11ac8::t_de07e73798a1f8 13,21,24,26,45,55
+  s_86c06f00f11ac8::t_01c5a2547d2995 81
+src/flowbite/blocks/header/sub-navbar.tsx
+  s_86c06f00f11ac8::t_80a29a854e3d10 1-2
+src/flowbite/blocks/header/dropdown.tsx
+  s_86c06f00f11ac8::t_80a29a854e3d10 1-2
+src/flowbite/blocks/blog-list/featured-post.tsx
+  s_86c06f00f11ac8::t_2d643d98cf8b12 1-49
+  s_86c06f00f11ac8::t_40e12ba15b7106 55,58,63-71,73,76,79,82,86-96,98,100-101,104-114,116,118-119
+src/flowbite/blocks/team/carousel-slider.tsx
+  s_86c06f00f11ac8::t_2d7e8a42511833 131
+  s_86c06f00f11ac8::t_52b8085a74a8b2 18-24,52-129
+  s_86c06f00f11ac8::t_b66c9861b3f569 32,35,39-41
+  s_86c06f00f11ac8::t_045cdfb4cd6e6b 1-2,5-16,25-26
+  s_86c06f00f11ac8::t_ba1f608eb522e7 48,51
+src/flowbite/blocks/blog-list/publisher-related-grid.tsx
+  s_86c06f00f11ac8::t_46ab59e7037781 1-29
+  s_86c06f00f11ac8::t_df50922df73b77 37,40-47,49-56,58-59
+src/flowbite/blocks/stats/card-statistics.tsx
+  s_86c06f00f11ac8::t_817abe94dfa806 3-24,30,34-53,59
+src/flowbite/blocks/features/icon-list-cta.tsx
+  s_86c06f00f11ac8::t_d793e19e7223c8 1-27,32,35,38-60,64,67
+src/flowbite/blocks/hero/cover-image-ctas.tsx
+  s_86c06f00f11ac8::t_73b003af5694ce 3-28,34,37,54,57,59-60
+  s_86c06f00f11ac8::t_574fd0443fc18b 89,92,94,108,116-117
+src/flowbite/blocks/gallery/portfolio-grid-layout.tsx
+  s_86c06f00f11ac8::t_7d53dd073f8b2f 3-43,49,52,56-84
+src/flowbite/blocks/contact/help-center.tsx
+  s_86c06f00f11ac8::t_e0252eb20a612c 11-69,75
+  s_86c06f00f11ac8::t_9f15c136a74471 122,129,132
+  s_86c06f00f11ac8::t_de07e73798a1f8 97,110
+  s_86c06f00f11ac8::t_d61f711f68e618 141,144,150,156,162
+  s_86c06f00f11ac8::t_abcd74f757e3c3 194
+  s_86c06f00f11ac8::t_f68989fac4e95c 253,260,269
+  s_86c06f00f11ac8::t_102b758d668f11 102-109,111-117
+src/flowbite/blocks/split-content/two-columns.tsx
+  s_86c06f00f11ac8::t_a34679cca86e6b 42,45
+  s_86c06f00f11ac8::t_60987b83c492af 1-10,16,19,22,25
+src/flowbite/blocks/team/cta-grid.tsx
+  s_86c06f00f11ac8::t_e71ffef5baf686 3-33
+  s_86c06f00f11ac8::t_c727999db816a6 39,42,46-59,62,78,84,88
+src/flowbite/blocks/footer/newsletter.tsx
+  s_86c06f00f11ac8::t_80a29a854e3d10 1-2
+src/flowbite/blocks/video-embed/hero-video-cta.tsx
+  s_86c06f00f11ac8::t_ce0877902020d1 108
+  s_86c06f00f11ac8::t_98f6d2ab94606b 3-14,19,22,25-26,34
+  s_86c06f00f11ac8::t_c928ddc11b648f 117
+src/flowbite/ported.ts
+  s_86c06f00f11ac8::t_9edc8fb3886d70 13-130
+  s_86c06f00f11ac8::t_6423a578dffbc6 133-135,139-141
+  s_86c06f00f11ac8::t_110defa4845060 2-5,7-10,12
+src/flowbite/blocks/logo-cloud/default.tsx
+  s_86c06f00f11ac8::t_4077b1085cb529 1-5,10
+src/flowbite/blocks/logo-cloud/heading-grid.tsx
+  s_86c06f00f11ac8::t_998f98ef8ad630 1-6,12,15
+src/flowbite/blocks/newsletter/email-signup-card.tsx
+  s_86c06f00f11ac8::t_76cff8b577a443 4-13,20,23,39,44,50-51
+src/flowbite/blocks/stats/content-social-proof.tsx
+  s_86c06f00f11ac8::t_0a73a5c2197eba 1-7,11-13,16,21,24,27-34
+  s_86c06f00f11ac8::t_de07e73798a1f8 8-10,14-15
+src/flowbite/blocks/hero/default.tsx
+  s_86c06f00f11ac8::t_bd01ea9cb6e438 3-24
+  s_86c06f00f11ac8::t_605ea5da03d0d0 83
+  s_86c06f00f11ac8::t_8906951af21bbb 29,33,37
+  s_86c06f00f11ac8::t_f07df9985faa2d 53,56,61,65
+  s_86c06f00f11ac8::t_34dbac3eaaafe4 94
+  s_86c06f00f11ac8::t_4fa743b0dd5fdd 99
+src/flowbite/blocks/hero/storefront-default.tsx
+  s_86c06f00f11ac8::t_60be9175fc4f48 3-18,24,27,30,36,41
+src/flowbite/blocks/cta/banner-announcement.tsx
+  s_86c06f00f11ac8::t_b0154824288754 18,20,22,25
+  s_86c06f00f11ac8::t_80a29a854e3d10 1-2
+  s_86c06f00f11ac8::t_821b275e05d773 6-13
+src/flowbite/blocks/newsletter/default.tsx
+  s_86c06f00f11ac8::t_cc6bf93214ca4b 4-13,19,22,36,41,48,51
+src/flowbite/blocks/cta/finance-trading.tsx
+  s_86c06f00f11ac8::t_d252cce4ec16b1 3-31
+  s_86c06f00f11ac8::t_fd862d10ea7844 37,40,46-68,73,75-76
+src/flowbite/blocks/team/grid-cards.tsx
+  s_86c06f00f11ac8::t_707552788e369b 3-25,31,34,38-129
+src/flowbite/blocks/hero/storefront-background-image.tsx
+  s_86c06f00f11ac8::t_22af48585e289e 13-28,31,34,37,40
+src/flowbite/blocks/cta/image-button.tsx
+  s_86c06f00f11ac8::t_c2092772fd8734 15-16,20-21,26,29,33,37
+  s_86c06f00f11ac8::t_83e78123327cfd 3-10
+src/flowbite/blocks/hero/background-image-cards.tsx
+  s_86c06f00f11ac8::t_6fc010f1d6ead7 3-15,21-23,26,29,33-35,38,41,45-47,50,53
+src/flowbite/blocks/stats/carousel-slider.tsx
+  s_86c06f00f11ac8::t_31cf90a52d09b1 1-2,5-46,51,55,58
+  s_86c06f00f11ac8::t_786d64430320c1 89-91,106-112,116-121
+src/flowbite/blocks/header/centered.tsx
+  s_86c06f00f11ac8::t_80a29a854e3d10 1-2
+src/flowbite/blocks/split-content/feature-list.tsx
+  s_86c06f00f11ac8::t_5fedf4db786c69 79,82
+  s_86c06f00f11ac8::t_e5d413491dfbd6 117-124
+  s_86c06f00f11ac8::t_b727b9bf837ff1 52-53,57-58,63,66
+  s_86c06f00f11ac8::t_b4692856edae15 101-102
+  s_86c06f00f11ac8::t_de07e73798a1f8 110,113,130,133,138,141
+  s_86c06f00f11ac8::t_cd66c90012e9c2 1-46
+src/flowbite/blocks/hero/crypto.tsx
+  s_86c06f00f11ac8::t_a7088455832d19 1-2,5-39,45,48,50,52,56-64
+  s_86c06f00f11ac8::t_9081ffcfebe433 253-254
+src/flowbite/blocks/faq/default.tsx
+  s_86c06f00f11ac8::t_6a6f1dc84b50fb 1-28
+  s_86c06f00f11ac8::t_04cefca3094e71 33,37-57,60-80
+src/flowbite/blocks/header/user-dropdown.tsx
+  s_86c06f00f11ac8::t_80a29a854e3d10 1-2
+src/flowbite/blocks/team/overlay-zoom.tsx
+  s_86c06f00f11ac8::t_65fd89d789b9c7 3-27,34,37,40,43-44,62-75,78
+src/flowbite/blocks/features/description-icon-list.tsx
+  s_86c06f00f11ac8::t_788b640f7dbf0b 1-31,37,40,43,46,62-79,81
+src/flowbite/blocks/split-content/heading-images.tsx
+  s_86c06f00f11ac8::t_a76af1c4077d4a 1-10,16,19,22,27-28,32-33
+src/flowbite/blocks/stats/icon-statistics.tsx
+  s_86c06f00f11ac8::t_2b6370e0dc263c 1-45,51,54,57,60-67,71-83
+src/flowbite/blocks/cta/two-cards.tsx
+  s_86c06f00f11ac8::t_10aef82a0a67aa 33,36
+  s_86c06f00f11ac8::t_f45c4b2cd59b1f 151,155
+  s_86c06f00f11ac8::t_4083d710c8050e 42-43,50,53,57,60,63,66,71,74,78,90,97-98,104,107,111,114,117,120,125,128,132,144
+  s_86c06f00f11ac8::t_718ff2b1198479 3-27
+src/flowbite/blocks/hero/blog-posts-featured.tsx
+  s_86c06f00f11ac8::t_7eb97b70315c3e 3-30
+  s_86c06f00f11ac8::t_881dd9d17a0c18 36,39,58,61-62,68,72,74,79,82
+  s_86c06f00f11ac8::t_08fb43358c01ac 104-121,123-136,138-140
+src/flowbite/blocks/team/four-columns.tsx
+  s_86c06f00f11ac8::t_78157b9fc67eff 3-29,35,38,41-42,62-79,81-142,144-145,161,167,171
+src/flowbite/blocks/gallery/portfolio-featured-image.tsx
+  s_86c06f00f11ac8::t_80a29a854e3d10 1-2
+  s_86c06f00f11ac8::t_aded20741acb26 5-98,104,107,110-111,113,115,117-120,126-160,162-163
+src/flowbite/blocks/gallery/portfolio-alternate.tsx
+  s_86c06f00f11ac8::t_80a29a854e3d10 1-2
+  s_86c06f00f11ac8::t_8b4704b91e8bbb 5-87,93,96
+  s_86c06f00f11ac8::t_801ce9ff0bfd87 100-135,137-138
+src/flowbite/blocks/split-content/table-contents.tsx
+  s_86c06f00f11ac8::t_0bb5ad7c3804ad 1-25,31,35-44,48,51
+src/flowbite/blocks/hero/screenshot-download.tsx
+  s_86c06f00f11ac8::t_c9f2bd0c2d54c1 3-36,42,44,46,49,54,57,62,65,70,73,76
+  s_86c06f00f11ac8::t_b50c877bf5fdfe 91
+  s_86c06f00f11ac8::t_352caf3255c36d 115,120
+src/flowbite/blocks/cta/heading-button.tsx
+  s_86c06f00f11ac8::t_9aec0283b478a2 15,18,20-21
+  s_86c06f00f11ac8::t_d5baafd2a86006 3-9
+src/flowbite/blocks/header/mega-menu.tsx
+  s_86c06f00f11ac8::t_80a29a854e3d10 1-2
+src/flowbite/blocks/newsletter/banner.tsx
+  s_86c06f00f11ac8::t_80a29a854e3d10 1-2
+  s_86c06f00f11ac8::t_4c4a2632165398 6-12,18,32,40
+src/flowbite/blocks/pricing/comparison-table.tsx
+  s_86c06f00f11ac8::t_80a29a854e3d10 1-2
+  s_86c06f00f11ac8::t_99ccfdd382f22d 114
+  s_86c06f00f11ac8::t_5c4a2be521be7e 5-62,68,71,75-101
+  s_86c06f00f11ac8::t_f00ad835b0e5d1 634-638
+src/flowbite/blocks/pricing/highlighted-plan.tsx
+  s_86c06f00f11ac8::t_6ee757f975c01d 97-147
+  s_86c06f00f11ac8::t_686d3474d87299 6-66,68,75,78
+src/flowbite/blocks/hero/background-cover-ctas.tsx
+  s_86c06f00f11ac8::t_cb548807e28c72 3-23
+  s_86c06f00f11ac8::t_1e99f8eac7acd5 25,29,32,34-35
+  s_86c06f00f11ac8::t_278dd550e0fc83 51-57,59-74
+src/flowbite/blocks/faq/grid-layout.tsx
+  s_86c06f00f11ac8::t_360afcfa0f1ad4 1-35,41,44,49-56,59-66,69-76
+src/flowbite/blocks/stats/heading-statistics.tsx
+  s_86c06f00f11ac8::t_745a79d88927b0 1-17,22,25,28-37
+src/flowbite/blocks/logo-cloud/cards-description.tsx
+  s_86c06f00f11ac8::t_860f48268bb673 1-5,10
+src/flowbite/blocks/contact/links.tsx
+  s_86c06f00f11ac8::t_a7156a45b5bc9b 84,87-96,99
+  s_86c06f00f11ac8::t_877680833d932d 154,161
+  s_86c06f00f11ac8::t_6432156624d7bd 175
+  s_86c06f00f11ac8::t_30e8cdaaba66c5 3-24,29
+src/flowbite/blocks/stats/illustration.tsx
+  s_86c06f00f11ac8::t_a2f4624edf3d40 1-29,35,38,41-55,57,62-63
+src/flowbite/blocks/cta/banner-default.tsx
+  s_86c06f00f11ac8::t_80a29a854e3d10 1-2
+  s_86c06f00f11ac8::t_8f2893054aa0e9 6-12
+  s_86c06f00f11ac8::t_66e5e5f7eb9d45 17,20,22,24
+src/flowbite/blocks/hero/signup-cta.tsx
+  s_86c06f00f11ac8::t_bb02aec0ff6998 3-24,30,33,44,47-55,61
+src/flowbite/blocks/features/icons-list.tsx
+  s_86c06f00f11ac8::t_fbe16ada540467 60-82
+  s_86c06f00f11ac8::t_e7047701ec6440 46-58
+  s_86c06f00f11ac8::t_6ca7b66066546a 59
+  s_86c06f00f11ac8::t_c29fa05c8dcdaf 1-33,39,42
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "519115857e6dd3d0fa2676382fe82feab4b92749",
+  "prompts": {},
+  "sessions": {
+    "s_86c06f00f11ac8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "cab5c659-d488-459b-aad8-18b0f1b23ec2",
+        "model": "unknown"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
