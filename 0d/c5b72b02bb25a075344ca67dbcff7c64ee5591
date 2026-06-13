@@ -1,0 +1,21 @@
+.dockerignore
+  s_4627fdffee19c5::t_6726c333a9f263 1-10
+public/robots.txt
+  s_4627fdffee19c5::t_c1d50dbec63b4a 1-2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "0dc5b72b02bb25a075344ca67dbcff7c64ee5591",
+  "prompts": {},
+  "sessions": {
+    "s_4627fdffee19c5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "26c512f6-9762-4540-aa5b-da77944ecedc",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
