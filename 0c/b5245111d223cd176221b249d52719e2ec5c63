@@ -1,0 +1,22 @@
+tailwind.config.ts
+  s_4627fdffee19c5::t_e52fcebca18586 2,9-10
+  s_4627fdffee19c5::t_f28eeca04096bb 44
+postcss.config.js
+  s_4627fdffee19c5::t_3a4108cadf1f0b 1-6
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "0cb5245111d223cd176221b249d52719e2ec5c63",
+  "prompts": {},
+  "sessions": {
+    "s_4627fdffee19c5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "26c512f6-9762-4540-aa5b-da77944ecedc",
+        "model": "unknown"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
