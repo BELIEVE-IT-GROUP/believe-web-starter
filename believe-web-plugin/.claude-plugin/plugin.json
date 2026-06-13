@@ -1,0 +1,32 @@
+{
+  "name": "believe-web",
+  "version": "0.1.0",
+  "description": "Believe Web Factory: conversational website builder. Loads brand DNA from Maasy, interviews for missing details, composes a site with 133 Flowbite block variants, deploys to Coolify Hetzner and wires leads without manual access grants.",
+  "author": {
+    "name": "Believe",
+    "url": "https://believe-global.com"
+  },
+  "homepage": "https://believe-global.com",
+  "repository": "https://github.com/BELIEVE-IT-GROUP/believe-web-starter",
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "believe",
+    "web-factory",
+    "cms",
+    "coolify",
+    "flowbite",
+    "brand-dna",
+    "maasy",
+    "payload-cms"
+  ],
+  "mcpServers": {
+    "believe-cms": {
+      "command": "node",
+      "args": ["../believe-cms-mcp/dist/index.js"]
+    }
+  },
+  "skills": [
+    "./skills/"
+  ]
+}

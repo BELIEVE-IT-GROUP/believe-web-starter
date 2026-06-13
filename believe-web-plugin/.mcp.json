@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "believe-cms": {
+      "command": "node",
+      "args": ["../believe-cms-mcp/dist/index.js"]
+    }
+  }
+}

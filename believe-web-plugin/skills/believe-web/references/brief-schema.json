@@ -1,0 +1,235 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "believe-web/brief",
+  "title": "BelieveWebBrief",
+  "description": "Structured brief produced by the believe-web interview. All string values must be ASCII when written to CMS tools; markdown fields allow extended chars only in user-visible text.",
+  "type": "object",
+  "required": ["marca", "dna", "objetivo", "pages", "leads"],
+  "additionalProperties": false,
+  "properties": {
+    "marca": {
+      "type": "object",
+      "required": ["nombre", "slug"],
+      "additionalProperties": false,
+      "properties": {
+        "nombre": {
+          "type": "string",
+          "description": "Display name of the brand, e.g. 'Pawers'.",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "slug": {
+          "type": "string",
+          "description": "URL-safe identifier used as tenantSlug in CMS tools. Lowercase, hyphens only.",
+          "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+          "minLength": 2,
+          "maxLength": 40
+        },
+        "maasy_project_id": {
+          "type": "string",
+          "description": "UUID from maasy_list_brands. Null when brand is not in Maasy yet.",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "industria": {
+          "type": "string",
+          "description": "Short industry label, e.g. 'pet care', 'fintech', 'real estate'.",
+          "maxLength": 60
+        },
+        "publico_objetivo": {
+          "type": "string",
+          "description": "One-sentence description of the target audience.",
+          "maxLength": 200
+        },
+        "propuesta_de_valor": {
+          "type": "string",
+          "description": "Core value proposition in one sentence. ASCII only.",
+          "maxLength": 200
+        }
+      }
+    },
+    "dna": {
+      "type": "object",
+      "required": ["colors"],
+      "additionalProperties": false,
+      "description": "Brand DNA consumed directly by cms_set_theme_from_dna.",
+      "properties": {
+        "colors": {
+          "type": "object",
+          "required": ["primary"],
+          "additionalProperties": false,
+          "properties": {
+            "primary": {
+              "type": "string",
+              "description": "Main brand color as hex, e.g. '#0c3bb9'.",
+              "pattern": "^#[0-9A-Fa-f]{6}$"
+            },
+            "accent": {
+              "type": "string",
+              "description": "Secondary or highlight color as hex.",
+              "pattern": "^#[0-9A-Fa-f]{6}$"
+            },
+            "paper": {
+              "type": "string",
+              "description": "Background / surface color as hex. Defaults to white when omitted.",
+              "pattern": "^#[0-9A-Fa-f]{6}$"
+            },
+            "ink": {
+              "type": "string",
+              "description": "Main text color as hex. Defaults to near-black when omitted.",
+              "pattern": "^#[0-9A-Fa-f]{6}$"
+            }
+          }
+        },
+        "fonts": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "display": {
+              "type": "string",
+              "description": "Google Font name for headings, e.g. 'Fraunces' or 'Playfair Display'.",
+              "maxLength": 60
+            },
+            "body": {
+              "type": "string",
+              "description": "Google Font name for body copy, e.g. 'Inter' or 'DM Sans'.",
+              "maxLength": 60
+            }
+          }
+        },
+        "tone": {
+          "type": "string",
+          "description": "Brand voice tone used by copy blocks. ASCII only.",
+          "enum": [
+            "professional",
+            "playful",
+            "bold",
+            "minimalist",
+            "warm",
+            "authoritative",
+            "conversational",
+            "premium"
+          ]
+        },
+        "positioning": {
+          "type": "string",
+          "description": "One-sentence brand positioning statement for CMS copy reference.",
+          "maxLength": 300
+        }
+      }
+    },
+    "objetivo": {
+      "type": "string",
+      "description": "Primary website goal. Drives composition-playbook recipe selection.",
+      "enum": ["leads", "venta", "autoridad", "booking"]
+    },
+    "dominio": {
+      "type": "string",
+      "description": "Target custom domain without protocol, e.g. 'pawers.com'. Null = use sslip.io staging URL.",
+      "pattern": "^([a-z0-9]+(-[a-z0-9]+)*\\.)+[a-z]{2,}$"
+    },
+    "pages": {
+      "type": "array",
+      "description": "Ordered list of pages to create. Must include at least one page.",
+      "minItems": 1,
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "required": ["slug", "title", "sections"],
+        "additionalProperties": false,
+        "properties": {
+          "slug": {
+            "type": "string",
+            "description": "URL slug for the page. Use 'home' for the root page.",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+            "maxLength": 60
+          },
+          "title": {
+            "type": "string",
+            "description": "Human-readable page title shown in CMS nav.",
+            "maxLength": 100
+          },
+          "sections": {
+            "type": "array",
+            "description": "Ordered blocks that compose the page. Maps to cms_create_page blocks array.",
+            "minItems": 1,
+            "maxItems": 20,
+            "items": {
+              "type": "object",
+              "required": ["blockType", "templateId", "intent"],
+              "additionalProperties": false,
+              "properties": {
+                "blockType": {
+                  "type": "string",
+                  "description": "One of the 17 supported blockTypes.",
+                  "enum": [
+                    "header",
+                    "hero",
+                    "features",
+                    "pricing",
+                    "cta",
+                    "testimonials",
+                    "faq",
+                    "stats",
+                    "team",
+                    "logo-cloud",
+                    "gallery",
+                    "contact",
+                    "split-content",
+                    "video-embed",
+                    "newsletter",
+                    "blog-list",
+                    "footer"
+                  ]
+                },
+                "templateId": {
+                  "type": "string",
+                  "description": "Exact templateId from catalog.generated.json, e.g. 'hero.cover-image-ctas'.",
+                  "pattern": "^[a-z0-9-]+\\.[a-z0-9-]+$"
+                },
+                "intent": {
+                  "type": "string",
+                  "description": "Why this block exists on this page. Used for copy generation context.",
+                  "maxLength": 200
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "leads": {
+      "type": "object",
+      "required": ["backend"],
+      "additionalProperties": false,
+      "description": "Lead capture configuration for cms_provision_leads.",
+      "properties": {
+        "backend": {
+          "type": "string",
+          "description": "Where captured leads land. 'maasy' stores in Maasy CRM. 'appwrite' stores in the brand's Appwrite project.",
+          "enum": ["maasy", "appwrite"]
+        },
+        "email_provider": {
+          "type": "string",
+          "description": "Transactional email for lead notifications. Passed as email param to cms_provision_leads.",
+          "enum": ["usesend", "plunk"]
+        },
+        "notification_email": {
+          "type": "string",
+          "description": "Email address that receives new lead notifications.",
+          "format": "email",
+          "maxLength": 100
+        }
+      }
+    },
+    "confirmado": {
+      "type": "boolean",
+      "description": "Set to true only after Jorge has reviewed the brief summary and said OK. Gates all dryRun:false calls.",
+      "default": false
+    },
+    "notas": {
+      "type": "string",
+      "description": "Free-text notes from the interview. Not passed to CMS tools.",
+      "maxLength": 1000
+    }
+  }
+}
