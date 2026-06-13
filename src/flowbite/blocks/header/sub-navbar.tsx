@@ -1,3 +1,5 @@
+'use client'
+
 import { Dropdown, Navbar } from "flowbite-react";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 

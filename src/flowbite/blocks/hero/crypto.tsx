@@ -1,58 +1,67 @@
+'use client'
+
 import { Button, Label, Tabs, TextInput } from "flowbite-react";
 
-export function FinancialExchangeCryptoHero() {
+type CryptoStat = { value: string; label: string }
+
+type FinancialExchangeCryptoHeroProps = {
+  headline?: string
+  descriptionPrefix?: string
+  descriptionHighlight?: string
+  descriptionSuffix?: string
+  stats?: CryptoStat[]
+  walletCtaLabel?: string
+  walletCtaHref?: string
+}
+
+export function FinancialExchangeCryptoHero(props: FinancialExchangeCryptoHeroProps = {}) {
+  const {
+    headline = "Decentralized for a better tomorrow",
+    descriptionPrefix = "Buy, trade, and hold ",
+    descriptionHighlight = "600+",
+    descriptionSuffix = " cryptocurrencies on Flowbite",
+    stats = [
+      { value: "$76 billion", label: "24h trading volume" },
+      { value: "600+", label: "Cryptocurrencies listed" },
+      { value: "34 million", label: "Diluted market cap" },
+      { value: "90 million", label: "Registered users" },
+      { value: "0.10%", label: "Low transaction fees" },
+    ],
+    walletCtaLabel = "Connect your wallet",
+    walletCtaHref = "#",
+  } = props
+  const statColors = [
+    { bg: "bg-primary-100 dark:bg-primary-900", text: "text-primary-700 dark:text-primary-300", span: "text-primary-500 dark:text-primary-400" },
+    { bg: "bg-teal-100 dark:bg-teal-900", text: "text-teal-600 dark:text-teal-300", span: "text-teal-500 dark:text-teal-400" },
+    { bg: "bg-indigo-100 dark:bg-indigo-900", text: "text-indigo-700 dark:text-indigo-300", span: "text-indigo-500 dark:text-indigo-400" },
+    { bg: "bg-purple-100 dark:bg-purple-900", text: "text-purple-700 dark:text-purple-300", span: "text-purple-500 dark:text-purple-400" },
+    { bg: "bg-green-100 dark:bg-green-900", text: "text-green-600 dark:text-green-300", span: "text-green-500 dark:text-green-400" },
+  ]
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl px-4 py-8 text-center lg:px-12 lg:py-16">
         <div className="mx-auto max-w-2xl">
           <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
-            Decentralized for a better tomorrow
+            {headline}
           </h1>
           <p className="text-lg font-normal text-gray-500 dark:text-gray-400 lg:mb-8 lg:text-xl xl:mb-12">
-            Buy, trade, and hold&nbsp;
+            {descriptionPrefix}
             <span className="font-medium text-gray-900 dark:text-white">
-              600+
+              {descriptionHighlight}
             </span>
-            &nbsp;cryptocurrencies on Flowbite
+            {descriptionSuffix}
           </p>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:gap-8 xl:grid-cols-5">
-          <div className="rounded-lg bg-primary-100 p-4 text-primary-700 dark:bg-primary-900 dark:text-primary-300">
-            <h2 className="text-3xl font-extrabold leading-tight">
-              $76 billion
-            </h2>
-            <span className="text-primary-500 dark:text-primary-400">
-              24h trading volume
-            </span>
-          </div>
-          <div className="rounded-lg bg-teal-100 p-4 text-teal-600 dark:bg-teal-900 dark:text-teal-300">
-            <h2 className="text-3xl font-extrabold leading-tight">600+</h2>
-            <span className="text-teal-500 dark:text-teal-400">
-              Cryptocurrencies listed
-            </span>
-          </div>
-          <div className="rounded-lg bg-indigo-100 p-4 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300">
-            <h2 className="text-3xl font-extrabold leading-tight">
-              34 million
-            </h2>
-            <span className="text-indigo-500 dark:text-indigo-400">
-              Diluted market cap
-            </span>
-          </div>
-          <div className="rounded-lg bg-purple-100 p-4 text-purple-700 dark:bg-purple-900 dark:text-purple-300">
-            <h2 className="text-3xl font-extrabold leading-tight">
-              90 million
-            </h2>
-            <span className="text-purple-500 dark:text-purple-400">
-              Registered users
-            </span>
-          </div>
-          <div className="rounded-lg bg-green-100 p-4 text-green-600 dark:bg-green-900 dark:text-green-300">
-            <h2 className="text-3xl font-extrabold leading-tight">0.10%</h2>
-            <span className="text-green-500 dark:text-green-400">
-              Low transaction fees
-            </span>
-          </div>
+          {stats.map((stat, i) => {
+            const c = statColors[i % statColors.length]
+            return (
+              <div key={i} className={`rounded-lg ${c.bg} p-4 ${c.text}`}>
+                <h2 className="text-3xl font-extrabold leading-tight">{stat.value}</h2>
+                <span className={c.span}>{stat.label}</span>
+              </div>
+            )
+          })}
         </div>
         <div className="mt-8 rounded-lg border border-gray-200 p-8 dark:border-gray-700 lg:mt-12">
           <div className="mx-auto mb-4 w-fit lg:mb-8">
@@ -241,8 +250,8 @@ export function FinancialExchangeCryptoHero() {
               </Tabs.Item>
             </Tabs>
           </div>
-          <Button href="#" className="mx-auto w-full md:w-fit">
-            Connect your wallet
+          <Button href={walletCtaHref} className="mx-auto w-full md:w-fit">
+            {walletCtaLabel}
           </Button>
         </div>
       </div>

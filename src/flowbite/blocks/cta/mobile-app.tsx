@@ -1,21 +1,30 @@
 import { Button } from "flowbite-react";
 
-export function MobileAppDownloadCTASection() {
+type MobileAppDownloadCTASectionProps = {
+  headline?: string
+  description?: string
+  iosLabel?: string
+  iosHref?: string
+  androidLabel?: string
+  androidHref?: string
+  mockupSrc?: string
+  mockupAlt?: string
+}
+
+export function MobileAppDownloadCTASection(props: MobileAppDownloadCTASectionProps = {}) {
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl items-center gap-8 px-4 py-8 sm:py-16 md:grid md:grid-cols-2 lg:px-6 xl:gap-16">
         <div>
           <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-            Let's create more tools and ideas that brings us together.
+            {props.headline ?? "Let's create more tools and ideas that brings us together."}
           </h2>
           <p className="mb-6 text-gray-500 dark:text-gray-400 md:text-lg">
-            Flowbite helps you connect with friends and communities of people
-            who share your interests. Connecting with your friends and family as
-            well as discovering new ones is easy with features like Groups.
+            {props.description ?? "Flowbite helps you connect with friends and communities of people who share your interests. Connecting with your friends and family as well as discovering new ones is easy with features like Groups."}
           </p>
           <div className="items-center space-y-4 sm:flex sm:space-x-4 sm:space-y-0">
             <Button
-              href="#"
+              href={props.iosHref ?? "#"}
               className="border-0 bg-gray-800 text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-800"
             >
               <svg
@@ -33,12 +42,12 @@ export function MobileAppDownloadCTASection() {
               <div className="text-left">
                 <div className="mb-1 text-xs">Download on the</div>
                 <div className="-mt-1 font-sans text-sm font-semibold">
-                  Mac App Store
+                  {props.iosLabel ?? "Mac App Store"}
                 </div>
               </div>
             </Button>
             <Button
-              href="#"
+              href={props.androidHref ?? "#"}
               className="border-0 bg-gray-800 text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-800"
             >
               <svg
@@ -56,15 +65,15 @@ export function MobileAppDownloadCTASection() {
               <div className="text-left">
                 <div className="mb-1 text-xs">Get in on</div>
                 <div className="-mt-1 font-sans text-sm font-semibold">
-                  Google Play
+                  {props.androidLabel ?? "Google Play"}
                 </div>
               </div>
             </Button>
           </div>
         </div>
         <img
-          alt="mobile app"
-          src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/cta/iphone-mockup.png"
+          alt={props.mockupAlt ?? "mobile app"}
+          src={props.mockupSrc ?? "https://flowbite.s3.amazonaws.com/blocks/marketing-ui/cta/iphone-mockup.png"}
           className="mx-auto hidden w-64 md:flex"
         />
       </div>

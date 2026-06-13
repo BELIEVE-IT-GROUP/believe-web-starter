@@ -1,18 +1,30 @@
 import { Button, Label, TextInput } from "flowbite-react";
 
-export function EmailSignUpCTASection() {
+type EmailSignUpCTASectionProps = {
+  headline?: string
+  description?: string
+  placeholder?: string
+  submitLabel?: string
+  disclaimer?: string
+  termsLabel?: string
+  termsHref?: string
+  privacyLabel?: string
+  privacyHref?: string
+  formAction?: string
+}
+
+export function EmailSignUpCTASection(props: EmailSignUpCTASectionProps = {}) {
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6 ">
         <div className="mx-auto max-w-screen-md text-center">
           <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-            Get started with Flowbite today
+            {props.headline ?? "Get started with Flowbite today"}
           </h2>
           <p className="mb-6 text-gray-500 dark:text-gray-400 md:text-lg">
-            Connecting with your audience has never been easier with Flowbite
-            straightforward email marketing and automation tools.
+            {props.description ?? "Connecting with your audience has never been easier with Flowbite straightforward email marketing and automation tools."}
           </p>
-          <form action="#" className="mx-auto max-w-screen-sm">
+          <form action={props.formAction ?? "#"} className="mx-auto max-w-screen-sm">
             <div className="mb-3 flex items-center">
               <div className="relative mr-3 w-full">
                 <Label htmlFor="member_email" className="sr-only">
@@ -22,7 +34,7 @@ export function EmailSignUpCTASection() {
                   icon={EnvelopeIconSVG}
                   id="member_email"
                   name="member_email"
-                  placeholder="Enter your email"
+                  placeholder={props.placeholder ?? "Enter your email"}
                   required
                   type="email"
                   className="[&_input]:p-3 [&_input]:pl-10 [&_input]:placeholder:text-gray-400"
@@ -33,23 +45,23 @@ export function EmailSignUpCTASection() {
                 type="submit"
                 className="[&>span]:px-5 [&>span]:py-3"
               >
-                Subscribe
+                {props.submitLabel ?? "Subscribe"}
               </Button>
             </div>
             <div className="text-left text-sm font-medium text-gray-500 dark:text-gray-300">
-              Instant signup. No credit card required.&nbsp;
+              {props.disclaimer ?? "Instant signup. No credit card required."}&nbsp;
               <a
-                href="#"
+                href={props.termsHref ?? "#"}
                 className="text-primary-600 hover:underline dark:text-primary-500"
               >
-                Terms of Service
+                {props.termsLabel ?? "Terms of Service"}
               </a>
               &nbsp;and&nbsp;
               <a
                 className="text-primary-600 hover:underline dark:text-primary-500"
-                href="#"
+                href={props.privacyHref ?? "#"}
               >
-                Privacy Policy
+                {props.privacyLabel ?? "Privacy Policy"}
               </a>
               .
             </div>

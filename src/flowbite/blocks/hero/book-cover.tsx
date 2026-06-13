@@ -1,6 +1,29 @@
 import { Avatar, Button, Rating } from "flowbite-react";
 
-export function HeroSectionWithBookCover() {
+type HeroSectionWithBookCoverProps = {
+  headline?: string
+  headlineSpan?: string
+  description?: string
+  primaryCta?: { label: string; href: string }
+  secondaryCta?: { label: string; href: string }
+  ratingText?: string
+  ratingCount?: string
+  coverImage?: string
+  coverImageAlt?: string
+}
+
+export function HeroSectionWithBookCover(props: HeroSectionWithBookCoverProps = {}) {
+  const {
+    headline = "Designing Interfaces:",
+    headlineSpan = "A User-Centered Approach",
+    description = "This book covers the latest design principles and techniques, including responsive design, mobile interface design, and user research methodologies.",
+    primaryCta = { label: "Buy now for $99", href: "#" },
+    secondaryCta = { label: "Free preview", href: "#" },
+    ratingText = "5.0",
+    ratingCount = "15.7k",
+    coverImage = "https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/book.png",
+    coverImageAlt = "Book cover",
+  } = props
   return (
     <section className="bg-white antialiased dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6 lg:py-24">
@@ -8,24 +31,23 @@ export function HeroSectionWithBookCover() {
           <div className="text-center md:max-w-3xl lg:text-left xl:shrink-0">
             <div>
               <h2 className="text-3xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white sm:text-5xl">
-                Designing Interfaces:
-                <span className="lg:block">A User-Centered Approach</span>
+                {headline}
+                <span className="lg:block">{headlineSpan}</span>
               </h2>
               <p className="mt-4 text-base font-normal text-gray-500 dark:text-gray-400 sm:text-xl md:mx-auto md:max-w-3xl">
-                This book covers the latest design principles and techniques,
-                including responsive design, mobile interface design, and user
-                research methodologies.
+                {description}
               </p>
             </div>
             <div className="mt-8 flex items-center justify-center gap-4 lg:justify-start">
-              <Button size="lg">Buy now for $99</Button>
+              <Button size="lg" href={primaryCta.href}>{primaryCta.label}</Button>
               <Button
                 size="lg"
                 color="gray"
                 className="[&>span]:items-center"
                 outline
+                href={secondaryCta.href}
               >
-                Free preview
+                {secondaryCta.label}
                 <svg
                   aria-hidden="true"
                   className="-mr-1 ml-2 h-5 w-5"
@@ -73,13 +95,13 @@ export function HeroSectionWithBookCover() {
                   <Rating.Star />
                   <Rating.Star />
                   <p className="ml-2 text-base font-medium text-gray-500 dark:text-gray-400">
-                    5.0
+                    {ratingText}
                   </p>
                 </Rating>
                 <p className="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
                   Rated Best Over&nbsp;
                   <span className="font-semibold text-gray-900 dark:text-white">
-                    15.7k
+                    {ratingCount}
                   </span>
                   &nbsp;Reviews
                 </p>
@@ -89,8 +111,8 @@ export function HeroSectionWithBookCover() {
           <div className="max-w-md">
             <img
               className="w-auto rounded-2xl object-contain shadow-2xl"
-              src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/book.png"
-              alt="Book cover"
+              src={coverImage}
+              alt={coverImageAlt}
             />
           </div>
         </div>

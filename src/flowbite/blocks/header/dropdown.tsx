@@ -1,3 +1,5 @@
+'use client'
+
 import { Button, Dropdown, Navbar, theme } from "flowbite-react";
 import { twMerge } from "tailwind-merge";
 

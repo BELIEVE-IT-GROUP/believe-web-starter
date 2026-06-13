@@ -1,18 +1,26 @@
 import { Button, Label, TextInput } from "flowbite-react";
 import { HiMail } from "react-icons/hi";
 
-export function EmailSignUpCardNewsletterSection() {
+type Props = {
+  headline?: string
+  subheadline?: string
+  placeholder?: string
+  ctaText?: string
+  privacyLabel?: string
+  privacyHref?: string
+}
+
+export function EmailSignUpCardNewsletterSection(props: Props) {
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl px-4 py-8 lg:px-6 lg:py-16">
         <div className="items-center justify-between gap-16 rounded-lg bg-gray-900 p-6 text-white dark:bg-gray-800 md:p-12 lg:flex lg:gap-24">
           <div className="w-full">
             <h2 className="mb-4 text-3xl font-extrabold tracking-tight sm:text-4xl">
-              Sign up for our newsletter
+              {props.headline ?? 'Sign up for our newsletter'}
             </h2>
             <p className="text-gray-400 sm:text-xl">
-              Stay up to date with the roadmap progress, announcements and
-              exclusive discounts feel free to sign up with your email.
+              {props.subheadline ?? 'Stay up to date with the roadmap progress, announcements and exclusive discounts feel free to sign up with your email.'}
             </p>
           </div>
           <div className="mt-6 w-full lg:mt-0">
@@ -28,19 +36,19 @@ export function EmailSignUpCardNewsletterSection() {
                     )}
                     id="email"
                     name="email"
-                    placeholder="Enter your email"
+                    placeholder={props.placeholder ?? 'Enter your email'}
                     type="email"
                     className="w-full [&_input]:rounded-r-none [&_input]:py-3"
                   />
                   <Button className="rounded-l-none [&>span]:px-5">
-                    Subscribe
+                    {props.ctaText ?? 'Subscribe'}
                   </Button>
                 </div>
               </div>
               <div className="text-left text-sm text-gray-400 dark:text-gray-300">
                 We care about the protection of your data.&nbsp;
-                <a href="#" className="font-medium text-white hover:underline">
-                  Read our Privacy Policy
+                <a href={props.privacyHref ?? '#'} className="font-medium text-white hover:underline">
+                  {props.privacyLabel ?? 'Read our Privacy Policy'}
                 </a>
                 .
               </div>

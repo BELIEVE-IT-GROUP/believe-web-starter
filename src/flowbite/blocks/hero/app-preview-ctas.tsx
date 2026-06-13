@@ -1,27 +1,46 @@
 import { Button } from "flowbite-react";
 
-export function AppScreenshotWithCTAsHero() {
+type AppPreviewCtasHeroProps = {
+  headline?: string
+  description?: string
+  primaryCta?: { label: string; href: string }
+  secondaryCta?: { label: string; href: string }
+  imageLight?: string
+  imageDark?: string
+  imageAlt?: string
+}
+
+export function AppScreenshotWithCTAsHero(props: AppPreviewCtasHeroProps = {}) {
+  const {
+    headline = "We invest in the world's potential",
+    description = "Here at Flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.",
+    primaryCta = { label: "Free trial for 30 days", href: "#" },
+    secondaryCta = { label: "Pricing & FAQ", href: "#" },
+    imageLight = "https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/dashboard-mockup.svg",
+    imageDark = "https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/dashboard-mockup-dark.svg",
+    imageAlt = "dashboard overview",
+  } = props
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl px-4 pt-8 text-center lg:px-12 lg:pt-16">
         <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
-          We invest in the world’s potential
+          {headline}
         </h1>
         <p className="mb-8 text-gray-500 dark:text-gray-400 sm:px-16 md:text-lg lg:text-xl xl:px-48">
-          Here at Flowbite we focus on markets where technology, innovation, and
-          capital can unlock long-term value and drive economic growth.
+          {description}
         </p>
         <div className="mb-8 flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-x-4 sm:space-y-0 lg:mb-16">
-          <Button href="#" size="lg">
-            Free trial for 30 days
+          <Button href={primaryCta.href} size="lg">
+            {primaryCta.label}
           </Button>
           <Button
             color="gray"
             outline
             size="lg"
+            href={secondaryCta.href}
             className="[&>span]:items-center"
           >
-            Pricing &amp; FAQ
+            {secondaryCta.label}
             <svg
               className="-mr-1 ml-2 h-5 w-5"
               fill="currentColor"
@@ -38,13 +57,13 @@ export function AppScreenshotWithCTAsHero() {
         </div>
         <img
           className="z-10 mx-auto mb-5 rounded-lg border border-gray-200 shadow-xl dark:hidden dark:border-gray-600 lg:mb-8"
-          src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/dashboard-mockup.svg"
-          alt="dashboard overview"
+          src={imageLight}
+          alt={imageAlt}
         />
         <img
           className="z-10 mx-auto mb-5 hidden rounded-lg border border-gray-200 shadow-xl dark:block dark:border-gray-600 lg:mb-8"
-          src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/dashboard-mockup-dark.svg"
-          alt="dashboard overview dark"
+          src={imageDark}
+          alt={`${imageAlt} dark`}
         />
       </div>
       <div className="z-20 -mt-48 bg-gray-50 pb-8 pt-48 dark:bg-gray-800 sm:-mt-80 sm:pt-80 lg:pb-16">

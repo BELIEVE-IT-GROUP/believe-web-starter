@@ -3,13 +3,21 @@
 import { Button, Modal, TextInput } from "flowbite-react";
 import { useState } from "react";
 
-export function PopupEmailSignUpNewsletterSection() {
+type Props = {
+  headline?: string
+  subheadline?: string
+  placeholder?: string
+  ctaText?: string
+  triggerLabel?: string
+}
+
+export function PopupEmailSignUpNewsletterSection(props: Props) {
   const [show, setShow] = useState(false);
 
   return (
     <div className="flex justify-center">
       <Button color="info" onClick={() => setShow(true)}>
-        Open newsletter pop-up
+        {props.triggerLabel ?? 'Open newsletter pop-up'}
       </Button>
       <Modal
         onClose={() => setShow(false)}
@@ -44,11 +52,10 @@ export function PopupEmailSignUpNewsletterSection() {
         </button>
         <div className="p-6">
           <h3 className="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-            Join our Newsletter
+            {props.headline ?? 'Join our Newsletter'}
           </h3>
           <p className="mb-4 text-base leading-relaxed text-gray-500 dark:text-gray-400">
-            Get started with our monthly newsletter for helpful tips on how to
-            run your business smoothly.
+            {props.subheadline ?? 'Get started with our monthly newsletter for helpful tips on how to run your business smoothly.'}
           </p>
           <form action="#">
             <div className="mx-auto max-w-screen-sm items-center space-y-4 sm:flex sm:space-y-0">
@@ -72,7 +79,7 @@ export function PopupEmailSignUpNewsletterSection() {
                     </svg>
                   )}
                   id="email"
-                  placeholder="Your email"
+                  placeholder={props.placeholder ?? 'Your email'}
                   required
                   type="email"
                   className="[&_input]:w-full [&_input]:py-3"
@@ -84,7 +91,7 @@ export function PopupEmailSignUpNewsletterSection() {
                   type="submit"
                   className="w-full [&>span]:py-3"
                 >
-                  Subscribe
+                  {props.ctaText ?? 'Subscribe'}
                 </Button>
               </div>
             </div>

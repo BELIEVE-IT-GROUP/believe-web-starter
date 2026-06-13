@@ -1,3 +1,5 @@
+'use client'
+
 import { Dropdown, Footer } from "flowbite-react";
 
 export function NewsletterSignUpFooterSection() {

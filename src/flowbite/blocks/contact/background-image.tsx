@@ -1,16 +1,29 @@
 import { Button, Label, TextInput, Textarea } from "flowbite-react";
 
-export function ContactSectionWithBackgroundImage() {
+type ContactBackgroundImageProps = {
+  headline?: string
+  subheadline?: string
+  image?: string
+  primaryCta?: { label?: string; href?: string }
+  emailLabel?: string
+  emailAddress?: string
+  phone?: string
+  supportCtaLabel?: string
+}
+
+export function ContactSectionWithBackgroundImage(props: ContactBackgroundImageProps = {}) {
   return (
     <section className="bg-white dark:bg-gray-900">
-      <div className="bg-gray-700 bg-[url('https://flowbite.s3.amazonaws.com/blocks/marketing-ui/contact/laptop-human.jpg')] bg-cover bg-center bg-no-repeat bg-blend-multiply">
+      <div
+        className="bg-gray-700 bg-cover bg-center bg-no-repeat bg-blend-multiply"
+        style={{ backgroundImage: `url('${props.image ?? 'https://flowbite.s3.amazonaws.com/blocks/marketing-ui/contact/laptop-human.jpg'}')` }}
+      >
         <div className="mx-auto max-w-screen-sm px-4 pb-72 pt-8 text-center lg:px-6 lg:pb-80 lg:pt-24 ">
           <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-white">
-            Contact Us
+            {props.headline ?? 'Contact Us'}
           </h2>
           <p className="mb-16 text-gray-400 sm:text-xl">
-            We use an agile approach to test assumptions and connect with the
-            needs of your audience early and often.
+            {props.subheadline ?? 'We use an agile approach to test assumptions and connect with the needs of your audience early and often.'}
           </p>
         </div>
       </div>
@@ -99,7 +112,7 @@ export function ContactSectionWithBackgroundImage() {
               type="submit"
               className="inline-flex w-full sm:w-fit [&>span]:px-5 [&>span]:py-3"
             >
-              Send message
+              {props.primaryCta?.label ?? 'Send message'}
             </Button>
           </div>
         </form>
@@ -116,16 +129,16 @@ export function ContactSectionWithBackgroundImage() {
                 <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
               </svg>
             </div>
-            <p className="mb-2 text-xl font-bold dark:text-white">Email us:</p>
+            <p className="mb-2 text-xl font-bold dark:text-white">{props.emailLabel ?? 'Email us:'}</p>
             <p className="mb-3 text-gray-500 dark:text-gray-400">
               Email us for general queries, including marketing and partnership
               opportunities.
             </p>
             <a
-              href="mailto:abc@example.com"
+              href={`mailto:${props.emailAddress ?? 'hello@flowbite.com'}`}
               className="font-semibold text-primary-600 hover:underline dark:text-primary-500"
             >
-              hello@flowbite.com
+              {props.emailAddress ?? 'hello@flowbite.com'}
             </a>
           </div>
           <div>
@@ -145,7 +158,7 @@ export function ContactSectionWithBackgroundImage() {
               help.
             </p>
             <span className="font-semibold text-primary-600 dark:text-primary-500">
-              +1 (646) 786-5060
+              {props.phone ?? '+1 (646) 786-5060'}
             </span>
           </div>
           <div>
@@ -173,7 +186,7 @@ export function ContactSectionWithBackgroundImage() {
                 outline
                 className="[&>span]:border-primary-500 [&>span]:text-primary-600 dark:[&>span]:text-primary-500"
               >
-                Support center
+                {props.supportCtaLabel ?? 'Support center'}
               </Button>
             </div>
           </div>

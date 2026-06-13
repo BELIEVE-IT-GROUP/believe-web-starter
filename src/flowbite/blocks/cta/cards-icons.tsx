@@ -1,109 +1,66 @@
 import { FlowbiteLogo } from '@/flowbite/_helpers/flowbite-logo';
 
-export function CardCTAsWithIconsSection() {
+type CardCTAItem = {
+  label?: string
+  href?: string
+}
+
+type CardCTAsWithIconsSectionProps = {
+  headline?: string
+  description?: string
+  description2?: string
+  items?: CardCTAItem[]
+}
+
+const DEFAULT_ITEMS: CardCTAItem[] = [
+  { label: 'Explore Flowbite and take your marketplace to the next level.', href: '#' },
+  { label: 'Get started with our Figma Design System', href: '#' },
+  { label: 'Learn how to market your business on Themesberg.', href: '#' },
+  { label: 'Start coding with the most popular utility-first framework', href: '#' },
+]
+
+export function CardCTAsWithIconsSection(props: CardCTAsWithIconsSectionProps = {}) {
+  const items = props.items?.length ? props.items : DEFAULT_ITEMS
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6 ">
         <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-          We didn't reinvent the wheel
+          {props.headline ?? "We didn't reinvent the wheel"}
         </h2>
         <p className="mb-3 text-gray-500 dark:text-gray-400 sm:text-xl">
-          Track work across the enterprise through an open, collaborative
-          platform. Link issues across Jira and ingest data from other software
-          development tools, so your IT support and operations teams have richer
-          contextual information to rapidly respond to requests, incidents, and
-          changes.
+          {props.description ?? "Track work across the enterprise through an open, collaborative platform. Link issues across Jira and ingest data from other software development tools, so your IT support and operations teams have richer contextual information to rapidly respond to requests, incidents, and changes."}
         </p>
         <p className="mb-8 text-gray-500 dark:text-gray-400 sm:text-xl">
-          Deliver great service experiences fast - without the complexity of
-          traditional ITSM solutions. Accelerate critical development work,
-          eliminate toil, and deploy changes with ease.
+          {props.description2 ?? "Deliver great service experiences fast - without the complexity of traditional ITSM solutions. Accelerate critical development work, eliminate toil, and deploy changes with ease."}
         </p>
         <div className="grid gap-8 lg:grid-cols-2">
-          <a
-            href="#"
-            className="inline-flex items-center justify-center rounded-lg bg-gray-50 p-5 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          >
-            <FlowbiteLogo />
-            <span className="w-full">
-              Explore Flowbite and take your marketplace to the next level.
-            </span>
-            <svg
-              className="ml-3 h-6 w-6"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
+          {items.map((item, i) => (
+            <a
+              key={i}
+              href={item.href ?? '#'}
+              className="inline-flex items-center justify-center rounded-lg bg-gray-50 p-5 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
             >
-              <path
-                fillRule="evenodd"
-                d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </a>
-          <a
-            href="#"
-            className="inline-flex items-center justify-center rounded-lg bg-gray-50 p-5 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          >
-            <FigmaLogoSVG />
-            <span className="w-full">
-              Get started with our Figma Design System
-            </span>
-            <svg
-              className="ml-3 h-6 w-6"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </a>
-          <a
-            href="#"
-            className="inline-flex items-center justify-center rounded-lg bg-gray-50 p-5 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          >
-            <ThemesbergLogoSVG />
-            <span className="w-full">
-              Learn how to market your business on Themesberg.
-            </span>
-            <svg
-              className="ml-3 h-6 w-6"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </a>
-          <a
-            href="#"
-            className="inline-flex items-center justify-center rounded-lg bg-gray-50 p-5 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          >
-            <TailwindCSSLogoSVG />
-            <span className="w-full">
-              Start coding with the most popular utility-first framework
-            </span>
-            <svg
-              className="ml-3 h-6 w-6"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </a>
+              {i === 0 && <FlowbiteLogo />}
+              {i === 1 && <FigmaLogoSVG />}
+              {i === 2 && <ThemesbergLogoSVG />}
+              {i === 3 && <TailwindCSSLogoSVG />}
+              <span className="w-full">
+                {item.label ?? DEFAULT_ITEMS[i]?.label}
+              </span>
+              <svg
+                className="ml-3 h-6 w-6"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </a>
+          ))}
         </div>
       </div>
     </section>

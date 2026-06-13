@@ -1,6 +1,27 @@
 import { Avatar } from "flowbite-react";
 
-export function BlockquoteTestimonial() {
+type BlockquoteTestimonialProps = {
+  headline?: string
+  items?: Array<{
+    quote?: string
+    name?: string
+    author?: string
+    role?: string
+    company?: string
+    avatar?: { url: string }
+    photo?: { url: string; alt?: string }
+  }>
+}
+
+export function BlockquoteTestimonial(props: BlockquoteTestimonialProps = {}) {
+  const item = props.items?.[0]
+  const quote = item?.quote ?? 'Flowbite is just awesome. It contains tons of predesigned components and pages starting from login screen to complex dashboard. Perfect choice for your next SaaS application.'
+  const name = item?.name ?? item?.author ?? 'Micheal Gough'
+  const role = item?.role ?? 'CEO'
+  const company = item?.company ?? 'Google'
+  const roleLabel = company ? `${role} at ${company}` : role
+  const avatarUrl = item?.photo?.url ?? item?.avatar?.url ?? 'https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gouch.png'
+
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl px-4 py-8 text-center lg:px-6 lg:py-16">
@@ -17,22 +38,20 @@ export function BlockquoteTestimonial() {
         </svg>
         <blockquote>
           <p className="mb-6 text-2xl font-medium text-gray-900 dark:text-white">
-            "Flowbite is just awesome. It contains tons of predesigned
-            components and pages starting from login screen to complex
-            dashboard. Perfect choice for your next SaaS application."
+            &ldquo;{quote}&rdquo;
           </p>
         </blockquote>
         <Avatar
-          img="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gouch.png"
+          img={avatarUrl}
           rounded
           size="xs"
         >
           <div className="flex items-center divide-x-2 divide-gray-500 dark:divide-gray-700">
             <div className="pr-3 font-medium text-gray-900 dark:text-white">
-              Micheal Gough
+              {name}
             </div>
             <div className="pl-3 text-sm text-gray-500 dark:text-gray-400">
-              CEO at Google
+              {roleLabel}
             </div>
           </div>
         </Avatar>

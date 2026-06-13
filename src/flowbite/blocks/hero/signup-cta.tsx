@@ -1,16 +1,36 @@
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 
-export function SignUpFormWithCTAHero() {
+type Stat = { value: string; line1: string; line2: string }
+
+type SignUpFormWithCTAHeroProps = {
+  headline?: string
+  description?: string
+  videoCtaLabel?: string
+  stats?: Stat[]
+  formTitle?: string
+}
+
+export function SignUpFormWithCTAHero(props: SignUpFormWithCTAHeroProps = {}) {
+  const {
+    headline = "Discover new product and best possibilities",
+    description = "Here at Flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.",
+    videoCtaLabel = "Watch video",
+    stats = [
+      { value: "42k", line1: "Our Active", line2: "Users" },
+      { value: "3k", line1: "Professional", line2: "Creators" },
+      { value: "560k", line1: "Weekly", line2: "Downloads" },
+    ],
+    formTitle = "Join over 3,000 creators",
+  } = props
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
       <div className="mx-auto grid max-w-screen-xl px-4 py-8 lg:grid-cols-12 lg:gap-12 lg:py-16 xl:gap-0">
         <div className="mb-10 mr-auto place-self-center lg:col-span-7 xl:col-span-8 xl:mb-0">
           <h1 className="mb-4 max-w-2xl text-4xl font-extrabold leading-none tracking-tight dark:text-white md:text-5xl xl:text-6xl">
-            Discover new product and best possibilities
+            {headline}
           </h1>
           <p className="mb-6 max-w-2xl text-gray-500 dark:text-gray-400 md:text-lg lg:mb-8 lg:text-xl">
-            Here at Flowbite we focus on markets where technology, innovation,
-            and capital can unlock long-term value and drive economic growth.
+            {description}
           </p>
           <Button className="w-fit [&>span]:items-center" size="lg">
             <svg
@@ -21,36 +41,24 @@ export function SignUpFormWithCTAHero() {
             >
               <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
             </svg>
-            Watch video
+            {videoCtaLabel}
           </Button>
           <ul className="mx-auto mt-14 hidden justify-between border-t border-gray-300 pt-12 dark:border-gray-700 dark:text-white xl:flex">
-            <li className="flex">
-              <span className="text-4xl font-extrabold lg:text-5xl">42k</span>
-              <div className="block pl-4 text-xl text-gray-500 dark:text-gray-400">
-                <div>Our Active</div>
-                <div>Users</div>
-              </div>
-            </li>
-            <li className="flex">
-              <span className="text-4xl font-extrabold lg:text-5xl">3k</span>
-              <div className="block pl-4 text-xl text-gray-500 dark:text-gray-400">
-                <div>Professional</div>
-                <div>Creators</div>
-              </div>
-            </li>
-            <li className="flex">
-              <span className="text-4xl font-extrabold lg:text-5xl">560k</span>
-              <div className="block pl-4 text-xl text-gray-500 dark:text-gray-400">
-                <div>Weekly</div>
-                <div>Downloads</div>
-              </div>
-            </li>
+            {stats.map((stat, i) => (
+              <li key={i} className="flex">
+                <span className="text-4xl font-extrabold lg:text-5xl">{stat.value}</span>
+                <div className="block pl-4 text-xl text-gray-500 dark:text-gray-400">
+                  <div>{stat.line1}</div>
+                  <div>{stat.line2}</div>
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
         <div className="max-w-screen-sm justify-center rounded-lg border border-gray-200 bg-white p-4 shadow dark:border-gray-700 dark:bg-gray-800 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8 xl:col-span-4">
           <form className="space-y-6" action="#">
             <h2 className="text-xl font-medium text-gray-900 dark:text-white">
-              Join over 3,000 creators
+              {formTitle}
             </h2>
             <div className="flex items-center space-x-4">
               <Button

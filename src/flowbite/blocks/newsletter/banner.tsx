@@ -1,13 +1,21 @@
+'use client'
+
 import { Banner, Button, Label, TextInput } from "flowbite-react";
 import { HiMail } from "react-icons/hi";
 
-export function BannerEmailSignUpNewsletterSection() {
+type Props = {
+  headline?: string
+  placeholder?: string
+  ctaText?: string
+}
+
+export function BannerEmailSignUpNewsletterSection(props: Props) {
   return (
     <Banner>
       <div className="flex w-full items-start border border-gray-200 bg-white px-4 py-3 dark:border-gray-700 dark:bg-gray-800 sm:justify-between">
         <div className="w-full items-center justify-center sm:flex">
           <p className="mb-4 font-medium text-gray-500 dark:text-white sm:mb-0 md:mb-0">
-            Subscribe to get updates!
+            {props.headline ?? 'Subscribe to get updates!'}
           </p>
           <form action="#" className="sm:pl-10">
             <div className="flex items-center sm:space-y-0 md:mx-auto">
@@ -21,7 +29,7 @@ export function BannerEmailSignUpNewsletterSection() {
                 <TextInput
                   id="email"
                   icon={HiMail}
-                  placeholder="Your email"
+                  placeholder={props.placeholder ?? 'Your email'}
                   required
                   type="email"
                   className="[&_input]:w-full [&_input]:py-3 [&_input]:md:w-80"
@@ -29,7 +37,7 @@ export function BannerEmailSignUpNewsletterSection() {
               </div>
               <div>
                 <Button type="submit" className="[&>span]:py-3">
-                  Subscribe
+                  {props.ctaText ?? 'Subscribe'}
                 </Button>
               </div>
             </div>

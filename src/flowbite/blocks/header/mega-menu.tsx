@@ -1,3 +1,5 @@
+'use client'
+
 import { Dropdown, Label, MegaMenu, Navbar, TextInput } from "flowbite-react";
 
 export function MegaMenuHeader() {

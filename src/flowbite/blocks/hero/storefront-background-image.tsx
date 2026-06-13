@@ -10,19 +10,34 @@ import {
   WandMagicSparkles,
 } from "flowbite-react-icons/outline";
 
-export default function StorefrontHeroSectionWithBackgroundImage() {
+type StorefrontHeroSectionWithBackgroundImageProps = {
+  headline?: string
+  description?: string
+  ctaLabel?: string
+  bgImageLight?: string
+  bgImageDark?: string
+}
+
+export default function StorefrontHeroSectionWithBackgroundImage(props: StorefrontHeroSectionWithBackgroundImageProps = {}) {
+  const {
+    headline = "Don’t miss out on exclusive deals.",
+    description = "Don’t Miss Out - Limited Stock at Rock-Bottom Prices!",
+    ctaLabel = "Shop now",
+    bgImageLight = "https://flowbite.s3.amazonaws.com/blocks/e-commerce/hero-ecommcerce-image-light.jpg",
+    bgImageDark = "https://flowbite.s3.amazonaws.com/blocks/e-commerce/hero-ecommcerce-image-dark.jpg",
+  } = props
   return (
     <section className="bg-gray-50 pb-8 antialiased dark:bg-gray-900 md:pb-16">
-      <div className="bg-[url('https://flowbite.s3.amazonaws.com/blocks/e-commerce/hero-ecommcerce-image-light.jpg')] bg-cover bg-center bg-no-repeat dark:bg-[url('https://flowbite.s3.amazonaws.com/blocks/e-commerce/hero-ecommcerce-image-dark.jpg')]">
+      <div className="bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(‘${bgImageLight}’)` }}>
         <div className="relative z-10 mx-auto max-w-2xl px-4 pb-32 pt-8 text-center text-white lg:pt-16 xl:px-0">
           <h1 className="mb-4 text-4xl font-extrabold leading-tight tracking-tight text-primary-900 dark:text-white lg:text-6xl">
-            Don’t miss out on exclusive deals.
+            {headline}
           </h1>
           <p className="mb-6 font-light text-primary-800 dark:text-gray-400 md:text-lg lg:mb-8 lg:text-xl">
-            Don't Miss Out - Limited Stock at Rock-Bottom Prices!
+            {description}
           </p>
           <Button className="inline-flex [&>span]:px-6 [&>span]:py-3.5 [&>span]:text-base">
-            Shop now
+            {ctaLabel}
           </Button>
         </div>
       </div>

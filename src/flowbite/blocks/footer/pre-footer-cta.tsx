@@ -1,3 +1,5 @@
+'use client'
+
 import { Dropdown } from "flowbite-react";
 
 export function PreFooterCTASection() {

@@ -1,9 +1,13 @@
-export function CardsWithDescriptionCustomerLogos() {
+type CardsWithDescriptionCustomerLogosProps = {
+  headline?: string
+}
+
+export function CardsWithDescriptionCustomerLogos(props: CardsWithDescriptionCustomerLogosProps = {}) {
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl px-4 py-8 lg:py-16">
         <h2 className="mb-8 text-center text-3xl font-extrabold leading-tight tracking-tight text-gray-900 dark:text-white md:mb-8 md:text-4xl lg:mb-16">
-          Grow with Flowbite
+          {props.headline ?? "Grow with Flowbite"}
         </h2>
         <div className="space-y-4 sm:grid sm:grid-cols-2 sm:gap-4 sm:space-y-0 md:mb-8 md:mt-12 lg:grid-cols-4 xl:gap-8">
           <a

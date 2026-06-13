@@ -1,20 +1,26 @@
-export function CardsWithCTACustomerLogos() {
+type CardsWithCTACustomerLogosProps = {
+  headline?: string
+  description?: string
+  primaryCta?: { label?: string; href?: string }
+  secondaryCta?: { label?: string; href?: string }
+}
+
+export function CardsWithCTACustomerLogos(props: CardsWithCTACustomerLogosProps = {}) {
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl px-4 py-8 lg:py-16">
         <h2 className="mb-4 text-center text-3xl font-extrabold leading-tight tracking-tight text-gray-900 dark:text-white md:text-4xl">
-          You’ll be in good company
+          {props.headline ?? "You’ll be in good company"}
         </h2>
         <p className="mb-4 text-center text-base text-gray-500 sm:px-14 md:px-24 md:text-xl lg:px-56 xl:px-72">
-          We use an agile approach to test assumptions and connect with the
-          needs of your audience early and often.
+          {props.description ?? "We use an agile approach to test assumptions and connect with the needs of your audience early and often."}
         </p>
         <div className="justify-center space-x-0 space-y-2 sm:flex sm:space-x-6 sm:space-y-0">
           <a
-            href="#"
+            href={props.primaryCta?.href ?? "#"}
             className="flex items-center justify-center text-base font-medium text-primary-600 hover:text-primary-800 dark:text-primary-500 dark:hover:text-primary-700"
           >
-            Explore our integrations
+            {props.primaryCta?.label ?? "Explore our integrations"}
             <svg
               aria-hidden
               className="ml-1 h-5 w-5"
@@ -30,10 +36,10 @@ export function CardsWithCTACustomerLogos() {
             </svg>
           </a>
           <a
-            href="#"
+            href={props.secondaryCta?.href ?? "#"}
             className="flex items-center justify-center text-base font-medium text-primary-600 hover:text-primary-800 dark:text-primary-500 dark:hover:text-primary-700"
           >
-            API Overview
+            {props.secondaryCta?.label ?? "API Overview"}
             <svg
               aria-hidden
               className="ml-1 h-5 w-5"

@@ -8,13 +8,71 @@ import {
   Textarea,
 } from "flowbite-react";
 
-export function ContactFormWithHelpCenter() {
+type HelpCategory = {
+  title?: string
+  links?: { label?: string; href?: string }[]
+}
+
+type ContactHelpCenterProps = {
+  headline?: string
+  subheadline?: string
+  searchPlaceholder?: string
+  helpCategories?: HelpCategory[]
+  browseAllLabel?: string
+  browseAllHref?: string
+  browseAllCtaLabel?: string
+  stillNeedHelpHeadline?: string
+  primaryCta?: { label?: string; href?: string }
+  termsHref?: string
+  privacyHref?: string
+  officeLabel?: string
+  officeAddress?: string
+  salesEmail?: string
+  supportEmail?: string
+  hrEmail?: string
+}
+
+export function ContactFormWithHelpCenter(props: ContactHelpCenterProps = {}) {
+  const defaultCategories: HelpCategory[] = [
+    {
+      title: 'Billing & Plans',
+      links: [
+        { label: 'Flowbite plans & prices', href: '#' },
+        { label: 'Switch plans and add-ons', href: '#' },
+        { label: "I can't log in to Flowbite", href: '#' },
+        { label: 'The Disney Bundle', href: '#' },
+        { label: 'Student Discount on Flowbite', href: '#' },
+      ],
+    },
+    {
+      title: 'Using Flowbite',
+      links: [
+        { label: 'Parental Controls', href: '#' },
+        { label: 'Devices to watch Flowbite', href: '#' },
+        { label: 'Home location for Live TV', href: '#' },
+        { label: 'Live TV Guide', href: '#' },
+        { label: 'Fix buffering issues', href: '#' },
+      ],
+    },
+    {
+      title: "What's on Flowbite",
+      links: [
+        { label: 'NEW this month!', href: '#' },
+        { label: 'Sports Add-on for Live TV', href: '#' },
+        { label: 'Watch live sports', href: '#' },
+        { label: 'FX shows & movies', href: '#' },
+        { label: 'Super Bowl 2022', href: '#' },
+      ],
+    },
+  ]
+  const categories = props.helpCategories ?? defaultCategories
+
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6">
         <div className="max-w-screen-md">
           <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white md:text-4xl lg:mb-8">
-            How can we help you?
+            {props.headline ?? 'How can we help you?'}
           </h2>
           <Label htmlFor="search-faq" className="sr-only">
             Your Email
@@ -36,122 +94,42 @@ export function ContactFormWithHelpCenter() {
               </svg>
             )}
             id="search-faq"
-            placeholder="Type keywords to find answers"
+            placeholder={props.searchPlaceholder ?? 'Type keywords to find answers'}
             className="[&_input]:py-4 [&_input]:pl-12"
           />
         </div>
         <div className="my-8 grid gap-8 sm:grid-cols-2 md:grid-cols-3 xl:gap-16">
-          <Card>
-            <h3 className="text-xl font-extrabold dark:text-white">
-              Billing &amp; Plans
-            </h3>
-            <ul className="mb-4 space-y-3 text-primary-600 dark:text-primary-500">
-              <li>
-                <a href="#" className="hover:underline">
-                  Flowbite plans &amp; prices
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  Switch plans and add-ons
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  I can't log in to Flowbite
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  The Disney Bundle
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  Student Discount on Flowbite
-                </a>
-              </li>
-            </ul>
-          </Card>
-          <Card>
-            <h3 className="text-xl font-extrabold dark:text-white">
-              Using Flowbite
-            </h3>
-            <ul className="mb-4 space-y-3 text-primary-600 dark:text-primary-500">
-              <li>
-                <a href="#" className="hover:underline">
-                  Parental Controls
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  Devices to watch Flowbite
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  Home location for Live TV
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  Live TV Guide
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  Fix buffering issues
-                </a>
-              </li>
-            </ul>
-          </Card>
-          <Card>
-            <h3 className="text-xl font-extrabold dark:text-white">
-              What’s on Flowbite
-            </h3>
-            <ul className="mb-4 space-y-3 text-primary-600 dark:text-primary-500">
-              <li>
-                <a href="#" className="hover:underline">
-                  NEW this month!
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  Sports Add-on for Live TV
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  Watch live sports
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  FX shows &amp; movies
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  Super Bowl 2022
-                </a>
-              </li>
-            </ul>
-          </Card>
+          {categories.map((cat, i) => (
+            <Card key={i}>
+              <h3 className="text-xl font-extrabold dark:text-white">
+                {cat.title}
+              </h3>
+              <ul className="mb-4 space-y-3 text-primary-600 dark:text-primary-500">
+                {(cat.links ?? []).map((link, j) => (
+                  <li key={j}>
+                    <a href={link.href ?? '#'} className="hover:underline">
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </Card>
+          ))}
         </div>
         <div className="mb-8 items-center justify-between sm:mb-24 sm:flex">
           <div className="mb-4 sm:mb-0">
             <h3 className="mb-2 text-2xl font-extrabold text-gray-900 dark:text-white">
-              Not what you were looking for?
+              {props.browseAllLabel ?? 'Not what you were looking for?'}
             </h3>
             <p className="text-gray-500 dark:text-gray-400 sm:text-xl">
               Browse through all of our Help Center articles
             </p>
           </div>
           <a
-            href="#"
+            href={props.browseAllHref ?? '#'}
             className="inline-flex items-center justify-center rounded-lg bg-primary-700 px-4 py-2.5 text-center text-base font-medium text-white hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
           >
-            Get started
+            {props.browseAllCtaLabel ?? 'Get started'}
           </a>
         </div>
         <div className="grid gap-16 lg:grid-cols-3">
@@ -160,30 +138,28 @@ export function ContactFormWithHelpCenter() {
               Points of contact
             </h3>
             <h4 className="mb-1 font-medium text-gray-900 dark:text-white">
-              U.S. Flowbite
+              {props.officeLabel ?? 'U.S. Flowbite'}
             </h4>
             <address className="text-sm font-normal text-gray-500 dark:text-gray-400">
-              11350 McCormick Rd, EP III, Suite 200,
-              <br />
-              Hunt Valley, MD 21031
+              {props.officeAddress ?? '11350 McCormick Rd, EP III, Suite 200, Hunt Valley, MD 21031'}
             </address>
             <h4 className="mb-1 mt-4 font-medium text-gray-900 dark:text-white">
               Information &amp; Sales
             </h4>
             <p className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">
-              <a href="#">sales@flowbite.com</a>
+              <a href={`mailto:${props.salesEmail ?? 'sales@flowbite.com'}`}>{props.salesEmail ?? 'sales@flowbite.com'}</a>
             </p>
             <h4 className="mb-1 mt-4 font-medium text-gray-900 dark:text-white">
               Support
             </h4>
             <p className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">
-              <a href="#">support@flowbite.com</a>
+              <a href={`mailto:${props.supportEmail ?? 'support@flowbite.com'}`}>{props.supportEmail ?? 'support@flowbite.com'}</a>
             </p>
             <h4 className="mb-1 mt-4 font-medium text-gray-900 dark:text-white">
               Verification of Employment
             </h4>
             <p className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">
-              <a href="#">hr@flowbite.com</a>
+              <a href={`mailto:${props.hrEmail ?? 'hr@flowbite.com'}`}>{props.hrEmail ?? 'hr@flowbite.com'}</a>
             </p>
             <h3 className="mb-4 mt-5 text-lg font-semibold text-gray-900 dark:text-white">
               Our offices around the world
@@ -215,7 +191,7 @@ export function ContactFormWithHelpCenter() {
           </div>
           <div className="col-span-2">
             <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white md:text-4xl lg:mb-8">
-              Still need help?
+              {props.stillNeedHelpHeadline ?? 'Still need help?'}
             </h2>
             <form action="#" className="space-y-8">
               <div className="grid grid-cols-1 gap-2">
@@ -274,14 +250,14 @@ export function ContactFormWithHelpCenter() {
                     agree to our&nbsp;
                     <a
                       className="font-normal text-gray-900 underline hover:no-underline dark:text-white"
-                      href="#"
+                      href={props.termsHref ?? '#'}
                     >
                       Terms of Service
                     </a>
                     &nbsp;and&nbsp;
                     <a
                       className="font-normal text-gray-900 underline hover:no-underline dark:text-white"
-                      href="#"
+                      href={props.privacyHref ?? '#'}
                     >
                       Privacy Statement
                     </a>
@@ -290,7 +266,7 @@ export function ContactFormWithHelpCenter() {
                 </div>
               </div>
               <Button type="submit" className="[&>span]:px-5 [&>span]:py-3">
-                Send message
+                {props.primaryCta?.label ?? 'Send message'}
               </Button>
             </form>
           </div>

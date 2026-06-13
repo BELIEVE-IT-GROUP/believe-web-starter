@@ -1,15 +1,142 @@
 /**
- * Allowlist de templateIds "deep-portados": variantes Flowbite que ya aceptan props del CMS
- * (contenido real, tokens de theme) y por lo tanto pueden REEMPLAZAR al componente legacy.
+ * deepPortedTemplates: las 118 variantes de contenido que ya aceptan props del CMS (con
+ * fallback al demo), producto del deep-port multi-agente (Workflow fase2-deepport-content-blocks).
+ * Renderizan en el showcase /catalog (el registry las llama directo) y están listas para
+ * componer webs nuevas. Generado de catalog.generated.json (no de los IDs de los agentes).
  *
- * Hasta que una variante esté acá, el BlockRenderer (A4) usa el componente legacy de Fase 1
- * para esa blockType — así la home believe nunca se rompe. Cada lote de deep-port (A5..A12)
- * suma sus templateIds acá, migrando la home progresivamente y con verificación.
+ * portedTemplates (abajo): allowlist ACTIVA en el BlockRenderer (flip legacy→flowbite). Vacía
+ * por ahora — la home believe (Fase 1) fue autorada contra los shapes LEGACY; activar una
+ * variante acá requiere que el contenido del CMS use su shape de props. Se puebla por
+ * variante tras reconciliar shapes (skill Phase C para webs nuevas / migración de la home).
  */
-export const portedTemplates = new Set<string>([
-  // A5 — marketing lote 1 (hero / feature / pricing / cta). Se llena al portar cada variante.
+export const deepPortedTemplates = new Set<string>([
+  "blog-list.card-with-image",
+  "blog-list.centered-posts",
+  "blog-list.default",
+  "blog-list.featured-post",
+  "blog-list.list-with-heading",
+  "blog-list.publisher-related-carousel",
+  "blog-list.publisher-related-default",
+  "blog-list.publisher-related-grid",
+  "blog-list.publisher-related-horizontal",
+  "contact.address-location",
+  "contact.background-image",
+  "contact.company-information",
+  "contact.default",
+  "contact.help-center",
+  "contact.links",
+  "cta.banner-announcement",
+  "cta.banner-default",
+  "cta.banner-launch",
+  "cta.cards-icons",
+  "cta.default",
+  "cta.email-signup",
+  "cta.finance-trading",
+  "cta.heading-button",
+  "cta.image-button",
+  "cta.mobile-app",
+  "cta.qr-code",
+  "cta.tabs-mobile-app",
+  "cta.two-cards",
+  "faq.accordion",
+  "faq.customer-service",
+  "faq.default",
+  "faq.grid-layout",
+  "faq.help-center",
+  "faq.help-center-search",
+  "features.alternate",
+  "features.card-list",
+  "features.comparison",
+  "features.cta-list",
+  "features.default",
+  "features.description-icon-list",
+  "features.icon-list-cta",
+  "features.icons-list",
+  "features.image-list",
+  "features.rounded-icons",
+  "gallery.image-gallery",
+  "gallery.portfolio-alternate",
+  "gallery.portfolio-carousel",
+  "gallery.portfolio-default",
+  "gallery.portfolio-featured-image",
+  "gallery.portfolio-grid-layout",
+  "hero.app-preview-ctas",
+  "hero.background-cover-ctas",
+  "hero.background-image-cards",
+  "hero.blog-posts-featured",
+  "hero.book-cover",
+  "hero.carousel",
+  "hero.cover-image-ctas",
+  "hero.crypto",
+  "hero.default",
+  "hero.email-signup-video",
+  "hero.illustration-email-signup",
+  "hero.phone-mockup-download",
+  "hero.screenshot-download",
+  "hero.search-bar",
+  "hero.search-datepicker",
+  "hero.signup-cta",
+  "hero.storefront-background-image",
+  "hero.storefront-default",
+  "hero.storefront-full-slider",
+  "hero.storefront-grid-view",
+  "hero.video-embed-cta",
+  "hero.visual-image-heading",
+  "logo-cloud.4-columns",
+  "logo-cloud.cards-cta",
+  "logo-cloud.cards-description",
+  "logo-cloud.default",
+  "logo-cloud.heading-grid",
+  "newsletter.banner",
+  "newsletter.default",
+  "newsletter.email-signup-card",
+  "newsletter.modal-signup",
+  "newsletter.popup-email",
+  "pricing.comparison-table",
+  "pricing.default",
+  "pricing.feature-list",
+  "pricing.highlighted-plan",
+  "pricing.horizontal",
+  "pricing.tabs-selector",
+  "pricing.toggle",
+  "split-content.card-images",
+  "split-content.feature-list",
+  "split-content.heading-description",
+  "split-content.heading-images",
+  "split-content.table-contents",
+  "split-content.two-columns",
+  "stats.card-statistics",
+  "stats.carousel-slider",
+  "stats.content-social-proof",
+  "stats.default",
+  "stats.heading-statistics",
+  "stats.icon-statistics",
+  "stats.illustration",
+  "team.carousel-slider",
+  "team.cta-grid",
+  "team.default",
+  "team.description",
+  "team.four-columns",
+  "team.grid-cards",
+  "team.grid-clean",
+  "team.overlay-zoom",
+  "testimonials.blockquote",
+  "testimonials.cards",
+  "testimonials.carousel-slider",
+  "testimonials.grid-layout-cards",
+  "testimonials.tabs",
+  "video-embed.content-video",
+  "video-embed.hero-email-video",
+  "video-embed.hero-video-cta",
 ])
+
+/** Allowlist ACTIVA en el BlockRenderer. Vacía hasta reconciliar shapes por variante. */
+export const portedTemplates = new Set<string>([])
 
 export function isPorted(templateId?: string): boolean {
   return !!templateId && portedTemplates.has(templateId)
+}
+
+export function isDeepPorted(templateId?: string): boolean {
+  return !!templateId && deepPortedTemplates.has(templateId)
 }

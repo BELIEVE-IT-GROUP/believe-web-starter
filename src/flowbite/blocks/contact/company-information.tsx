@@ -1,3 +1,5 @@
+'use client'
+
 import {
   Button,
   Checkbox,
@@ -8,7 +10,19 @@ import {
   Tooltip,
 } from "flowbite-react";
 
-export function ContactFormWithCompanyInformation() {
+type ContactCompanyInfoProps = {
+  headline?: string
+  primaryCta?: { label?: string; href?: string }
+  companyName?: string
+  companyTaxId?: string
+  address?: string
+  emailAddress?: string
+  phone?: string
+  termsHref?: string
+  privacyHref?: string
+}
+
+export function ContactFormWithCompanyInformation(props: ContactCompanyInfoProps = {}) {
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6 lg:py-24">
@@ -34,9 +48,9 @@ export function ContactFormWithCompanyInformation() {
                 Company information:
               </h3>
               <p className="mt-1 text-base font-normal text-gray-500 dark:text-gray-400">
-                Flowbite LLC
+                {props.companyName ?? 'Flowbite LLC'}
                 <br />
-                Tax id: USXXXXXX
+                Tax id: {props.companyTaxId ?? 'USXXXXXX'}
               </p>
             </div>
           </div>
@@ -61,11 +75,7 @@ export function ContactFormWithCompanyInformation() {
                 Address:
               </h3>
               <p className="mt-1 text-base font-normal text-gray-500 dark:text-gray-400">
-                SILVER LAKE, United States
-                <br />
-                1941 Late Avenue
-                <br />
-                Zip Code/Postal code: 03875
+                {props.address ?? 'SILVER LAKE, United States\n1941 Late Avenue\nZip Code/Postal code: 03875'}
               </p>
             </div>
           </div>
@@ -90,11 +100,11 @@ export function ContactFormWithCompanyInformation() {
                 partnership opportunities.
               </p>
               <a
-                href="#"
+                href={`mailto:${props.emailAddress ?? 'hello@flowbite.com'}`}
                 title=""
                 className="mt-1 block text-base font-semibold text-gray-900 hover:underline dark:text-white"
               >
-                hello@flowbite.com
+                {props.emailAddress ?? 'hello@flowbite.com'}
               </a>
             </div>
           </div>
@@ -337,7 +347,7 @@ export function ContactFormWithCompanyInformation() {
                 >
                   I confirm that you have read and agreed to&nbsp;
                   <a
-                    href="#"
+                    href={props.termsHref ?? '#'}
                     title=""
                     className="font-medium text-gray-900 underline hover:no-underline dark:text-white"
                   >
@@ -345,7 +355,7 @@ export function ContactFormWithCompanyInformation() {
                   </a>
                   &nbsp;and&nbsp;
                   <a
-                    href="#"
+                    href={props.privacyHref ?? '#'}
                     title=""
                     className="font-medium text-gray-900 underline hover:no-underline dark:text-white"
                   >
@@ -360,7 +370,7 @@ export function ContactFormWithCompanyInformation() {
                 type="submit"
                 className="inline-flex w-full sm:w-fit [&>span]:px-5 [&>span]:py-3"
               >
-                Send message
+                {props.primaryCta?.label ?? 'Send message'}
               </Button>
             </div>
           </form>

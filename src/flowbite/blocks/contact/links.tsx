@@ -1,11 +1,32 @@
 import { Button, Label, Select, TextInput, Textarea } from "flowbite-react";
 
-export function ContactFormWithLinks() {
+type ContactLinksProps = {
+  headline?: string
+  guidesHeadline?: string
+  notFoundHeadline?: string
+  primaryCta?: { label?: string; href?: string }
+  termsHref?: string
+  privacyHref?: string
+  items?: { label?: string; href?: string }[]
+}
+
+export function ContactFormWithLinks(props: ContactLinksProps = {}) {
+  const defaultItems = [
+    { label: "I Can't Log In", href: '#' },
+    { label: 'I Think My Account Has Been Compromised', href: '#' },
+    { label: 'Recover Username or Reset Password', href: '#' },
+    { label: 'Troubleshoot the Signup Activation Email', href: '#' },
+    { label: 'Activate Account Notifications', href: '#' },
+    { label: 'Manage Account Login and Profile', href: '#' },
+    { label: 'Set Account Security Options', href: '#' },
+  ]
+  const items = props.items ?? defaultItems
+
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-screen-md px-4 py-8 sm:py-16 lg:px-6">
         <h2 className="mb-8 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-          Contact Us
+          {props.headline ?? 'Contact Us'}
         </h2>
         <div className="mb-4">
           <Label htmlFor="account_1" className="sr-only">
@@ -60,68 +81,22 @@ export function ContactFormWithLinks() {
           </Select>
         </div>
         <h3 className="mb-5 mt-8 text-xl font-extrabold text-gray-900 dark:text-white">
-          Popular guides &amp; tutorials
+          {props.guidesHeadline ?? 'Popular guides & tutorials'}
         </h3>
         <ul className="space-y-3">
-          <li>
-            <a
-              href="#"
-              className="font-semibold text-primary-600 hover:underline dark:text-primary-500"
-            >
-              I Can't Log In
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="font-semibold text-primary-600 hover:underline dark:text-primary-500"
-            >
-              I Think My Account Has Been Compromised
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="font-semibold text-primary-600 hover:underline dark:text-primary-500"
-            >
-              Recover Username or Reset Password
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="font-semibold text-primary-600 hover:underline dark:text-primary-500"
-            >
-              Troubleshoot the Signup Activation Email
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="font-semibold text-primary-600 hover:underline dark:text-primary-500"
-            >
-              Activate Account Notifications
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="font-semibold text-primary-600 hover:underline dark:text-primary-500"
-            >
-              Manage Account Login and Profile
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="font-semibold text-primary-600 hover:underline dark:text-primary-500"
-            >
-              Set Account Security Options
-            </a>
-          </li>
+          {items.map((item, i) => (
+            <li key={i}>
+              <a
+                href={item.href ?? '#'}
+                className="font-semibold text-primary-600 hover:underline dark:text-primary-500"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
         </ul>
         <h3 className="mb-5 mt-8 text-xl font-extrabold text-gray-900 dark:text-white">
-          Didn't find what you're looking for?
+          {props.notFoundHeadline ?? "Didn't find what you're looking for?"}
         </h3>
         <form
           action="#"
@@ -176,14 +151,14 @@ export function ContactFormWithLinks() {
             <p className="mt-4 text-sm text-gray-500 dark:text-gray-400">
               By submitting this form you agree to our&nbsp;
               <a
-                href="#"
+                href={props.termsHref ?? '#'}
                 className="text-primary-600 hover:underline dark:text-primary-500"
               >
                 terms and conditions
               </a>
               &nbsp;and our&nbsp;
               <a
-                href="#"
+                href={props.privacyHref ?? '#'}
                 className="text-primary-600 hover:underline dark:text-primary-500"
               >
                 privacy policy
@@ -197,7 +172,7 @@ export function ContactFormWithLinks() {
               type="submit"
               className="inline-flex w-full sm:w-fit [&>span]:px-5 [&>span]:py-3"
             >
-              Send message
+              {props.primaryCta?.label ?? 'Send message'}
             </Button>
           </div>
         </form>

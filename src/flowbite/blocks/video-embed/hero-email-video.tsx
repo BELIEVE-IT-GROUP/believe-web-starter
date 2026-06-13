@@ -1,19 +1,29 @@
 import { Button, Label, TextInput } from "flowbite-react";
 
-export function EmailSignUpWithVideoHero() {
+type EmailSignUpWithVideoHeroProps = {
+  headline?: string
+  subheadline?: string
+  primaryCta?: { label?: string; href?: string }
+  emailPlaceholder?: string
+  reviewCount?: string
+  videoUrl?: string
+}
+
+export function EmailSignUpWithVideoHero(props: EmailSignUpWithVideoHeroProps = {}) {
+  const embedUrl = props.videoUrl ?? 'https://www.youtube.com/embed/4bnJG2UDr9A'
+
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl px-4 py-8 lg:py-16">
         <div className="mb-8 grid items-center gap-8 lg:mb-24 lg:grid-cols-12 lg:gap-12">
           <div className="col-span-6 text-center sm:mb-6 lg:mb-0 lg:text-left">
             <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white md:text-5xl xl:text-6xl">
-              We invest in the world’s potential
+              {props.headline ?? "We invest in the world's potential"}
             </h1>
             <p className="mx-auto mb-6 max-w-xl text-gray-500 dark:text-gray-400 md:text-lg lg:mx-0 xl:mb-8 xl:text-xl">
-              Here at Flowbite we focus on markets where technology, innovation,
-              and capital can unlock long-term value and drive economic growth.
+              {props.subheadline ?? 'Here at Flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.'}
             </p>
-            <form action="#" className="">
+            <form action={props.primaryCta?.href ?? '#'} className="">
               <div className="mx-auto mb-3 w-full items-center justify-center space-y-4 sm:flex sm:space-x-4 sm:space-y-0 lg:justify-start">
                 <div className="relative">
                   <Label htmlFor="email" className="sr-only">
@@ -32,7 +42,7 @@ export function EmailSignUpWithVideoHero() {
                       </svg>
                     )}
                     id="email"
-                    placeholder="Enter your email"
+                    placeholder={props.emailPlaceholder ?? 'Enter your email'}
                     required
                     type="email"
                     className="[&_input]:w-full [&_input]:py-3 [&_input]:md:w-80"
@@ -42,7 +52,7 @@ export function EmailSignUpWithVideoHero() {
                   type="submit"
                   className="w-full md:w-fit [&>span]:items-center [&>span]:py-3"
                 >
-                  Sign up
+                  {props.primaryCta?.label ?? 'Sign up'}
                   <svg
                     className="-mr-1 ml-2 h-4 w-4"
                     fill="currentColor"
@@ -68,7 +78,7 @@ export function EmailSignUpWithVideoHero() {
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                   </svg>
                   <span className="mr-2 font-normal text-gray-900 dark:text-white">
-                    1,456+
+                    {props.reviewCount ?? '1,456+'}
                   </span>
                   &nbsp;Reviews
                 </div>
@@ -94,7 +104,7 @@ export function EmailSignUpWithVideoHero() {
           <div className="col-span-6">
             <iframe
               className="mx-auto h-64 w-full max-w-xl rounded-lg sm:h-96"
-              src="https://www.youtube.com/embed/4bnJG2UDr9A"
+              src={embedUrl}
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

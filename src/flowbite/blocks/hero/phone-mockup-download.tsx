@@ -1,24 +1,45 @@
 import { Avatar, Rating } from "flowbite-react";
 
-export function PhoneMockupWithAppDownloadHero() {
+type PhoneMockupWithAppDownloadHeroProps = {
+  headline?: string
+  headlineSpan?: string
+  description?: string
+  appStoreHref?: string
+  googlePlayHref?: string
+  mockupLight?: string
+  mockupDark?: string
+  ratingText?: string
+  ratingCount?: string
+}
+
+export function PhoneMockupWithAppDownloadHero(props: PhoneMockupWithAppDownloadHeroProps = {}) {
+  const {
+    headline = "Designing Interfaces:",
+    headlineSpan = "A User-Centered Approach",
+    description = "This book covers the latest design principles and techniques, including responsive design, mobile interface design, and user research methodologies.",
+    appStoreHref = "#",
+    googlePlayHref = "#",
+    mockupLight = "https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/mockup-1-light.png",
+    mockupDark = "https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/mockup-1-dark.png",
+    ratingText = "5.0",
+    ratingCount = "15.7k",
+  } = props
   return (
     <section className="bg-white antialiased dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6 lg:py-24">
         <div className="text-center">
           <div>
             <h2 className="text-3xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl">
-              Designing Interfaces:
-              <span className="md:block">A User-Centered Approach</span>
+              {headline}
+              <span className="md:block">{headlineSpan}</span>
             </h2>
             <p className="mt-4 text-base font-normal text-gray-500 dark:text-gray-400 sm:text-xl md:mx-auto md:max-w-3xl">
-              This book covers the latest design principles and techniques,
-              including responsive design, mobile interface design, and user
-              research methodologies.
+              {description}
             </p>
           </div>
           <div className="mx-auto mt-8 flex max-w-sm items-center justify-center gap-4">
             <a
-              href="#"
+              href={appStoreHref}
               title=""
               className="inline-flex w-full items-center justify-center rounded-lg bg-gray-900 px-2 py-3 text-left text-white hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 sm:w-auto sm:px-4"
               role="button"
@@ -43,7 +64,7 @@ export function PhoneMockupWithAppDownloadHero() {
               </div>
             </a>
             <a
-              href="#"
+              href={googlePlayHref}
               title=""
               className="inline-flex w-full items-center justify-center rounded-lg bg-gray-900 px-2 py-3 text-left text-white hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 sm:w-auto sm:px-4"
               role="button"
@@ -77,12 +98,12 @@ export function PhoneMockupWithAppDownloadHero() {
             <div className="absolute right-[-17px] top-[142px] h-[64px] w-[3px] rounded-r-lg bg-gray-800 dark:bg-gray-800"></div>
             <div className="h-[572px] w-[272px] overflow-hidden rounded-[2.5rem] bg-white dark:bg-gray-800">
               <img
-                src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/mockup-1-light.png"
+                src={mockupLight}
                 className="h-[572px] w-[272px] dark:hidden"
                 alt=""
               />
               <img
-                src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/mockup-1-dark.png"
+                src={mockupDark}
                 className="hidden h-[572px] w-[272px] dark:block"
                 alt=""
               />
@@ -121,13 +142,13 @@ export function PhoneMockupWithAppDownloadHero() {
               <Rating.Star />
               <Rating.Star />
               <p className="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">
-                5.0
+                {ratingText}
               </p>
             </Rating>
             <p className="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
               Rated Best Over&nbsp;
               <span className="font-semibold text-gray-900 dark:text-white">
-                15.7k
+                {ratingCount}
               </span>
               &nbsp;Reviews
             </p>

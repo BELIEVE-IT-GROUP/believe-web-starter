@@ -1,20 +1,28 @@
+'use client'
+
 import { Badge, Banner } from "flowbite-react";
 import { HiX } from "react-icons/hi";
 
-export function AnnouncementBanner() {
+type AnnouncementBannerProps = {
+  badge?: string
+  message?: string
+  linkLabel?: string
+  linkHref?: string
+}
+
+export function AnnouncementBanner(props: AnnouncementBannerProps = {}) {
   return (
     <Banner>
       <div className="flex w-full items-center justify-between border border-gray-200 bg-gray-50 px-4 py-3 dark:border-gray-700 dark:bg-gray-800">
         <div className="mx-auto flex items-center gap-x-3">
-          <Badge className="hidden w-fit md:inline">New</Badge>
+          <Badge className="hidden w-fit md:inline">{props.badge ?? "New"}</Badge>
           <p className="text-sm font-medium text-gray-900 dark:text-white md:my-0">
-            We have launched Flowbite Blocks including over 120+ website
-            sections!
+            {props.message ?? "We have launched Flowbite Blocks including over 120+ website sections!"}
             <a
-              href="#"
+              href={props.linkHref ?? "#"}
               className="ml-2 inline-flex items-center text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
             >
-              Check it out!
+              {props.linkLabel ?? "Check it out!"}
             </a>
           </p>
         </div>

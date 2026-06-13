@@ -1,3 +1,5 @@
+'use client'
+
 import { Button, MegaMenu, Navbar } from "flowbite-react";
 
 export function MegaDropdownHeader() {

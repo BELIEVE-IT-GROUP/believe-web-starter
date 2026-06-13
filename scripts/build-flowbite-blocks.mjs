@@ -41,8 +41,16 @@ if (existsSync(logoSrc)) {
 }
 
 // --- transforms ---
+// 'use client' si el archivo usa hooks/handlers...
 const INTERACTIVE =
   /\b(useState|useEffect|useRef|useReducer|useCallback|useMemo|useContext)\b|on(Click|Change|Submit|Focus|Blur|KeyDown|KeyUp|MouseEnter|MouseLeave|Scroll)\s*=\s*\{/
+// ...o si importa un componente interactivo de flowbite-react (requiere client boundary en RSC,
+// si no rompe el React Client Manifest en prerender — ej. Accordion#Panel).
+const INTERACTIVE_FB = /\b(Accordion|Tabs|Carousel|Datepicker|Dropdown|Modal|Drawer|Tooltip|Popover|Navbar|Sidebar|MegaMenu|ToggleSwitch|Clipboard|Toast|Banner|RatingAdvanced)\b/
+function importsInteractiveFlowbite(src) {
+  const m = src.match(/import\s*\{([^}]*)\}\s*from\s*["']flowbite-react["']/)
+  return m ? INTERACTIVE_FB.test(m[1]) : false
+}
 
 function detectExportName(src) {
   let m = src.match(/export\s+default\s+function\s+(\w+)/)
@@ -81,7 +89,7 @@ function transform(src, templateId) {
   for (const [re, rep] of PATCHES[templateId] || []) out = out.replace(re, rep)
 
   const hasUseClient = /^\s*['"]use client['"]/.test(out)
-  const needsClient = INTERACTIVE.test(out)
+  const needsClient = INTERACTIVE.test(out) || importsInteractiveFlowbite(out)
 
   const exp = detectExportName(out)
   if (exp && !exp.isDefault) {

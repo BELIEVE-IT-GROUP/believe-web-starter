@@ -1,306 +1,104 @@
+'use client'
+
 import { Accordion, Button } from "flowbite-react";
 
-export function ComparisonPricingTable() {
+type ComparisonPlan = {
+  name: string
+  price: string
+  period?: string
+  description?: string
+  features?: string[]
+  cta?: { label?: string; href?: string }
+  ctaText?: string
+  ctaUrl?: string
+}
+
+type ComparisonTableProps = {
+  headline?: string
+  subheadline?: string
+  accordionLabel?: string
+  plans?: ComparisonPlan[]
+  tiers?: ComparisonPlan[]
+}
+
+const DEMO_PLANS: ComparisonPlan[] = [
+  {
+    name: 'Starter',
+    price: '$29',
+    period: 'month',
+    description: 'Best option for personal use and for your next side projects.',
+    features: ['Individual configuration', 'No setup, monthly, or hidden fees', 'Team size: 1 developer', 'Premium support: 6 months', 'Free updates: 6 months'],
+    ctaText: 'Get started',
+    ctaUrl: '#',
+  },
+  {
+    name: 'Company',
+    price: '$99',
+    period: 'month',
+    description: 'Relevant for multiple users, extended & premium support.',
+    features: ['Individual configuration', 'No setup, monthly, or hidden fees', 'Team size: 10 developers', 'Premium support: 24 months', 'Free updates: 24 months'],
+    ctaText: 'Get started',
+    ctaUrl: '#',
+  },
+  {
+    name: 'Enterprise',
+    price: '$499',
+    period: 'month',
+    description: 'Best for large scale uses and extended redistribution rights.',
+    features: ['Individual configuration', 'No setup, monthly, or hidden fees', 'Team size: 100+ developers', 'Premium support: 36 months', 'Free updates: 36 months'],
+    ctaText: 'Get started',
+    ctaUrl: '#',
+  },
+]
+
+const CheckIcon = () => (
+  <svg className="h-5 w-5 shrink-0 text-green-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+  </svg>
+)
+
+export function ComparisonPricingTable(props: ComparisonTableProps = {}) {
+  const plans = props.plans?.length ? props.plans : props.tiers?.length ? props.tiers : DEMO_PLANS
+
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="mx-auto flex max-w-screen-xl flex-col items-center px-4 py-8 lg:px-6 lg:py-16">
         <div className="mx-auto mb-8 max-w-screen-md text-center lg:mb-12">
           <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-            Designed for business teams like yours
+            {props.headline ?? 'Designed for business teams like yours'}
           </h2>
           <p className="mb-5 text-gray-500 dark:text-gray-400 sm:text-xl">
-            Here at Flowbite we focus on markets where technology, innovation,
-            and capital can unlock long-term value and drive economic growth.
+            {props.subheadline ?? 'Here at Flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.'}
           </p>
         </div>
         <div className="mb-8 grid gap-8 xl:grid-cols-3">
-          <div className="mx-auto flex max-w-lg flex-col rounded-lg border border-gray-200 bg-white p-6 text-center text-gray-900 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white xl:p-8">
-            <h3 className="mb-4 text-2xl font-semibold">Starter</h3>
-            <p className="text-gray-500 dark:text-gray-400 sm:text-lg">
-              Best option for personal use and for your next side projects.
-            </p>
-            <div className="my-8 flex items-baseline justify-center">
-              <span className="mr-2 text-5xl font-extrabold">$29</span>
-              <span className="text-gray-500">/month</span>
-            </div>
-            <ul className="mb-8 space-y-4 text-left">
-              <li className="flex items-center space-x-3">
-                <svg
-                  className="h-5 w-5 shrink-0 text-green-500"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span>Individual configuration</span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <svg
-                  className="h-5 w-5 shrink-0 text-green-500"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span>No setup, monthly, or hidden fees</span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <svg
-                  className="h-5 w-5 shrink-0 text-green-500"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span>
-                  Team size: <span className="font-semibold">1 developer</span>
-                </span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <svg
-                  className="h-5 w-5 shrink-0 text-green-500"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span>
-                  Premium support:&nbsp;
-                  <span className="font-semibold">6 months</span>
-                </span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <svg
-                  className="h-5 w-5 shrink-0 text-green-500"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span>
-                  Free updates: <span className="font-semibold">6 months</span>
-                </span>
-              </li>
-            </ul>
-            <Button href="#">Get started</Button>
-          </div>
-          <div className="mx-auto flex max-w-lg flex-col rounded-lg border border-gray-200 bg-white p-6 text-center text-gray-900 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white xl:p-8">
-            <h3 className="mb-4 text-2xl font-semibold">Company</h3>
-            <p className="text-gray-500 dark:text-gray-400 sm:text-lg">
-              Relevant for multiple users, extended &amp; premium support.
-            </p>
-            <div className="my-8 flex items-baseline justify-center">
-              <span className="mr-2 text-5xl font-extrabold">$99</span>
-              <span className="text-gray-500">/month</span>
-            </div>
-            <ul className="mb-8 space-y-4 text-left">
-              <li className="flex items-center space-x-3">
-                <svg
-                  className="h-5 w-5 shrink-0 text-green-500"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span>Individual configuration</span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <svg
-                  className="h-5 w-5 shrink-0 text-green-500"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span>No setup, monthly, or hidden fees</span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <svg
-                  className="h-5 w-5 shrink-0 text-green-500"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span>
-                  Team size:&nbsp;
-                  <span className="font-semibold">10 developers</span>
-                </span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <svg
-                  className="h-5 w-5 shrink-0 text-green-500"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span>
-                  Premium support:&nbsp;
-                  <span className="font-semibold">24 months</span>
-                </span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <svg
-                  className="h-5 w-5 shrink-0 text-green-500"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span>
-                  Free updates: <span className="font-semibold">24 months</span>
-                </span>
-              </li>
-            </ul>
-            <Button href="#">Get started</Button>
-          </div>
-          <div className="mx-auto flex max-w-lg flex-col rounded-lg border border-gray-200 bg-white p-6 text-center text-gray-900 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white xl:p-8">
-            <h3 className="mb-4 text-2xl font-semibold">Enterprise</h3>
-            <p className="text-gray-500 dark:text-gray-400 sm:text-lg">
-              Best for large scale uses and extended redistribution rights.
-            </p>
-            <div className="my-8 flex items-baseline justify-center">
-              <span className="mr-2 text-5xl font-extrabold">$499</span>
-              <span className="text-gray-500">/month</span>
-            </div>
-            <ul className="mb-8 space-y-4 text-left">
-              <li className="flex items-center space-x-3">
-                <svg
-                  className="h-5 w-5 shrink-0 text-green-500"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span>Individual configuration</span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <svg
-                  className="h-5 w-5 shrink-0 text-green-500"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span>No setup, monthly, or hidden fees</span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <svg
-                  className="h-5 w-5 shrink-0 text-green-500"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span>
-                  Team size:&nbsp;
-                  <span className="font-semibold">100+ developers</span>
-                </span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <svg
-                  className="h-5 w-5 shrink-0 text-green-500"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span>
-                  Premium support:&nbsp;
-                  <span className="font-semibold">36 months</span>
-                </span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <svg
-                  className="h-5 w-5 shrink-0 text-green-500"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span>
-                  Free updates: <span className="font-semibold">36 months</span>
-                </span>
-              </li>
-            </ul>
-            <Button href="#">Get started</Button>
-          </div>
+          {plans.map((plan, i) => {
+            const ctaText = plan.ctaText ?? plan.cta?.label ?? 'Get started'
+            const ctaUrl = plan.ctaUrl ?? plan.cta?.href ?? '#'
+            return (
+              <div key={i} className="mx-auto flex max-w-lg flex-col rounded-lg border border-gray-200 bg-white p-6 text-center text-gray-900 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white xl:p-8">
+                <h3 className="mb-4 text-2xl font-semibold">{plan.name}</h3>
+                {plan.description && (
+                  <p className="text-gray-500 dark:text-gray-400 sm:text-lg">{plan.description}</p>
+                )}
+                <div className="my-8 flex items-baseline justify-center">
+                  <span className="mr-2 text-5xl font-extrabold">{plan.price}</span>
+                  {plan.period && <span className="text-gray-500">/{plan.period}</span>}
+                </div>
+                {plan.features && plan.features.length > 0 && (
+                  <ul className="mb-8 space-y-4 text-left">
+                    {plan.features.map((f, j) => (
+                      <li key={j} className="flex items-center space-x-3">
+                        <CheckIcon />
+                        <span>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                <Button href={ctaUrl}>{ctaText}</Button>
+              </div>
+            )
+          })}
         </div>
         <Accordion collapseAll flush className="w-full border-none">
           <Accordion.Panel>
@@ -313,7 +111,7 @@ export function ComparisonPricingTable() {
                 },
               }}
             >
-              Show Detailed Plan Comparison
+              {props.accordionLabel ?? 'Show Detailed Plan Comparison'}
             </Accordion.Title>
             <Accordion.Content className="max-w-full overflow-x-scroll border-none px-0">
               <div className="min-w-max overflow-hidden">
@@ -833,15 +631,11 @@ export function ComparisonPricingTable() {
                 </div>
                 <div className="grid grid-cols-4 gap-x-16 border-b border-gray-200 px-4 py-5 text-sm text-gray-700 dark:border-gray-700">
                   <div className="text-gray-500 dark:text-gray-400"></div>
-                  <div>
-                    <Button href="#">Buy now</Button>
-                  </div>
-                  <div>
-                    <Button href="#">Buy now</Button>
-                  </div>
-                  <div>
-                    <Button href="#">Buy now</Button>
-                  </div>
+                  {plans.slice(0, 3).map((plan, i) => (
+                    <div key={i}>
+                      <Button href={plan.ctaUrl ?? plan.cta?.href ?? '#'}>{plan.ctaText ?? plan.cta?.label ?? 'Buy now'}</Button>
+                    </div>
+                  ))}
                 </div>
               </div>
             </Accordion.Content>

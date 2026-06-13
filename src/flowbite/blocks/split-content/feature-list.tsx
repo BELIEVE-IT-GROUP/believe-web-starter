@@ -1,24 +1,69 @@
-export function LogoCTALinksImageFeatureListContentSection() {
+type SplitContentFeatureListProps = {
+  logoLight?: string
+  logoDark?: string
+  logoAlt?: string
+  primaryCta?: { label?: string; href?: string }
+  secondaryCta?: { label?: string; href?: string }
+  image?: { src?: string; alt?: string }
+  overviewTitle?: string
+  overviewBody?: string
+  items?: string[]
+  backgroundTitle?: string
+  backgroundBody?: string
+  challengeTitle?: string
+  challengeBody?: string
+}
+
+export function LogoCTALinksImageFeatureListContentSection(props: SplitContentFeatureListProps = {}) {
+  const {
+    logoLight,
+    logoDark,
+    logoAlt,
+    primaryCta,
+    secondaryCta,
+    image,
+    overviewTitle,
+    overviewBody,
+    items,
+    backgroundTitle,
+    backgroundBody,
+    challengeTitle,
+    challengeBody,
+  } = props
+
+  const defaultItems = [
+    'A/B Testing',
+    'Craft CMS development',
+    'UX/UI design',
+    'Copywriting',
+    'Brand development',
+    'Graphic design',
+    'Front-end development',
+    'SEO',
+  ]
+
+  const resolvedItems = items?.length ? items : defaultItems
+
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6 lg:py-24">
         <div className="text-center">
           <img
-            alt="Flowbite logo"
-            src="https://flowbite.s3.amazonaws.com/brand/logo-light/type/flowbite-logo.svg"
+            alt={logoAlt ?? 'Flowbite logo'}
+            src={logoLight ?? 'https://flowbite.s3.amazonaws.com/brand/logo-light/type/flowbite-logo.svg'}
             className="mx-auto w-auto object-contain dark:hidden"
           />
           <img
-            alt="Flowbite logo"
-            src="https://flowbite.s3.amazonaws.com/brand/logo-dark/type/flowbite-logo.svg"
+            alt={logoAlt ?? 'Flowbite logo'}
+            src={logoDark ?? 'https://flowbite.s3.amazonaws.com/brand/logo-dark/type/flowbite-logo.svg'}
             className="mx-auto hidden w-auto object-contain dark:block"
           />
           <div className="mt-4 flex flex-col items-center justify-center gap-4 sm:mt-5 sm:flex-row sm:gap-8">
             <a
-              href="#"
+              href={primaryCta?.href ?? '#'}
               className="inline-flex items-center text-base font-semibold leading-tight text-primary-600 hover:underline dark:text-primary-500"
             >
-              Visit the website
+              {primaryCta?.label ?? 'Visit the website'}
               <svg
                 aria-hidden="true"
                 className="ml-1.5 h-4 w-4"
@@ -31,10 +76,10 @@ export function LogoCTALinksImageFeatureListContentSection() {
               </svg>
             </a>
             <a
-              href="#"
+              href={secondaryCta?.href ?? '#'}
               className="inline-flex items-center text-base font-semibold leading-tight text-primary-600 hover:underline dark:text-primary-500"
             >
-              Let's work together
+              {secondaryCta?.label ?? "Let's work together"}
               <svg
                 aria-hidden="true"
                 className="ml-1.5 h-4 w-4"
@@ -53,8 +98,8 @@ export function LogoCTALinksImageFeatureListContentSection() {
         </div>
         <div className="mx-auto mt-8 max-w-5xl lg:mt-16">
           <img
-            alt=""
-            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/computer-dark.png"
+            alt={image?.alt ?? ''}
+            src={image?.src ?? 'https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/computer-dark.png'}
             className="w-full rounded-lg shadow-lg"
           />
         </div>
@@ -62,93 +107,38 @@ export function LogoCTALinksImageFeatureListContentSection() {
           <div>
             <div>
               <h3 className="text-2xl font-extrabold text-gray-900 dark:text-white">
-                Overview
+                {overviewTitle ?? 'Overview'}
               </h3>
               <p className="mt-2 text-lg font-normal text-gray-500 dark:text-gray-400">
-                Since 1984, Flowbite has been serving up grab-and-go frozen
-                daiquiris from its stores across the U.S. Its signature drinks,
-                souvenir cups, and discounted refills have made Flowbite
-                synonymous with great music, good vibes, and starting the best
-                party in town.
+                {overviewBody ?? 'Since 1984, Flowbite has been serving up grab-and-go frozen daiquiris from its stores across the U.S. Its signature drinks, souvenir cups, and discounted refills have made Flowbite synonymous with great music, good vibes, and starting the best party in town.'}
               </p>
             </div>
             <ul className="mt-8 grid grid-cols-1 gap-x-4 gap-y-3 sm:grid-cols-2">
-              <li className="flex items-center gap-2.5">
-                <GreenCheckIconSVG />
-                <span className="text-base font-normal text-gray-500 dark:text-gray-400">
-                  A/B Testing
-                </span>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <GreenCheckIconSVG />
-                <span className="text-base font-normal text-gray-500 dark:text-gray-400">
-                  Craft CMS development
-                </span>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <GreenCheckIconSVG />
-                <span className="text-base font-normal text-gray-500 dark:text-gray-400">
-                  UX/UI design
-                </span>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <GreenCheckIconSVG />
-                <span className="text-base font-normal text-gray-500 dark:text-gray-400">
-                  Copywriting
-                </span>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <GreenCheckIconSVG />
-                <span className="text-base font-normal text-gray-500 dark:text-gray-400">
-                  Brand development
-                </span>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <GreenCheckIconSVG />
-                <span className="text-base font-normal text-gray-500 dark:text-gray-400">
-                  Graphic design
-                </span>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <GreenCheckIconSVG />
-                <span className="text-base font-normal text-gray-500 dark:text-gray-400">
-                  Front-end development
-                </span>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <GreenCheckIconSVG />
-                <span className="text-base font-normal text-gray-500 dark:text-gray-400">
-                  SEO
-                </span>
-              </li>
+              {resolvedItems.map((item, i) => (
+                <li key={i} className="flex items-center gap-2.5">
+                  <GreenCheckIconSVG />
+                  <span className="text-base font-normal text-gray-500 dark:text-gray-400">
+                    {item}
+                  </span>
+                </li>
+              ))}
             </ul>
           </div>
           <div className="space-y-8">
             <div>
               <h3 className="text-2xl font-extrabold text-gray-900 dark:text-white">
-                Background
+                {backgroundTitle ?? 'Background'}
               </h3>
               <p className="mt-2 text-lg font-normal text-gray-500 dark:text-gray-400">
-                Come 2021, Flowbite had expanded to over 40 locations. The
-                brand’s digital presence existed, but it lacked strategy.
-                Although its target market of 21-30 year-olds was as engaged
-                (and as loyal) as ever, the brand had outgrown its amateur look
-                of the early '00s and the family-owned business vibes. It needed
-                to show it was a strong brand moving in a new direction - and it
-                was heading there fast.
+                {backgroundBody ?? "Come 2021, Flowbite had expanded to over 40 locations. The brand's digital presence existed, but it lacked strategy. Although its target market of 21-30 year-olds was as engaged (and as loyal) as ever, the brand had outgrown its amateur look of the early '00s and the family-owned business vibes. It needed to show it was a strong brand moving in a new direction - and it was heading there fast."}
               </p>
             </div>
             <div>
               <h3 className="text-2xl font-extrabold text-gray-900 dark:text-white">
-                The challenge
+                {challengeTitle ?? 'The challenge'}
               </h3>
               <p className="mt-2 text-lg font-normal text-gray-500 dark:text-gray-400">
-                Flowbite’s new website would set the tone for all future
-                marketing initiatives, so the brand needed something to showcase
-                its new identity as soon as possible. A tight timeline, paired
-                with the fact that the new management team were still exploring
-                how to shift the brand from what it used to be to what it needed
-                to be, meant that working collaboratively was a must.
+                {challengeBody ?? "Flowbite's new website would set the tone for all future marketing initiatives, so the brand needed something to showcase its new identity as soon as possible. A tight timeline, paired with the fact that the new management team were still exploring how to shift the brand from what it used to be to what it needed to be, meant that working collaboratively was a must."}
               </p>
             </div>
           </div>

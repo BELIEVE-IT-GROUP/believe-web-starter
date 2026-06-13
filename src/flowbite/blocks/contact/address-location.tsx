@@ -1,16 +1,25 @@
 import { Button, Label, TextInput, Textarea } from "flowbite-react";
 
-export function ContactSectionWithAddressLocation() {
+type ContactAddressLocationProps = {
+  headline?: string
+  subheadline?: string
+  primaryCta?: { label?: string; href?: string }
+  companyName?: string
+  companyTaxId?: string
+  address?: string
+  phone?: string
+}
+
+export function ContactSectionWithAddressLocation(props: ContactAddressLocationProps = {}) {
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6">
         <div className="mx-auto mb-8 max-w-screen-sm px-4 text-center lg:mb-16 lg:px-6">
           <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-            Contact Us
+            {props.headline ?? 'Contact Us'}
           </h2>
           <p className="text-gray-600 dark:text-gray-400 sm:text-xl">
-            We use an agile approach to test assumptions and connect with the
-            needs of your audience early and often.
+            {props.subheadline ?? 'We use an agile approach to test assumptions and connect with the needs of your audience early and often.'}
           </p>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-8">
@@ -86,7 +95,7 @@ export function ContactSectionWithAddressLocation() {
                 type="submit"
                 className="inline-flex w-full sm:w-fit [&>span]:px-5 [&>span]:py-3"
               >
-                Send message
+                {props.primaryCta?.label ?? 'Send message'}
               </Button>
             </form>
           </div>
@@ -110,8 +119,8 @@ export function ContactSectionWithAddressLocation() {
                 Company information:
               </p>
               <p className="text-gray-500 dark:text-gray-400">
-                Themesberg LLC <br />
-                Tax id: USXXXXXX
+                {props.companyName ?? 'Themesberg LLC'} <br />
+                Tax id: {props.companyTaxId ?? 'USXXXXXX'}
               </p>
             </div>
             <div>
@@ -133,8 +142,7 @@ export function ContactSectionWithAddressLocation() {
                 Address:
               </p>
               <p className="text-gray-500 dark:text-gray-400">
-                SILVER LAKE, United States 1941 Late Avenue <br /> Zip
-                Code/Postal code:03875
+                {props.address ?? 'SILVER LAKE, United States 1941 Late Avenue  Zip Code/Postal code:03875'}
               </p>
             </div>
             <div>
@@ -156,7 +164,7 @@ export function ContactSectionWithAddressLocation() {
                 help.
               </p>
               <p className="font-semibold text-primary-600 dark:text-primary-500">
-                +1 (646) 786-5060
+                {props.phone ?? '+1 (646) 786-5060'}
               </p>
             </div>
           </div>

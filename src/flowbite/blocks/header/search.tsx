@@ -1,3 +1,5 @@
+'use client'
+
 import { Button, Dropdown, Label, Navbar, TextInput } from "flowbite-react";
 import { HiSearch } from "react-icons/hi";
 

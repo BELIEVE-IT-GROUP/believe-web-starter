@@ -1,19 +1,40 @@
 import { Button } from "flowbite-react";
 
-export function DefaultHero() {
+type DefaultHeroProps = {
+  eyebrow?: string
+  eyebrowHref?: string
+  eyebrowLabel?: string
+  headline?: string
+  description?: string
+  primaryCta?: { label: string; href: string }
+  secondaryCta?: { label: string; href: string }
+  featuredLabel?: string
+}
+
+export function DefaultHero(props: DefaultHeroProps = {}) {
+  const {
+    eyebrow = "New",
+    eyebrowHref = "#",
+    eyebrowLabel = "Flowbite is out! See what's new",
+    headline = "We invest in the world's potential",
+    description = "Here at Flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.",
+    primaryCta = { label: "Learn more", href: "#" },
+    secondaryCta = { label: "Watch video", href: "#" },
+    featuredLabel = "FEATURED IN",
+  } = props
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl px-4 py-8 text-center lg:px-12 lg:py-16">
         <a
-          href="#"
+          href={eyebrowHref}
           className="mb-7 inline-flex items-center justify-between rounded-full bg-gray-100 p-1 pr-4 text-sm text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700"
         >
           <span className="mr-3 rounded-full bg-primary-600 px-4 py-1.5 text-xs text-white">
-            New
+            {eyebrow}
           </span>
           &nbsp;
           <span className="text-sm font-medium">
-            Flowbite is out! See what's new
+            {eyebrowLabel}
           </span>
           <svg
             className="ml-2 h-5 w-5"
@@ -29,20 +50,19 @@ export function DefaultHero() {
           </svg>
         </a>
         <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
-          We invest in the world’s potential
+          {headline}
         </h1>
         <p className="mb-8 text-lg font-normal text-gray-500 dark:text-gray-400 sm:px-16 lg:text-xl xl:px-48">
-          Here at Flowbite we focus on markets where technology, innovation, and
-          capital can unlock long-term value and drive economic growth.
+          {description}
         </p>
         <div className="mb-8 flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-x-4 sm:space-y-0 lg:mb-16">
           <Button
             color="info"
-            href="#"
+            href={primaryCta.href}
             size="lg"
             className="[&>span]:items-center"
           >
-            Learn more
+            {primaryCta.label}
             <svg
               className="-mr-1 ml-2 h-5 w-5"
               fill="currentColor"
@@ -60,6 +80,7 @@ export function DefaultHero() {
             color="gray"
             outline
             size="lg"
+            href={secondaryCta.href}
             className="[&>span]:items-center"
           >
             <svg
@@ -70,12 +91,12 @@ export function DefaultHero() {
             >
               <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
             </svg>
-            Watch video
+            {secondaryCta.label}
           </Button>
         </div>
         <div className="mx-auto px-4 text-center md:max-w-screen-md lg:max-w-screen-lg lg:px-36">
           <span className="font-semibold uppercase text-gray-400">
-            FEATURED IN
+            {featuredLabel}
           </span>
           <div className="mt-8 flex flex-wrap items-center justify-center text-gray-500 sm:justify-between">
             <a

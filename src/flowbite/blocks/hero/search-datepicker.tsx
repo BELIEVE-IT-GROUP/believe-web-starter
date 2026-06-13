@@ -3,25 +3,38 @@
 import { Button, Datepicker, Label, Select, TextInput } from "flowbite-react";
 import { useState } from "react";
 
-export function SearchBarDatepickerHeroSection() {
+type SearchBarDatepickerHeroSectionProps = {
+  backgroundImage?: string
+  headline?: string
+  description?: string
+  signInHref?: string
+  signInLabel?: string
+}
+
+export function SearchBarDatepickerHeroSection(props: SearchBarDatepickerHeroSectionProps = {}) {
+  const {
+    backgroundImage = "https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/coast-house-view.jpg",
+    headline = "Every home is a destination",
+    description = "The best of Luxury Retreats is now Flowbite Luxe—offering the world's most extraordinary homes with the highest standard of service.",
+    signInHref = "#",
+    signInLabel = "Sign In / Register",
+  } = props
 
   return (
-    <section className="bg-gray-700 bg-[url('https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/coast-house-view.jpg')] bg-cover bg-center bg-no-repeat bg-blend-multiply">
+    <section className="bg-gray-700 bg-cover bg-center bg-no-repeat bg-blend-multiply" style={{ backgroundImage: `url('${backgroundImage}')` }}>
       <div className="relative z-10 mx-auto max-w-screen-xl px-4 py-8 text-white lg:py-16 xl:px-0">
         <div className="mb-6 max-w-screen-md lg:mb-0">
           <h1 className="mb-4 text-4xl font-extrabold leading-tight tracking-tight text-white md:text-5xl lg:text-6xl">
-            Every home is a destination
+            {headline}
           </h1>
           <p className="mb-6 text-gray-300 md:text-lg lg:mb-8 lg:text-xl">
-            The best of Luxury Retreats is now Flowbite Luxe—offering the
-            world's most extraordinary homes with the highest standard of
-            service.
+            {description}
           </p>
           <a
-            href="#"
+            href={signInHref}
             className="inline-flex items-center rounded-lg bg-primary-700 px-5 py-3 text-center font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-900 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
           >
-            Sign In / Register
+            {signInLabel}
           </a>
         </div>
         <form

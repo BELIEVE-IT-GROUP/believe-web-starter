@@ -1,20 +1,27 @@
+'use client'
+
 import { Banner } from "flowbite-react";
 import { HiX } from "react-icons/hi";
 
-export function DefaultBanner() {
+type DefaultBannerProps = {
+  message?: string
+  linkLabel?: string
+  linkHref?: string
+}
+
+export function DefaultBanner(props: DefaultBannerProps = {}) {
   return (
     <Banner>
       <div className="flex w-full items-start justify-between gap-8 border border-gray-200 bg-gray-50 px-4 py-3 dark:border-gray-700 dark:bg-gray-800 sm:items-center lg:py-4">
         <p className="text-sm text-gray-500 dark:text-gray-400 [&_p]:inline">
-          Supercharge your hiring by taking advantage of our&nbsp;
+          {props.message ?? "Supercharge your hiring by taking advantage of our"}&nbsp;
           <a
             className="font-medium text-primary-600 underline hover:no-underline dark:text-primary-500"
-            href="#"
+            href={props.linkHref ?? "#"}
           >
-            limited-time sale
+            {props.linkLabel ?? "limited-time sale"}
           </a>
-          &nbsp;for Designer Search + Job Board. Unlimited access to over 190K
-          top-ranked candidates and the #1 design job board.
+          {!props.message && <>&nbsp;for Designer Search + Job Board. Unlimited access to over 190K top-ranked candidates and the #1 design job board.</>}
         </p>
         <Banner.CollapseButton
           color="gray"

@@ -1,47 +1,79 @@
 import { Button } from "flowbite-react";
 
-export function InformationalCTAWithAppScreenshotHero() {
+type InformationalCTAWithAppScreenshotHeroProps = {
+  headline?: string
+  headlineHighlight?: string
+  headlineSuffix?: string
+  description?: string
+  version?: string
+  versionLabel?: string
+  platform1?: string
+  platform1Label?: string
+  platform2?: string
+  platform2Label?: string
+  downloadHref?: string
+  downloadLabel?: string
+  mockupLight?: string
+  mockupDark?: string
+}
+
+export function InformationalCTAWithAppScreenshotHero(props: InformationalCTAWithAppScreenshotHeroProps = {}) {
+  const {
+    headline = "A hackable ",
+    headlineHighlight = "text editor",
+    headlineSuffix = " for the 21st Century",
+    description = "Here at flowbite we focus on markets where technology, innovation, and capital can unlock long-term value.",
+    version = "1.60.0",
+    versionLabel = "Release notes",
+    platform1 = "macOS",
+    platform1Label = "For macOS 10.10 or later",
+    platform2 = "Windows",
+    platform2Label = "For windows 7 or later",
+    downloadHref = "#",
+    downloadLabel = "Download",
+    mockupLight = "https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/text-editor-light.svg",
+    mockupDark = "https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/text-editor-dark.svg",
+  } = props
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="mx-auto grid max-w-screen-xl px-4 py-8 lg:grid-cols-12 lg:gap-8 lg:py-16 xl:gap-0">
         <div className="mr-auto place-self-center lg:col-span-7">
           <h1 className="mb-6 max-w-2xl text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white md:text-5xl xl:text-6xl">
-            A hackable&nbsp;
+            {headline}
             <span className="text-primary-600 dark:text-primary-500">
-              text editor
+              {headlineHighlight}
             </span>
-            &nbsp;for the 21st Century
+            {headlineSuffix}
           </h1>
           <p className="mb-6 max-w-2xl text-gray-500 dark:text-gray-400 md:text-lg lg:mb-10 lg:text-xl">
-            Here at flowbite we focus on markets where technology, innovation,
-            and capital can unlock long-term value.
+            {description}
           </p>
           <div className="mb-4 items-center justify-between space-y-4 rounded bg-gray-100 p-4 dark:bg-gray-700 sm:flex sm:space-y-0">
             <div>
               <div className="text-2xl font-bold text-gray-900 dark:text-white">
-                1.60.0
+                {version}
               </div>
               <div className="text-sm text-gray-500 dark:text-gray-400">
-                Release notes
+                {versionLabel}
               </div>
             </div>
             <div>
               <div className="text-2xl font-bold text-gray-900 dark:text-white">
-                macOS
+                {platform1}
               </div>
               <div className="text-sm text-gray-500 dark:text-gray-400">
-                For macOS 10.10 or later
+                {platform1Label}
               </div>
             </div>
             <div>
               <div className="text-2xl font-bold text-gray-900 dark:text-white">
-                Windows
+                {platform2}
               </div>
               <div className="text-sm text-gray-500 dark:text-gray-400">
-                For windows 7 or later
+                {platform2Label}
               </div>
             </div>
-            <Button href="#">
+            <Button href={downloadHref}>
               <svg
                 className="-ml-1 mr-2 h-5 w-5"
                 fill="none"
@@ -56,7 +88,7 @@ export function InformationalCTAWithAppScreenshotHero() {
                   d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                 />
               </svg>
-              Download
+              {downloadLabel}
             </Button>
           </div>
           <div className="text-sm text-gray-500">
@@ -80,12 +112,12 @@ export function InformationalCTAWithAppScreenshotHero() {
         <div className="hidden lg:col-span-5 lg:mt-0 lg:flex">
           <img
             className="rounded-lg shadow-lg dark:hidden"
-            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/text-editor-light.svg"
+            src={mockupLight}
             alt="mockup light"
           />
           <img
             className="hidden rounded-lg shadow-lg dark:block"
-            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/text-editor-dark.svg"
+            src={mockupDark}
             alt="mockup dark"
           />
         </div>

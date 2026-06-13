@@ -1,20 +1,29 @@
 import { Avatar, Button } from "flowbite-react";
 
-export function VideoEmbedWithCTAHero() {
+type VideoEmbedWithCTAHeroProps = {
+  headline?: string
+  subheadline?: string
+  primaryCta?: { label?: string; href?: string }
+  secondaryCta?: { label?: string; href?: string }
+  reviewCount?: string
+  videoUrl?: string
+}
+
+export function VideoEmbedWithCTAHero(props: VideoEmbedWithCTAHeroProps = {}) {
+  const embedUrl = props.videoUrl ?? 'https://www.youtube.com/embed/mTAupMv-3t8'
+
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl px-4 pt-8 text-center lg:px-12 lg:py-16">
         <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
-          Your Dream Vacation
+          {props.headline ?? 'Your Dream Vacation'}
         </h1>
         <p className="mb-8 text-gray-500 dark:text-gray-400 sm:px-16 md:text-lg lg:text-xl xl:px-48">
-          Here at Flowbite we compare a wide range of destinations, flights and
-          hotels to conjure up cheap holidays for you to enjoy, time and time
-          again.
+          {props.subheadline ?? 'Here at Flowbite we compare a wide range of destinations, flights and hotels to conjure up cheap holidays for you to enjoy, time and time again.'}
         </p>
         <div className="mb-8 flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-x-4 sm:space-y-0 lg:mb-16">
-          <Button href="#" size="lg">
-            Discover locations
+          <Button href={props.primaryCta?.href ?? '#'} size="lg">
+            {props.primaryCta?.label ?? 'Discover locations'}
           </Button>
           <Button
             color="gray"
@@ -22,7 +31,7 @@ export function VideoEmbedWithCTAHero() {
             size="lg"
             className="[&>span]:items-center"
           >
-            Start a trip request
+            {props.secondaryCta?.label ?? 'Start a trip request'}
             <svg
               className="-mr-1 ml-2 h-5 w-5"
               fill="currentColor"
@@ -96,7 +105,7 @@ export function VideoEmbedWithCTAHero() {
             <span className="text-sm text-gray-500 dark:text-gray-400">
               Rated Best Over&nbsp;
               <span className="font-medium text-gray-900 dark:text-white">
-                15.7k
+                {props.reviewCount ?? '15.7k'}
               </span>
               &nbsp;Reviews
             </span>
@@ -105,7 +114,7 @@ export function VideoEmbedWithCTAHero() {
         <iframe
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
-          src="https://www.youtube.com/embed/mTAupMv-3t8"
+          src={embedUrl}
           title="YouTube video player"
           className="mx-auto h-64 w-full max-w-2xl rounded-lg sm:h-96"
         />

@@ -1,16 +1,40 @@
 import { Button } from "flowbite-react";
 
-export function CoverImageWithCTAsHero() {
+type CoverImageWithCTAsHeroProps = {
+  headline?: string
+  description?: string
+  panel1Title?: string
+  panel1Description?: string
+  panel1Cta?: { label: string; href: string }
+  panel2Title?: string
+  panel2Description?: string
+  panel2Cta?: { label: string; href: string }
+  coverImage?: string
+  coverImageAlt?: string
+}
+
+export function CoverImageWithCTAsHero(props: CoverImageWithCTAsHeroProps = {}) {
+  const {
+    headline = "Discover new product and best possibilities",
+    description = "Here at Flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.",
+    panel1Title = "28 November 2021",
+    panel1Description = "Join us at Flowbite 2021 to understand what’s next as the global tech and startup ecosystem, rethinks the future of everything.",
+    panel1Cta = { label: "Conference", href: "#" },
+    panel2Title = "25+ top notch speakers",
+    panel2Description = "Here you will find keynote speakers, who all are able to talk about Recruiting. Click on the individual keynote speakers and read more about them and their keynotes.",
+    panel2Cta = { label: "View list", href: "#" },
+    coverImage = "https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/conference-speaker.jpg",
+    coverImageAlt = "Conference speaker",
+  } = props
   return (
     <section className="relative overflow-hidden bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl gap-8 px-4 py-8 lg:py-16 xl:grid xl:grid-cols-12">
         <div className="col-span-8">
           <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
-            Discover new product and best possibilities
+            {headline}
           </h1>
           <p className="mb-6 text-gray-500 dark:text-gray-400 md:text-lg lg:mb-8 lg:text-xl">
-            Here at Flowbite we focus on markets where technology, innovation,
-            and capital can unlock long-term value and drive economic growth.
+            {description}
           </p>
           <div className="items-center gap-16 sm:flex">
             <div className="mb-8 text-gray-500 dark:text-gray-400 sm:mb-0">
@@ -27,14 +51,13 @@ export function CoverImageWithCTAsHero() {
                 />
               </svg>
               <h2 className="mb-3 text-xl font-semibold text-gray-900 dark:text-white">
-                28 November 2021
+                {panel1Title}
               </h2>
               <p className="mb-4 font-light">
-                Join us at Flowbite 2021 to understand what’s next as the global
-                tech and startup ecosystem, rethinks the future of everything.
+                {panel1Description}
               </p>
-              <Button href="#" className="w-fit">
-                Conference
+              <Button href={panel1Cta.href} className="w-fit">
+                {panel1Cta.label}
                 <svg
                   className="-mr-1 ml-2 h-5 w-5"
                   fill="currentColor"
@@ -63,14 +86,12 @@ export function CoverImageWithCTAsHero() {
                 />
               </svg>
               <h2 className="mb-3 text-xl font-semibold text-gray-900 dark:text-white">
-                25+ top notch speakers
+                {panel2Title}
               </h2>
               <p className="mb-4 font-light">
-                Here you will find keynote speakers, who all are able to talk
-                about Recruiting. Click on the individual keynote speakers and
-                read more about them and their keynotes.
+                {panel2Description}
               </p>
-              <Button color="gray" outline className="w-fit">
+              <Button color="gray" outline href={panel2Cta.href} className="w-fit">
                 <svg
                   className="-ml-1 mr-2 h-5 w-5"
                   fill="currentColor"
@@ -84,7 +105,7 @@ export function CoverImageWithCTAsHero() {
                     clipRule="evenodd"
                   />
                 </svg>
-                View list
+                {panel2Cta.label}
               </Button>
             </div>
           </div>
@@ -92,8 +113,8 @@ export function CoverImageWithCTAsHero() {
         <div className="absolute right-0 top-0 hidden h-full w-1/3 xl:block">
           <img
             className="h-full w-full object-cover"
-            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/conference-speaker.jpg"
-            alt="Conference speaker"
+            src={coverImage}
+            alt={coverImageAlt}
           />
         </div>
       </div>

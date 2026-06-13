@@ -1,16 +1,69 @@
+'use client'
+
 import { Carousel } from "flowbite-react";
 
-export function CarouselSliderTestimonial() {
+type CarouselTestimonialItem = {
+  quote?: string
+  name?: string
+  author?: string
+  role?: string
+  company?: string
+  avatar?: { url: string }
+  photo?: { url: string; alt?: string }
+}
+
+type CarouselSliderTestimonialProps = {
+  headline?: string
+  subheadline?: string
+  description?: string
+  items?: CarouselTestimonialItem[]
+}
+
+const DEMO_ITEMS: CarouselTestimonialItem[] = [
+  {
+    quote: "Flowbite is just awesome. It contains tons of predesigned components and pages starting from login screen to complex dashboard. Perfect choice for your next SaaS application.",
+    name: 'Bonnie Green',
+    role: 'Web developer',
+    company: 'Google',
+    avatar: { url: 'https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png' },
+  },
+  {
+    quote: "As someone who mainly designs in the browser, I've been a casual user of Figma, but as soon as I saw and started playing with Flowbite my mind was blown and became so productive.",
+    name: 'Helene Engels',
+    role: 'Creative designer',
+    company: 'Adobe',
+    avatar: { url: 'https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/helene-engels.png' },
+  },
+  {
+    quote: "As someone who mainly designs in the browser, I've been a casual user of Figma, but as soon as I saw and started playing with Flowbite my mind was blown and became so productive.",
+    name: 'Helene Engels',
+    role: 'Creative designer',
+    company: 'Adobe',
+    avatar: { url: 'https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/helene-engels.png' },
+  },
+  {
+    quote: "Flowbite has code in one place and I'm not joking when I say it took me a matter of minutes to copy the code, customise it and integrate within a Laravel + Vue application.",
+    name: 'Neil Sims',
+    role: 'CTO',
+    company: 'Microsoft',
+    avatar: { url: 'https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/neil-sims.png' },
+  },
+]
+
+export function CarouselSliderTestimonial(props: CarouselSliderTestimonialProps = {}) {
+  const headline = props.headline ?? 'Testimonials'
+  const description = props.description ?? props.subheadline ?? 'Explore the whole collection of open-source web components and elements built with the utility classes from Tailwind'
+  const items = props.items && props.items.length > 0 ? props.items : DEMO_ITEMS
+
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl px-4 py-8 text-center lg:px-6 lg:py-16">
         <div className="mx-auto max-w-screen-sm">
           <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-            Testimonials
+            {headline}
           </h2>
           <p className="text-gray-500 dark:text-gray-400 sm:text-xl">
-            Explore the whole collection of open-source web components and
-            elements built with the utility classes from Tailwind
+            {description}
           </p>
         </div>
         <div className="h-80 py-4 2xl:h-96">
@@ -65,102 +118,43 @@ export function CarouselSliderTestimonial() {
               },
             }}
           >
-            <div>
-              <blockquote>
-                <p className="text-lg font-medium text-gray-900 dark:text-white sm:text-2xl">
-                  "Flowbite is just awesome. It contains tons of predesigned
-                  components and pages starting from login screen to complex
-                  dashboard. Perfect choice for your next SaaS application."
-                </p>
-              </blockquote>
-              <figcaption className="mt-6 flex items-center justify-center space-x-1 md:space-x-3">
-                <img
-                  alt=""
-                  src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png"
-                  className="h-6 w-6 rounded-full"
-                />
-                <div className="flex items-center divide-x-2 divide-gray-500 dark:divide-gray-700">
-                  <div className="pr-3 font-medium text-gray-900 dark:text-white">
-                    Bonnie Green
-                  </div>
-                  <div className="pl-3 text-sm text-gray-500 dark:text-gray-400">
-                    Web developer at Google
-                  </div>
+            {items.map((item, i) => {
+              const name = item.name ?? item.author ?? ''
+              const role = item.role ?? ''
+              const company = item.company ?? ''
+              const roleLabel = company ? `${role} at ${company}` : role
+              const avatarUrl = item.photo?.url ?? item.avatar?.url ?? ''
+              const quote = item.quote ?? ''
+
+              return (
+                <div key={i}>
+                  <blockquote>
+                    <p className="text-lg font-medium text-gray-900 dark:text-white sm:text-2xl">
+                      &ldquo;{quote}&rdquo;
+                    </p>
+                  </blockquote>
+                  <figcaption className="mt-6 flex items-center justify-center space-x-1 md:space-x-3">
+                    {avatarUrl && (
+                      <img
+                        alt={name}
+                        src={avatarUrl}
+                        className="h-6 w-6 rounded-full"
+                      />
+                    )}
+                    <div className="flex items-center divide-x-2 divide-gray-500 dark:divide-gray-700">
+                      <div className="pr-3 font-medium text-gray-900 dark:text-white">
+                        {name}
+                      </div>
+                      {roleLabel && (
+                        <div className="pl-3 text-sm text-gray-500 dark:text-gray-400">
+                          {roleLabel}
+                        </div>
+                      )}
+                    </div>
+                  </figcaption>
                 </div>
-              </figcaption>
-            </div>
-            <div>
-              <blockquote>
-                <p className="text-lg font-medium text-gray-900 dark:text-white sm:text-2xl">
-                  "As someone who mainly designs in the browser, I've been a
-                  casual user of Figma, but as soon as I saw and started playing
-                  with Flowbite my mind was blown and became so productive."
-                </p>
-              </blockquote>
-              <figcaption className="mt-6 flex items-center justify-center space-x-1 md:space-x-3">
-                <img
-                  alt=""
-                  src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/helene-engels.png"
-                  className="h-6 w-6 rounded-full"
-                />
-                <div className="flex items-center divide-x-2 divide-gray-500 dark:divide-gray-700">
-                  <div className="pr-3 font-medium text-gray-900 dark:text-white">
-                    Helene Engels
-                  </div>
-                  <div className="pl-3 text-sm text-gray-500 dark:text-gray-400">
-                    Creative designer at Adobe
-                  </div>
-                </div>
-              </figcaption>
-            </div>
-            <div>
-              <blockquote>
-                <p className="text-lg font-medium text-gray-900 dark:text-white sm:text-2xl">
-                  "As someone who mainly designs in the browser, I've been a
-                  casual user of Figma, but as soon as I saw and started playing
-                  with Flowbite my mind was blown and became so productive."
-                </p>
-              </blockquote>
-              <figcaption className="mt-6 flex items-center justify-center space-x-1 md:space-x-3">
-                <img
-                  alt=""
-                  src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/helene-engels.png"
-                  className="h-6 w-6 rounded-full"
-                />
-                <div className="flex items-center divide-x-2 divide-gray-500 dark:divide-gray-700">
-                  <div className="pr-3 font-medium text-gray-900 dark:text-white">
-                    Helene Engels
-                  </div>
-                  <div className="pl-3 text-sm text-gray-500 dark:text-gray-400">
-                    Creative designer at Adobe
-                  </div>
-                </div>
-              </figcaption>
-            </div>
-            <div>
-              <blockquote>
-                <p className="text-lg font-medium text-gray-900 dark:text-white sm:text-2xl">
-                  "Flowbite has code in one place and I'm not joking when I say
-                  it took me a matter of minutes to copy the code, customise it
-                  and integrate within a Laravel + Vue application."
-                </p>
-              </blockquote>
-              <figcaption className="mt-6 flex items-center justify-center space-x-3">
-                <img
-                  alt=""
-                  src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/neil-sims.png"
-                  className="h-6 w-6 rounded-full"
-                />
-                <div className="flex items-center divide-x-2 divide-gray-500 dark:divide-gray-700">
-                  <div className="pr-3 font-medium text-gray-900 dark:text-white">
-                    Neil Sims
-                  </div>
-                  <div className="pl-3 text-sm text-gray-500 dark:text-gray-400">
-                    CTO at Microsoft
-                  </div>
-                </div>
-              </figcaption>
-            </div>
+              )
+            })}
           </Carousel>
         </div>
       </div>

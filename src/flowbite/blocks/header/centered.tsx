@@ -1,3 +1,5 @@
+'use client'
+
 import { Button, Navbar } from "flowbite-react";
 
 export function HeaderWithCenteredLogo() {

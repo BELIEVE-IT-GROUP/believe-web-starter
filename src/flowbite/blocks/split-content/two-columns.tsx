@@ -1,21 +1,28 @@
-export function HeadingWithDescriptionTwoColumnsContentSection() {
+type HeadingWithDescriptionTwoColumnsContentSectionProps = {
+  headline?: string
+  description?: string
+  primaryCta?: { label?: string; href?: string }
+  secondColumn?: string
+  secondColumnExtra?: string
+}
+
+export function HeadingWithDescriptionTwoColumnsContentSection(props: HeadingWithDescriptionTwoColumnsContentSectionProps = {}) {
+  const { headline, description, primaryCta, secondColumn, secondColumnExtra } = props
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl items-center gap-16 px-4 py-8 lg:grid lg:grid-cols-2 lg:px-6 lg:py-16">
         <div className="text-gray-500 dark:text-gray-400 sm:text-lg">
           <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-            Powering innovation at 200,000+ companies worldwide
+            {headline ?? 'Powering innovation at 200,000+ companies worldwide'}
           </h2>
           <p className="mb-4">
-            Empower Developers, IT Ops, and business teams to collaborate at
-            high velocity. Respond to changes and deliver great customer and
-            employee service experiences fast.
+            {description ?? 'Empower Developers, IT Ops, and business teams to collaborate at high velocity. Respond to changes and deliver great customer and employee service experiences fast.'}
           </p>
           <a
-            href="#"
+            href={primaryCta?.href ?? '#'}
             className="inline-flex items-center font-medium text-primary-600 hover:text-primary-800 dark:text-primary-500 dark:hover:text-primary-700"
           >
-            Learn more
+            {primaryCta?.label ?? 'Learn more'}
             <svg
               className="ml-1 h-6 w-6"
               fill="currentColor"
@@ -32,17 +39,10 @@ export function HeadingWithDescriptionTwoColumnsContentSection() {
         </div>
         <div className="mt-4 text-gray-500 dark:text-gray-400 sm:text-lg lg:mt-0">
           <p className="mb-4">
-            Track work across the enterprise through an open, collaborative
-            platform. Link issues across Jira and ingest data from other
-            software development tools, so your IT support and operations teams
-            have richer contextual information to rapidly respond to requests,
-            incidents, and changes.
+            {secondColumn ?? 'Track work across the enterprise through an open, collaborative platform. Link issues across Jira and ingest data from other software development tools, so your IT support and operations teams have richer contextual information to rapidly respond to requests, incidents, and changes.'}
           </p>
           <p>
-            Deliver great service experiences fast - without the complexity of
-            traditional ITSM solutions.Accelerate critical development work,
-            eliminate toil, and deploy changes with ease, with a complete audit
-            trail for every change.
+            {secondColumnExtra ?? 'Deliver great service experiences fast - without the complexity of traditional ITSM solutions.Accelerate critical development work, eliminate toil, and deploy changes with ease, with a complete audit trail for every change.'}
           </p>
         </div>
       </div>

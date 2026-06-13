@@ -1,14 +1,18 @@
-export function HeadingGridLayoutCustomerLogos() {
+type HeadingGridLayoutCustomerLogosProps = {
+  headline?: string
+  description?: string
+}
+
+export function HeadingGridLayoutCustomerLogos(props: HeadingGridLayoutCustomerLogosProps = {}) {
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="mx-auto grid max-w-screen-xl gap-8 px-4 py-8 sm:gap-16 md:grid-cols-2 md:px-6 lg:gap-20 lg:py-16">
         <div className="mb-8 text-gray-500 dark:text-gray-400 sm:text-lg">
           <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white md:text-4xl">
-            Our customers make us great
+            {props.headline ?? "Our customers make us great"}
           </h2>
           <p className="lg:text-xl">
-            Here at flowbite we focus on markets where technology, innovation,
-            and capital can unlock long-term value.
+            {props.description ?? "Here at flowbite we focus on markets where technology, innovation, and capital can unlock long-term value."}
           </p>
         </div>
         <div className="grid grid-cols-2 gap-8 text-gray-500 dark:text-gray-400 sm:grid-cols-3 sm:gap-12">
