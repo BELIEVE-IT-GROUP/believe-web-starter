@@ -1,0 +1,64 @@
+src/components/blocks/PricingBlock.tsx
+  s_4627fdffee19c5::t_07a4cc8126160e 25,39,61,66,70,81-108,110-136
+src/components/blocks/TeamBlock.tsx
+  s_4627fdffee19c5::t_45762602e52d11 22,26,28,32-36,39,41-91
+tailwind.config.ts
+  s_4627fdffee19c5::t_3db1c8cd5bbd96 25
+  s_4627fdffee19c5::t_5b03e31ad1d4ed 15-20,22-24,26-32,35-38,41-50
+src/app/layout.tsx
+  s_4627fdffee19c5::t_dcf8000c110281 36-37
+  s_4627fdffee19c5::t_3dc2fa60f73e65 2,8-21
+src/components/blocks/SplitContentBlock.tsx
+  s_4627fdffee19c5::t_22623dce8b833f 24,26,29-30,35,40,45,47-48,64
+src/app/globals.css
+  s_4627fdffee19c5::t_09ba7a7cec6a7c 7-9,11,14-76,84-94
+src/components/blocks/CtaBlock.tsx
+  s_4627fdffee19c5::t_41dd61ef708fe9 20-23,28-36,38-40,42-45,47,52,64-65
+src/components/layout/Header.tsx
+  s_4627fdffee19c5::t_9d64843ee23526 20-21,26-27,31,33-36,38,44-50
+  s_4627fdffee19c5::t_e42dc1040b3a9e 5
+src/components/blocks/HeroBlock.tsx
+  s_4627fdffee19c5::t_7f48b093ecd468 25,31-74
+src/components/blocks/ContactBlock.tsx
+  s_4627fdffee19c5::t_daf2a4255831cd 3,59,63-75,79-84,86-93,95-100,109-116,121-133,137-144
+src/components/blocks/LogoCloudBlock.tsx
+  s_4627fdffee19c5::t_39947197807874 15-21,24,26,28-32
+.gitignore
+  s_4627fdffee19c5::t_9de9159e3e7c1a 9
+src/components/blocks/VideoEmbedBlock.tsx
+  s_4627fdffee19c5::t_30e2e6ba356a71 19,22,26,35-36,40-42
+docs/PRD-LANDINGS-PRODUCCION.md
+  s_4627fdffee19c5::t_356947e16f8ec3 1-94
+src/components/blocks/NewsletterBlock.tsx
+  s_4627fdffee19c5::t_9be6fbd59ccf27 49,51-57,59-66,68-71,73-86,88-93
+next.config.mjs
+  s_4627fdffee19c5::t_1f6460e76ffc8d 4-12
+src/components/blocks/FaqBlock.tsx
+  s_4627fdffee19c5::t_676fa75bbd79e9 9,18,35,39,41,45-47,50-91
+src/components/blocks/BlogListBlock.tsx
+  s_4627fdffee19c5::t_c388a5a1d2a7de 35,40,45-48,58,68-84,86,89-97
+src/components/blocks/StatsBlock.tsx
+  s_4627fdffee19c5::t_ef15f08432575e 12,15,21-22,25
+src/components/blocks/TestimonialsBlock.tsx
+  s_4627fdffee19c5::t_9baf9f53c88710 22,40,43-48,50-54,61-80,82-95,97-106
+src/components/blocks/FeaturesBlock.tsx
+  s_4627fdffee19c5::t_eddc5693045fd8 9,13,36,41,45,57,60,64-65
+src/components/blocks/GalleryBlock.tsx
+  s_4627fdffee19c5::t_76a6b8eac8e802 15-18,21,24,28,30,32-40,43
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "45cb1936afde471ee74e54bfc6640f7e98b2f37c",
+  "prompts": {},
+  "sessions": {
+    "s_4627fdffee19c5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "26c512f6-9762-4540-aa5b-da77944ecedc",
+        "model": "unknown"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
