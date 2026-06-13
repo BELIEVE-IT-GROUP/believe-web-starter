@@ -11,18 +11,51 @@ import {
 } from "flowbite-react";
 import { twMerge } from "tailwind-merge";
 
-export function HeaderWithUserDropdown() {
+export interface UserDropdownHeaderProps {
+  logoUrl?: string;
+  logoAlt?: string;
+  brandName?: string;
+  brandHref?: string;
+  navLinks?: { label: string; href: string }[];
+  userAvatarUrl?: string;
+  userName?: string;
+  userEmail?: string;
+  logoutLabel?: string;
+  logoutHref?: string;
+}
+
+const DEMO_NAV_LINKS = [
+  { label: 'Home', href: '#' },
+  { label: 'Company', href: '#' },
+  { label: 'Marketplace', href: '#' },
+  { label: 'Features', href: '#' },
+  { label: 'Team', href: '#' },
+  { label: 'Contact', href: '#' },
+];
+
+export function HeaderWithUserDropdown({
+  logoUrl = 'https://flowbite.com/docs/images/logo.svg',
+  logoAlt = 'Logo',
+  brandName = 'Flowbite',
+  brandHref = '#',
+  navLinks = DEMO_NAV_LINKS,
+  userAvatarUrl = 'https://flowbite.com/docs/images/people/profile-picture-5.jpg',
+  userName = 'Neil Sims',
+  userEmail = 'name@flowbite.com',
+  logoutLabel = 'Log out',
+  logoutHref = '#',
+}: UserDropdownHeaderProps = {}) {
   return (
     <header>
       <Navbar fluid>
-        <Navbar.Brand href="https://flowbite.com">
+        <Navbar.Brand href={brandHref}>
           <img
-            src="https://flowbite.com/docs/images/logo.svg"
+            src={logoUrl}
             className="mr-3 h-6 sm:h-9"
-            alt="Flowbite Logo"
+            alt={logoAlt}
           />
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-            Flowbite
+            {brandName}
           </span>
         </Navbar.Brand>
         <div className="flex items-center gap-1 lg:order-2 lg:gap-3">
@@ -47,7 +80,7 @@ export function HeaderWithUserDropdown() {
             label={
               <Avatar
                 alt="User settings"
-                img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                img={userAvatarUrl}
                 rounded
                 className="[&_img]:h-8 [&_img]:w-8"
               />
@@ -59,9 +92,9 @@ export function HeaderWithUserDropdown() {
             }}
           >
             <Dropdown.Header>
-              <strong className="block text-sm">Neil Sims</strong>
+              <strong className="block text-sm">{userName}</strong>
               <span className="block truncate text-sm font-medium text-gray-500 dark:text-gray-400">
-                name@flowbite.com
+                {userEmail}
               </span>
             </Dropdown.Header>
             <Dropdown.Item className="text-gray-500 dark:text-gray-400">
@@ -133,10 +166,10 @@ export function HeaderWithUserDropdown() {
           </Dropdown>
           <Button
             color="gray"
-            href="#"
-            className="border-0 text-blue-600 hover:bg-gray-50 dark:text-gray-100 dark:hover:bg-gray-700"
+            href={logoutHref}
+            className="border-0 text-primary-600 hover:bg-gray-50 dark:text-gray-100 dark:hover:bg-gray-700"
           >
-            Log out
+            {logoutLabel}
           </Button>
           <Navbar.Toggle theme={{ icon: "h-5 w-5 shrink-0" }} />
         </div>
@@ -146,18 +179,16 @@ export function HeaderWithUserDropdown() {
           }}
           className="lg:order-1"
         >
-          <Navbar.Link
-            href="#"
-            active
-            className="border-b border-gray-100 bg-transparent text-gray-900 dark:border-gray-700 dark:text-white md:border-0"
-          >
-            Home
-          </Navbar.Link>
-          <Navbar.Link href="#">Company</Navbar.Link>
-          <Navbar.Link href="#">Marketplace</Navbar.Link>
-          <Navbar.Link href="#">Features</Navbar.Link>
-          <Navbar.Link href="#">Team</Navbar.Link>
-          <Navbar.Link href="#">Contact</Navbar.Link>
+          {navLinks.map((link, i) => (
+            <Navbar.Link
+              key={link.href + i}
+              href={link.href}
+              active={i === 0}
+              className="border-b border-gray-100 bg-transparent text-gray-900 dark:border-gray-700 dark:text-white md:border-0"
+            >
+              {link.label}
+            </Navbar.Link>
+          ))}
         </Navbar.Collapse>
       </Navbar>
     </header>

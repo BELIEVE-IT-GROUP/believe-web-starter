@@ -51,7 +51,7 @@ export function GridLayoutCleanTeamSection(props: GridCleanTeamProps = {}) {
                 <li>
                   <a
                     href="#"
-                    className="text-[#39569c] hover:text-gray-900 dark:hover:text-white"
+                    className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
                   >
                     <svg
                       className="h-6 w-6"
@@ -70,7 +70,7 @@ export function GridLayoutCleanTeamSection(props: GridCleanTeamProps = {}) {
                 <li>
                   <a
                     href="#"
-                    className="text-[#00acee] hover:text-gray-900 dark:hover:text-white"
+                    className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
                   >
                     <svg
                       className="h-6 w-6"
@@ -104,7 +104,7 @@ export function GridLayoutCleanTeamSection(props: GridCleanTeamProps = {}) {
                 <li>
                   <a
                     href="#"
-                    className="text-[#ea4c89] hover:text-gray-900 dark:hover:text-white"
+                    className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
                   >
                     <svg
                       className="h-6 w-6"

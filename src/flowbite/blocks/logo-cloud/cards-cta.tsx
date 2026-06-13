@@ -10,7 +10,7 @@ export function CardsWithCTACustomerLogos(props: CardsWithCTACustomerLogosProps 
     <section className="bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl px-4 py-8 lg:py-16">
         <h2 className="mb-4 text-center text-3xl font-extrabold leading-tight tracking-tight text-gray-900 dark:text-white md:text-4xl">
-          {props.headline ?? "You’ll be in good company"}
+          {props.headline ?? "You'll be in good company"}
         </h2>
         <p className="mb-4 text-center text-base text-gray-500 sm:px-14 md:px-24 md:text-xl lg:px-56 xl:px-72">
           {props.description ?? "We use an agile approach to test assumptions and connect with the needs of your audience early and often."}

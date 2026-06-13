@@ -2,30 +2,57 @@
 
 import { Button, Navbar } from "flowbite-react";
 
-export function DefaultHeaderNavigation() {
+export interface DefaultHeaderProps {
+  logoUrl?: string;
+  logoAlt?: string;
+  brandName?: string;
+  brandHref?: string;
+  navLinks?: { label: string; href: string }[];
+  primaryCta?: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
+}
+
+const DEMO_NAV_LINKS = [
+  { label: 'Home', href: '#' },
+  { label: 'Company', href: '#' },
+  { label: 'Marketplace', href: '#' },
+  { label: 'Features', href: '#' },
+  { label: 'Team', href: '#' },
+  { label: 'Contact', href: '#' },
+];
+
+export function DefaultHeaderNavigation({
+  logoUrl = 'https://flowbite.com/docs/images/logo.svg',
+  logoAlt = 'Logo',
+  brandName = 'Flowbite',
+  brandHref = '#',
+  navLinks = DEMO_NAV_LINKS,
+  primaryCta = { label: 'Get started', href: '#' },
+  secondaryCta = { label: 'Log in', href: '#' },
+}: DefaultHeaderProps = {}) {
   return (
     <header>
       <Navbar fluid>
-        <Navbar.Brand href="https://flowbite.com">
+        <Navbar.Brand href={brandHref}>
           <img
-            src="https://flowbite.com/docs/images/logo.svg"
+            src={logoUrl}
             className="mr-3 h-6 sm:h-9"
-            alt="Flowbite Logo"
+            alt={logoAlt}
           />
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-            Flowbite
+            {brandName}
           </span>
         </Navbar.Brand>
         <div className="flex items-center gap-3 lg:order-2">
           <Button
             color="gray"
-            href="#"
+            href={secondaryCta.href}
             className="border-0 hover:bg-gray-50 focus:outline-none focus:ring-gray-300 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-800"
           >
-            Log in
+            {secondaryCta.label}
           </Button>
-          <Button color="info" href="#">
-            Get started
+          <Button color="info" href={primaryCta.href}>
+            {primaryCta.label}
           </Button>
           <Navbar.Toggle theme={{ icon: "h-5 w-5 shrink-0" }} />
         </div>
@@ -35,14 +62,16 @@ export function DefaultHeaderNavigation() {
           }}
           className="lg:order-1"
         >
-          <Navbar.Link active href="#" className="rounded-lg">
-            Home
-          </Navbar.Link>
-          <Navbar.Link href="#">Company</Navbar.Link>
-          <Navbar.Link href="#">Marketplace</Navbar.Link>
-          <Navbar.Link href="#">Features</Navbar.Link>
-          <Navbar.Link href="#">Team</Navbar.Link>
-          <Navbar.Link href="#">Contact</Navbar.Link>
+          {navLinks.map((link, i) => (
+            <Navbar.Link
+              key={link.href + i}
+              active={i === 0}
+              href={link.href}
+              className="rounded-lg"
+            >
+              {link.label}
+            </Navbar.Link>
+          ))}
         </Navbar.Collapse>
       </Navbar>
     </header>

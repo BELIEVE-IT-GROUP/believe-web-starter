@@ -1,7 +1,5 @@
 'use client'
 
-"use client";
-
 import {
   Accordion,
   AccordionContent,
@@ -33,7 +31,7 @@ const DEFAULT_ITEMS: CustomerServiceFaqItem[] = [
   {
     question: 'What is an iMac, and how does it differ from other computers?',
     author: 'Flowbite Shop',
-    date: 'November 20 2023 • 12:45',
+    date: 'November 20 2023 - 12:45',
     answer: 'The iMac is a line of all-in-one desktop computers designed and produced by Apple Inc. It sets itself apart by integrating the display, processing unit, and other components into a single sleek enclosure, minimizing cable clutter and providing a seamless user experience.',
     yesCount: 9,
     noCount: 0,
@@ -41,7 +39,7 @@ const DEFAULT_ITEMS: CustomerServiceFaqItem[] = [
   {
     question: 'What are the key features of the latest iMac models?',
     author: 'Flowbite Experts',
-    date: 'November 20 2023 • 12:45',
+    date: 'November 20 2023 - 12:45',
     answer: 'Apple has transitioned its Mac lineup from Intel processors to custom-designed Apple Silicon chips. The latest iMac models might feature the latest iterations of these chips, offering improved performance and efficiency.',
     yesCount: 16,
     noCount: 3,
@@ -49,7 +47,7 @@ const DEFAULT_ITEMS: CustomerServiceFaqItem[] = [
   {
     question: 'What is the Retina display on an iMac, and why is it significant?',
     author: 'Flowbite Experts',
-    date: 'November 20 2023 • 12:45',
+    date: 'November 20 2023 - 12:45',
     answer: 'iMacs typically feature high-resolution Retina displays with vibrant colors and excellent contrast. The latest models might offer improvements in display technology for even better image quality.',
     yesCount: 16,
     noCount: 3,
@@ -57,7 +55,7 @@ const DEFAULT_ITEMS: CustomerServiceFaqItem[] = [
   {
     question: 'How is the performance of an iMac for tasks like video editing, graphic design, and gaming?',
     author: 'Flowbite Experts',
-    date: 'November 20 2023 • 12:45',
+    date: 'November 20 2023 - 12:45',
     answer: 'Apple has transitioned its Mac lineup from Intel processors to custom-designed Apple Silicon chips, offering improved performance and efficiency for demanding workloads.',
     yesCount: 16,
     noCount: 3,
@@ -65,7 +63,7 @@ const DEFAULT_ITEMS: CustomerServiceFaqItem[] = [
   {
     question: 'Can I upgrade the components of my iMac, such as RAM or storage?',
     author: 'Flowbite Experts',
-    date: 'November 20 2023 • 12:45',
+    date: 'November 20 2023 - 12:45',
     answer: 'Apple often focuses on making its products thinner and lighter. Recent iMac models might feature a slimmer profile compared to their predecessors.',
     yesCount: 16,
     noCount: 3,
@@ -73,7 +71,7 @@ const DEFAULT_ITEMS: CustomerServiceFaqItem[] = [
   {
     question: 'What is the role of Thunderbolt ports on an iMac?',
     author: 'Flowbite Experts',
-    date: 'November 20 2023 • 12:45',
+    date: 'November 20 2023 - 12:45',
     answer: 'iMacs typically feature high-resolution Retina displays with vibrant colors and excellent contrast. The latest models might offer improvements in display technology for even better image quality.',
     yesCount: 16,
     noCount: 3,
@@ -81,7 +79,7 @@ const DEFAULT_ITEMS: CustomerServiceFaqItem[] = [
   {
     question: 'How does the macOS operating system differ from Windows?',
     author: 'Flowbite Experts',
-    date: 'November 20 2023 • 12:45',
+    date: 'November 20 2023 - 12:45',
     answer: 'Apple has transitioned its Mac lineup from Intel processors to custom-designed Apple Silicon chips. The latest iMac models might feature the latest iterations of these chips, offering improved performance and efficiency.',
     yesCount: 16,
     noCount: 3,
@@ -89,7 +87,7 @@ const DEFAULT_ITEMS: CustomerServiceFaqItem[] = [
   {
     question: 'What security features does the iMac offer?',
     author: 'Flowbite Experts',
-    date: 'November 20 2023 • 12:45',
+    date: 'November 20 2023 - 12:45',
     answer: 'Apple often focuses on making its products thinner and lighter. Recent iMac models might feature a slimmer profile compared to their predecessors.',
     yesCount: 16,
     noCount: 3,
@@ -97,7 +95,7 @@ const DEFAULT_ITEMS: CustomerServiceFaqItem[] = [
   {
     question: 'Can I use my iMac with other Apple devices, such as iPhone and iPad?',
     author: 'Flowbite Experts',
-    date: 'November 20 2023 • 12:45',
+    date: 'November 20 2023 - 12:45',
     answer: 'iMacs typically feature high-resolution Retina displays with vibrant colors and excellent contrast. The latest models might offer improvements in display technology for even better image quality.',
     yesCount: 16,
     noCount: 3,
@@ -105,7 +103,7 @@ const DEFAULT_ITEMS: CustomerServiceFaqItem[] = [
   {
     question: 'What support options are available for iMac users?',
     author: 'Flowbite Experts',
-    date: 'November 20 2023 • 12:45',
+    date: 'November 20 2023 - 12:45',
     answer: 'Apple has transitioned its Mac lineup from Intel processors to custom-designed Apple Silicon chips. The latest iMac models might feature the latest iterations of these chips, offering improved performance and efficiency.',
     yesCount: 16,
     noCount: 3,

@@ -104,7 +104,7 @@ export function SignUpFormWithCTAHero(props: SignUpFormWithCTAHeroProps = {}) {
               </Label>
               <TextInput
                 id="password"
-                placeholder="••••••••"
+                placeholder="--------"
                 required
                 type="password"
               />

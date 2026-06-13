@@ -2,15 +2,46 @@
 
 import { Button, Navbar } from "flowbite-react";
 
-export function HeaderWithCenteredLogo() {
+export interface CenteredHeaderProps {
+  logoUrl?: string;
+  logoAlt?: string;
+  brandName?: string;
+  brandHref?: string;
+  navLinks?: { label: string; href: string }[];
+  primaryCta?: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
+  phone?: string;
+  talkToSalesLabel?: string;
+  talkToSalesHref?: string;
+}
+
+const DEMO_NAV_LINKS = [
+  { label: 'Home', href: '#' },
+  { label: 'Resources', href: '#' },
+  { label: 'Features', href: '#' },
+  { label: 'Pricing', href: '#' },
+];
+
+export function HeaderWithCenteredLogo({
+  logoUrl = 'https://flowbite.com/docs/images/logo.svg',
+  logoAlt = 'Logo',
+  brandName = 'Flowbite',
+  brandHref = '#',
+  navLinks = DEMO_NAV_LINKS,
+  primaryCta = { label: 'Sign up', href: '#' },
+  secondaryCta = { label: 'Login', href: '#' },
+  phone = 'tel:5541251234',
+  talkToSalesLabel = 'Talk to sales',
+  talkToSalesHref = '#',
+}: CenteredHeaderProps = {}) {
   return (
     <header>
       <div className="flex items-center justify-end gap-1 bg-gray-50 p-2 dark:bg-gray-700 md:hidden">
         <a
-          href="#"
+          href={talkToSalesHref}
           className="mr-2 text-sm font-medium text-gray-500 hover:underline dark:text-gray-400"
         >
-          Talk to sales
+          {talkToSalesLabel}
         </a>
         <Button
           color="gray"
@@ -34,7 +65,7 @@ export function HeaderWithCenteredLogo() {
         </Button>
         <Button
           color="gray"
-          href="tel:5541251234"
+          href={phone}
           className="border-0 bg-gray-50 text-gray-600 [&>*]:px-1"
         >
           <span className="sr-only">Call us</span>
@@ -50,22 +81,22 @@ export function HeaderWithCenteredLogo() {
         </Button>
       </div>
       <Navbar fluid>
-        <Navbar.Brand href="https://flowbite.com" className="lg:order-2">
+        <Navbar.Brand href={brandHref} className="lg:order-2">
           <img
-            src="https://flowbite.com/docs/images/logo.svg"
+            src={logoUrl}
             className="mr-3 h-6 sm:h-9"
-            alt="Flowbite Logo"
+            alt={logoAlt}
           />
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-            Flowbite
+            {brandName}
           </span>
         </Navbar.Brand>
         <div className="flex items-center gap-3 lg:order-3">
           <a
-            href="#"
+            href={talkToSalesHref}
             className="hidden text-sm font-medium text-gray-500 hover:underline dark:text-gray-400 md:block"
           >
-            Talk to sales
+            {talkToSalesLabel}
           </a>
           <div className="-mr-2 flex items-center justify-center">
             <Button
@@ -91,7 +122,7 @@ export function HeaderWithCenteredLogo() {
             </Button>
             <Button
               color="gray"
-              href="tel:5541251234"
+              href={phone}
               size="xs"
               className="hidden border-0 text-gray-500 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-700 md:block"
             >
@@ -109,13 +140,13 @@ export function HeaderWithCenteredLogo() {
           </div>
           <Button
             color="gray"
-            href="#"
+            href={secondaryCta.href}
             className="-mr-1 border-0 hover:bg-gray-50 focus:outline-none focus:ring-gray-300 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-800"
           >
-            Login
+            {secondaryCta.label}
           </Button>
-          <Button color="info" href="#">
-            Sign up
+          <Button color="info" href={primaryCta.href}>
+            {primaryCta.label}
           </Button>
           <Navbar.Toggle theme={{ icon: "h-5 w-5 shrink-0" }} />
         </div>
@@ -125,16 +156,16 @@ export function HeaderWithCenteredLogo() {
           }}
           className="lg:order-1"
         >
-          <Navbar.Link
-            active
-            href="#"
-            className="border-b bg-transparent dark:border-gray-700 md:border-0"
-          >
-            Home
-          </Navbar.Link>
-          <Navbar.Link href="#">Resources</Navbar.Link>
-          <Navbar.Link href="#">Features</Navbar.Link>
-          <Navbar.Link href="#">Pricing</Navbar.Link>
+          {navLinks.map((link, i) => (
+            <Navbar.Link
+              key={link.href + i}
+              active={i === 0}
+              href={link.href}
+              className="border-b bg-transparent dark:border-gray-700 md:border-0"
+            >
+              {link.label}
+            </Navbar.Link>
+          ))}
         </Navbar.Collapse>
       </Navbar>
     </header>

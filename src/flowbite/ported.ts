@@ -1,13 +1,16 @@
 /**
- * deepPortedTemplates: las 118 variantes de contenido que ya aceptan props del CMS (con
- * fallback al demo), producto del deep-port multi-agente (Workflow fase2-deepport-content-blocks).
- * Renderizan en el showcase /catalog (el registry las llama directo) y están listas para
- * componer webs nuevas. Generado de catalog.generated.json (no de los IDs de los agentes).
+ * deepPortedTemplates: las 133 variantes Flowbite que aceptan props del CMS (con fallback al
+ * demo), producto del deep-port multi-agente (Workflows fase2-deepport-content-blocks +
+ * fase2-finish-A: 15 blockTypes de contenido + header + footer). Renderizan en /catalog y
+ * estan listas para componer webs nuevas. Generado de catalog.generated.json.
  *
- * portedTemplates (abajo): allowlist ACTIVA en el BlockRenderer (flip legacy→flowbite). Vacía
+ * portedTemplates (abajo): allowlist ACTIVA en el BlockRenderer (flip legacy->flowbite). Vacia
  * por ahora — la home believe (Fase 1) fue autorada contra los shapes LEGACY; activar una
- * variante acá requiere que el contenido del CMS use su shape de props. Se puebla por
- * variante tras reconciliar shapes (skill Phase C para webs nuevas / migración de la home).
+ * variante requiere que el contenido del CMS use su shape de props. Se puebla por variante
+ * tras reconciliar shapes (skill Phase C para webs nuevas / migracion de la home).
+ *
+ * Nota de wiring (de los agentes): header/footer del CMS usan `url` (no `href`) en navLinks/cta;
+ * la capa de wiring CMS->props debe mapear url->href al activar esas variantes.
  */
 export const deepPortedTemplates = new Set<string>([
   "blog-list.card-with-image",
@@ -54,12 +57,27 @@ export const deepPortedTemplates = new Set<string>([
   "features.icons-list",
   "features.image-list",
   "features.rounded-icons",
+  "footer.default",
+  "footer.flowbite-footer",
+  "footer.newsletter",
+  "footer.pre-footer-cta",
+  "footer.sitemap-links",
+  "footer.sitemap-logo",
+  "footer.social-media",
   "gallery.image-gallery",
   "gallery.portfolio-alternate",
   "gallery.portfolio-carousel",
   "gallery.portfolio-default",
   "gallery.portfolio-featured-image",
   "gallery.portfolio-grid-layout",
+  "header.centered",
+  "header.default",
+  "header.dropdown",
+  "header.mega-dropdown",
+  "header.mega-menu",
+  "header.search",
+  "header.sub-navbar",
+  "header.user-dropdown",
   "hero.app-preview-ctas",
   "hero.background-cover-ctas",
   "hero.background-image-cards",
@@ -130,7 +148,7 @@ export const deepPortedTemplates = new Set<string>([
   "video-embed.hero-video-cta",
 ])
 
-/** Allowlist ACTIVA en el BlockRenderer. Vacía hasta reconciliar shapes por variante. */
+/** Allowlist ACTIVA en el BlockRenderer. Vacia hasta reconciliar shapes por variante. */
 export const portedTemplates = new Set<string>([])
 
 export function isPorted(templateId?: string): boolean {

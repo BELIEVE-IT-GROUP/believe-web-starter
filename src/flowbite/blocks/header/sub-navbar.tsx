@@ -3,134 +3,120 @@
 import { Dropdown, Navbar } from "flowbite-react";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 
-export function HeaderWithSubNavbar() {
+export interface SubNavbarHeaderProps {
+  logoUrl?: string;
+  logoAlt?: string;
+  brandName?: string;
+  brandHref?: string;
+  navLinks?: { label: string; href: string }[];
+  phone?: string;
+  contactLabel?: string;
+  contactHref?: string;
+  loginLabel?: string;
+  loginHref?: string;
+}
+
+const DEMO_NAV_LINKS = [
+  { label: 'Home', href: '#' },
+  { label: 'Company', href: '#' },
+  { label: 'Team', href: '#' },
+  { label: 'Features', href: '#' },
+  { label: 'Marketplace', href: '#' },
+  { label: 'Resources', href: '#' },
+  { label: 'Forum', href: '#' },
+  { label: 'Support', href: '#' },
+];
+
+const MOBILE_VISIBLE = 4;
+
+export function HeaderWithSubNavbar({
+  logoUrl = 'https://flowbite.com/docs/images/logo.svg',
+  logoAlt = 'Logo',
+  brandName = 'Flowbite',
+  brandHref = '#',
+  navLinks = DEMO_NAV_LINKS,
+  phone = 'tel:5541251234',
+  contactLabel = 'Contact us',
+  contactHref = '#',
+  loginLabel = 'Login',
+  loginHref = '#',
+}: SubNavbarHeaderProps = {}) {
+  const mobileVisible = navLinks.slice(0, MOBILE_VISIBLE);
+  const mobileOverflow = navLinks.slice(MOBILE_VISIBLE);
+
   return (
     <header>
       <Navbar className="dark:bg-gray-800">
-        <Navbar.Brand href="https://flowbite.com">
+        <Navbar.Brand href={brandHref}>
           <img
-            src="https://flowbite.com/docs/images/logo.svg"
+            src={logoUrl}
             className="mr-3 h-6 sm:h-9"
-            alt="Flowbite Logo"
+            alt={logoAlt}
           />
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-            Flowbite
+            {brandName}
           </span>
         </Navbar.Brand>
         <div className="flex items-center">
           <a
-            href="tel:5541251234"
+            href={phone}
             className="mr-6 hidden text-sm font-medium text-gray-900 hover:underline dark:text-white sm:inline"
           >
-            (555) 412-1234
+            {phone.replace('tel:', '')}
           </a>
           <a
-            href="#"
+            href={contactHref}
             className="text-sm font-medium text-primary-600 hover:underline dark:text-white sm:mr-6"
           >
-            Contact us
+            {contactLabel}
           </a>
           <a
-            href="#"
+            href={loginHref}
             className="hidden text-sm font-medium text-primary-600 hover:underline dark:text-white sm:inline"
           >
-            Login
+            {loginLabel}
           </a>
         </div>
       </Navbar>
       <Navbar className="bg-gray-50 py-3 dark:bg-gray-700">
         <Navbar.Collapse>
-          <Navbar.Link
-            href="#"
-            className="hover:text-gray-900 hover:underline dark:text-white"
-          >
-            Home
-          </Navbar.Link>
-          <Navbar.Link
-            href="#"
-            className="hover:underline dark:text-white md:hover:text-gray-900"
-          >
-            Company
-          </Navbar.Link>
-          <Navbar.Link
-            href="#"
-            className="hover:underline dark:text-white md:hover:text-gray-900"
-          >
-            Team
-          </Navbar.Link>
-          <Navbar.Link
-            href="#"
-            className="hover:underline dark:text-white md:hover:text-gray-900"
-          >
-            Features
-          </Navbar.Link>
-          <Navbar.Link
-            href="#"
-            className="hover:underline dark:text-white md:hover:text-gray-900"
-          >
-            Marketplace
-          </Navbar.Link>
-          <Navbar.Link
-            href="#"
-            className="hover:underline dark:text-white md:hover:text-gray-900"
-          >
-            Resources
-          </Navbar.Link>
-          <Navbar.Link
-            href="#"
-            className="hover:underline dark:text-white md:hover:text-gray-900"
-          >
-            Forum
-          </Navbar.Link>
-          <Navbar.Link
-            href="#"
-            className="hover:underline dark:text-white md:hover:text-gray-900"
-          >
-            Support
-          </Navbar.Link>
+          {navLinks.map((link, i) => (
+            <Navbar.Link
+              key={link.href + i}
+              href={link.href}
+              className="hover:text-gray-900 hover:underline dark:text-white md:hover:text-gray-900"
+            >
+              {link.label}
+            </Navbar.Link>
+          ))}
         </Navbar.Collapse>
         <div className="flex items-center gap-5 lg:hidden">
-          <a
-            href="#"
-            className="text-sm hover:underline focus:underline dark:text-white"
-          >
-            Home
-          </a>
-          <a
-            href="#"
-            className="text-sm hover:underline focus:underline dark:text-white"
-          >
-            Company
-          </a>
-          <a
-            href="#"
-            className="text-sm hover:underline focus:underline dark:text-white"
-          >
-            Team
-          </a>
-          <a
-            href="#"
-            className="text-sm hover:underline focus:underline dark:text-white"
-          >
-            Features
-          </a>
-          <Dropdown
-            arrowIcon={false}
-            color="none"
-            label={<HiOutlineDotsHorizontal className="h-5 w-5" />}
-            theme={{
-              floating: {
-                target: "w-fit items-center p-0 dark:text-white [&>span]:p-1",
-              },
-            }}
-            className="[&_span]:py-0"
-          >
-            <Dropdown.Item>Marketplace</Dropdown.Item>
-            <Dropdown.Item>Dashboard</Dropdown.Item>
-            <Dropdown.Item>Resources</Dropdown.Item>
-            <Dropdown.Item>Forum</Dropdown.Item>
-            <Dropdown.Item>Support</Dropdown.Item>
-          </Dropdown>
+          {mobileVisible.map((link, i) => (
+            <a
+              key={link.href + i}
+              href={link.href}
+              className="text-sm hover:underline focus:underline dark:text-white"
+            >
+              {link.label}
+            </a>
+          ))}
+          {mobileOverflow.length > 0 && (
+            <Dropdown
+              arrowIcon={false}
+              color="none"
+              label={<HiOutlineDotsHorizontal className="h-5 w-5" />}
+              theme={{
+                floating: {
+                  target: "w-fit items-center p-0 dark:text-white [&>span]:p-1",
+                },
+              }}
+              className="[&_span]:py-0"
+            >
+              {mobileOverflow.map((link, i) => (
+                <Dropdown.Item key={link.href + i}>{link.label}</Dropdown.Item>
+              ))}
+            </Dropdown>
+          )}
         </div>
       </Navbar>
     </header>

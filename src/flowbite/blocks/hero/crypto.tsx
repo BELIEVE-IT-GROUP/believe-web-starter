@@ -17,9 +17,9 @@ type FinancialExchangeCryptoHeroProps = {
 export function FinancialExchangeCryptoHero(props: FinancialExchangeCryptoHeroProps = {}) {
   const {
     headline = "Decentralized for a better tomorrow",
-    descriptionPrefix = "Buy, trade, and hold ",
+    descriptionPrefix = "Buy, trade, and hold ",
     descriptionHighlight = "600+",
-    descriptionSuffix = " cryptocurrencies on Flowbite",
+    descriptionSuffix = " cryptocurrencies on Flowbite",
     stats = [
       { value: "$76 billion", label: "24h trading volume" },
       { value: "600+", label: "Cryptocurrencies listed" },

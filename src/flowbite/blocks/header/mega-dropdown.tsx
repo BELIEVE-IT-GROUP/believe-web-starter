@@ -2,30 +2,56 @@
 
 import { Button, MegaMenu, Navbar } from "flowbite-react";
 
-export function MegaDropdownHeader() {
+export interface MegaDropdownHeaderProps {
+  logoUrl?: string;
+  logoAlt?: string;
+  brandName?: string;
+  brandHref?: string;
+  navLinks?: { label: string; href: string }[];
+  primaryCta?: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
+}
+
+const DEMO_NAV_LINKS = [
+  { label: 'Home', href: '#' },
+  { label: 'Features', href: '#' },
+  { label: 'Marketplace', href: '#' },
+  { label: 'Team', href: '#' },
+  { label: 'Contact', href: '#' },
+];
+
+export function MegaDropdownHeader({
+  logoUrl = 'https://flowbite.com/docs/images/logo.svg',
+  logoAlt = 'Logo',
+  brandName = 'Flowbite',
+  brandHref = '#',
+  navLinks = DEMO_NAV_LINKS,
+  primaryCta = { label: 'Sign up', href: '#' },
+  secondaryCta = { label: 'Login', href: '#' },
+}: MegaDropdownHeaderProps = {}) {
   return (
     <header>
       <MegaMenu fluid>
-        <Navbar.Brand href="https://flowbite.com">
+        <Navbar.Brand href={brandHref}>
           <img
-            src="https://flowbite.com/docs/images/logo.svg"
+            src={logoUrl}
             className="mr-3 h-6 sm:h-9"
-            alt="Flowbite Logo"
+            alt={logoAlt}
           />
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-            Flowbite
+            {brandName}
           </span>
         </Navbar.Brand>
         <div className="flex items-center gap-3 lg:order-2">
           <Button
             color="gray"
-            href="#"
+            href={secondaryCta.href}
             className="border-0 hover:bg-gray-50 focus:outline-none focus:ring-gray-300 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-800"
           >
-            Login
+            {secondaryCta.label}
           </Button>
-          <Button color="info" href="#">
-            Sign up
+          <Button color="info" href={primaryCta.href}>
+            {primaryCta.label}
           </Button>
           <Navbar.Toggle theme={{ icon: "h-5 w-5 shrink-0" }} />
         </div>
@@ -35,16 +61,17 @@ export function MegaDropdownHeader() {
           }}
           className="md:order-1"
         >
-          <Navbar.Link
-            active
-            href="#"
-            className="border-b border-gray-100 bg-transparent text-blue-700 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-700 md:border-0"
-          >
-            Home
-          </Navbar.Link>
-          <Navbar.Link href="#">Features</Navbar.Link>
-          <Navbar.Link href="#">Marketplace</Navbar.Link>
-          <li className="[&>button]:flex [&>button]:w-full [&>button]:items-center [&>button]:justify-between [&>button]:text-left [&>div]:w-[97%] [&>div]:rounded-2xl lg:[&>div]:w-fit [&_span]:w-full [&_span]:justify-between [&_span]:text-base [&_span]:font-medium [&_span]:text-gray-700 [&_span]:transition-none [&_span]:dark:text-gray-400 [&_span]:dark:hover:text-white md:hover:[&_span]:text-blue-700 [&_ul]:py-0">
+          {navLinks.map((link, i) => (
+            <Navbar.Link
+              key={link.href + i}
+              active={i === 0}
+              href={link.href}
+              className="border-b border-gray-100 bg-transparent text-primary-700 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-700 md:border-0"
+            >
+              {link.label}
+            </Navbar.Link>
+          ))}
+          <li className="[&>button]:flex [&>button]:w-full [&>button]:items-center [&>button]:justify-between [&>button]:text-left [&>div]:w-[97%] [&>div]:rounded-2xl lg:[&>div]:w-fit [&_span]:w-full [&_span]:justify-between [&_span]:text-base [&_span]:font-medium [&_span]:text-gray-700 [&_span]:transition-none [&_span]:dark:text-gray-400 [&_span]:dark:hover:text-white md:hover:[&_span]:text-primary-700 [&_ul]:py-0">
             <MegaMenu.Dropdown toggle={<span>Company</span>}>
               <div className="grid w-full bg-white dark:border-gray-700 dark:bg-gray-700 lg:w-auto lg:grid-cols-3 lg:rounded-lg">
                 <div className="bg-white p-2 text-gray-900 dark:bg-gray-800 dark:text-white lg:col-span-2 lg:rounded-lg">
@@ -94,7 +121,7 @@ export function MegaDropdownHeader() {
                           </svg>
                         </div>
                         <div>
-                          <div className="font-semibold">New & Noteworthy</div>
+                          <div className="font-semibold">New &amp; Noteworthy</div>
                           <div className="text-sm text-gray-500 dark:text-gray-400">
                             Up-and-coming designers
                           </div>
@@ -183,69 +210,21 @@ export function MegaDropdownHeader() {
                     Browse categories
                   </h3>
                   <ul className="space-y-4 text-sm text-gray-500 dark:text-gray-400">
-                    <li>
-                      <a
-                        href="#"
-                        className="hover:text-primary-600 dark:hover:text-primary-500"
-                      >
-                        Animation
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="hover:text-primary-600 dark:hover:text-primary-500"
-                      >
-                        Branding
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="hover:text-primary-600 dark:hover:text-primary-500"
-                      >
-                        Illustration
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="hover:text-primary-600 dark:hover:text-primary-500"
-                      >
-                        Mobile
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="hover:text-primary-600 dark:hover:text-primary-500"
-                      >
-                        Print
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="hover:text-primary-600 dark:hover:text-primary-500"
-                      >
-                        Product Design
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="hover:text-primary-600 dark:hover:text-primary-500"
-                      >
-                        Web Design
-                      </a>
-                    </li>
+                    {['Animation', 'Branding', 'Illustration', 'Mobile', 'Print', 'Product Design', 'Web Design'].map((cat) => (
+                      <li key={cat}>
+                        <a
+                          href="#"
+                          className="hover:text-primary-600 dark:hover:text-primary-500"
+                        >
+                          {cat}
+                        </a>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
             </MegaMenu.Dropdown>
           </li>
-          <Navbar.Link href="#">Team</Navbar.Link>
-          <Navbar.Link href="#">Contact</Navbar.Link>
         </Navbar.Collapse>
       </MegaMenu>
     </header>

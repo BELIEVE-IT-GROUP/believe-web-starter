@@ -15,7 +15,7 @@ export function SearchBarDatepickerHeroSection(props: SearchBarDatepickerHeroSec
   const {
     backgroundImage = "https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/coast-house-view.jpg",
     headline = "Every home is a destination",
-    description = "The best of Luxury Retreats is now Flowbite Luxe—offering the world's most extraordinary homes with the highest standard of service.",
+    description = "The best of Luxury Retreats is now Flowbite Luxe - offering the world's most extraordinary homes with the highest standard of service.",
     signInHref = "#",
     signInLabel = "Sign In / Register",
   } = props

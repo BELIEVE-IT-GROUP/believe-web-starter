@@ -19,9 +19,9 @@ type InformationalCTAWithAppScreenshotHeroProps = {
 
 export function InformationalCTAWithAppScreenshotHero(props: InformationalCTAWithAppScreenshotHeroProps = {}) {
   const {
-    headline = "A hackable ",
+    headline = "A hackable ",
     headlineHighlight = "text editor",
-    headlineSuffix = " for the 21st Century",
+    headlineSuffix = " for the 21st Century",
     description = "Here at flowbite we focus on markets where technology, innovation, and capital can unlock long-term value.",
     version = "1.60.0",
     versionLabel = "Release notes",

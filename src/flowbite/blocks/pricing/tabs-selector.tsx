@@ -139,7 +139,7 @@ export function TabsSelectorPricingCards(props: TabsSelectorPricingCardsProps = 
                 <div className="mb-4 text-5xl font-extrabold text-gray-900 dark:text-white">
                   {plan.price}
                 </div>
-                <a href={plan.ctaHref ?? '#'} className="mb-4 flex justify-center rounded-lg bg-primary-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-primary-700 focus:ring-4 focus:ring-blue-200 dark:focus:ring-primary-900">
+                <a href={plan.ctaHref ?? '#'} className="mb-4 flex justify-center rounded-lg bg-primary-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900">
                   {plan.ctaLabel ?? 'Buy now'}
                 </a>
                 {plan.secondaryLabel && (

@@ -22,7 +22,7 @@ export function BackgroundCoverImageWithCTAsHero(props: BackgroundCoverCtasHeroP
     ],
   } = props
   return (
-    <section className="bg-gray-700 bg-cover bg-center bg-no-repeat bg-blend-multiply" style={{ backgroundImage: `url(‘${backgroundImage}’)` }}>
+    <section className="bg-gray-700 bg-cover bg-center bg-no-repeat bg-blend-multiply" style={{ backgroundImage: `url('${backgroundImage}')` }}>
       <div className="relative z-10 mx-auto max-w-screen-xl px-4 py-8 text-white lg:py-16">
         <div className="mb-6 max-w-screen-lg lg:mb-0">
           <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl">
