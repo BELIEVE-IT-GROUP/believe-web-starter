@@ -17,24 +17,39 @@ export function CtaBlock(props: {
   const actions = ctas?.length ? ctas : cta?.text ? [{ ...cta, style: 'primary' }] : []
   const backgroundImageUrl = getMediaUrl(backgroundImage)
 
-  const bg = backgroundImageUrl || variant === 'dark'
-    ? 'bg-gray-900 text-white bg-cover bg-center'
-    : 'bg-primary-600 text-white'
-  const sectionProps = getSectionProps(appearance, { background: bg, className: 'relative overflow-hidden' })
+  const sectionProps = getSectionProps(appearance, {
+    background: 'bg-believe-900',
+    className: 'relative overflow-hidden',
+  })
 
   return (
     <section
       {...sectionProps}
-      style={backgroundImageUrl ? { backgroundImage: `linear-gradient(rgba(17, 24, 39, 0.72), rgba(17, 24, 39, 0.72)), url(${backgroundImageUrl})` } : undefined}
+      style={
+        backgroundImageUrl
+          ? {
+              backgroundImage: `url(${backgroundImageUrl})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }
+          : undefined
+      }
     >
+      {backgroundImageUrl && (
+        <div className="absolute inset-0 bg-believe-900/80" aria-hidden="true" />
+      )}
       <div className={getContainerClassName(appearance, 'relative text-center')}>
+        <span className="eyebrow mb-7 inline-flex items-center gap-2 text-paper/60">
+          <span className="inline-block h-1.5 w-1.5 rounded-full bg-signal-400" aria-hidden="true" />
+          Believe
+        </span>
         {headline && (
-          <h2 className="mb-4 text-3xl font-extrabold tracking-tight md:text-4xl">
+          <h2 className="font-display mb-4 text-balance text-3xl font-medium leading-tight tracking-tight text-paper md:text-4xl lg:text-5xl">
             {headline}
           </h2>
         )}
         {subheadline && (
-          <p className="mx-auto mb-8 max-w-2xl text-lg opacity-90">
+          <p className="mx-auto mb-10 max-w-2xl text-balance text-lg leading-relaxed text-paper/70">
             {subheadline}
           </p>
         )}
@@ -46,8 +61,8 @@ export function CtaBlock(props: {
                 href={action.url || '#'}
                 className={
                   action.style === 'secondary' || action.style === 'outline'
-                    ? 'inline-flex items-center rounded-lg border border-white/70 px-6 py-3 text-base font-medium text-white hover:bg-white/10'
-                    : 'inline-flex items-center rounded-lg bg-white px-6 py-3 text-base font-medium text-gray-900 hover:bg-gray-100'
+                    ? 'inline-flex items-center rounded-full border border-paper/40 px-7 py-3.5 text-base font-medium text-paper transition-colors hover:border-paper/70 hover:bg-paper/10'
+                    : 'inline-flex items-center rounded-full bg-paper px-7 py-3.5 text-base font-medium text-believe-900 transition-colors hover:bg-paper/90'
                 }
               >
                 {action.text}

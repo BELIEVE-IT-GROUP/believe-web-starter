@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { Button, Navbar } from 'flowbite-react'
+import { Navbar } from 'flowbite-react'
 import type { SiteSettings } from '@/lib/payload'
 
 export function Header({ settings }: { settings?: SiteSettings | null }) {
@@ -17,28 +17,37 @@ export function Header({ settings }: { settings?: SiteSettings | null }) {
   const siteName = settings?.siteName || 'Believe'
 
   return (
-    <Navbar fluid rounded={false} className="sticky top-0 z-50 border-b border-gray-200 bg-white/90 backdrop-blur">
-      <div className="mx-auto flex w-full max-w-screen-xl items-center justify-between px-4">
+    <Navbar fluid rounded={false} className="sticky top-0 z-50 border-b border-ink-900/10 bg-paper/85 backdrop-blur">
+      <div className="mx-auto flex w-full max-w-screen-xl items-center justify-between px-6 py-1">
         <Navbar.Brand as={Link} href="/">
           {logo?.url ? (
             <Image src={logo.url} alt={logo.alt || siteName} width={132} height={40} className="mr-3 h-8 w-auto object-contain" />
           ) : (
-            <span className="self-center whitespace-nowrap text-xl font-bold text-primary-600">
-              {siteName}
+            <span className="wordmark self-center whitespace-nowrap text-2xl" aria-label={siteName}>
+              Believ<span className="tilt">e</span><span className="dot" aria-hidden="true" />
             </span>
           )}
         </Navbar.Brand>
-        <div className="flex md:order-2">
+        <div className="flex items-center gap-2 md:order-2">
           {cta?.label && cta?.url && (
-            <Button as={Link} href={cta.url} color="info" size="sm">
+            <Link
+              href={cta.url}
+              className="rounded-full bg-believe-700 px-5 py-2.5 text-sm font-medium text-paper transition-colors hover:bg-believe-900"
+            >
               {cta.label}
-            </Button>
+            </Link>
           )}
           <Navbar.Toggle />
         </div>
         <Navbar.Collapse>
           {navLinks.map((link) => (
-            <Navbar.Link key={`${link.label}-${link.url}`} as={Link} href={link.url} target={link.newTab ? '_blank' : undefined}>
+            <Navbar.Link
+              key={`${link.label}-${link.url}`}
+              as={Link}
+              href={link.url}
+              target={link.newTab ? '_blank' : undefined}
+              className="text-ink-700 md:text-[15px]"
+            >
               {link.label}
             </Navbar.Link>
           ))}

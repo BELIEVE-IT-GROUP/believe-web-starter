@@ -1,6 +1,6 @@
 'use client'
 
-import { Button, Label, Select, Textarea, TextInput } from 'flowbite-react'
+import { Label, Select, Textarea, TextInput } from 'flowbite-react'
 import { useState } from 'react'
 
 import { getContainerClassName, getSectionProps, type BlockAppearance } from './appearance'
@@ -56,22 +56,48 @@ export function ContactBlock(props: {
   }
 
   return (
-    <section {...getSectionProps(appearance, { background: 'bg-white dark:bg-gray-900' })}>
+    <section {...getSectionProps(appearance, { background: 'bg-paper' })}>
       <div className={getContainerClassName(appearance)}>
         <div className="grid gap-12 lg:grid-cols-2">
           <div>
-            {headline && <h2 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">{headline}</h2>}
-            {subheadline && <p className="mb-8 text-lg text-gray-500 dark:text-gray-400">{subheadline}</p>}
-            <form className="space-y-6" onSubmit={handleSubmit}>
+            <span className="eyebrow mb-6 inline-flex items-center gap-2">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-signal-400" aria-hidden="true" />
+              Contacto
+            </span>
+            {headline && (
+              <h2 className="font-display mb-4 text-balance text-3xl font-medium leading-tight tracking-tight text-ink-900 md:text-4xl">
+                {headline}
+              </h2>
+            )}
+            {subheadline && (
+              <p className="mb-8 text-lg leading-relaxed text-ink-500">{subheadline}</p>
+            )}
+            <form className="space-y-5" onSubmit={handleSubmit}>
               {fields.map((field, i) => {
                 const name = field.fieldName || field.name || `field_${i}`
                 return (
-                  <div key={name}>
-                    <Label htmlFor={name} value={`${field.label}${field.required ? ' *' : ''}`} />
+                  <div key={name} className="space-y-1.5">
+                    <Label
+                      htmlFor={name}
+                      value={`${field.label}${field.required ? ' *' : ''}`}
+                      className="text-sm font-medium text-ink-900"
+                    />
                     {field.type === 'textarea' ? (
-                      <Textarea id={name} name={name} required={field.required} rows={5} placeholder={field.placeholder} />
+                      <Textarea
+                        id={name}
+                        name={name}
+                        required={field.required}
+                        rows={5}
+                        placeholder={field.placeholder}
+                        className="rounded-lg border border-ink-900/15 bg-paper text-ink-900 placeholder-ink-500/60 focus:border-believe-700 focus:ring-0"
+                      />
                     ) : field.type === 'select' ? (
-                      <Select id={name} name={name} required={field.required}>
+                      <Select
+                        id={name}
+                        name={name}
+                        required={field.required}
+                        className="rounded-lg border border-ink-900/15 bg-paper text-ink-900 focus:border-believe-700 focus:ring-0"
+                      >
                         {field.placeholder && <option value="">{field.placeholder}</option>}
                         {field.options?.map((option, optionIndex) => (
                           <option key={`${option.value}-${optionIndex}`} value={option.value || option.label || ''}>
@@ -80,21 +106,42 @@ export function ContactBlock(props: {
                         ))}
                       </Select>
                     ) : (
-                      <TextInput id={name} name={name} type={field.type || 'text'} required={field.required} placeholder={field.placeholder} />
+                      <TextInput
+                        id={name}
+                        name={name}
+                        type={field.type || 'text'}
+                        required={field.required}
+                        placeholder={field.placeholder}
+                        className="rounded-lg border border-ink-900/15 bg-paper text-ink-900 placeholder-ink-500/60 focus:border-believe-700 focus:ring-0"
+                      />
                     )}
                   </div>
                 )
               })}
-              <Button type="submit" color="info" isProcessing={status === 'loading'}>
-                Enviar mensaje
-              </Button>
-              {status === 'success' && <p className="text-sm text-green-600">{successMessage || 'Mensaje enviado.'}</p>}
-              {status === 'error' && <p className="text-sm text-red-600">No se pudo enviar. Intentá de nuevo.</p>}
+              <button
+                type="submit"
+                disabled={status === 'loading'}
+                className="rounded-full bg-believe-700 px-7 py-3.5 text-base font-medium text-paper transition-colors hover:bg-believe-900 disabled:opacity-60"
+              >
+                {status === 'loading' ? 'Enviando…' : 'Enviar mensaje'}
+              </button>
+              {status === 'success' && (
+                <p className="text-sm text-believe-700">{successMessage || 'Mensaje enviado.'}</p>
+              )}
+              {status === 'error' && (
+                <p className="text-sm text-ink-500">No se pudo enviar. Intentá de nuevo.</p>
+              )}
             </form>
           </div>
           {showMap && mapUrl && (
-            <div className="overflow-hidden rounded-lg">
-              <iframe src={mapUrl} className="h-full min-h-[400px] w-full" style={{ border: 0 }} allowFullScreen loading="lazy" />
+            <div className="overflow-hidden rounded-xl border border-ink-900/10">
+              <iframe
+                src={mapUrl}
+                className="h-full min-h-[400px] w-full"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+              />
             </div>
           )}
         </div>

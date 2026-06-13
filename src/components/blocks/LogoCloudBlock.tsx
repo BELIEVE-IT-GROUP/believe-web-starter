@@ -12,16 +12,24 @@ export function LogoCloudBlock(props: {
   const { headline, logos, appearance } = props
 
   return (
-    <section {...getSectionProps(appearance, { background: 'bg-gray-50', spacingTop: 'pt-12 lg:pt-16', spacingBottom: 'pb-12 lg:pb-16' })}>
+    <section
+      {...getSectionProps(appearance, {
+        background: 'bg-paper',
+        spacingTop: 'pt-12 lg:pt-16',
+        spacingBottom: 'pb-12 lg:pb-16',
+      })}
+    >
       <div className={getContainerClassName(appearance)}>
         {headline && (
-          <p className="mb-8 text-center text-sm font-medium uppercase tracking-wide text-gray-500">
-            {headline}
-          </p>
+          <p className="eyebrow mb-10 text-center">{headline}</p>
         )}
-        <div className="flex flex-wrap items-center justify-center gap-8 opacity-60 grayscale hover:grayscale-0">
+        <div className="flex flex-wrap items-center justify-center gap-10">
           {logos?.map((logo, i) => (
-            <a key={i} href={logo.url || '#'} className="transition-opacity hover:opacity-100">
+            <a
+              key={i}
+              href={logo.url || '#'}
+              className="opacity-40 grayscale transition-all duration-200 hover:opacity-70 hover:grayscale-0"
+            >
               {getMediaUrl(logo.image) && (
                 <Image
                   src={getMediaUrl(logo.image)}

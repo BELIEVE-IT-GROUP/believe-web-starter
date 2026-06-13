@@ -19,7 +19,7 @@ function StarIcon({ filled }: { filled: boolean }) {
   return (
     <svg
       aria-hidden="true"
-      className={`h-4 w-4 ${filled ? 'text-primary-500' : 'text-gray-300'}`}
+      className={`h-4 w-4 ${filled ? 'text-believe-700' : 'text-ink-900/20'}`}
       fill="currentColor"
       viewBox="0 0 20 20"
     >
@@ -37,49 +37,75 @@ export function TestimonialsBlock(props: {
   const { headline, items, layout = 'grid', appearance } = props
 
   return (
-    <section {...getSectionProps(appearance, { background: 'bg-white' })}>
+    <section {...getSectionProps(appearance, { background: 'bg-paper' })}>
       <div className={getContainerClassName(appearance)}>
         {headline && (
-          <h2 className="mb-12 text-center text-3xl font-bold text-gray-900 md:text-4xl">
-            {headline}
-          </h2>
+          <div className="mb-12 text-center">
+            <span className="eyebrow mb-4 inline-block">Testimonios</span>
+            <h2 className="font-display mx-auto max-w-2xl text-balance text-3xl font-medium text-ink-900 md:text-4xl">
+              {headline}
+            </h2>
+          </div>
         )}
-        <div className={`grid gap-8 ${layout === 'carousel' ? 'md:grid-cols-1' : 'md:grid-cols-2 lg:grid-cols-3'}`}>
+        <div
+          className={`grid gap-6 ${
+            layout === 'carousel' ? 'md:grid-cols-1' : 'md:grid-cols-2 lg:grid-cols-3'
+          }`}
+        >
           {items?.map((item, i) => {
             const author = item.name || item.author || 'Cliente'
             const avatarUrl = getMediaUrl(item.photo || item.avatar)
             const rating = Math.max(0, Math.min(5, item.rating || 0))
 
             return (
-            <div key={i} className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
-              {rating > 0 && (
-                <div className="mb-4 flex gap-1">
-                  {Array.from({ length: 5 }).map((_, starIndex) => (
-                    <StarIcon key={starIndex} filled={starIndex < rating} />
-                  ))}
-                </div>
-              )}
-              <p className="mb-6 text-gray-600 italic">&ldquo;{item.quote}&rdquo;</p>
-              <div className="flex items-center gap-3">
-                {avatarUrl && (
-                  <Image
-                    src={avatarUrl}
-                    width={40}
-                    height={40}
-                    alt={item.photo?.alt || author}
-                    className="rounded-full"
-                  />
+              <div
+                key={i}
+                className="relative flex flex-col rounded-xl border border-ink-900/10 bg-paper p-7"
+              >
+                {/* Flourish: large open-quote in believe-700 at low opacity */}
+                {i === 0 && (
+                  <span
+                    aria-hidden="true"
+                    className="font-display pointer-events-none absolute right-6 top-4 select-none text-7xl font-medium leading-none text-believe-700/10"
+                  >
+                    &ldquo;
+                  </span>
                 )}
-                <div>
-                  <div className="font-semibold text-gray-900">{author}</div>
-                  {(item.role || item.company) && (
-                    <div className="text-sm text-gray-500">
-                      {item.role}{item.role && item.company ? ', ' : ''}{item.company}
-                    </div>
+
+                {rating > 0 && (
+                  <div className="mb-4 flex gap-1">
+                    {Array.from({ length: 5 }).map((_, starIndex) => (
+                      <StarIcon key={starIndex} filled={starIndex < rating} />
+                    ))}
+                  </div>
+                )}
+
+                <p className="font-display mb-6 flex-1 text-lg font-medium leading-relaxed text-ink-900">
+                  &ldquo;{item.quote}&rdquo;
+                </p>
+
+                <div className="flex items-center gap-3">
+                  {avatarUrl && (
+                    <Image
+                      src={avatarUrl}
+                      width={40}
+                      height={40}
+                      alt={item.photo?.alt || author}
+                      className="rounded-full border border-ink-900/10 object-cover"
+                    />
                   )}
+                  <div>
+                    <div className="font-medium text-ink-900">{author}</div>
+                    {(item.role || item.company) && (
+                      <div className="text-sm text-ink-500">
+                        {item.role}
+                        {item.role && item.company ? ', ' : ''}
+                        {item.company}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
             )
           })}
         </div>

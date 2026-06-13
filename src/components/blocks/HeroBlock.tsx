@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { Button, Badge } from 'flowbite-react'
 import Image from 'next/image'
 
 import { getMediaUrl } from '@/lib/payload'
@@ -23,51 +22,56 @@ export function HeroBlock(props: {
 }) {
   const { headline, subheadline, ctas, image, badge, appearance } = props
   const imageUrl = getMediaUrl(image)
-  const sectionProps = getSectionProps(appearance, { background: 'bg-white dark:bg-gray-900' })
+  const sectionProps = getSectionProps(appearance, { background: 'bg-paper' })
   const alignment = getAlignmentClassName(appearance, 'text-center')
 
   return (
     <section {...sectionProps}>
       <div className={getContainerClassName(appearance, alignment)}>
-        {badge && (
-          <Badge color="blue" size="sm" className="mx-auto mb-4 w-fit">
-            {badge}
-          </Badge>
-        )}
-        <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
-          {headline || 'Bienvenido'}
-        </h1>
-        {subheadline && (
-          <p className="mx-auto mb-8 max-w-2xl text-lg font-normal text-gray-500 dark:text-gray-400 lg:text-xl">
-            {subheadline}
-          </p>
-        )}
-        {ctas && ctas.length > 0 && (
-          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            {ctas.map((cta, i) => (
-              <Button
-                key={i}
-                href={cta.url || '#'}
-                color={cta.style === 'primary' ? 'blue' : 'light'}
-                size="lg"
-                as={Link}
-              >
-                {cta.text}
-              </Button>
-            ))}
-          </div>
-        )}
-        {imageUrl && (
-          <div className="mt-12">
-            <Image
-              src={imageUrl}
-              width={1200}
-              height={600}
-              alt={image?.alt || ''}
-              className="mx-auto rounded-lg shadow-lg"
-            />
-          </div>
-        )}
+        <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center py-14 md:py-24">
+          {badge && (
+            <span className="eyebrow mb-7 inline-flex items-center gap-2">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-signal-400" aria-hidden="true" />
+              {badge}
+            </span>
+          )}
+          <h1 className="font-display mb-6 max-w-3xl text-balance text-5xl font-medium leading-[1.03] tracking-tight text-ink-900 md:text-6xl lg:text-[4.25rem]">
+            {headline || 'Bienvenido'}
+          </h1>
+          {subheadline && (
+            <p className="mx-auto mb-9 max-w-2xl text-balance text-lg leading-relaxed text-ink-500 md:text-xl">
+              {subheadline}
+            </p>
+          )}
+          {ctas && ctas.length > 0 && (
+            <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+              {ctas.map((cta, i) => (
+                <Link
+                  key={i}
+                  href={cta.url || '#'}
+                  className={
+                    cta.style === 'primary'
+                      ? 'rounded-full bg-believe-700 px-7 py-3.5 text-base font-medium text-paper transition-colors hover:bg-believe-900'
+                      : 'rounded-full border border-ink-900/15 px-7 py-3.5 text-base font-medium text-ink-900 transition-colors hover:border-ink-900/40'
+                  }
+                >
+                  {cta.text}
+                </Link>
+              ))}
+            </div>
+          )}
+          {imageUrl && (
+            <div className="mt-14 w-full">
+              <Image
+                src={imageUrl}
+                width={1200}
+                height={600}
+                alt={image?.alt || ''}
+                className="mx-auto rounded-xl border border-ink-900/10"
+              />
+            </div>
+          )}
+        </div>
       </div>
     </section>
   )

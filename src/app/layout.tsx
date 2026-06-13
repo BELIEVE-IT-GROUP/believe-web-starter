@@ -1,11 +1,24 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Fraunces, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { getSettings } from '@/lib/payload'
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+// Tipografia Believe (brandbook 2026): Fraunces display, Inter body, JetBrains Mono data
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  variable: '--font-fraunces',
+  axes: ['opsz'],
+  display: 'swap',
+})
+const jetbrains = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains',
+  weight: ['400', '500'],
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: 'Believe Agency',
@@ -20,8 +33,8 @@ export default async function RootLayout({
   const settings = await getSettings()
 
   return (
-    <html lang="es" className={inter.variable}>
-      <body className="bg-white text-gray-900 antialiased">
+    <html lang="es" className={`${inter.variable} ${fraunces.variable} ${jetbrains.variable}`}>
+      <body className="grain bg-paper font-sans text-ink-900 antialiased">
         <TenantTheme settings={settings} />
         <Header settings={settings} />
         <main>{children}</main>

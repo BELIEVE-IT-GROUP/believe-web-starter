@@ -16,14 +16,14 @@ export function VideoEmbedBlock(props: {
     : videoUrl
 
   return (
-    <section {...getSectionProps(appearance, { background: 'bg-white' })}>
+    <section {...getSectionProps(appearance, { background: 'bg-paper' })}>
       <div className={getContainerClassName(appearance)}>
         {headline && (
-          <h2 className="mb-8 text-center text-3xl font-bold text-gray-900 md:text-4xl">
+          <h2 className="font-display mb-8 text-center text-3xl font-medium tracking-tight text-ink-900 md:text-4xl">
             {headline}
           </h2>
         )}
-        <div className="relative aspect-video overflow-hidden rounded-lg bg-gray-900">
+        <div className="relative aspect-video overflow-hidden rounded-xl border border-ink-900/10 bg-ink-900">
           {embedUrl ? (
             <iframe
               src={embedUrl}
@@ -32,12 +32,14 @@ export function VideoEmbedBlock(props: {
               allowFullScreen
             />
           ) : (
-            <div className="flex h-full items-center justify-center text-white">
-              No video URL configured
+            <div className="flex h-full items-center justify-center">
+              <span className="eyebrow text-paper/60">No video URL configured</span>
             </div>
           )}
         </div>
-        {caption && <p className="mt-4 text-center text-gray-500">{caption}</p>}
+        {caption && (
+          <p className="mt-4 text-center text-sm text-ink-500">{caption}</p>
+        )}
       </div>
     </section>
   )

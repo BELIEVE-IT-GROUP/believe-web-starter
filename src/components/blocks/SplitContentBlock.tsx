@@ -21,30 +21,31 @@ export function SplitContentBlock(props: {
   const actions = ctas?.length ? ctas : cta?.text ? [{ ...cta, style: 'primary' }] : []
 
   return (
-    <section {...getSectionProps(appearance, { background: 'bg-white' })}>
+    <section {...getSectionProps(appearance, { background: 'bg-paper' })}>
       <div className={getContainerClassName(appearance)}>
-        <div className={`flex flex-col items-center gap-12 lg:flex-row ${isImageLeft ? 'lg:flex-row-reverse' : ''}`}>
+        <div className={`flex flex-col items-center gap-12 lg:gap-16 lg:flex-row ${isImageLeft ? 'lg:flex-row-reverse' : ''}`}>
           <div className="flex-1">
             {headline && (
-              <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">
+              <h2 className="font-display mb-5 text-3xl font-medium leading-tight tracking-tight text-ink-900 md:text-4xl">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-signal-400 mr-2 align-middle" aria-hidden="true" />
                 {headline}
               </h2>
             )}
             {body ? (
-              <div className="mb-6 text-lg">
+              <div className="mb-7 text-lg leading-relaxed text-ink-500">
                 <RichTextRenderer data={body} />
               </div>
             ) : null}
             {actions.length > 0 && (
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-3">
                 {actions.map((cta, i) => (
                   <a
                     key={i}
                     href={cta.url || '#'}
-                    className={`inline-flex items-center rounded-lg px-5 py-2.5 text-sm font-medium ${
+                    className={`inline-flex items-center rounded-full px-6 py-3 text-sm font-medium transition-colors ${
                       cta.style === 'primary'
-                        ? 'bg-primary-600 text-white hover:bg-primary-700'
-                        : 'border border-gray-300 text-gray-700 hover:bg-gray-50'
+                        ? 'bg-believe-700 text-paper hover:bg-believe-900'
+                        : 'border border-ink-900/15 text-ink-900 hover:border-ink-900/40'
                     }`}
                   >
                     {cta.text}
@@ -60,7 +61,7 @@ export function SplitContentBlock(props: {
                 width={600}
                 height={400}
                 alt={image?.alt || ''}
-                className="rounded-lg shadow-lg"
+                className="rounded-xl border border-ink-900/10"
               />
             </div>
           )}

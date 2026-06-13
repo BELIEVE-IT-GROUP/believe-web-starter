@@ -32,17 +32,20 @@ export async function BlogListBlock(props: {
   const isList = layout === 'list'
 
   return (
-    <section {...getSectionProps(appearance, { background: 'bg-white' })}>
+    <section {...getSectionProps(appearance, { background: 'bg-paper' })}>
       <div className={getContainerClassName(appearance)}>
         {(headline || cta?.text) && (
           <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             {headline && (
-              <h2 className="text-3xl font-bold text-gray-900 md:text-4xl">
+              <h2 className="font-display text-3xl font-medium text-ink-900 md:text-4xl">
                 {headline}
               </h2>
             )}
             {cta?.text && (
-              <Link href={cta.url || '/blog'} className="text-sm font-medium text-primary-600 hover:text-primary-700">
+              <Link
+                href={cta.url || '/blog'}
+                className="text-sm font-medium text-believe-700 hover:text-believe-900 transition-colors"
+              >
                 {cta.text}
               </Link>
             )}
@@ -52,7 +55,7 @@ export async function BlogListBlock(props: {
           {posts?.map((post, i) => (
             <article key={post.id || i} className={`group ${isList ? 'grid gap-6 md:grid-cols-[240px_1fr]' : ''}`}>
               {getMediaUrl(post.coverImage) && (
-                <Link href={`/blog/${post.slug}`} className="block overflow-hidden rounded-lg bg-gray-100">
+                <Link href={`/blog/${post.slug}`} className="block overflow-hidden rounded-xl border border-ink-900/10">
                   <Image
                     src={getMediaUrl(post.coverImage)}
                     width={400}
@@ -62,15 +65,36 @@ export async function BlogListBlock(props: {
                   />
                 </Link>
               )}
-              <div>
-                <div className="flex items-center gap-2 text-sm text-gray-500">
-                  {categoryName(post.category) && <span className="text-primary-600">{categoryName(post.category)}</span>}
-                  {post.publishedAt && <span>{new Date(post.publishedAt).toLocaleDateString()}</span>}
+              <div className="pt-4">
+                <div className="flex items-center gap-2">
+                  {categoryName(post.category) && (
+                    <span className="eyebrow text-believe-700">{categoryName(post.category)}</span>
+                  )}
+                  {post.publishedAt && categoryName(post.category) && (
+                    <span className="inline-block h-1 w-1 rounded-full bg-signal-400" aria-hidden="true" />
+                  )}
+                  {post.publishedAt && (
+                    <span className="eyebrow">
+                      {new Date(post.publishedAt).toLocaleDateString('es', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                      })}
+                    </span>
+                  )}
                 </div>
-                <h3 className="mt-2 text-xl font-bold text-gray-900 group-hover:text-primary-600">
+                <h3 className="font-display mt-2 text-xl font-medium text-ink-900 group-hover:text-believe-700 transition-colors">
                   <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                 </h3>
-                {post.excerpt && <p className="mt-2 text-gray-500">{post.excerpt}</p>}
+                {post.excerpt && (
+                  <p className="mt-2 text-ink-500 leading-relaxed">{post.excerpt}</p>
+                )}
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="mt-4 inline-block text-sm font-medium text-believe-700 hover:text-believe-900 transition-colors"
+                >
+                  Leer más →
+                </Link>
               </div>
             </article>
           ))}
