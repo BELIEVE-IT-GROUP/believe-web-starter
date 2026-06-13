@@ -1,0 +1,19 @@
+docs/BLUEPRINT-FASE2.md
+  s_4627fdffee19c5::t_cb1208e6e15dc3 1-144
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "1d01937d5e93e44d2b437d776d609fa029ecda9a",
+  "prompts": {},
+  "sessions": {
+    "s_4627fdffee19c5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "26c512f6-9762-4540-aa5b-da77944ecedc",
+        "model": "unknown"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
