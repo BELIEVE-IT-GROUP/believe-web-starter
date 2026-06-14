@@ -1,0 +1,23 @@
+believe-cms-mcp/src/tools/cms_create_page.ts
+  s_86c06f00f11ac8::t_be11a3331e42e8 43-50
+  s_86c06f00f11ac8::t_e28bca12919d2f 106,115,120,130,135
+  s_86c06f00f11ac8::t_67036546d74f1b 73-76
+believe-cms-mcp/src/tools/cms_create_tenant.ts
+  s_86c06f00f11ac8::t_6074a0efe40ffd 67-75,80,89,94,99,104-128
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "0d1aa4cb2f0f8723f470fe8d908ff198d792205b",
+  "prompts": {},
+  "sessions": {
+    "s_86c06f00f11ac8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "cab5c659-d488-459b-aad8-18b0f1b23ec2",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
