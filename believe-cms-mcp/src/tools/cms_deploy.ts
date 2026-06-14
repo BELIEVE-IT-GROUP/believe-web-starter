@@ -27,8 +27,8 @@ const GIT_REPOSITORY =
 const GIT_BRANCH = "main";
 
 function sslipUrl(uuid: string, ip: string): string {
-  // Coolify uses the first 8 hex chars of the uuid as the subdomain.
-  const prefix = uuid.replace(/-/g, "").slice(0, 8);
+  // Coolify usa el uuid COMPLETO (sin guiones) como subdominio sslip, no solo 8 chars.
+  const prefix = uuid.replace(/-/g, "");
   return `http://${prefix}.${ip}.sslip.io`;
 }
 

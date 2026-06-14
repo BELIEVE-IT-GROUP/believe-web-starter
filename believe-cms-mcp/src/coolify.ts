@@ -99,6 +99,9 @@ export class CoolifyClient {
     const payload: Record<string, unknown> = {
       project_uuid: this.cfg.coolifyProject,
       server_uuid: this.cfg.coolifyServer,
+      environment_name: "production",
+      ports_exposes: "3000",
+      instant_deploy: false,
       name: input.name,
       build_pack: input.buildPack ?? "nixpacks",
       ...(input.gitRepository ? { git_repository: input.gitRepository } : {}),
@@ -121,9 +124,12 @@ export class CoolifyClient {
     uuid: string,
     envs: Record<string, string>,
   ): Promise<unknown> {
+    // NEXT_PUBLIC_* deben estar disponibles en BUILD time (Next.js los inlinea al
+    // compilar). Si no, el static render no ve TENANT_ID y la home sale vacia.
     const data = Object.entries(envs).map(([key, value]) => ({
       key,
       value,
+      is_build_time: key.startsWith("NEXT_PUBLIC_"),
     }));
     return this.request(`/applications/${uuid}/envs/bulk`, {
       method: "PATCH",
