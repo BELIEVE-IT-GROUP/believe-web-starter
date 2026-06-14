@@ -64,10 +64,20 @@ const tool: Tool = {
     // Idempotency: look up by slug first (also validates credentials early).
     const existing = await cms.findTenantBySlug(slug);
     if (existing) {
+      if (dryRun) {
+        return json({
+          action: "exists",
+          message: `Tenant '${slug}' already exists; returning it.`,
+          tenant: { id: existing.id, slug: existing.slug, name: existing.name },
+          settings: "dryRun: would ensure settings doc exists.",
+        });
+      }
+      const settingsStatus = await ensureSettings(cms, String(existing.id), name);
       return json({
         action: "exists",
         message: `Tenant '${slug}' already exists; returning it.`,
         tenant: { id: existing.id, slug: existing.slug, name: existing.name },
+        settings: settingsStatus,
       });
     }
 
@@ -76,16 +86,45 @@ const tool: Tool = {
         action: "dryRun",
         message: `Would create tenant '${slug}'. Pass dryRun:false to apply.`,
         wouldCreate: data,
+        settings: "dryRun: would create settings doc after tenant creation.",
       });
     }
 
     const created = await cms.create("tenants", data);
+    const settingsStatus = await ensureSettings(cms, String(created.id), name);
     return json({
       action: "created",
       message: `Created tenant '${slug}'.`,
       tenant: { id: created.id, slug: created.slug, name: created.name },
+      settings: settingsStatus,
     });
   },
 };
+
+/**
+ * Ensure a 'settings' doc exists for the given tenant.
+ * Creates a minimal one if absent; does nothing if one already exists.
+ * Returns a human-readable status string.
+ */
+async function ensureSettings(
+  cms: CmsClient,
+  tenantId: string,
+  tenantName: string,
+): Promise<string> {
+  const result = await cms.find("settings", {
+    where: { tenant: { equals: tenantId } },
+    limit: 1,
+  });
+  if (result.docs.length > 0) {
+    return "already-existed";
+  }
+  await cms.create("settings", {
+    tenant: tenantId,
+    siteName: tenantName,
+    header: { templateId: "header.default" },
+    footer: { templateId: "footer.default" },
+  });
+  return "created";
+}
 
 export default tool;

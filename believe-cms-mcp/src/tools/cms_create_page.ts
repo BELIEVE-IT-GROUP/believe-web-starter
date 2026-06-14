@@ -40,6 +40,14 @@ const tool: Tool = {
           },
         },
       },
+      status: {
+        type: "string",
+        enum: ["published", "draft"],
+        description:
+          "Publication status of the page. Defaults to 'published' so the " +
+          "frontend can immediately render it.",
+        default: "published",
+      },
       seo: {
         type: "object",
         description: "Optional SEO object passed through verbatim.",
@@ -62,6 +70,10 @@ const tool: Tool = {
       );
     }
     const dryRun = args.dryRun !== false;
+    const status =
+      args.status === "draft" || args.status === "published"
+        ? args.status
+        : "published";
 
     const { blocks, errors } = validateBlocks(args.blocks, "page");
     if (errors.length > 0) {
@@ -91,6 +103,7 @@ const tool: Tool = {
       slug,
       tenant: tenant.id,
       blocks,
+      _status: status,
     };
     if (args.seo && typeof args.seo === "object") data.seo = args.seo;
 
@@ -99,11 +112,12 @@ const tool: Tool = {
         action: "dryRun",
         message:
           `Would create page '${slug}' for tenant '${tenantSlug}' with ` +
-          `${blocks.length} block(s). Pass dryRun:false to apply.`,
+          `${blocks.length} block(s) (status: ${status}). Pass dryRun:false to apply.`,
         wouldCreate: {
           title,
           slug,
           tenant: tenant.id,
+          status,
           blockCount: blocks.length,
           blockTemplateIds: blocks.map((b) => b.templateId),
         },
@@ -113,11 +127,12 @@ const tool: Tool = {
     const created = await cms.create("pages", data);
     return json({
       action: "created",
-      message: `Created page '${slug}' for tenant '${tenantSlug}'.`,
+      message: `Created page '${slug}' for tenant '${tenantSlug}' (status: ${status}).`,
       page: {
         id: created.id,
         slug: created.slug,
         title: created.title,
+        status,
         blockCount: blocks.length,
       },
     });
