@@ -18,30 +18,25 @@ export function CtaBlock(props: {
   const backgroundImageUrl = getMediaUrl(backgroundImage)
 
   const sectionProps = getSectionProps(appearance, {
-    background: 'bg-believe-900',
+    background: '',
     className: 'relative overflow-hidden',
   })
+
+  const sectionStyle = backgroundImageUrl
+    ? { backgroundImage: `url(${backgroundImageUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' }
+    : { backgroundColor: 'var(--brand-ink, #0a0a0a)' }
 
   return (
     <section
       {...sectionProps}
-      style={
-        backgroundImageUrl
-          ? {
-              backgroundImage: `url(${backgroundImageUrl})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }
-          : undefined
-      }
+      style={sectionStyle}
     >
       {backgroundImageUrl && (
-        <div className="absolute inset-0 bg-believe-900/80" aria-hidden="true" />
+        <div className="absolute inset-0" style={{ backgroundColor: 'var(--brand-ink, #0a0a0a)', opacity: 0.8 }} aria-hidden="true" />
       )}
       <div className={getContainerClassName(appearance, 'relative text-center')}>
         <span className="eyebrow mb-7 inline-flex items-center gap-2 text-paper/60">
           <span className="inline-block h-1.5 w-1.5 rounded-full bg-signal-400" aria-hidden="true" />
-          Believe
         </span>
         {headline && (
           <h2 className="font-display mb-4 text-balance text-3xl font-medium leading-tight tracking-tight text-paper md:text-4xl lg:text-5xl">

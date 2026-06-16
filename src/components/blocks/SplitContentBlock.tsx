@@ -42,11 +42,16 @@ export function SplitContentBlock(props: {
                   <a
                     key={i}
                     href={cta.url || '#'}
-                    className={`inline-flex items-center rounded-full px-6 py-3 text-sm font-medium transition-colors ${
+                    className={`inline-flex items-center px-6 py-3 text-sm font-medium transition-colors ${
                       cta.style === 'primary'
-                        ? 'bg-believe-700 text-paper hover:bg-believe-900'
+                        ? 'text-paper hover:opacity-90'
                         : 'border border-ink-900/15 text-ink-900 hover:border-ink-900/40'
                     }`}
+                    style={
+                      cta.style === 'primary'
+                        ? { backgroundColor: 'var(--color-primary)', borderRadius: 'var(--btn-radius, 6px)' }
+                        : { borderRadius: 'var(--btn-radius, 6px)' }
+                    }
                   >
                     {cta.text}
                   </a>

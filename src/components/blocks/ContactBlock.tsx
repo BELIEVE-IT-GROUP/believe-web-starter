@@ -89,14 +89,14 @@ export function ContactBlock(props: {
                         required={field.required}
                         rows={5}
                         placeholder={field.placeholder}
-                        className="rounded-lg border border-ink-900/15 bg-paper text-ink-900 placeholder-ink-500/60 focus:border-believe-700 focus:ring-0"
+                        className="rounded-lg border border-ink-900/15 bg-paper text-ink-900 placeholder-ink-500/60 focus:ring-1 focus:ring-[color:var(--color-primary)] focus:border-[color:var(--color-primary)]"
                       />
                     ) : field.type === 'select' ? (
                       <Select
                         id={name}
                         name={name}
                         required={field.required}
-                        className="rounded-lg border border-ink-900/15 bg-paper text-ink-900 focus:border-believe-700 focus:ring-0"
+                        className="rounded-lg border border-ink-900/15 bg-paper text-ink-900 focus:ring-1 focus:ring-[color:var(--color-primary)] focus:border-[color:var(--color-primary)]"
                       >
                         {field.placeholder && <option value="">{field.placeholder}</option>}
                         {field.options?.map((option, optionIndex) => (
@@ -112,7 +112,7 @@ export function ContactBlock(props: {
                         type={field.type || 'text'}
                         required={field.required}
                         placeholder={field.placeholder}
-                        className="rounded-lg border border-ink-900/15 bg-paper text-ink-900 placeholder-ink-500/60 focus:border-believe-700 focus:ring-0"
+                        className="rounded-lg border border-ink-900/15 bg-paper text-ink-900 placeholder-ink-500/60 focus:ring-1 focus:ring-[color:var(--color-primary)] focus:border-[color:var(--color-primary)]"
                       />
                     )}
                   </div>
@@ -121,12 +121,13 @@ export function ContactBlock(props: {
               <button
                 type="submit"
                 disabled={status === 'loading'}
-                className="rounded-full bg-believe-700 px-7 py-3.5 text-base font-medium text-paper transition-colors hover:bg-believe-900 disabled:opacity-60"
+                className="px-7 py-3.5 text-base font-medium text-paper transition-opacity hover:opacity-90 disabled:opacity-60"
+                style={{ backgroundColor: 'var(--color-primary)', borderRadius: 'var(--btn-radius, 6px)' }}
               >
                 {status === 'loading' ? 'Enviando…' : 'Enviar mensaje'}
               </button>
               {status === 'success' && (
-                <p className="text-sm text-believe-700">{successMessage || 'Mensaje enviado.'}</p>
+                <p className="text-sm" style={{ color: 'var(--color-primary)' }}>{successMessage || 'Mensaje enviado.'}</p>
               )}
               {status === 'error' && (
                 <p className="text-sm text-ink-500">No se pudo enviar. Intentá de nuevo.</p>

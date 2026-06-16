@@ -51,8 +51,13 @@ export function HeroBlock(props: {
                   href={cta.url || '#'}
                   className={
                     cta.style === 'primary'
-                      ? 'rounded-full bg-believe-700 px-7 py-3.5 text-base font-medium text-paper transition-colors hover:bg-believe-900'
-                      : 'rounded-full border border-ink-900/15 px-7 py-3.5 text-base font-medium text-ink-900 transition-colors hover:border-ink-900/40'
+                      ? 'px-7 py-3.5 text-base font-medium text-paper transition-opacity hover:opacity-90'
+                      : 'border border-ink-900/15 px-7 py-3.5 text-base font-medium text-ink-900 transition-colors hover:border-ink-900/40'
+                  }
+                  style={
+                    cta.style === 'primary'
+                      ? { backgroundColor: 'var(--color-primary)', borderRadius: 'var(--btn-radius, 6px)' }
+                      : { borderRadius: 'var(--btn-radius, 6px)' }
                   }
                 >
                   {cta.text}
