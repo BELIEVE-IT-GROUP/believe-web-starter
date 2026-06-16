@@ -4,60 +4,156 @@
 
 @layer base {
   :root {
-    /* Fallbacks Believe (brandbook 2026). El tenant los overridea via <style> en el <head>
-       (A2 getThemeVars), que al ser unlayered gana sobre @layer base. */
-    --color-primary: #0c3bb9;
-    --color-accent: #00aaff;
-    --brand-paper: #fafaf7;
-    --brand-ink: #1a1a1a;
-    --brand-signal: #00aaff;
-    --font-display: var(--font-fraunces);
-    --font-body: var(--font-inter);
+    /*
+     * Believe Design Token System v2 — 48 CSS custom properties.
+     *
+     * These are FALLBACK values for Believe's own tenant. Multi-tenant overrides
+     * are injected server-side as an unlayered :root{} block in <head> via
+     * getThemeVars() in theme.ts. Unlayered rules beat @layer base, so tenant
+     * values always win when present.
+     *
+     * Grouped into 9 categories that map 1:1 to the token design document:
+     *   1. Color — base (8)
+     *   2. Color — semantic variants (3 + 3 derived)
+     *   3. Typography — fonts (3)
+     *   4. Typography — scale (10)
+     *   5. Shape — radius (8)
+     *   6. Shadow (6)
+     *   7. Spacing (6)
+     *   8. Motion (4)
+     *   9. Brand personality (4)
+     */
+
+    /* ── 1. Color — base ──────────────────────────────────────────────────── */
+    --color-primary:     #0c3bb9; /* Believe blue (brandbook 2026 primary) */
+    --color-accent:      #00aaff; /* Maasy cyan — CTA highlight, link hover */
+    --brand-paper:       #fafaf7; /* Warm off-white — page/card background */
+    --brand-ink:         #1a1a1a; /* Near-black body text on paper */
+    --brand-ink-muted:   #6b6b65; /* Medium gray — secondary labels, eyebrow */
+    --brand-signal:      #00aaff; /* Cyan signal — data underlines, wordmark dot */
+    --color-success:     #16a34a;
+    --color-warning:     #d97706;
+
+    /* ── 2. Color — semantic / overlay ────────────────────────────────────── */
+    --color-overlay:        rgba(0,0,0,0.45); /* Hero overlays, modal scrims */
+    --color-overlay-light:  rgba(0,0,0,0.20); /* Subtle image overlays */
+    --color-on-primary:     #ffffff;           /* Text on primary-color backgrounds */
+
+    /* ── 2b. Color — primary derived variants (computed from --color-primary) */
+    /* NOTE: These are emitted by getThemeVars() when primaryColor is set.     */
+    /* Fallbacks below use static Believe-blue values.                          */
+    --color-primary-hover: #0e46d9; /* color-mix(oklab, #0c3bb9 85%, black) */
+    --color-primary-dark:  #082080; /* color-mix(oklab, #0c3bb9 62%, black) */
+    --color-primary-muted: rgba(12,59,185,0.12); /* 12% tint for backgrounds */
+
+    /* ── 3. Typography — fonts ────────────────────────────────────────────── */
+    /* Next.js injects --font-fraunces/--font-inter/--font-jetbrains via       */
+    /* className on <html>. These vars stack them with fallbacks.               */
+    --font-display: var(--font-fraunces);   /* Fraunces — editorial headlines */
+    --font-body:    var(--font-inter);      /* Inter — body copy */
+    --font-mono:    var(--font-jetbrains);  /* JetBrains Mono — data/code labels */
+
+    /* ── 4. Typography — scale ────────────────────────────────────────────── */
+    --text-hero:    clamp(2.5rem, 5vw, 4.5rem);  /* Landing hero headline */
+    --text-h1:      clamp(2rem, 4vw, 3.25rem);   /* Page h1 */
+    --text-h2:      clamp(1.5rem, 3vw, 2.25rem); /* Section headline */
+    --text-h3:      clamp(1.25rem, 2vw, 1.75rem);/* Subheadline / card title */
+    --text-body:    1.0625rem;  /* 17px — comfortable reading size */
+    --text-small:   0.875rem;   /* 14px — captions, meta */
+    --text-eyebrow: 0.72rem;    /* 11.5px — uppercase mono labels */
+    --tracking-tight: -0.015em; /* Tight display tracking (adjusted by tone) */
+    --tracking-wide:   0.2em;   /* Wide mono tracking for eyebrows */
+    --leading-tight:   1.06;    /* h2 line-height */
+    --leading-body:    1.6;     /* Body paragraph line-height */
+
+    /* ── 5. Shape — radius ────────────────────────────────────────────────── */
+    --radius-none:   0rem;
+    --radius-sm:     0.25rem; /* Soft preset default */
+    --radius-md:     0.5rem;
+    --radius-lg:     0.75rem;
+    --radius-full:   9999px;
+    --radius-button: 0.375rem; /* CTA / primary buttons */
+    --radius-card:   0.5rem;   /* Content cards */
+    --radius-input:  0.375rem; /* Form inputs */
+
+    /* ── 6. Shadow ────────────────────────────────────────────────────────── */
+    --shadow-sm:     0 1px 2px rgba(0,0,0,0.05);
+    --shadow-md:     0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+    --shadow-lg:     0 4px 16px rgba(0,0,0,0.10);
+    --shadow-xl:     0 10px 40px rgba(0,0,0,0.12);
+    --shadow-card:   0 1px 3px rgba(0,0,0,0.08); /* Flat preset default */
+    --shadow-button: none;
+
+    /* ── 7. Spacing ───────────────────────────────────────────────────────── */
+    --section-padding-y:    6rem;   /* Default density top/bottom of sections */
+    --section-padding-y-sm: 4rem;   /* Mobile breakpoint */
+    --section-padding-x:    1.5rem; /* Inner horizontal gutters */
+    --hero-padding-y:       8rem;   /* Hero sections extra height */
+    --card-padding:         2rem;   /* Card content internal padding */
+    --container-max:        80rem;  /* 1280px max-width for content containers */
+
+    /* ── 8. Motion ────────────────────────────────────────────────────────── */
+    --transition-duration: 300ms;
+    --transition-easing:   cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast:     150ms; /* Hover states, micro-interactions */
+    --transition-slow:     500ms; /* Page-level transitions, modals */
+
+    /* ── 9. Brand personality ─────────────────────────────────────────────── */
+    --grain-opacity:    0.05; /* Noise texture opacity (brandbook rule 03) */
+    --card-border-width: 0px; /* 1px for minimalist/flat shadow tenants */
+    --divider-opacity:  0.12; /* Section separator lines */
   }
 
   body {
     font-family: var(--font-body), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-    font-size: 17px;
-    line-height: 1.6;
+    font-size: var(--text-body, 1.0625rem);
+    line-height: var(--leading-body, 1.6);
     color: var(--brand-ink, #1a1a1a);
     background-color: var(--brand-paper, #fafaf7);
   }
 
-  /* Headlines editoriales (brandbook: el display dice lo importante). Tenant override via --font-display. */
+  /* Headlines editoriales (brandbook: el display dice lo importante). */
+  /* Tenant can override --font-display, --tracking-tight. */
   h1, h2, h3, h4, .font-display {
     font-family: var(--font-display, var(--font-fraunces)), Georgia, Cambria, serif;
     font-weight: 500;
-    letter-spacing: -0.015em;
+    letter-spacing: var(--tracking-tight, -0.015em);
     color: var(--brand-ink, #1a1a1a);
   }
+  /* font-variation-settings only apply to variable fonts (Fraunces).   */
+  /* If tenant overrides --font-display with a non-variable font these  */
+  /* settings have no effect — they are harmless.                       */
   h1 { font-variation-settings: "opsz" 144; line-height: 1.02; }
-  h2 { font-variation-settings: "opsz" 110; line-height: 1.06; }
+  h2 { font-variation-settings: "opsz" 110; line-height: var(--leading-tight, 1.06); }
   h3 { font-variation-settings: "opsz" 72; line-height: 1.12; }
 }
 
 @layer components {
-  /* Eyebrow: JetBrains Mono uppercase tracking (brandbook etiqueta datos) */
+  /* Eyebrow: mono uppercase with wide tracking (brandbook — data label pattern) */
   .eyebrow {
-    font-family: var(--font-jetbrains), ui-monospace, SFMono-Regular, monospace;
+    font-family: var(--font-mono, var(--font-jetbrains)), ui-monospace, SFMono-Regular, monospace;
     text-transform: uppercase;
-    letter-spacing: 0.2em;
-    font-size: 0.72rem;
+    letter-spacing: var(--tracking-wide, 0.2em);
+    font-size: var(--text-eyebrow, 0.72rem);
     line-height: 1;
-    color: #6b6b65;
+    color: var(--brand-ink-muted, #6b6b65);
     font-weight: 500;
   }
 
-  /* Wordmark Believe: Fraunces 500 + ultima e rotada -18 + punto cian */
+  /* Wordmark Believe: Fraunces 500 + last-e rotated -18deg + cyan dot.   */
+  /* Uses Believe colors intentionally — wordmark is Believe identity.    */
+  /* Tenants always use their own logo via settings.header.logo (Header   */
+  /* falls back to wordmark only for Believe itself).                     */
   .wordmark {
-    font-family: var(--font-fraunces), Georgia, serif;
+    font-family: var(--font-fraunces), Georgia, serif; /* intentionally NOT var(--font-display) */
     font-weight: 500;
-    color: #0c3bb9;
+    color: var(--color-primary, #0c3bb9);
     letter-spacing: -0.025em;
     display: inline-flex;
     align-items: baseline;
     line-height: 1;
   }
-  .wordmark--invert { color: #fafaf7; }
+  .wordmark--invert { color: var(--brand-paper, #fafaf7); }
   .wordmark .tilt {
     display: inline-block;
     transform: rotate(-18deg);
@@ -68,18 +164,43 @@
     width: 0.24em;
     height: 0.24em;
     border-radius: 9999px;
-    background: #00aaff;
+    background: var(--brand-signal, #00aaff);
     margin-left: 0.28em;
     align-self: flex-end;
     margin-bottom: 0.12em;
   }
 
-  /* Subrayado cian = senal de dato (brandbook: cian solo senaliza) */
+  /* Signal underline — cian annotation mark (brandbook: cyan signals data) */
   .signal-underline {
     text-decoration: underline;
-    text-decoration-color: #00aaff;
+    text-decoration-color: var(--brand-signal, #00aaff);
     text-underline-offset: 4px;
     text-decoration-thickness: 2px;
+  }
+
+  /* Divider — uses --divider-opacity so tone controls separator weight */
+  .divider {
+    border-color: rgb(from var(--brand-ink, #1a1a1a) r g b / var(--divider-opacity, 0.12));
+  }
+
+  /* Card — uses token vars for border/shadow/radius so tenant shapes cascade */
+  .card-token {
+    border-radius: var(--radius-card, 0.5rem);
+    box-shadow: var(--shadow-card, 0 1px 3px rgba(0,0,0,0.08));
+    border-width: var(--card-border-width, 0px);
+    border-style: solid;
+    border-color: rgb(from var(--brand-ink, #1a1a1a) r g b / 0.08);
+    padding: var(--card-padding, 2rem);
+    transition: box-shadow var(--transition-duration, 300ms) var(--transition-easing, cubic-bezier(0.4, 0, 0.2, 1));
+  }
+
+  /* Button base — uses radius/shadow tokens so tenant shape cascades */
+  .btn-token {
+    border-radius: var(--radius-button, 0.375rem);
+    box-shadow: var(--shadow-button, none);
+    transition:
+      background-color var(--transition-fast, 150ms) var(--transition-easing, cubic-bezier(0.4, 0, 0.2, 1)),
+      box-shadow var(--transition-fast, 150ms) var(--transition-easing, cubic-bezier(0.4, 0, 0.2, 1));
   }
 }
 
@@ -88,14 +209,38 @@
     text-wrap: balance;
   }
 
-  /* Papel granulado siempre (brandbook regla 03), adaptado sutil a pantalla */
+  /* Section padding utility — uses spacing tokens */
+  .py-section {
+    padding-top: var(--section-padding-y, 6rem);
+    padding-bottom: var(--section-padding-y, 6rem);
+  }
+  @media (max-width: 768px) {
+    .py-section {
+      padding-top: var(--section-padding-y-sm, 4rem);
+      padding-bottom: var(--section-padding-y-sm, 4rem);
+    }
+  }
+
+  /* Hero padding utility */
+  .py-hero {
+    padding-top: var(--hero-padding-y, 8rem);
+    padding-bottom: var(--hero-padding-y, 8rem);
+  }
+  @media (max-width: 768px) {
+    .py-hero {
+      padding-top: var(--section-padding-y, 6rem);
+      padding-bottom: var(--section-padding-y, 6rem);
+    }
+  }
+
+  /* Noise texture overlay — opacity controlled by --grain-opacity (tone-driven) */
   .grain::before {
     content: "";
     position: fixed;
     inset: 0;
     z-index: 1;
     pointer-events: none;
-    opacity: 0.05;
+    opacity: var(--grain-opacity, 0.05);
     mix-blend-mode: multiply;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
