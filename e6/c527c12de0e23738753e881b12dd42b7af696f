@@ -1,0 +1,19 @@
+next.config.mjs
+  s_4168ee688cda0f::t_f17f246dd9b96c 32-38
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.7",
+  "base_commit_sha": "e6c527c12de0e23738753e881b12dd42b7af696f",
+  "prompts": {},
+  "sessions": {
+    "s_4168ee688cda0f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8331cd47-455d-4705-b306-022aa60aeee6",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
