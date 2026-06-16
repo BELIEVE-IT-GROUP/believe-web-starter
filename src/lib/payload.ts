@@ -42,10 +42,10 @@ export async function fetchPayload<T = any>(
 function buildQuery(params: Record<string, string | number | undefined>): string {
   const search = new URLSearchParams()
 
-  if (TENANT_SLUG) {
-    search.set('where[tenant][slug][equals]', TENANT_SLUG)
-  } else if (TENANT_ID) {
+  if (TENANT_ID) {
     search.set('where[tenant][equals]', TENANT_ID)
+  } else if (TENANT_SLUG) {
+    search.set('where[tenant][slug][equals]', TENANT_SLUG)
   }
 
   for (const [key, value] of Object.entries(params)) {
