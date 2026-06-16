@@ -23,8 +23,12 @@ export function Header({ settings }: { settings?: SiteSettings | null }) {
           {logo?.url ? (
             <Image src={logo.url} alt={logo.alt || siteName} width={132} height={40} className="mr-3 h-8 w-auto object-contain" />
           ) : (
-            <span className="wordmark self-center whitespace-nowrap text-2xl" aria-label={siteName}>
-              Believ<span className="tilt">e</span><span className="dot" aria-hidden="true" />
+            <span
+              className="self-center whitespace-nowrap text-xl font-semibold tracking-tight"
+              style={{ color: 'var(--color-primary, #0c3bb9)', fontFamily: 'var(--font-display)' }}
+              aria-label={siteName}
+            >
+              {siteName}
             </span>
           )}
         </Navbar.Brand>
@@ -32,7 +36,8 @@ export function Header({ settings }: { settings?: SiteSettings | null }) {
           {cta?.label && cta?.url && (
             <Link
               href={cta.url}
-              className="rounded-full bg-believe-700 px-5 py-2.5 text-sm font-medium text-paper transition-colors hover:bg-believe-900"
+              className="rounded-full px-5 py-2.5 text-sm font-medium transition-colors"
+              style={{ backgroundColor: 'var(--color-primary, #0c3bb9)', color: 'var(--brand-paper, #fff)' }}
             >
               {cta.label}
             </Link>
