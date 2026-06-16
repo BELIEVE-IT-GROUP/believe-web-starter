@@ -957,6 +957,91 @@
       "label": "Social media icons footer",
       "sourceFile": "marketing-ui/footer-sections/social-media.tsx",
       "exists": true
+    },
+    {
+      "templateId": "hero.custom",
+      "blockType": "hero",
+      "label": "Custom (clase mundial)"
+    },
+    {
+      "templateId": "features.custom",
+      "blockType": "features",
+      "label": "Custom (clase mundial)"
+    },
+    {
+      "templateId": "stats.custom",
+      "blockType": "stats",
+      "label": "Custom (clase mundial)"
+    },
+    {
+      "templateId": "testimonials.custom",
+      "blockType": "testimonials",
+      "label": "Custom (clase mundial)"
+    },
+    {
+      "templateId": "cta.custom",
+      "blockType": "cta",
+      "label": "Custom (clase mundial)"
+    },
+    {
+      "templateId": "faq.custom",
+      "blockType": "faq",
+      "label": "Custom (clase mundial)"
+    },
+    {
+      "templateId": "logo-cloud.custom",
+      "blockType": "logo-cloud",
+      "label": "Custom (clase mundial)"
+    },
+    {
+      "templateId": "split-content.custom",
+      "blockType": "split-content",
+      "label": "Custom (clase mundial)"
+    },
+    {
+      "templateId": "pricing.custom",
+      "blockType": "pricing",
+      "label": "Custom (clase mundial)"
+    },
+    {
+      "templateId": "team.custom",
+      "blockType": "team",
+      "label": "Custom (clase mundial)"
+    },
+    {
+      "templateId": "contact.custom",
+      "blockType": "contact",
+      "label": "Custom (clase mundial)"
+    },
+    {
+      "templateId": "gallery.custom",
+      "blockType": "gallery",
+      "label": "Custom (clase mundial)"
+    },
+    {
+      "templateId": "video-embed.custom",
+      "blockType": "video-embed",
+      "label": "Custom (clase mundial)"
+    },
+    {
+      "templateId": "newsletter.custom",
+      "blockType": "newsletter",
+      "label": "Custom (clase mundial)"
+    },
+    {
+      "templateId": "blog-list.custom",
+      "blockType": "blog-list",
+      "label": "Custom (clase mundial)"
+    },
+    {
+      "templateId": "pain.custom",
+      "blockType": "pain",
+      "label": "Custom (clase mundial)"
+    },
+    {
+      "templateId": "steps.custom",
+      "blockType": "steps",
+      "label": "Custom (clase mundial)"
     }
   ],
   "inventory": [

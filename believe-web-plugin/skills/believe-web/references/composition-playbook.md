@@ -1,185 +1,181 @@
-# Composition Playbook -- Recetas por objetivo
+# Composition Playbook -- Recetas por objetivo (MOTOR CUSTOM)
 
-Mapea cada `objetivo` del brief a una estructura de pagina recomendada con
-multiples opciones de templateId por seccion. Todos los templateId son REALES
-del catalogo (133 variantes). No inventes ids: si dudas, corre
-`cms_list_block_templates({ blockType })`.
+Mapea cada `objetivo` del brief a una estructura de pagina con el **motor de
+secciones custom de clase mundial** (sin Flowbite). Cada blockType es UN template
+`<blockType>.custom` con un campo `variant` interno que elige el sub-layout.
 
-Reglas duras:
-- Toda pagina arranca con `header.*` y termina con `footer.*`.
-- La home siempre tiene `hero.*` como primer bloque despues del header.
+Confirma cada templateId con `cms_list_block_templates({ blockType })` (el catalogo
+del MCP ya incluye las entradas `.custom`). El render lo resuelve
+`resolveCustomSection(templateId)` en el frontend (`src/components/sections/registry.ts`).
+
+> El flujo Flowbite manual (133 variantes) sigue disponible para edicion a mano
+> desde el CMS admin. Este playbook es para el flujo AUTOMATICO del skill, que usa
+> el motor custom.
+
+## Reglas duras (custom)
+
+- **Header y Footer NO son page.blocks**. En el motor custom se configuran en
+  `Settings` (header/footer) y el layout renderiza `SiteHeader` / `SiteFooter`
+  custom. La receta de `page.blocks` arranca en `hero.custom`. El skill setea
+  header/footer via `cms_create_tenant` (bootstrappea settings) + el theme.
+- Toda home arranca con `hero.custom` como primer page.block.
+- **Un template por blockType**: no elijas entre `hero.A` y `hero.B`. Usa
+  `hero.custom` y selecciona el sub-layout con el campo `variant`.
 - El bloque de captura de leads (el que dispara `cms_provision_leads`) es
-  `contact.*` o `cta.email-signup`. Debe aparecer en toda pagina con objetivo
-  `leads` o `booking`.
+  `cta.custom` (variant `form`) o `contact.custom`. Debe aparecer en toda pagina
+  con objetivo `leads` o `booking`.
+- Dos blockTypes nuevos del motor custom: `pain.custom` (identificacion del dolor,
+  metodo ATIDCOA) y `steps.custom` (como funciona).
 
-## Como elegir variante segun el DNA
+## Como elegir el `variant` segun el DNA
 
-- Tono `premium` / `authoritative` / `minimalist`: variantes sobrias
-  (`hero.default`, `hero.cover-image-ctas`, `features.icons-list`,
-  `pricing.feature-list`). Menos ornamento, mas aire.
-- Tono `playful` / `warm` / `bold`: variantes con imagen e ilustracion
-  (`hero.visual-image-heading`, `hero.illustration-email-signup`,
-  `features.image-list`, `gallery.portfolio-carousel`).
-- Tono `conversational`: prioriza prueba social y FAQ
-  (`testimonials.carousel-slider`, `faq.accordion`).
+- Tono `premium` / `authoritative` / `minimalist`: `hero.custom` variant `minimal`
+  o `metrics`; `features.custom` variant `grid` o `pillars`; `pain.custom` variant
+  `statement`. Menos ornamento, mas aire, tipografia que manda.
+- Tono `playful` / `warm` / `bold`: `hero.custom` variant `split` o `fullscreen`;
+  `features.custom` variant `alternating`; `pain.custom` variant `cards`.
+- Tono `conversational`: prioriza `testimonials.custom` (SocialProof) y `faq.custom`.
 - Marca con producto visual fuerte (moda, comida, viajes, diseno): suma
-  `gallery.*` y `split-content.heading-images`.
-- Elegir variantes las variantes storefront (`hero.storefront-default`, `hero.storefront-full-slider`, `hero.storefront-grid-view`) para marcas de e-commerce o
-  comercio fisico con catalogo de productos.
+  `gallery.custom` y `split-content.custom`.
+- B2B con metricas duras (fulfillment, SaaS, logistica): `hero.custom` variant
+  `metrics`, `stats.custom` (MetricsPanel), `pain.custom` variant `cards` con dato.
+
+### Catalogo de variants por componente custom
+
+```
+hero.custom         variant: metrics | split | minimal | fullscreen
+features.custom      variant: grid | pillars | alternating   (+ items[].code para pillars)
+pain.custom          variant: cards | statement              (cards[].data = dato duro)
+steps.custom         variant: linear | vertical | grid
+stats.custom         (MetricsPanel: numeros grandes, sin variant)
+testimonials.custom  variant: single | grid                  (SocialProof, items[].metric)
+split-content.custom imagePosition: left | right
+pricing.custom       (PricingTable: toggle mensual/anual interno)
+team.custom          (TeamGrid)
+contact.custom       (ContactSection: form dinamico por fields[])
+cta.custom           variant: banner | form                  (form: captura inline)
+faq.custom           (FaqAccordion)
+logo-cloud.custom    (LogoBar: animate bool)
+gallery.custom       layout: masonry | grid | carousel
+video-embed.custom   source: youtube | vimeo | direct
+newsletter.custom    (NewsletterBar)
+blog-list.custom     layout: grid | list | featured
+```
 
 ---
 
 ## 1. objetivo: `leads` -- Landing de captacion
 
-La home esta optimizada para una sola accion: dejar datos. CTA repetido,
-friccion minima, prueba social arriba del pliegue inferior.
+La home esta optimizada para una sola accion: dejar datos. CTA repetido, friccion
+minima, identificacion del dolor temprana (ATIDCOA), prueba social arriba del
+pliegue inferior.
 
-### Pagina: `home`
+### Pagina: `home` (page.blocks; header/footer via Settings)
 
-| Orden | blockType    | Opciones de templateId (primera = recomendada) | Razon de la seccion |
-| ----- | ------------ | ----------------------------------------------- | ------------------- |
-| 1     | header       | `header.default` / `header.centered` | Navbar simple, un solo CTA visible, sin mega-menu que distraiga |
-| 2     | hero         | `hero.illustration-email-signup` / `hero.email-signup-video` / `hero.cover-image-ctas` | Captura inline en el hero = menor friction. Elegir segun si hay video o imagen de producto |
-| 3     | logo-cloud   | `logo-cloud.default` / `logo-cloud.4-columns` | Logos de clientes justo bajo el hero generan confianza antes de explicar el producto |
-| 4     | features     | `features.icons-list` / `features.description-icon-list` / `features.card-list` | 3-6 beneficios. Icons-list es el mas escaneable. Description agrega parrafo intro para leads B2B |
-| 5     | stats        | `stats.default` / `stats.card-statistics` | 3 numeros grandes (clientes, proyectos, anos). Prueba cuantitativa |
-| 6     | testimonials | `testimonials.grid-layout-cards` / `testimonials.carousel-slider` / `testimonials.blockquote` | Prueba social cualitativa. Grid para 3+ testimonios; blockquote para 1 testimonio poderoso |
-| 7     | faq          | `faq.accordion` / `faq.default` | Elimina objeciones antes del form. Accordion para 6+ preguntas |
-| 8     | contact      | `contact.default` / `contact.company-information` | Formulario de cierre. El mas simple posible. Company-info si la marca quiere mostrar telefono y email |
-| 9     | cta          | `cta.default` / `cta.heading-button` | CTA final sobre color de marca. Repite el headline con boton grande |
-| 10    | footer       | `footer.default` | Footer minimo, sin mapa de sitio extenso que distraiga |
+| Orden | blockType    | templateId      | variant recomendado | Razon de la seccion |
+| ----- | ------------ | --------------- | ------------------- | ------------------- |
+| 1     | hero         | `hero.custom`   | `metrics` (B2B con datos) / `split` (con imagen) / `minimal` | Primer impacto + stats panel. Captura de atencion + tension (ATIDCOA) |
+| 2     | pain         | `pain.custom`   | `cards` / `statement` | Identificacion del dolor del cliente con dato duro. Ej "1 de cada 8 ordenes con error" |
+| 3     | features     | `features.custom` | `pillars` / `grid` | Los pilares de la solucion. Pillars usa items[].code (POD, SLA, COD). Deseo (ATIDCOA) |
+| 4     | steps        | `steps.custom`  | `linear` | Como funciona en 3 pasos. Baja la ansiedad del proceso |
+| 5     | stats        | `stats.custom`  | (MetricsPanel) | Numeros que sostienen la promesa. Prueba cuantitativa |
+| 6     | testimonials | `testimonials.custom` | `single` (1 potente) / `grid` (3+) | Prueba social + confianza (ATIDCOA). single usa metric asociado |
+| 7     | logo-cloud   | `logo-cloud.custom` | (LogoBar) | Logos de clientes refuerzan confianza |
+| 8     | faq          | `faq.custom`    | (FaqAccordion) | Elimina objeciones antes del cierre |
+| 9     | cta          | `cta.custom`    | `form` | Captura de leads inline. Oferta + accion (ATIDCOA). Dispara cms_provision_leads |
+
+> Header/Footer: `SiteHeader` + `SiteFooter` via Settings (logo, nav, CTA, social).
 
 ### Paginas adicionales tipicas para `leads`
 
-- `nosotros`: header.default -> hero.default -> split-content.heading-images -> team.default -> stats.heading-statistics -> footer.default
-- `gracias`: header.default -> hero.default (mensaje de confirmacion) -> footer.default
+- `nosotros`: hero.custom (minimal) -> split-content.custom -> team.custom -> stats.custom
+- `gracias`: hero.custom (minimal, mensaje de confirmacion)
 
 ---
 
 ## 2. objetivo: `venta` -- Producto / Pricing / E-commerce
 
-Lleva al usuario a comparar y comprar. El centro de gravedad es `pricing`.
+Lleva al usuario a comparar y comprar. El centro de gravedad es `pricing.custom`.
 
 ### Pagina: `home`
 
-| Orden | blockType     | Opciones de templateId (primera = recomendada) | Razon de la seccion |
-| ----- | ------------- | ----------------------------------------------- | ------------------- |
-| 1     | header        | `header.dropdown` / `header.mega-menu` | Con dropdown para navegar a Producto, Precios y Blog |
-| 2     | hero          | `hero.app-preview-ctas` / `hero.screenshot-download` / `hero.storefront-full-slider` | El producto es el protagonista. App-preview para SaaS; storefront para e-commerce |
-| 3     | logo-cloud    | `logo-cloud.cards-cta` / `logo-cloud.heading-grid` | Logos de clientes con CTA a casos de uso |
-| 4     | features      | `features.alternate` / `features.image-list` / `features.comparison` | Imagen-texto alternada para 3-4 features. Comparison si el diferencial vs competencia es claro |
-| 5     | video-embed   | `video-embed.content-video` | Demo en video reduce tiempo de decision. Omitir si no hay video de producto |
-| 6     | pricing       | `pricing.highlighted-plan` / `pricing.toggle` / `pricing.comparison-table` | Highlighted para conversion optima. Toggle para SaaS con billing mensual/anual. Comparison cuando hay muchas diferencias entre tiers |
-| 7     | testimonials  | `testimonials.cards` / `testimonials.tabs` | Cards con foto y empresa generan credibilidad. Tabs por industria si los clientes son muy distintos |
-| 8     | faq           | `faq.accordion` / `faq.default` | Responde objeciones de precio, garantia, cancelacion |
-| 9     | cta           | `cta.heading-button` / `cta.two-cards` | Cierre activo. Two-cards para dos opciones: trial vs demo |
-| 10    | footer        | `footer.sitemap-links` / `footer.sitemap-logo` | Footer con mapa de sitio completo para paginas multi-seccion |
+| Orden | blockType     | templateId        | variant recomendado | Razon de la seccion |
+| ----- | ------------- | ----------------- | ------------------- | ------------------- |
+| 1     | hero          | `hero.custom`     | `split` / `metrics` | El producto es protagonista. Split para mostrarlo |
+| 2     | pain          | `pain.custom`     | `cards` | El problema que el producto resuelve |
+| 3     | features      | `features.custom` | `alternating` / `grid` | Features con imagen-texto alternada |
+| 4     | video-embed   | `video-embed.custom` | (source segun asset) | Demo en video. Omitir si no hay video |
+| 5     | pricing       | `pricing.custom`  | (toggle interno) | Planes y precios. Plan destacado para conversion |
+| 6     | testimonials  | `testimonials.custom` | `grid` | Cards con foto y empresa generan credibilidad |
+| 7     | faq           | `faq.custom`      | (FaqAccordion) | Objeciones de precio, garantia, cancelacion |
+| 8     | cta           | `cta.custom`      | `banner` / `form` | Cierre. Banner para trial; form para captura |
 
 ### Pagina: `pricing` (independiente)
 
 ```
-header.dropdown
-hero.default          (headline de propuesta de valor)
-pricing.highlighted-plan  o  pricing.comparison-table
-faq.accordion         (preguntas especificas de precio)
-cta.default
-footer.default
-```
-
-### Pagina: `producto` (detalle de feature principal)
-
-```
-header.dropdown
-hero.app-preview-ctas  o  hero.visual-image-heading
-features.alternate
-split-content.feature-list
-video-embed.content-video   (si existe video)
-testimonials.blockquote     (1 testimonio anchor de cliente conocido)
-cta.heading-button
-footer.default
+hero.custom (minimal, propuesta de valor)
+pricing.custom
+faq.custom (preguntas de precio)
+cta.custom (banner)
 ```
 
 ---
 
 ## 3. objetivo: `autoridad` -- Institucional / Thought Leadership
 
-Construye credibilidad a largo plazo. Mas contenido editorial, equipo e
-historia. Menos venta directa.
+Construye credibilidad a largo plazo. Mas contenido editorial, equipo e historia.
 
 ### Pagina: `home`
 
-| Orden | blockType     | Opciones de templateId (primera = recomendada) | Razon de la seccion |
-| ----- | ------------- | ----------------------------------------------- | ------------------- |
-| 1     | header        | `header.mega-menu` / `header.dropdown` | Mega-menu refleja amplitud: soluciones, industrias, recursos, empresa |
-| 2     | hero          | `hero.background-cover-ctas` / `hero.blog-posts-featured` / `hero.carousel` | Imagen de marca fuerte. Blog-posts como hero si la marca tiene mucho contenido. Carousel para hitos |
-| 3     | split-content | `split-content.heading-description` / `split-content.heading-images` | Manifiesto de la empresa: por que existimos, que creemos |
-| 4     | stats         | `stats.illustration` / `stats.content-social-proof` / `stats.heading-statistics` | Numeros de impacto, no de ventas. Illustration da tono mas editorial |
-| 5     | logo-cloud    | `logo-cloud.cards-description` / `logo-cloud.cards-cta` | Logos con descripcion breve. Mas narrativo que una fila de logos solos |
-| 6     | blog-list     | `blog-list.featured-post` / `blog-list.card-with-image` / `blog-list.centered-posts` | Contenido editorial como prueba de autoridad. Solo si la marca publica con regularidad |
-| 7     | team          | `team.description` / `team.four-columns` / `team.grid-clean` | Humaniza la marca. Description para fundadores con bio. Four-columns para equipo amplio |
-| 8     | testimonials  | `testimonials.tabs` / `testimonials.carousel-slider` | Tabs por industria demuestra amplitud. Carousel para citas de referentes conocidos |
-| 9     | cta           | `cta.cards-icons` / `cta.heading-button` | Cards-icons para multiples acciones editoriales: leer blog, ver casos, hablar con nosotros |
-| 10    | footer        | `footer.sitemap-logo` / `footer.sitemap-links` | Footer institucional con logo grande y links de prensa/legal |
+| Orden | blockType     | templateId        | variant recomendado | Razon de la seccion |
+| ----- | ------------- | ----------------- | ------------------- | ------------------- |
+| 1     | hero          | `hero.custom`     | `fullscreen` / `minimal` | Imagen de marca fuerte o tipografia pura |
+| 2     | split-content | `split-content.custom` | (imagePosition) | Manifiesto: por que existimos, que creemos |
+| 3     | stats         | `stats.custom`    | (MetricsPanel) | Numeros de impacto, no de ventas |
+| 4     | logo-cloud    | `logo-cloud.custom` | (LogoBar) | Clientes / partners |
+| 5     | blog-list     | `blog-list.custom` | `featured` / `grid` | Contenido editorial como prueba de autoridad |
+| 6     | team          | `team.custom`     | (TeamGrid) | Humaniza la marca |
+| 7     | testimonials  | `testimonials.custom` | `grid` | Citas de referentes |
+| 8     | cta           | `cta.custom`      | `banner` | Multiples acciones editoriales |
 
 ### Pagina: `nosotros`
 
 ```
-header.mega-menu
-hero.cover-image-ctas      (foto del equipo con headline de mision)
-split-content.heading-description   (historia de la empresa)
-team.cta-grid
-stats.card-statistics
-gallery.portfolio-default  (fotos de eventos, oficinas, cultura -- si existen)
-cta.heading-button         ("Sumate al equipo" o "Hablemos")
-footer.sitemap-logo
-```
-
-### Pagina: `blog` o `recursos`
-
-```
-header.mega-menu
-hero.blog-posts-featured  o  hero.default
-blog-list.card-with-image
-newsletter.banner
-footer.newsletter
+hero.custom (split, foto del equipo con headline de mision)
+split-content.custom (historia)
+team.custom
+stats.custom
+gallery.custom (cultura, oficinas -- si hay assets)
+cta.custom (banner)
 ```
 
 ---
 
 ## 4. objetivo: `booking` -- Agenda de citas / Servicios / Consulting
 
-Optimizada para que el usuario reserve una sesion, consulta o turno. Friction
-minima; el CTA primario abre un calendario o form de fecha/hora.
+Optimizada para reservar. Friction minima; el CTA primario abre form de fecha/hora.
 
 ### Pagina: `home`
 
-| Orden | blockType    | Opciones de templateId (primera = recomendada) | Razon de la seccion |
-| ----- | ------------ | ----------------------------------------------- | ------------------- |
-| 1     | header       | `header.default` / `header.centered` | Navbar simple con un solo CTA: "Reservar" o "Agendar ahora" |
-| 2     | hero         | `hero.search-datepicker` / `hero.signup-cta` / `hero.video-embed-cta` | Search-datepicker para reserva de fecha inline. Signup-cta si es form simple. Video si existe presentacion del profesional |
-| 3     | split-content | `split-content.heading-images` / `split-content.two-columns` | "Como funciona" en 3 pasos con imagenes. Reduce ansiedad del proceso de agenda |
-| 4     | features     | `features.icon-list-cta` / `features.icons-list` | Que incluye cada sesion o paquete. Icon-list-cta tiene CTA inline por feature |
-| 5     | stats        | `stats.default` / `stats.heading-statistics` | Sesiones realizadas, clientes atendidos, anos de experiencia |
-| 6     | gallery      | `gallery.portfolio-carousel` / `gallery.image-gallery` | Mostrar el lugar, el estudio, el entorno del servicio |
-| 7     | testimonials | `testimonials.blockquote` / `testimonials.grid-layout-cards` | En servicios personales el boca a boca digital es el cierre mas fuerte. Blockquote para 1 testimonio potente |
-| 8     | pricing      | `pricing.horizontal` / `pricing.default` | Paquetes y tarifas. Horizontal para 2-3 opciones simples |
-| 9     | faq          | `faq.accordion` / `faq.customer-service` | Preguntas sobre duracion, precio, modalidad, cancelacion |
-| 10    | contact      | `contact.default` / `contact.address-location` | Formulario de booking. El bloque mas visible de la pagina. Address-location si hay ubicacion fisica |
-| 11    | cta          | `cta.default` / `cta.heading-button` | CTA de remate: "Reservar mi lugar" o "Agendar sesion" |
-| 12    | footer       | `footer.default` | Footer minimo |
-
-### Paginas adicionales tipicas para `booking`
-
-- `servicios`: header -> hero.default -> features.alternate -> pricing.horizontal -> faq.accordion -> contact.default -> footer.default
-- `sobre-mi` / `nosotros`: header -> hero.default -> split-content.heading-description -> team.description -> gallery.image-gallery -> footer.default
+| Orden | blockType    | templateId        | variant recomendado | Razon de la seccion |
+| ----- | ------------ | ----------------- | ------------------- | ------------------- |
+| 1     | hero         | `hero.custom`     | `split` / `minimal` | Headline de servicio + CTA "Agendar" |
+| 2     | steps        | `steps.custom`    | `vertical` / `linear` | Como funciona la reserva en 3 pasos |
+| 3     | features     | `features.custom` | `grid` | Que incluye cada sesion o paquete |
+| 4     | stats        | `stats.custom`    | (MetricsPanel) | Sesiones realizadas, anos de experiencia |
+| 5     | gallery      | `gallery.custom`  | `grid` / `carousel` | El lugar, el estudio, el entorno |
+| 6     | testimonials | `testimonials.custom` | `single` | El boca a boca es el cierre en servicios personales |
+| 7     | pricing      | `pricing.custom`  | (toggle) | Paquetes y tarifas |
+| 8     | faq          | `faq.custom`      | (FaqAccordion) | Duracion, precio, modalidad, cancelacion |
+| 9     | contact      | `contact.custom`  | (ContactSection) | Formulario de booking. Dispara cms_provision_leads |
 
 ---
 
 ## Paginas secundarias universales (cualquier objetivo)
 
-- `contacto`: header.default -> hero.default -> contact.address-location -> footer.default
-- `precios`: header.default -> hero.default -> pricing.comparison-table -> faq.default -> cta.email-signup -> footer.default
-- `blog`: header.default -> hero.default -> blog-list.card-with-image -> newsletter.default -> footer.default
+- `contacto`: hero.custom (minimal) -> contact.custom
+- `precios`: hero.custom (minimal) -> pricing.custom -> faq.custom -> cta.custom (form)
+- `blog`: hero.custom (minimal) -> blog-list.custom (grid) -> newsletter.custom
 
 ---
 
@@ -187,19 +183,28 @@ minima; el CTA primario abre un calendario o form de fecha/hora.
 
 1. Leer el campo `objetivo` del brief antes de seleccionar una receta.
 2. Si la marca tiene `maasy_project_id`, el DNA viene de `maasy_get_brand_dna`; priorizarlo.
-3. Cuando la marca no tiene video, omitir `video-embed` silenciosamente.
-4. Elegir variante de testimonials segun cantidad disponible:
-   - 1 testimonio: `testimonials.blockquote`
-   - 2-4: `testimonials.cards`
-   - 5+: `testimonials.carousel-slider` o `testimonials.grid-layout-cards`
-5. `cta.email-signup` es redundante si ya hay `contact.default` o `newsletter.*`. No duplicar.
-6. Para marcas e-commerce, preferir variantes las variantes storefront (`hero.storefront-default`, `hero.storefront-full-slider`, `hero.storefront-grid-view`) y `faq.customer-service`.
-7. `blog-list.*` solo si la marca confirma que publicara contenido regularmente.
-8. Antes de fijar el plan de bloques, invocar `ui-ux-pro-max` o `impeccable` pasando el DNA
-   y la lista de bloques para validar coherencia visual antes de ejecutar cualquier tool de escritura.
+3. Cada blockType custom acepta el campo `variant` (cuando aplica). Setealo segun el
+   tono del DNA usando el catalogo de variants de arriba. Si el variant no existe, el
+   componente usa su default sin romper.
+4. Elegir variant de testimonials (`testimonials.custom`) segun cantidad disponible:
+   - 1 testimonio potente: variant `single` (con `metric` asociado).
+   - 2+: variant `grid`.
+5. `pain.custom` lleva `cards[].data` con el dato duro del dolor (ej "-30% picking").
+   Si no hay dato, usar variant `statement`.
+6. `features.custom` variant `pillars` usa `items[].code` (ej "POD", "SLA", "COD").
+7. Cuando la marca no tiene video, omitir `video-embed.custom` silenciosamente.
+8. Antes de fijar el plan de bloques, invocar `impeccable` o `ui-ux-pro-max` pasando
+   el DNA y la lista de bloques para validar jerarquia y coherencia visual antes de
+   ejecutar cualquier tool de escritura.
+9. Header/Footer (`SiteHeader`/`SiteFooter`) NO van como page.blocks: se configuran
+   en Settings (logo, navLinks, cta, footer links, social) y el layout custom los
+   renderiza. El skill los setea en el bootstrap del tenant.
 
-## Variantes disponibles por blockType
+## Variants disponibles por blockType custom
 
-hero 22 | features 10 | pricing 7 | testimonials 5 | cta 13 | faq 6 | stats 7 |
-team 8 | logo-cloud 5 | gallery 6 | contact 6 | split-content 6 | video-embed 3 |
-newsletter 5 | blog-list 9 | header 8 | footer 7 | Total: 133
+hero: metrics/split/minimal/fullscreen | features: grid/pillars/alternating |
+pain: cards/statement | steps: linear/vertical/grid | testimonials: single/grid |
+cta: banner/form | gallery: masonry/grid/carousel | blog-list: grid/list/featured |
+split-content: imagePosition left/right | video-embed: source youtube/vimeo/direct |
+stats, pricing, team, contact, faq, logo-cloud, newsletter: layout interno (sin variant).
+Total: 17 blockTypes custom + SiteHeader/SiteFooter via Settings.

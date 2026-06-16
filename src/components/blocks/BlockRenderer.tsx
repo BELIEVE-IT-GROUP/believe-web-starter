@@ -1,9 +1,11 @@
 import { resolveBlockComponent, type RenderableBlock } from '@/components/flowbite-pro/registry'
+import { resolveCustomSection } from '@/components/sections/registry'
 import { resolveFlowbiteTemplate } from '@/flowbite/registry.generated'
 import { isPorted } from '@/flowbite/ported'
 
 /**
- * A4 — Routing por templateId con 3 niveles (sin romper Fase 1):
+ * A4 — Routing por templateId con 4 niveles (sin romper Fase 1):
+ *   0. templateId *.custom      → Custom Section de clase mundial (sin Flowbite). Nivel nuevo, gana sobre todo.
  *   1. templateId deep-portado  → variante Flowbite (acepta props CMS + tokens de theme).
  *   2. componente legacy por blockType → render Fase 1 con contenido real (home believe).
  *   3. templateId sin legacy    → variante Flowbite cruda (contenido demo) como último recurso.
@@ -15,6 +17,10 @@ export function BlockRenderer({ blocks }: { blocks: RenderableBlock[] }) {
     <div>
       {blocks.map((block, i) => {
         const key = `${block.id ?? block.blockType}-${i}`
+
+        // 0. Custom Section (*.custom): toma precedencia sobre los niveles Flowbite.
+        const Custom = resolveCustomSection(block.templateId)
+        if (Custom) return <Custom key={key} {...block} />
 
         // 1. Variante deep-portada: toma precedencia sobre el legacy.
         if (isPorted(block.templateId)) {

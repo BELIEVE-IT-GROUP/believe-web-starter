@@ -415,7 +415,7 @@ export function getGoogleFontsHref(settings: SettingsLike): string | null {
   if (families.size === 0) return null
 
   const params = Array.from(families)
-    .map((f) => `family=${encodeURIComponent(f).replace(/%20/g, '+')}:wght@400;500;600;700`)
+    .map((f) => `family=${encodeURIComponent(f).replace(/%20/g, '+')}:wght@400;500;600;700;800;900`)
     .join('&')
 
   return `https://fonts.googleapis.com/css2?${params}&display=swap`

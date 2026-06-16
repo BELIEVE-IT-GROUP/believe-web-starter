@@ -107,27 +107,37 @@ requeridos: `marca`, `dna`, `objetivo`, `pages`, `leads`. Guarda el brief como
 `brief.json` en el directorio de trabajo de la sesion. Recordá: valores ASCII en
 los campos que van al CMS.
 
-## Paso 3 - Composicion (brief -> plan de bloques)
+## Paso 3 - Composicion (brief -> plan de bloques, MOTOR CUSTOM)
 
-Para cada pagina del brief, mapea sus secciones a `templateId` REALES:
+El flujo automatico usa el **motor de secciones custom de clase mundial** (sin
+Flowbite). Cada blockType es UN template `<blockType>.custom` con un campo
+`variant` interno que elige el sub-layout. Para cada pagina del brief:
 
 1. Toma la receta base de `references/composition-playbook.md` segun
-   `brief.objetivo`.
-2. Para cada `blockType`, confirma/elegi la variante con
-   `cms_list_block_templates({ blockType })`. **Nunca inventes templateIds**:
-   tienen que existir en el catalogo (formato `<blockType>.<variant>`).
-3. Ajusta las variantes al DNA (tono, colores, si la marca es visual). El
-   playbook tiene la guia de "que variante segun el tono".
-4. Genera el contenido inicial de cada bloque (heading, subheading, items, copy)
-   usando el DNA y el contexto. Copy en espanol neutro, sin em-dashes, alineado
-   al tono de la marca.
-5. **Sube la calidad con skills de diseno**: invoca `ui-ux-pro-max` o
-   `impeccable` pasandoles el DNA + el plan de bloques; pedi que revisen orden,
+   `brief.objetivo`. El playbook ya esta en formato custom.
+2. Para cada `blockType`, usa `<blockType>.custom` (ej `hero.custom`,
+   `pain.custom`, `cta.custom`). Confirmalo con
+   `cms_list_block_templates({ blockType })` (el catalogo incluye las entradas
+   `.custom`). **Nunca inventes templateIds.** NO elijas entre multiples
+   templateId Flowbite: en custom hay UNO por blockType.
+3. Setea el campo `variant` de cada bloque segun el tono del DNA, usando el
+   "Catalogo de variants" del playbook (ej `hero.custom` variant `metrics` para
+   B2B con datos; `pain.custom` variant `cards` con `cards[].data`;
+   `features.custom` variant `pillars` con `items[].code`). Si el variant no
+   existe, el componente usa su default sin romper.
+4. Genera el contenido inicial de cada bloque (heading, subheading, items, copy,
+   stats, cards, etc.) usando el DNA y el contexto. Copy en espanol neutro, sin
+   em-dashes, con metodo ATIDCOA, alineado al tono de la marca.
+5. **Sube la calidad con skills de diseno**: invoca `impeccable` o
+   `ui-ux-pro-max` pasandoles el DNA + el plan de bloques; pedi que revisen orden,
    jerarquia y coherencia. Aplica sus correcciones al plan ANTES de ejecutar.
 
 Resultado: por cada pagina, una lista ordenada de
-`{ blockType, templateId, ...campos de contenido }`. Toda pagina arranca con
-`header.*` y termina con `footer.*`; la home lleva `hero.*` primero.
+`{ blockType, templateId: "<blockType>.custom", variant?, ...campos de contenido }`.
+La home arranca con `hero.custom`. **Header y Footer NO son page.blocks**: se
+configuran en `Settings` (logo, navLinks, cta, footer, social) y el layout custom
+los renderiza como `SiteHeader` / `SiteFooter`; el skill los setea en el bootstrap
+del tenant (`cms_create_tenant`) y el theme.
 
 ## Paso 4 - Ejecucion (gate de confirmacion)
 

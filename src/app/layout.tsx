@@ -1,8 +1,5 @@
 import type { Metadata } from 'next'
 import { Inter, Fraunces, JetBrains_Mono } from 'next/font/google'
-import './globals.css'
-import { Header } from '@/components/layout/Header'
-import { Footer } from '@/components/layout/Footer'
 import { getSettings } from '@/lib/payload'
 import { getThemeVars, getGoogleFontsHref } from '@/lib/theme'
 
@@ -26,6 +23,10 @@ export const metadata: Metadata = {
   description: 'Web construida con believe-web-starter',
 }
 
+// Root layout NEUTRO: solo el documento + fuentes + las CSS vars del tenant.
+// NO impone header/footer ni fondo: ese chrome vive en el route group (chrome)
+// para las paginas Believe. Las paginas standalone (birdman, trust-demo, *-preview)
+// traen su propio chrome y fondo dentro de su markup, sin duplicados.
 export default async function RootLayout({
   children,
 }: {
@@ -38,15 +39,11 @@ export default async function RootLayout({
   return (
     <html lang="es" className={`${inter.variable} ${fraunces.variable} ${jetbrains.variable}`}>
       <head>
-        {/* A2 — identidad del tenant (DNA Maasy): CSS vars en :root + fuentes Google dinámicas. */}
+        {/* A2 — identidad del tenant (DNA Maasy): CSS vars en :root + fuentes Google dinamicas. */}
         {themeVars ? <style dangerouslySetInnerHTML={{ __html: `:root{${themeVars}}` }} /> : null}
         {googleFontsHref ? <link rel="stylesheet" href={googleFontsHref} /> : null}
       </head>
-      <body className="grain bg-paper font-sans text-ink-900 antialiased">
-        <Header settings={settings} />
-        <main>{children}</main>
-        <Footer settings={settings} />
-      </body>
+      <body className="antialiased">{children}</body>
     </html>
   )
 }

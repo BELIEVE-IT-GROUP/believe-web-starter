@@ -19,8 +19,19 @@ const config: Config = {
         // Fallbacks Believe en cada var: sin theme, todo se ve Believe.
         paper: { DEFAULT: 'var(--brand-paper, #fafaf7)', 50: '#fafaf7', 100: '#f2f2ec' },
         ink: { DEFAULT: 'var(--brand-ink, #1a1a1a)', 900: 'var(--brand-ink, #1a1a1a)', 700: '#3a3a38', 500: '#6b6b65' },
-        believe: { DEFAULT: '#0c3bb9', 700: '#0c3bb9', 900: '#062778' },
-        signal: { DEFAULT: 'var(--brand-signal, #00aaff)', 400: '#00aaff' },
+        // believe.* remapped to CSS vars so all bg-believe-* / text-believe-* classes
+        // respond to --color-primary. This single change makes all 31 hardcoded color
+        // usages in block components tenant-dynamic without touching any TSX file.
+        believe: {
+          DEFAULT: 'var(--color-primary, #0c3bb9)',
+          700: 'var(--color-primary, #0c3bb9)',
+          900: 'color-mix(in oklab, var(--color-primary, #0c3bb9) 62%, black)',
+        },
+        // signal.400 remapped so text-signal-400 / bg-signal-400 respect --brand-signal.
+        signal: {
+          DEFAULT: 'var(--brand-signal, #00aaff)',
+          400: 'var(--brand-signal, #00aaff)',
+        },
         // Ramp del primary derivado de UN color de marca (var --color-primary) via color-mix.
         // 600/700 = color exacto de la marca (botones Flowbite on-brand); tints/shades derivados.
         primary: {
@@ -44,16 +55,53 @@ const config: Config = {
         },
       },
       fontFamily: {
-        // Fuentes theme-able: tenant override via --font-display/--font-body, fallback Believe.
+        // Fuentes theme-able: tenant override via CSS vars, fallback Believe.
         display: ['var(--font-display, var(--font-fraunces))', 'Georgia', 'Cambria', 'serif'],
-        sans: ['var(--font-body, var(--font-inter))', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        mono: ['var(--font-jetbrains)', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+        sans:    ['var(--font-body, var(--font-inter))', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        // mono updated to use --font-mono so tenant monoFont field propagates.
+        mono:    ['var(--font-mono, var(--font-jetbrains))', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+      },
+      // Radius tokens — all backed by CSS vars so tenant radiusBase preset cascades
+      // to every rounded-button, rounded-card, rounded-input class in blocks.
+      borderRadius: {
+        none:   'var(--radius-none, 0rem)',
+        sm:     'var(--radius-sm, 0.25rem)',
+        DEFAULT:'var(--radius-md, 0.5rem)',
+        md:     'var(--radius-md, 0.5rem)',
+        lg:     'var(--radius-lg, 0.75rem)',
+        full:   'var(--radius-full, 9999px)',
+        button: 'var(--radius-button, 0.375rem)',
+        card:   'var(--radius-card, 0.5rem)',
+        input:  'var(--radius-input, 0.375rem)',
+      },
+      // Shadow tokens — backed by CSS vars so tenant shadowLevel preset cascades.
+      boxShadow: {
+        sm:     'var(--shadow-sm)',
+        DEFAULT:'var(--shadow-md)',
+        md:     'var(--shadow-md)',
+        lg:     'var(--shadow-lg)',
+        xl:     'var(--shadow-xl)',
+        card:   'var(--shadow-card)',
+        button: 'var(--shadow-button)',
+      },
+      // Transition duration tokens — backed by CSS vars so tone drives animation speed.
+      transitionDuration: {
+        fast:    'var(--transition-fast, 150ms)',
+        DEFAULT: 'var(--transition-duration, 300ms)',
+        slow:    'var(--transition-slow, 500ms)',
+      },
+      // Named padding tokens for section/card spacing.
+      padding: {
+        section: 'var(--section-padding-y, 6rem)',
+        card:    'var(--card-padding, 2rem)',
       },
       maxWidth: {
-        headline: '14ch',
+        headline:  '14ch',
+        container: 'var(--container-max, 80rem)',
       },
       letterSpacing: {
         eyebrow: '0.2em',
+        tight:   'var(--tracking-tight, -0.015em)',
       },
     },
   },

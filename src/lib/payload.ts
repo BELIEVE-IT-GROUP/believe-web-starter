@@ -58,6 +58,77 @@ function buildQuery(params: Record<string, string | number | undefined>): string
   return qs ? `?${qs}` : ''
 }
 
+// ─── Deep merge (CMS override on top of default content) ─────────────
+
+function isPlainObject(value: unknown): value is Record<string, any> {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    !Array.isArray(value) &&
+    Object.prototype.toString.call(value) === '[object Object]'
+  )
+}
+
+function isEmptyOverride(value: unknown): boolean {
+  return value === undefined || value === null || value === ''
+}
+
+// Deep merge: for each field, if override brings a non-empty value it wins;
+// plain objects merge recursively; arrays replace wholesale only when the
+// override array is non-empty, otherwise the base array stays.
+export function deepMerge<T>(base: T, override: any): T {
+  if (override === undefined || override === null) return base
+
+  if (Array.isArray(base) || Array.isArray(override)) {
+    return (Array.isArray(override) && override.length > 0 ? override : base) as T
+  }
+
+  if (isPlainObject(base) && isPlainObject(override)) {
+    const out: Record<string, any> = { ...base }
+    for (const key of Object.keys(override)) {
+      const ov = override[key]
+      const bv = (base as Record<string, any>)[key]
+      if (isPlainObject(bv) && isPlainObject(ov)) {
+        out[key] = deepMerge(bv, ov)
+      } else if (Array.isArray(bv) || Array.isArray(ov)) {
+        out[key] = Array.isArray(ov) && ov.length > 0 ? ov : bv
+      } else if (!isEmptyOverride(ov)) {
+        out[key] = ov
+      }
+    }
+    return out as T
+  }
+
+  return (isEmptyOverride(override) ? base : override) as T
+}
+
+// ─── Landings ────────────────────────────────────────────────────────
+
+// Fetch a landing doc from the CMS 'landings' collection by slug + tenant.
+// Returns doc.content (or the doc) if found, or null. Never throws: a missing
+// collection or failed fetch resolves to null so the render falls back to the
+// default content.
+export async function getLandingContent(slug: string): Promise<any | null> {
+  try {
+    const qs = buildQuery({
+      'where[slug][equals]': slug,
+      depth: 2,
+      limit: 1,
+    })
+
+    const data = await fetchPayload<{ docs: any[] }>(`/api/landings${qs}`, {
+      next: { revalidate: 60, tags: ['payload_landings'] },
+    })
+
+    const doc = data?.docs?.[0]
+    if (!doc) return null
+    return doc.content ?? doc
+  } catch (err) {
+    console.error('[payload] getLandingContent error:', err)
+    return null
+  }
+}
+
 // ─── Pages ───────────────────────────────────────────────────────────
 
 export interface Page {
@@ -241,8 +312,46 @@ export interface SiteSettings {
     links?: { label: string; url: string; group?: string }[]
   }
   theme?: {
+    // ── Colors ─────────────────────────────────────────────────────────
     primaryColor?: string
     accentColor?: string
+    paperColor?: string
+    inkColor?: string
+    signalColor?: string
+    inkMutedColor?: string
+    // ── Fonts ──────────────────────────────────────────────────────────
+    displayFont?: string
+    bodyFont?: string
+    monoFont?: string
+    // ── Shape (preset keys) ────────────────────────────────────────────
+    radiusBase?: string           // "none" | "soft" | "rounded" | "pill"
+    shadowLevel?: 'none' | 'flat' | 'soft' | 'elevated'
+    densityLevel?: 'compact' | 'default' | 'airy'
+    // ── Shape (resolved values — written by cms_set_theme_from_dna) ───
+    radiusButton?: string
+    radiusCard?: string
+    radiusInput?: string
+    radiusPill?: string
+    shadowCard?: string
+    shadowButton?: string
+    cardBorderWidth?: string
+    // ── Spacing (resolved) ─────────────────────────────────────────────
+    sectionPaddingY?: string
+    sectionPaddingYSm?: string
+    heroPaddingY?: string
+    cardPadding?: string
+    // ── Motion (resolved) ──────────────────────────────────────────────
+    transitionDuration?: string
+    transitionEasing?: string
+    // ── Brand personality (resolved) ──────────────────────────────────
+    grainOpacity?: string
+    dividerOpacity?: string
+    trackingTight?: string
+    // ── Tone (metadata) ────────────────────────────────────────────────
+    tone?: string
+    // ── Escape hatch ───────────────────────────────────────────────────
+    cssVarsRaw?: Record<string, string>
+    // ── Legacy (backward compat) ───────────────────────────────────────
     defaultOgImage?: Media
   }
   socialLinks?: { platform: string; url: string }[]

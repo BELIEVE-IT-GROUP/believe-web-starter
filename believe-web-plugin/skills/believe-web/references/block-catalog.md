@@ -2,6 +2,15 @@
 
 Cada fila = un blockType disponible en el CMS. Usar templateId exacto al componer paginas.
 
+> **MOTOR CUSTOM (flujo automatico del skill)**: ademas de las variantes Flowbite
+> de esta tabla (que quedan para edicion manual en el CMS admin), cada blockType
+> tiene un template `<blockType>.custom` de clase mundial (sin Flowbite, theme-aware)
+> que el skill usa por defecto. El motor custom suma 2 blockTypes nuevos: `pain`
+> (identificacion del dolor, ATIDCOA) y `steps` (como funciona). Cada `.custom`
+> elige su sub-layout con un campo `variant` interno (no hay multiples templateId).
+> Header/Footer custom (`SiteHeader`/`SiteFooter`) salen de Settings, no de page.blocks.
+> Catalogo de variants y recetas: ver `composition-playbook.md`.
+
 | blockType | Variantes | Para que sirve |
 |---|---|---|
 | `header` | 8 | Navegacion superior. Siempre el primer bloque de cada pagina. Opciones: logo centrado, dropdown, mega-menu, busqueda, user-dropdown. |
