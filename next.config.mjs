@@ -29,7 +29,13 @@ const nextConfig = {
   // /birdman en su dominio raiz. Sin la env, "/" es la home normal del tenant.
   async rewrites() {
     const slug = process.env.NEXT_PUBLIC_STANDALONE_SLUG
-    return slug ? [{ source: '/', destination: `/${slug}` }] : []
+    // beforeFiles: la reescritura de "/" debe correr ANTES del filesystem routing,
+    // si no la home del tenant (que existe) gana y el rewrite nunca aplica.
+    return {
+      beforeFiles: slug ? [{ source: '/', destination: `/${slug}` }] : [],
+      afterFiles: [],
+      fallback: [],
+    }
   },
 }
 
