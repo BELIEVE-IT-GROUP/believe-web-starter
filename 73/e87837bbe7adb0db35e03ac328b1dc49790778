@@ -1,0 +1,26 @@
+src/components/blocks/CtaBlock.tsx
+  s_4168ee688cda0f::t_adc790aea72947 21,25-28,32,35
+src/components/blocks/HeroBlock.tsx
+  s_4168ee688cda0f::t_b34d0e3d1d004b 54-60
+src/components/blocks/SplitContentBlock.tsx
+  s_4168ee688cda0f::t_e7d2c02333415a 45,47,50-54
+src/components/blocks/ContactBlock.tsx
+  s_4168ee688cda0f::t_23936b897c2710 124-125,130
+  s_4168ee688cda0f::t_53fcdc502cc2a1 92,99,115
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.7",
+  "base_commit_sha": "73e87837bbe7adb0db35e03ac328b1dc49790778",
+  "prompts": {},
+  "sessions": {
+    "s_4168ee688cda0f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8331cd47-455d-4705-b306-022aa60aeee6",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
