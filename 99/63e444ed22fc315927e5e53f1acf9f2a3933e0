@@ -1,0 +1,21 @@
+src/app/globals.css
+  s_4168ee688cda0f::t_617c324c876009 7-104,109-110,115-116,120,123-125,127,132,134,136-137,139,143-146,148,150,156,167,173,176,180-204,212-236,243
+src/lib/theme.ts
+  s_4168ee688cda0f::t_a06f21716e636c 10-15,18-19,21,26-33,38-69,71-76,81-219,221-222,226-258,263,266-281,283-378,385-386,388-389,392-394,396-412,414,416,420,424-438,445-449,451,457-489
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.7",
+  "base_commit_sha": "9963e444ed22fc315927e5e53f1acf9f2a3933e0",
+  "prompts": {},
+  "sessions": {
+    "s_4168ee688cda0f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8331cd47-455d-4705-b306-022aa60aeee6",
+        "model": "unknown"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
