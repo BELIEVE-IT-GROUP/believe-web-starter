@@ -196,6 +196,26 @@ diseño (CSS) NO se toca: solo cambian los textos/datos.
 
 ---
 
+## Parte E — Publicar (deploy por tenant)
+
+El front de CADA tenant se publica con el **Paso 4 del SKILL** (no se improvisa ni se
+elige app a mano): `cms_create_tenant` captura `tenant.id`, y `cms_deploy({ tenantSlug,
+tenantId, domain? })` crea una app `web-<slug>` en Coolify Hetzner con su URL (sslip.io
+por defecto, o el dominio del brief). Esa es la forma canonica; nunca redeployes una app
+ajena ni infieras el target.
+
+**Detalle del modo standalone:** la landing vive en `/<slug>`, pero el front del tenant
+debe servirse en su raiz `/`. El deploy setea `NEXT_PUBLIC_STANDALONE_SLUG=<slug>` (env
+build-time): el `next.config.mjs` reescribe `/` -> `/<slug>`, asi `web-birdman` muestra la
+landing en su dominio raiz. Si `cms_deploy` no acepta env extra, se setea con la Coolify
+API (`PATCH /applications/<uuid>/envs`, `is_build_time: true`) antes del deploy.
+
+**El CMS se deploya aparte:** redeploy de la app CMS (Coolify VPSDime) para que la
+collection `landings` exista en prod, + push de schema (con `NODE_ENV=development` o por
+SQL, ver [[project_believe_web_factory]]). Hasta entonces la landing renderiza con su
+`content.ts` (fallback); la edicion por el tenant queda disponible una vez el CMS tiene
+`landings`.
+
 ## Flujo completo (resumen)
 
 ```

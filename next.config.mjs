@@ -23,6 +23,14 @@ const nextConfig = {
       },
     ],
   },
+  // Modo standalone: un deploy de tenant cuya web es una landing standalone
+  // (vive en /<slug>) setea NEXT_PUBLIC_STANDALONE_SLUG=<slug> y su raiz "/"
+  // sirve esa landing. Asi web-birdman (STANDALONE_SLUG=birdman) muestra
+  // /birdman en su dominio raiz. Sin la env, "/" es la home normal del tenant.
+  async rewrites() {
+    const slug = process.env.NEXT_PUBLIC_STANDALONE_SLUG
+    return slug ? [{ source: '/', destination: `/${slug}` }] : []
+  },
 }
 
 export default nextConfig
