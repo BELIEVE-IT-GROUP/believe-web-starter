@@ -1,0 +1,21 @@
+next.config.mjs
+  s_4168ee688cda0f::t_593decb35f3137 26-33
+believe-web-plugin/skills/believe-web/references/standalone-landings.md
+  s_4168ee688cda0f::t_65378e5c77b15d 199-218
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.7",
+  "base_commit_sha": "c23dcd07ea97dc762c9279c4b96aca1ba1c7c3cd",
+  "prompts": {},
+  "sessions": {
+    "s_4168ee688cda0f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8331cd47-455d-4705-b306-022aa60aeee6",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
