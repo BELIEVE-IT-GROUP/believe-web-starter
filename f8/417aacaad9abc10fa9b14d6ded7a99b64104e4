@@ -1,0 +1,33 @@
+.claude/skills/believe-web/references/puck-generation.md
+  s_c1a2c31ddd6209::t_2576a9a924c7e1 1-88
+.claude/skills/believe-web/references/composition-playbook.md
+  s_c1a2c31ddd6209::t_2576a9a924c7e1 1-210
+.gitignore
+  s_c1a2c31ddd6209::t_2576a9a924c7e1 14-16
+.claude/skills/believe-web/references/brief-schema.json
+  s_c1a2c31ddd6209::t_2576a9a924c7e1 1-553
+.claude/skills/believe-web/SKILL.md
+  s_c1a2c31ddd6209::t_2576a9a924c7e1 1-858
+.claude/skills/believe-web/references/mcp-tools.md
+  s_c1a2c31ddd6209::t_2576a9a924c7e1 1-175
+.claude/skills/believe-web/references/block-catalog.md
+  s_c1a2c31ddd6209::t_2576a9a924c7e1 1-41
+.claude/skills/believe-web/references/standalone-landings.md
+  s_c1a2c31ddd6209::t_2576a9a924c7e1 1-229
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.8",
+  "base_commit_sha": "f8417aacaad9abc10fa9b14d6ded7a99b64104e4",
+  "prompts": {},
+  "sessions": {
+    "s_c1a2c31ddd6209": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e3a5bbcf-d736-4dfc-89c6-267f948b8f2a",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
