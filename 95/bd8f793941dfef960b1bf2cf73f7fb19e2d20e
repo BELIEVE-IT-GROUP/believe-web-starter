@@ -1,0 +1,22 @@
+src/app/api/capitulo/route.ts
+  s_88039e6b12665e::t_2f01d81c7850d3 4
+  s_88039e6b12665e::t_2225edee39b517 26-29,31-32
+.env.example
+  s_88039e6b12665e::t_d6292dfb25eb87 16,25
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.8",
+  "base_commit_sha": "95bd8f793941dfef960b1bf2cf73f7fb19e2d20e",
+  "prompts": {},
+  "sessions": {
+    "s_88039e6b12665e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f155c7bd-ba93-4bac-97bb-15752ddecf75",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
