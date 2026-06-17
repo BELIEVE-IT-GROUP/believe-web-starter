@@ -1,0 +1,103 @@
+src/app/admin/[tenant]/[slug]/page.tsx
+  s_7845a36faaa8ba::t_54950eaab150f2 1-12
+src/cms/blocks/birdman/Problemas.tsx
+  s_7845a36faaa8ba::t_c19ceebc9b8754 1-3,5-11,23-48
+  s_7845a36faaa8ba::t_c9d261796eccf9 4,12-22
+src/cms/seed.ts
+  s_7845a36faaa8ba::t_f88e20d533a66c 1-37
+src/cms/blocks/birdman/Faq.tsx
+  s_7845a36faaa8ba::t_afac56cba943f1 1-9,25-48
+  s_7845a36faaa8ba::t_cd80ff0bd63ff8 10-24
+src/cms/blocks/birdman/Root.tsx
+  s_7845a36faaa8ba::t_edf4fb16271297 80
+  s_7845a36faaa8ba::t_09ea53e8a67e43 86
+  s_7845a36faaa8ba::t_bf6ba5a478d06a 22,26-32,39-49,54-72,74-77
+  s_7845a36faaa8ba::t_95119b9f3dc188 1-21,23-25,33-38,50-53,73,78-79,81-85,87-142,149-244
+  s_7845a36faaa8ba::t_4c4f730d7b8b28 143-148
+src/cms/blocks/birdman/Soluciones.tsx
+  s_7845a36faaa8ba::t_b5b7e849725e9b 1-3,5-12,22-51
+  s_7845a36faaa8ba::t_e6212395d91358 4,13-21
+src/cms/blocks/birdman/Tecnologia.tsx
+  s_7845a36faaa8ba::t_95376718bb8e23 1-10,12-29,77-146
+  s_7845a36faaa8ba::t_4c49a1717b0f5c 30-76
+  s_7845a36faaa8ba::t_8669eda2bea277 11
+src/cms/blocks/birdman/Blog.tsx
+  s_7845a36faaa8ba::t_a26b3f1ebd0dc9 12-21
+  s_7845a36faaa8ba::t_82287084d7c72f 1-11,22-42
+Dockerfile
+  s_7845a36faaa8ba::t_9a5dfcd2374d2c 29-31
+src/cms/blocks/birdman/Hero.tsx
+  s_7845a36faaa8ba::t_8f73bae681fc56 21-35,38-83
+  s_7845a36faaa8ba::t_aac6d9f6fd9b31 1-20,36-37,84-170
+src/app/admin/[tenant]/page.tsx
+  s_7845a36faaa8ba::t_842fabb40dcc46 1-43
+src/cms/blocks/birdman/fields.tsx
+  s_7845a36faaa8ba::t_1fa89c33990887 1-24
+src/cms/puck.config.tsx
+  s_7845a36faaa8ba::t_5dabc1328bd1a7 1-9,23-27,41-44,61-63
+  s_7845a36faaa8ba::t_636b011525a7d1 10-22,28-40,45-60
+src/app/admin/[tenant]/[slug]/Editor.tsx
+  s_7845a36faaa8ba::t_4109526f7f5bf7 1-21
+src/cms/blocks/birdman/birdman.css.ts
+  s_7845a36faaa8ba::t_ee454430ab50b9 1-282
+src/cms/blocks/birdman/Recursos.tsx
+  s_7845a36faaa8ba::t_5ee13e9bf85a19 1-9,21-41
+  s_7845a36faaa8ba::t_7d8004dad233f6 10-20
+src/cms/blocks/birdman/Diagnostico.tsx
+  s_7845a36faaa8ba::t_7b5c2692840714 1-15,17-34,70-228
+  s_7845a36faaa8ba::t_0c73fd0fa79250 16
+  s_7845a36faaa8ba::t_7034fc5f74b07c 35-69
+data/tenants/birdman.json
+  s_7845a36faaa8ba::t_9961045e83808d 1-7
+src/app/s/[tenant]/[[...slug]]/PublicRender.tsx
+  s_7845a36faaa8ba::t_f05be35fc0c548 1-8
+src/app/api/cms/[tenant]/[slug]/route.ts
+  s_7845a36faaa8ba::t_6e6f35fc789df6 1-12
+src/cms/blocks/birdman/Calculadora.tsx
+  s_7845a36faaa8ba::t_08f7271b763cbc 1-19,42,50-141
+  s_7845a36faaa8ba::t_814fe1c82d78ef 20-41,43-49
+src/cms/blocks/birdman/Casos.tsx
+  s_7845a36faaa8ba::t_faf61244eff850 18-34
+  s_7845a36faaa8ba::t_e2c27bb476135e 1-17,35-70
+src/cms/blocks/birdman/Industrias.tsx
+  s_7845a36faaa8ba::t_023da05aec7703 1-9,11-18,20-37
+  s_7845a36faaa8ba::t_390569f2884de0 10,19
+src/app/admin/page.tsx
+  s_7845a36faaa8ba::t_ca45012c9b2c18 1-25
+src/cms/blocks/birdman/Metodologia.tsx
+  s_7845a36faaa8ba::t_fefec5d87194aa 1-3,5-12,14-34
+  s_7845a36faaa8ba::t_844b41d06184e3 4,13
+src/cms/blocks/birdman/QueHacemos.tsx
+  s_7845a36faaa8ba::t_b7af502dba8943 28-35
+  s_7845a36faaa8ba::t_63a486c81c1df6 1-27,36-56
+package.json
+  s_7845a36faaa8ba::t_1b06d557a93cf4 14
+src/cms/blocks/birdman/Beneficios.tsx
+  s_7845a36faaa8ba::t_2ee25d6da92087 1-17,33-51
+  s_7845a36faaa8ba::t_f398630cda2bc9 18-32
+src/app/s/[tenant]/[[...slug]]/page.tsx
+  s_7845a36faaa8ba::t_6b6f022e8146b1 4,6-7,15
+  s_7845a36faaa8ba::t_d79c9931c9e067 1-3,5,8-14,16
+src/cms/store.ts
+  s_7845a36faaa8ba::t_f3ff59b8867a95 1-60
+.gitignore
+  s_7845a36faaa8ba::t_630c28f9325c1a 10-13
+package-lock.json
+  s_7845a36faaa8ba::t_a00db7e6cd0073 11,44-108,388-435,693-702,838,845,2053,2147-2153,3030-3038,6350-6361,6368-6381,6617-6644
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.7",
+  "base_commit_sha": "fe36d9f5773ef793e76698e372c97bdd715592b6",
+  "prompts": {},
+  "sessions": {
+    "s_7845a36faaa8ba": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c8d25b1d-2d8d-4bf1-b72b-4b824ec03708",
+        "model": "unknown"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
