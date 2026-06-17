@@ -1,0 +1,19 @@
+tsconfig.json
+  s_c1a2c31ddd6209::t_6e021f6fcc0ed2 21
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.8",
+  "base_commit_sha": "dd5c8d9745545a1c0751d85866489be549446e6a",
+  "prompts": {},
+  "sessions": {
+    "s_c1a2c31ddd6209": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e3a5bbcf-d736-4dfc-89c6-267f948b8f2a",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
