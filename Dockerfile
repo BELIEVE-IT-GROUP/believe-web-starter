@@ -26,5 +26,8 @@ EXPOSE 3000
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/static ./.next/static
+# CMS Puck: config de tenants va en la imagen; el contenido editable
+# (data/pages) lo provee un volumen persistente montado en /app/data/pages.
+COPY --from=builder /app/data ./data
 
 CMD ["node", "server.js"]
