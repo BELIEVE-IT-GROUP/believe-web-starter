@@ -1,0 +1,96 @@
+src/cms/blocks/neurorealidad/Hero.tsx
+  s_7845a36faaa8ba::t_8cb3ef40305084 1-76
+src/cms/blocks/neurorealidad/Reconoces.tsx
+  s_7845a36faaa8ba::t_6ccd50e6730882 1-85
+src/cms/blocks/neurorealidad/Voces.tsx
+  s_7845a36faaa8ba::t_2f58692dcca355 1-114
+src/cms/blocks/neurorealidad/Final.tsx
+  s_7845a36faaa8ba::t_86d7ff7d3146dc 1-78
+src/cms/blocks/neurorealidad/Cerebro.tsx
+  s_7845a36faaa8ba::t_52fffedfc0ec64 1-38
+src/cms/blocks/neurorealidad/fields.tsx
+  s_7845a36faaa8ba::t_c8ee4a0e1701bb 1-25
+src/cms/blocks/neurorealidad/Oferta.tsx
+  s_7845a36faaa8ba::t_7df51b4807dc62 9
+  s_7845a36faaa8ba::t_796125c0ef26db 1-8,10-131
+src/cms/blocks/neurorealidad/Camino.tsx
+  s_7845a36faaa8ba::t_ee79d9c57d1ce7 1-78
+data/tenants/neurorealidad.json
+  s_7845a36faaa8ba::t_2b73c2617e2065 1-7
+src/app/s/[tenant]/[[...slug]]/PublicRender.tsx
+  s_7845a36faaa8ba::t_9bec3a71191a8d 6
+  s_7845a36faaa8ba::t_e78c268f82370d 4,7-8
+deploy/run-puck.sh
+  s_7845a36faaa8ba::t_f9e1ed62bd28b3 1-35
+src/cms/blocks/neurorealidad/Autor.tsx
+  s_7845a36faaa8ba::t_1fa6b94dc50a34 1-7,9-68
+  s_7845a36faaa8ba::t_9af26331da3948 8
+src/cms/blocks/neurorealidad/Faq.tsx
+  s_7845a36faaa8ba::t_0de22a57c19891 1-74
+src/cms/registry.ts
+  s_7845a36faaa8ba::t_cc6cdc9960d2eb 1-28
+  s_7845a36faaa8ba::t_b59dde7b263b3a 29-45
+docs/HANDOFF-mcp-believe-puck.md
+  s_7845a36faaa8ba::t_7d0a5ca9f575d7 1-54
+src/cms/blocks/neurorealidad/config.tsx
+  s_7845a36faaa8ba::t_1d065b916d4bd4 8-17,23-32,37-49
+  s_7845a36faaa8ba::t_5a8ec947467ec7 1-7,18-22,33-36,50-52
+src/cms/blocks/neurorealidad/seed.ts
+  s_7845a36faaa8ba::t_052d775e72dd67 13-22
+  s_7845a36faaa8ba::t_5f76cf198eb888 1-12,23-25
+public/neurorealidad/landing.html
+  s_7845a36faaa8ba::t_05c575a0a55cfd 198,404
+  s_7845a36faaa8ba::t_cf34a802a2af0d 357
+  s_7845a36faaa8ba::t_6fa24a1e5eeee6 138
+  s_7845a36faaa8ba::t_81d1770fded978 47-48
+  s_7845a36faaa8ba::t_1f000466f3c032 72,74-78
+  s_7845a36faaa8ba::t_e8679b186b1e8b 56
+  s_7845a36faaa8ba::t_a893a70ffc9ece 1-6,8-9,11-12,19-20,33,35,50-51,58,61-62,67,162,170,172,181,184,186,189,191-193,195-197,199,203-204,206-214,218,221-223,225-227,233-236,259-262,273,282-284,286,289,297-304,306,316-319,339,346,348-349,352-353,355,358-359,361,364-371,380-383,385,391,393,397-403,406-409,411,415-417
+  s_7845a36faaa8ba::t_44c9f16b998639 10,15-17,21-26,31-32,36-46,49,52-55,57,59-60,63-66,68-71,79-113,117-135,150-161,163-169,171,173-180,182-183,185,187-188,190,194,200,216,219,224,237,239-240,242-243,247-248,250-252,254-258,263,267-272,277-279,281,285,287,291-296,305,309-314,340-344,347,350,354,356,360,362,373-377,386,394-396,410
+  s_7845a36faaa8ba::t_504b38763ab6b8 13-14
+  s_7845a36faaa8ba::t_45662a2f008983 34
+  s_7845a36faaa8ba::t_dc2380dea4c014 73
+  s_7845a36faaa8ba::t_62b38e473029c0 141
+  s_7845a36faaa8ba::t_d48740777442ed 230
+  s_7845a36faaa8ba::t_2479cd6450f218 320-338
+  s_7845a36faaa8ba::t_113bc94aaef880 114-116
+  s_7845a36faaa8ba::t_cec34dce9fde4d 363
+  s_7845a36faaa8ba::t_444abd5786e165 136-137,139-140,142-149
+  s_7845a36faaa8ba::t_9b513bb96472af 18,202,205,215,220,265-266,290,307-308,315,345,351,372,378-379,384,387,390,392,405
+  s_7845a36faaa8ba::t_80981363f10635 201,238,241,244-246,249,253,264,274-276,280,388-389
+  s_7845a36faaa8ba::t_d1a34c03515af6 27-30
+  s_7845a36faaa8ba::t_1e343448876f73 228-229,231-232
+  s_7845a36faaa8ba::t_9551ead84861d0 412-414
+  s_7845a36faaa8ba::t_0c9950a77b5055 7,217,288
+src/cms/blocks/neurorealidad/Root.tsx
+  s_7845a36faaa8ba::t_49f23abe80bfe7 1-78
+src/cms/blocks/neurorealidad/Dentro.tsx
+  s_7845a36faaa8ba::t_98b050c28ffa43 1-70
+src/cms/blocks/neurorealidad/Promesa.tsx
+  s_7845a36faaa8ba::t_634f4a6b38b8f9 1-37
+src/app/s/[tenant]/[[...slug]]/page.tsx
+  s_7845a36faaa8ba::t_1f0d3d02baf386 3,13,15
+src/app/admin/[tenant]/[slug]/Editor.tsx
+  s_7845a36faaa8ba::t_db6357663fac0a 7
+  s_7845a36faaa8ba::t_2901b490245bf3 5,8,12
+src/cms/blocks/neurorealidad/nr.css.ts
+  s_7845a36faaa8ba::t_4ce2ea0f67724b 1-182
+src/app/admin/[tenant]/[slug]/page.tsx
+  s_7845a36faaa8ba::t_9e8c55a73d9e9a 2-4,11-14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.7",
+  "base_commit_sha": "e94f64f3fe7430c7c192497876a5f90297a96214",
+  "prompts": {},
+  "sessions": {
+    "s_7845a36faaa8ba": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c8d25b1d-2d8d-4bf1-b72b-4b824ec03708",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
