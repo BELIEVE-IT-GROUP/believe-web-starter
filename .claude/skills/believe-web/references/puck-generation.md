@@ -27,8 +27,14 @@ Trabajar en `src/cms/blocks/<slug>/`. Si el HTML ya está portado a un component
    - Define assets globales (logo SVG symbol) reusados por nav/footer.
    - `useEffect` con la interactividad GLOBAL (anchor-scroll con offset, reveal-on-scroll por IntersectionObserver). NO depende de `content`.
    - **Fix obligatorio:** si `puck.isEditing`, inyectar `<style>.reveal{opacity:1!important;transform:none!important}</style>` (en el iframe del editor el observer no dispara → contenido `.reveal` quedaría invisible).
-   - Renderiza `<header>` (nav editable) + `<main>{children}</main>` + `<footer>` + flotantes.
-   - `fields` para nav/footer/meta; `defaultProps` = slices de content. Cerrar `fields` con `} as never`.
+   - Renderiza `<header>` (nav) + `<main>{children}</main>` + `<footer>` + flotantes.
+   - **REGLA DURA — `meta` + `nav` + `footer` SIEMPRE editables (transversal a TODA web/landing).** El Root DEBE mapearlos como `fields`, nunca hardcodeados en el render:
+     - `meta`: usar el helper COMPARTIDO `metaField()` de `src/cms/fields/meta.tsx` (title, description, favicon, ogImage). NO reinventar. (favicon/ogImage usan `imageField` → suben a R2.)
+     - `nav`: `links[]` ({label, href}) + `cta` ({label, href}) (+ `brand` si aplica).
+     - `footer`: textos editables (tagline/copyright/columns/social según el diseño).
+     - El render CONSUME esos props; `defaultProps` = los valores del diseño (fidelidad inicial). El wordmark / estructura / estética pueden quedar FIJOS (identidad de marca), pero los DATOS (links, cta, textos) van como fields editables.
+   - **Lección neurorealidad (NO repetir):** se generó con nav/footer HARDCODEADOS en el render y hubo que refactorizar después. Aunque el nav/footer parezca "fijo", parametrizá sus datos a fields desde el inicio. La *capacidad* de editar meta/nav/footer es transversal; el *render* es a-medida.
+   - Cerrar `fields` con `} as never`.
 
 3. **Un bloque por `<section>`** (`ComponentConfig<Slice>`). Patrón de referencia: `Hero.tsx`, `QueHacemos.tsx`, `Problemas.tsx`.
    - `render`: JSX **verbatim** de la sección (clases/ids/estilos idénticos), reemplazando `content.<seccion>.X` por props desestructuradas.
@@ -58,6 +64,8 @@ Trabajar en `src/cms/blocks/<slug>/`. Si el HTML ya está portado a un component
 - `fields` incompletos → `} as never`.
 - `string[]` → helper `stringList`.
 - standalone no copia `data/` → Dockerfile `COPY --from=builder /app/data ./data`; `data/pages` por volumen.
+- **nav/footer hardcodeados en el render → no editables** (pasó con neurorealidad, hubo refactor doloroso). Mapearlos SIEMPRE como fields del Root desde el inicio: `meta` via `metaField()`, `nav` (links+cta), `footer` (textos). Ver punto 2 (REGLA DURA).
+- `metaField()`/`imageField` viven en `src/cms/fields/` y son compartidos por TODOS los block sets. R2 upload necesita el header `content-length` explícito (undici/aws4fetch usan chunked → R2 da 411).
 - Authelia 403 en dominio nuevo → agregar regla `one_factor` (ver Deploy).
 
 ## Orquestación recomendada (harness)
