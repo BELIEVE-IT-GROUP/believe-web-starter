@@ -1,0 +1,34 @@
+deploy/run-puck.sh
+  s_c1a2c31ddd6209::t_b7113c29fd90a1 12
+src/app/birdman/content.ts
+  s_c1a2c31ddd6209::t_117a821d8a42c6 112
+src/lib/r2.ts
+  s_c1a2c31ddd6209::t_7e556f8cc2023a 25
+  s_c1a2c31ddd6209::t_a708d24d3ba760 1-24,26-35
+src/app/api/cms/upload/route.ts
+  s_c1a2c31ddd6209::t_f8bc322c5e408a 1-34,36-42
+  s_c1a2c31ddd6209::t_e5969e1b200c3f 35
+src/cms/fields/image.tsx
+  s_c1a2c31ddd6209::t_fd2599677f5f49 1-81
+src/cms/blocks/birdman/Root.tsx
+  s_c1a2c31ddd6209::t_3d40ac5d209cc7 23
+  s_c1a2c31ddd6209::t_10949f676fe356 32-33
+package.json
+  s_c1a2c31ddd6209::t_c1b37ca0efa898 15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.8",
+  "base_commit_sha": "7ce07d1796e957a596637fdc6a2a24cdc747f5c9",
+  "prompts": {},
+  "sessions": {
+    "s_c1a2c31ddd6209": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e3a5bbcf-d736-4dfc-89c6-267f948b8f2a",
+        "model": "unknown"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
