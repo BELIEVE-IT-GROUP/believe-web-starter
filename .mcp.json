@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "puck-cms": {
+      "command": "node",
+      "args": ["puck-cms-mcp/dist/index.js"]
+    }
+  }
+}
