@@ -12,12 +12,57 @@ import { metaField, type MetaProps } from '@/cms/fields/meta'
 
 const AMZ = 'https://www.amazon.com/dp/B0H1JTHK57?utm_source=maas90d&utm_medium=libro_landing&utm_campaign=launch&utm_content=nav_cta'
 
-type RootProps = { ctaLabel: string; meta?: MetaProps }
+type NavLink = { label: string; href: string }
+type RootProps = {
+  ctaLabel: string
+  meta?: MetaProps
+  nav?: { links?: NavLink[]; cta?: { label?: string; href?: string } }
+  footer?: { tagline?: string; copyright?: string }
+}
+
+const DEFAULT_NAV_LINKS: NavLink[] = [
+  { label: 'Por qué te cuesta', href: '#cerebro' },
+  { label: '¿Te reconoces?', href: '#reconoces' },
+  { label: 'El camino', href: '#camino' },
+  { label: 'El autor', href: '#autor' },
+]
+const DEFAULT_TAGLINE = 'un libro de MAAS 90D™'
+const DEFAULT_COPYRIGHT = '© 2026 Jorge Beltrán Liévano · @hellosoygeorge'
 
 export const Root: RootConfig<RootProps> = {
-  fields: { ctaLabel: { type: 'text' }, meta: metaField() } as never,
-  defaultProps: { ctaLabel: 'Conseguir el libro' },
-  render: ({ children, ctaLabel, puck }) => {
+  fields: {
+    ctaLabel: { type: 'text' },
+    meta: metaField(),
+    nav: {
+      type: 'object',
+      label: 'Navegación',
+      objectFields: {
+        links: {
+          type: 'array',
+          arrayFields: { label: { type: 'text' }, href: { type: 'text' } },
+          getItemSummary: (i: { label?: string }) => i?.label || 'Link',
+        },
+        cta: {
+          type: 'object',
+          objectFields: { label: { type: 'text' }, href: { type: 'text' } },
+        },
+      },
+    },
+    footer: {
+      type: 'object',
+      label: 'Footer',
+      objectFields: {
+        tagline: { type: 'text' },
+        copyright: { type: 'text' },
+      },
+    },
+  } as never,
+  defaultProps: {
+    ctaLabel: 'Conseguir el libro',
+    nav: { links: DEFAULT_NAV_LINKS, cta: { label: 'Conseguir el libro', href: AMZ } },
+    footer: { tagline: DEFAULT_TAGLINE, copyright: DEFAULT_COPYRIGHT },
+  },
+  render: ({ children, ctaLabel, nav, footer, puck }) => {
     useEffect(() => {
       const cleanups: Array<() => void> = []
       const reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches
@@ -55,12 +100,11 @@ export const Root: RootConfig<RootProps> = {
             <div className="wrap nav__row">
               <a className="wm" href="#top">Neuro<span>Realidad</span><span className="tm">™</span></a>
               <nav className="nav__links">
-                <a href="#cerebro">Por qué te cuesta</a>
-                <a href="#reconoces">¿Te reconoces?</a>
-                <a href="#camino">El camino</a>
-                <a href="#autor">El autor</a>
+                {(nav?.links ?? DEFAULT_NAV_LINKS).map((l, i) => (
+                  <a key={i} href={l.href}>{l.label}</a>
+                ))}
               </nav>
-              <a className="btn btn--primary" href={AMZ} target="_blank" rel="noopener">{ctaLabel}</a>
+              <a className="btn btn--primary" href={nav?.cta?.href || AMZ} target="_blank" rel="noopener">{nav?.cta?.label || ctaLabel}</a>
             </div>
           </header>
 
@@ -68,8 +112,8 @@ export const Root: RootConfig<RootProps> = {
 
           <footer>
             <div className="wrap foot">
-              <div><span className="wm">Neuro<span>Realidad</span><span className="tm">™</span></span> · un libro de MAAS 90D™</div>
-              <div>© 2026 Jorge Beltrán Liévano · @hellosoygeorge</div>
+              <div><span className="wm">Neuro<span>Realidad</span><span className="tm">™</span></span> · {footer?.tagline || DEFAULT_TAGLINE}</div>
+              <div>{footer?.copyright || DEFAULT_COPYRIGHT}</div>
             </div>
           </footer>
         </div>
