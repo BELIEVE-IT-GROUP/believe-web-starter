@@ -37,3 +37,22 @@ export async function publishRemotePage(tenant: string, slug: string, data: unkn
   if (!res.ok) throw new Error(`PUT ${res.status}: ${(await res.text()).slice(0, 200)}`);
   return res.json();
 }
+
+export async function listRemotePages(tenant: string): Promise<string[]> {
+  requireKey();
+  const res = await fetch(`${BASE}/api/svc/cms/${assertSlug(tenant)}`, { headers: { "x-cms-key": KEY } });
+  if (!res.ok) throw new Error(`GET ${res.status}: ${(await res.text()).slice(0, 200)}`);
+  const body = (await res.json()) as { pages?: string[] };
+  return body.pages ?? [];
+}
+
+export async function seedRemotePage(tenant: string, slug: string, force = false): Promise<unknown> {
+  requireKey();
+  const res = await fetch(endpoint(tenant, slug), {
+    method: "POST",
+    headers: { "x-cms-key": KEY, "content-type": "application/json" },
+    body: JSON.stringify({ force }),
+  });
+  if (!res.ok) throw new Error(`POST ${res.status}: ${(await res.text()).slice(0, 200)}`);
+  return res.json();
+}

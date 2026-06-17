@@ -43,6 +43,16 @@ export async function saveTenant(t: Tenant): Promise<void> {
   await fs.writeFile(tenantFile(t.slug), JSON.stringify(t, null, 2) + "\n");
 }
 
+/** Borra data/tenants/<slug>.json. Devuelve true si existía. */
+export async function deleteTenant(slug: string): Promise<boolean> {
+  try {
+    await fs.unlink(tenantFile(slug));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 /** Block sets = subdirectorios de src/cms/blocks/. */
 export async function listBlockSets(): Promise<string[]> {
   const entries = await fs.readdir(blocksDir, { withFileTypes: true }).catch(() => []);

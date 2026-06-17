@@ -23,9 +23,14 @@ es código a medida del skill `/believe-web`); orquesta lo repetible.
 | `puck_set_tokens` | local | reemplaza el objeto de tokens del tenant |
 | `puck_list_blocksets` | local | subdirectorios de `src/cms/blocks/` |
 | `puck_list_blocks` | local | bloques (componentes PascalCase) de un block set |
+| `puck_delete_tenant` | local | baja un tenant (`data/tenants/<slug>.json`), requiere `confirm:true` |
 | `puck_deploy` | local | rsync + docker build + run-puck.sh en Contabo (`dryRun:true` por defecto) |
 | `puck_get_page` | remoto | lee el Puck Data de una página del CMS live |
 | `puck_publish_page` | remoto | guarda el Puck Data de una página en el CMS live |
+| `puck_list_pages` | remoto | lista las páginas de un tenant en el CMS live |
+| `puck_seed_page` | remoto | crea una página rellena con el seed del block set (`force` para sobrescribir) |
+| `puck_backup_pages` | remoto | baja todas las páginas de un tenant a `<repo>/backups/<tenant>/` |
+| `puck_restore_pages` | remoto | sube un backup local de páginas al CMS live |
 
 ## Env vars
 
@@ -46,8 +51,10 @@ npm run smoke        # E2E del contrato MCP contra el repo (tools locales read-o
 
 ## Registro en Claude Code
 
-Hay un `.mcp.json` en la raíz del repo que lo registra para este proyecto. Para las tools
-remotas, exportá `PUCK_SVC_KEY` en el entorno del proceso de Claude (no se versiona el secreto).
+Hay un `.mcp.json` en la raíz del repo que lo registra para este proyecto. Arranca el server
+a través del helper `infra` (`~/.believe/bin/infra`), que inyecta los secrets de Infisical
+(incluido `PUCK_SVC_KEY`) como env vars. Así las tools remotas tienen la key sin que el
+secreto toque `.zshrc` ni el repo.
 
 ## Encender el lado remoto (acciones de prod, una vez)
 

@@ -1,8 +1,8 @@
 {
   "mcpServers": {
     "puck-cms": {
-      "command": "node",
-      "args": ["puck-cms-mcp/dist/index.js"]
+      "command": "/Users/mac/.believe/bin/infra",
+      "args": ["node", "puck-cms-mcp/dist/index.js"]
     }
   }
 }
