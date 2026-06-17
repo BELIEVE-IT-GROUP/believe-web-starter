@@ -1,0 +1,46 @@
+puck-cms-mcp/src/lib/store.ts
+  s_c1a2c31ddd6209::t_fac33e4d702d4a 46-55
+puck-cms-mcp/src/tools/puck_backup_pages.ts
+  s_c1a2c31ddd6209::t_bd32afe6ea2c57 1-31
+src/app/api/svc/cms/[tenant]/route.ts
+  s_c1a2c31ddd6209::t_ae72fbe6d9ae2b 1-13
+puck-cms-mcp/README.md
+  s_c1a2c31ddd6209::t_f68ffbbddf46dd 54-57
+  s_c1a2c31ddd6209::t_19c64675cda2ca 26,30-33
+puck-cms-mcp/src/tools/puck_delete_tenant.ts
+  s_c1a2c31ddd6209::t_95e7538f0d8317 1-34
+src/cms/seeds.server.ts
+  s_c1a2c31ddd6209::t_51a47c6d0578f6 1-19
+puck-cms-mcp/src/lib/cms-api.ts
+  s_c1a2c31ddd6209::t_56fc795a300df4 40-58
+src/cms/svc-auth.ts
+  s_c1a2c31ddd6209::t_3fb393ece9195a 1-26
+.mcp.json
+  s_c1a2c31ddd6209::t_3a52dc666e0ea8 4-5
+puck-cms-mcp/src/tools/puck_restore_pages.ts
+  s_c1a2c31ddd6209::t_b90d04b810f8fc 1-31
+puck-cms-mcp/src/lib/backup.ts
+  s_c1a2c31ddd6209::t_f97e7e1d89dd27 1-40
+puck-cms-mcp/src/tools/puck_seed_page.ts
+  s_c1a2c31ddd6209::t_429a64c7298821 1-33
+src/app/api/svc/cms/[tenant]/[slug]/route.ts
+  s_c1a2c31ddd6209::t_d491ae1b2f212b 2,7-10,13-15,18,24,38-58
+puck-cms-mcp/src/tools/puck_list_pages.ts
+  s_c1a2c31ddd6209::t_2be6f55ad70a4f 1-27
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.7",
+  "base_commit_sha": "2b82268cd962c9f1d83de408b0dbda340095ef3e",
+  "prompts": {},
+  "sessions": {
+    "s_c1a2c31ddd6209": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e3a5bbcf-d736-4dfc-89c6-267f948b8f2a",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
