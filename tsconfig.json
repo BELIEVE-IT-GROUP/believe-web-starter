@@ -18,5 +18,5 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules", "believe-cms-mcp"]
+  "exclude": ["node_modules", "believe-cms-mcp", "puck-cms-mcp"]
 }
