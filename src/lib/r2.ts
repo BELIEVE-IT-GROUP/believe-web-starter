@@ -23,12 +23,17 @@ const client = new AwsClient({
 
 /** Sube el buffer a R2 bajo `key` y devuelve la URL pública. */
 export async function uploadToR2(key: string, body: ArrayBuffer, contentType: string): Promise<string> {
-  // Blob (no ArrayBuffer crudo): undici SIEMPRE manda Content-Length con un Blob
-  // (conoce su .size). R2 exige Content-Length y rechaza chunked → error 411
-  // MissingContentLength. El Blob también lleva el content-type.
+  // aws4fetch envuelve la request en un Request object → el body se vuelve stream
+  // y undici (Node) usa Transfer-Encoding: chunked, que R2 rechaza (411
+  // MissingContentLength). Fix: header content-length explícito (aws4fetch lo firma
+  // y undici lo respeta aunque el body sea stream).
   const res = await client.fetch(`${ENDPOINT}/${BUCKET}/${key}`, {
     method: 'PUT',
-    body: new Blob([body], { type: contentType }),
+    body,
+    headers: {
+      'content-type': contentType,
+      'content-length': String(body.byteLength),
+    },
   })
   if (!res.ok) {
     throw new Error(`R2 PUT ${res.status}: ${(await res.text()).slice(0, 200)}`)
