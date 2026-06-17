@@ -109,7 +109,7 @@ export interface FooterColumn {
 }
 
 export interface BirdmanContent {
-  meta: { title: string; description: string }
+  meta: { title: string; description: string; ogImage?: string; favicon?: string }
   nav: {
     brand: string
     links: NavLink[]

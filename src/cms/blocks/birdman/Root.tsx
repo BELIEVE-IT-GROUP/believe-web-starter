@@ -20,6 +20,7 @@ type RootProps = {
 
 import { birdmanContent } from '@/app/birdman/content'
 import { stringList } from './fields'
+import { imageField } from '@/cms/fields/image'
 
 export const Root: RootConfig<RootProps> = {
   fields: {
@@ -28,6 +29,8 @@ export const Root: RootConfig<RootProps> = {
       objectFields: {
         title: { type: 'text' },
         description: { type: 'textarea' },
+        favicon: imageField('Favicon'),
+        ogImage: imageField('Imagen para compartir (OG)'),
       },
     },
     nav: {

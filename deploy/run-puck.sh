@@ -9,7 +9,7 @@ docker rm -f puck-cms 2>/dev/null || true
 docker run -d --name puck-cms --restart unless-stopped \
   --network coolify \
   -e NODE_ENV=production -e PORT=3000 \
-  -e PUCK_SVC_KEY="${PUCK_SVC_KEY:-$(cat /root/.puck-svc-key 2>/dev/null)}" \
+  --env-file /root/puck-cms.env \
   -v puck-cms-pages:/app/data/pages \
   --label 'traefik.enable=true' \
   --label 'traefik.docker.network=coolify' \
