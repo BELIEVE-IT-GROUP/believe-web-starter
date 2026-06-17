@@ -1,0 +1,21 @@
+deploy/run-puck.sh
+  s_c1a2c31ddd6209::t_dc6395061d79d8 12
+puck-cms-mcp/src/tools/puck_deploy.ts
+  s_c1a2c31ddd6209::t_19ef17e1e83827 11-21
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.7",
+  "base_commit_sha": "480047ba12c021388adada41de8cca6befa3ad01",
+  "prompts": {},
+  "sessions": {
+    "s_c1a2c31ddd6209": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e3a5bbcf-d736-4dfc-89c6-267f948b8f2a",
+        "model": "unknown"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
