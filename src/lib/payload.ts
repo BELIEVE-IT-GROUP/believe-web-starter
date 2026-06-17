@@ -108,6 +108,31 @@ export function deepMerge<T>(base: T, override: any): T {
 // Returns doc.content (or the doc) if found, or null. Never throws: a missing
 // collection or failed fetch resolves to null so the render falls back to the
 // default content.
+//
+// Normaliza la respuesta de Payload al shape de content.ts: los arrays de strings
+// se guardan como [{ value, id }] (Payload no soporta arrays de strings planos) y
+// cada item lleva un `id` interno. Aplana {value} -> string y limpia los `id`.
+function normalizeLanding(v: any): any {
+  if (Array.isArray(v)) {
+    if (
+      v.length &&
+      v.every((x) => x && typeof x === 'object' && 'value' in x && Object.keys(x).filter((k) => k !== 'id').length === 1)
+    ) {
+      return v.map((x) => x.value)
+    }
+    return v.map(normalizeLanding)
+  }
+  if (v && typeof v === 'object') {
+    const out: any = {}
+    for (const k of Object.keys(v)) {
+      if (k === 'id') continue
+      out[k] = normalizeLanding(v[k])
+    }
+    return out
+  }
+  return v
+}
+
 export async function getLandingContent(slug: string): Promise<any | null> {
   try {
     const qs = buildQuery({
@@ -122,7 +147,7 @@ export async function getLandingContent(slug: string): Promise<any | null> {
 
     const doc = data?.docs?.[0]
     if (!doc) return null
-    return doc.content ?? doc
+    return normalizeLanding(doc.content ?? doc)
   } catch (err) {
     console.error('[payload] getLandingContent error:', err)
     return null
