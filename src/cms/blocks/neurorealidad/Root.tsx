@@ -8,13 +8,14 @@
 import { useEffect } from 'react'
 import type { RootConfig } from '@measured/puck'
 import { NR_CSS } from './nr.css'
+import { metaField, type MetaProps } from '@/cms/fields/meta'
 
 const AMZ = 'https://www.amazon.com/dp/B0H1JTHK57?utm_source=maas90d&utm_medium=libro_landing&utm_campaign=launch&utm_content=nav_cta'
 
-type RootProps = { ctaLabel: string }
+type RootProps = { ctaLabel: string; meta?: MetaProps }
 
 export const Root: RootConfig<RootProps> = {
-  fields: { ctaLabel: { type: 'text' } } as never,
+  fields: { ctaLabel: { type: 'text' }, meta: metaField() } as never,
   defaultProps: { ctaLabel: 'Conseguir el libro' },
   render: ({ children, ctaLabel, puck }) => {
     useEffect(() => {
