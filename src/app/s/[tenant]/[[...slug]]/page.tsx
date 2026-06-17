@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { getPage, getTenant } from '@/cms/store'
+import { getPage, getTenant, getTenantByDomain } from '@/cms/store'
 import { getSeed } from '@/cms/registry'
 import { PublicRender } from './PublicRender'
 
@@ -10,11 +10,15 @@ type Params = { tenant: string; slug?: string[] }
 
 /** Carga tenant + Puck Data (página guardada o seed del block set). */
 async function loadPage(params: Params) {
-  const tenant = params.tenant
+  const id = params.tenant
   const slug = params.slug?.join('/') || 'home'
-  const t = await getTenant(tenant)
+  // `id` puede ser el slug del tenant o un dominio custom (host con puntos,
+  // reescrito por middleware.ts). Resolver por slug y, si no, por domain.
+  let t = await getTenant(id)
+  if (!t && id.includes('.')) t = await getTenantByDomain(id)
   if (!t) return null
-  const data = (await getPage(tenant, slug)) ?? getSeed(t.blockSet)
+  // Las páginas se guardan por slug REAL del tenant, no por host.
+  const data = (await getPage(t.slug, slug)) ?? getSeed(t.blockSet)
   return { t, slug, data }
 }
 

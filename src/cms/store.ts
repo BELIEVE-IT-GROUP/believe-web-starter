@@ -17,6 +17,8 @@ export interface Tenant {
   blockSet: string
   /** Overrides de tokens CSS (:root vars) por tenant. Opcional. */
   tokens?: Record<string, string>
+  /** Dominios custom apuntados a este tenant (CNAME → puck). p.ej. ['www.cliente.com','cliente.com']. */
+  domains?: string[]
   settings?: Record<string, unknown>
 }
 
@@ -44,6 +46,17 @@ export async function listTenants(): Promise<Tenant[]> {
 }
 
 export const getTenant = (slug: string) => readJson<Tenant>(tenantFile(slug))
+
+/**
+ * Resuelve un tenant por dominio custom (Host header). Normaliza a lowercase sin puerto.
+ * ponytail: O(n) sobre todos los tenants — ok para decenas. Si escala a cientos,
+ * mantener un índice domain→slug.
+ */
+export async function getTenantByDomain(host: string): Promise<Tenant | null> {
+  const h = host.toLowerCase().split(':')[0]
+  const tenants = await listTenants()
+  return tenants.find((t) => (t.domains ?? []).some((d) => d.toLowerCase() === h)) ?? null
+}
 
 export const getPage = (tenant: string, slug: string) => readJson<Data>(pageFile(tenant, slug))
 
