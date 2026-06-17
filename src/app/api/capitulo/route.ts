@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { AwsClient } from 'aws4fetch'
 
-const PLUNK_URL = 'https://api.mailing.believe-global.com'
+const PLUNK_API = 'https://api.mailing.believe-global.com/v1/track'
 const SES_URL = 'https://email.us-east-1.amazonaws.com/v2/email/outbound-emails'
 const FROM = 'Jorge Beltrán <noreply@believeitgroup.com>'
 const REPLY_TO = 'jorge@believe-global.com'
@@ -23,17 +23,13 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: false, message: 'Servicio no configurado' }, { status: 500 })
   }
 
-  // 1. Suscribir a Plunk (non-blocking, falla silenciosamente si no hay key)
-  const plunkKey = process.env.PLUNK_API_KEY
-  if (plunkKey) {
-    fetch(`${PLUNK_URL}/v1/contacts`, {
+  // 1. Registrar lead en Plunk via /v1/track (public key, non-blocking)
+  const plunkPublicKey = process.env.PLUNK_PUBLIC_API_KEY
+  if (plunkPublicKey) {
+    fetch(PLUNK_API, {
       method: 'POST',
-      headers: { Authorization: `Bearer ${plunkKey}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email,
-        subscribed: true,
-        ...(process.env.PLUNK_CAPITULO_LIST_ID ? { listId: process.env.PLUNK_CAPITULO_LIST_ID } : {}),
-      }),
+      headers: { Authorization: `Bearer ${plunkPublicKey}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ event: 'lead_capitulo1', email, subscribed: true }),
     }).catch((e) => console.error('[capitulo] Plunk error:', e))
   }
 
