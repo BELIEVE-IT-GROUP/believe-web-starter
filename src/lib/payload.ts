@@ -403,14 +403,8 @@ export interface SiteSettings {
 }
 
 export async function getSettings(): Promise<SiteSettings | null> {
-  const qs = buildQuery({
-    depth: 2,
-    limit: 1,
-  })
-
-  const data = await fetchPayload<{ docs: SiteSettings[] }>(`/api/settings${qs}`, {
-    next: { revalidate: 60, tags: ['payload_settings'] },
-  })
-
-  return data?.docs?.[0] || null
+  // Payload (cms.believe-global.com) fue retirado. El theme del CMS Puck vive en
+  // el CSS de cada block set, no en Payload. Cortocircuito a null: sin fetch, sin
+  // timeout, sin spam de logs. Se llama en el layout root en cada render.
+  return null
 }
