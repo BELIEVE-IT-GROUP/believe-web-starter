@@ -1,0 +1,25 @@
+src/middleware.ts
+  s_c1a2c31ddd6209::t_f37f43245f5ea4 1-30
+src/cms/store.ts
+  s_c1a2c31ddd6209::t_7e1200e6185ae1 50-60
+  s_c1a2c31ddd6209::t_98fe276c1b742e 20-21
+src/app/s/[tenant]/[[...slug]]/page.tsx
+  s_c1a2c31ddd6209::t_a8a49ecdb46335 3
+  s_c1a2c31ddd6209::t_4de4fba83c5a0c 13,15-18,20-21
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.8",
+  "base_commit_sha": "397297aaa49737830f4ffc231d521934f5a25b23",
+  "prompts": {},
+  "sessions": {
+    "s_c1a2c31ddd6209": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e3a5bbcf-d736-4dfc-89c6-267f948b8f2a",
+        "model": "unknown"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
