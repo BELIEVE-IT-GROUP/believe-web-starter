@@ -1,0 +1,21 @@
+deploy/run-puck.sh
+  s_c1a2c31ddd6209::t_7c6231a2f9eb16 3-6,12-52,58
+.claude/skills/believe-web/references/puck-generation.md
+  s_c1a2c31ddd6209::t_483126c4977d8b 96-113
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.8",
+  "base_commit_sha": "8905b3a415fe4ac573f7a07d1e5472beae1cad94",
+  "prompts": {},
+  "sessions": {
+    "s_c1a2c31ddd6209": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e3a5bbcf-d736-4dfc-89c6-267f948b8f2a",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
