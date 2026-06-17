@@ -1,9 +1,11 @@
 /**
- * Helpers de campos Puck reutilizables para los bloques birdman.
+ * Helpers de campos Puck para los bloques NeuroRealidad.
  *
  * stringList: edita un `string[]` como textarea (un item por linea) sin cambiar
- * la forma del dato ni el render. Puck no tiene array-de-primitivos nativo, asi
- * que usamos un campo 'custom' con round-trip join('\n') <-> split('\n').
+ * la forma del dato ni el render. Copia local (sin 'use client') del helper de
+ * birdman: la factory debe ser una funcion real en el grafo del server component
+ * (admin/[tenant]/[slug]/page.tsx la alcanza via registry). El `render` solo se
+ * invoca dentro del editor Puck, que ya es client.
  */
 import type { Field } from '@measured/puck'
 

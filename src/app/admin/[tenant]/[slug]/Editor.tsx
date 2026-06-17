@@ -2,13 +2,14 @@
 import { Puck } from '@measured/puck'
 import '@measured/puck/puck.css'
 import type { Data } from '@measured/puck'
-import { config } from '@/cms/puck.config'
+import { getConfig, withDefaults } from '@/cms/registry'
 
-export function Editor({ tenant, slug, data }: { tenant: string; slug: string; data: Data }) {
+export function Editor({ tenant, slug, blockSet, data }: { tenant: string; slug: string; blockSet: string; data: Data }) {
+  const config = getConfig(blockSet)
   return (
     <Puck
       config={config}
-      data={data}
+      data={withDefaults(config, data)}
       onPublish={async (d) => {
         await fetch(`/api/cms/${tenant}/${slug}`, {
           method: 'PUT',

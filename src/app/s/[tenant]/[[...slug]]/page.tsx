@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { getPage, getTenant } from '@/cms/store'
-import { buildBirdmanSeed } from '@/cms/seed'
+import { getSeed } from '@/cms/registry'
 import { PublicRender } from './PublicRender'
 
 export const dynamic = 'force-dynamic'
@@ -10,7 +10,7 @@ export default async function SitePage({ params }: { params: { tenant: string; s
   const slug = params.slug?.join('/') || 'home'
   const t = await getTenant(tenant)
   if (!t) notFound()
-  const data = (await getPage(tenant, slug)) ?? (tenant === 'birdman' ? buildBirdmanSeed() : null)
+  const data = (await getPage(tenant, slug)) ?? getSeed(t.blockSet)
   if (!data) notFound()
-  return <PublicRender data={data} />
+  return <PublicRender blockSet={t.blockSet} data={data} />
 }
