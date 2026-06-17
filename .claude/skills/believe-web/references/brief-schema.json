@@ -1,0 +1,553 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "believe-web/brief",
+  "title": "BelieveWebBrief",
+  "description": "Structured brief produced by the believe-web interview v2. All string values must be ASCII when written to CMS tools; markdown fields allow extended chars only in user-visible text.",
+  "type": "object",
+  "required": ["marca", "dna", "objetivo", "pages", "leads"],
+  "additionalProperties": false,
+  "properties": {
+    "marca": {
+      "type": "object",
+      "required": ["nombre", "slug"],
+      "additionalProperties": false,
+      "properties": {
+        "nombre": {
+          "type": "string",
+          "description": "Display name of the brand, e.g. 'Pawers'.",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "slug": {
+          "type": "string",
+          "description": "URL-safe identifier used as tenantSlug in CMS tools. Lowercase, hyphens only.",
+          "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+          "minLength": 2,
+          "maxLength": 40
+        },
+        "maasy_project_id": {
+          "type": "string",
+          "description": "UUID from maasy_list_brands. Null when brand is not in Maasy yet.",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "industria": {
+          "type": "string",
+          "description": "Short industry label, e.g. 'pet care', 'fintech', 'real estate'.",
+          "maxLength": 60
+        },
+        "publico_objetivo": {
+          "type": "string",
+          "description": "One-sentence description of the target audience.",
+          "maxLength": 200
+        },
+        "propuesta_de_valor": {
+          "type": "string",
+          "description": "Core value proposition in one sentence. ASCII only.",
+          "maxLength": 200
+        },
+        "tagline": {
+          "type": "string",
+          "description": "Brand tagline or slogan if the brand has one. E.g. 'Entrega que no falla.' ASCII only.",
+          "maxLength": 100
+        }
+      }
+    },
+    "dna": {
+      "type": "object",
+      "required": ["colors"],
+      "additionalProperties": false,
+      "description": "Brand DNA consumed directly by cms_set_theme_from_dna and the copywriting engine.",
+      "properties": {
+        "colors": {
+          "type": "object",
+          "required": ["primary", "accent"],
+          "additionalProperties": false,
+          "description": "Brand color palette. primary and accent are REQUIRED. paper and ink default to #ffffff and #111111 if not provided; always confirm defaults with Jorge before proceeding.",
+          "properties": {
+            "primary": {
+              "type": "string",
+              "description": "Main brand color as hex, e.g. '#0c3bb9'. Used in CTAs, header, key UI elements.",
+              "pattern": "^#[0-9A-Fa-f]{6}$"
+            },
+            "accent": {
+              "type": "string",
+              "description": "Secondary or highlight color as hex. REQUIRED. If not provided, derive a complementary color and confirm with Jorge.",
+              "pattern": "^#[0-9A-Fa-f]{6}$"
+            },
+            "paper": {
+              "type": "string",
+              "description": "Background / surface color as hex. Default #ffffff when omitted; confirm with Jorge.",
+              "pattern": "^#[0-9A-Fa-f]{6}$",
+              "default": "#ffffff"
+            },
+            "ink": {
+              "type": "string",
+              "description": "Main text color as hex. Default #111111 when omitted; confirm with Jorge.",
+              "pattern": "^#[0-9A-Fa-f]{6}$",
+              "default": "#111111"
+            }
+          }
+        },
+        "fonts": {
+          "type": "object",
+          "required": ["display", "body"],
+          "additionalProperties": false,
+          "description": "Google Fonts names. Both display and body are REQUIRED.",
+          "properties": {
+            "display": {
+              "type": "string",
+              "description": "Google Font name for headings, e.g. 'Fraunces' or 'Playfair Display'. REQUIRED.",
+              "maxLength": 60
+            },
+            "body": {
+              "type": "string",
+              "description": "Google Font name for body copy, e.g. 'Inter' or 'DM Sans'. REQUIRED. Default 'Inter' if brand has no preference.",
+              "maxLength": 60
+            }
+          }
+        },
+        "tone": {
+          "type": "string",
+          "description": "Brand voice tone used by copy blocks. ASCII only.",
+          "enum": [
+            "professional",
+            "playful",
+            "bold",
+            "minimalist",
+            "warm",
+            "authoritative",
+            "conversational",
+            "premium"
+          ]
+        },
+        "positioning": {
+          "type": "string",
+          "description": "One-sentence brand positioning statement for CMS copy reference.",
+          "maxLength": 300
+        },
+        "voice": {
+          "type": "object",
+          "required": ["cta_verb", "register"],
+          "additionalProperties": false,
+          "description": "Brand voice configuration for copywriting. cta_verb and register are REQUIRED.",
+          "properties": {
+            "cta_verb": {
+              "type": "string",
+              "description": "Primary action verb for CTAs. E.g. 'reservar', 'agendar', 'calcular', 'ver', 'empezar'. REQUIRED.",
+              "maxLength": 30
+            },
+            "register": {
+              "type": "string",
+              "description": "Grammatical register for copy. 'tu' for informal (most brands), 'usted' for formal (health, legal, finance). REQUIRED.",
+              "enum": ["tu", "usted"]
+            },
+            "key_messages": {
+              "type": "array",
+              "description": "Up to 5 key messages that must appear across the site copy.",
+              "maxItems": 5,
+              "items": {
+                "type": "string",
+                "maxLength": 100
+              }
+            },
+            "palabras_propias": {
+              "type": "array",
+              "description": "Brand-specific vocabulary: product names, coined terms, taglines. E.g. 'SLA garantizado', 'metricas auditables'.",
+              "maxItems": 20,
+              "items": {
+                "type": "string",
+                "maxLength": 80
+              }
+            },
+            "palabras_prohibidas": {
+              "type": "array",
+              "description": "Words or phrases the brand never uses. E.g. 'innovador', 'soluciones integrales'. The skill adds a base list on top of these.",
+              "maxItems": 20,
+              "items": {
+                "type": "string",
+                "maxLength": 50
+              }
+            }
+          }
+        },
+        "copy": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Copywriting DNA. All 6 core fields required for world-class copy. If missing, skill stops and interviews before generating copy.",
+          "required": ["cliente_ideal", "pain_principal", "transformacion", "diferenciador_real", "objeciones", "competidores"],
+          "properties": {
+            "cliente_ideal": {
+              "type": "string",
+              "description": "Specific ICP: who they are, their role, company size or context. E.g. 'DTC founders running 500+ orders/month on Shopify, no in-house logistics team'.",
+              "maxLength": 300
+            },
+            "pain_principal": {
+              "type": "string",
+              "description": "The ONE pain that makes the ICP lose sleep. Must be specific and emotional, not generic.",
+              "maxLength": 300
+            },
+            "transformacion": {
+              "type": "string",
+              "description": "Before/after transformation the brand delivers. Format: '[before state] to [after state]'.",
+              "maxLength": 400
+            },
+            "objeciones": {
+              "type": "array",
+              "description": "Top 3-5 objections prospects raise before buying. Each is a short phrase from the prospect's POV. REQUIRED, minimum 3.",
+              "minItems": 3,
+              "maxItems": 5,
+              "items": {
+                "type": "string",
+                "maxLength": 150
+              }
+            },
+            "competidores": {
+              "type": "array",
+              "description": "2-4 real alternatives the ICP considers. Used for differentiation only, never named in copy. REQUIRED, minimum 2.",
+              "minItems": 2,
+              "maxItems": 4,
+              "items": {
+                "type": "string",
+                "maxLength": 80
+              }
+            },
+            "diferenciador_real": {
+              "type": "string",
+              "description": "The one thing this brand does that no competitor does the same way. Must be concrete and defensible.",
+              "maxLength": 300
+            },
+            "prueba_social": {
+              "type": "array",
+              "description": "2-5 specific proof points: real stats, client names (with permission), awards, or before/after numbers. No vague claims. If none exist, set to empty array and note in brief.notas.",
+              "maxItems": 5,
+              "items": {
+                "type": "object",
+                "required": ["tipo", "valor"],
+                "additionalProperties": false,
+                "properties": {
+                  "tipo": {
+                    "type": "string",
+                    "description": "Type of proof: 'stat', 'testimonio', 'cliente', 'caso'.",
+                    "enum": ["stat", "testimonio", "cliente", "caso"]
+                  },
+                  "valor": {
+                    "type": "string",
+                    "description": "The proof point verbatim. E.g. '99.3% order accuracy' or 'Cut return rate by 40% in 90 days - Mara G., Founder at Nutria'.",
+                    "maxLength": 300
+                  }
+                }
+              }
+            },
+            "palabras_prohibidas": {
+              "type": "array",
+              "description": "Brand-specific forbidden words (in addition to the base list the skill always applies).",
+              "maxItems": 20,
+              "items": {
+                "type": "string",
+                "maxLength": 50
+              }
+            },
+            "palabras_propias": {
+              "type": "array",
+              "description": "Brand-specific vocabulary that must appear in copy.",
+              "maxItems": 20,
+              "items": {
+                "type": "string",
+                "maxLength": 80
+              }
+            }
+          }
+        },
+        "custom_css": {
+          "type": "string",
+          "description": "Optional raw CSS overrides for brands that need component-level customization beyond color/font tokens. WARNING: not sanitized; use only with trusted input. Max 2000 chars.",
+          "maxLength": 2000
+        }
+      }
+    },
+    "assets": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Visual asset URLs for the brand. All optional but logged as missing in gate checks. logo_url or logo_fallback must be set.",
+      "properties": {
+        "logo_url": {
+          "type": "string",
+          "description": "URL to the brand logo (PNG or SVG preferred). If not available, set logo_fallback to 'wordmark'.",
+          "format": "uri",
+          "maxLength": 500
+        },
+        "logo_fallback": {
+          "type": "string",
+          "description": "What to use when logo_url is not available. 'wordmark' means use brand name as text in header.",
+          "enum": ["wordmark"]
+        },
+        "favicon_url": {
+          "type": "string",
+          "description": "URL to favicon (ICO, PNG 32x32 or SVG).",
+          "format": "uri",
+          "maxLength": 500
+        },
+        "hero_image_url": {
+          "type": "string",
+          "description": "URL to the main hero image for the homepage. If not available, set hero_fallback.",
+          "format": "uri",
+          "maxLength": 500
+        },
+        "hero_fallback": {
+          "type": "string",
+          "description": "What to use when hero_image_url is not available. E.g. 'color-primary' for solid primary color background, or a description for generative image.",
+          "maxLength": 200
+        },
+        "product_images": {
+          "type": "array",
+          "description": "URLs to product or service photos for gallery and split-content blocks.",
+          "maxItems": 10,
+          "items": {
+            "type": "string",
+            "format": "uri",
+            "maxLength": 500
+          }
+        },
+        "video_url": {
+          "type": "string",
+          "description": "YouTube or Vimeo URL for product/brand video. If null, video-embed block is excluded from composition.",
+          "format": "uri",
+          "maxLength": 500
+        },
+        "og_image_url": {
+          "type": "string",
+          "description": "URL to Open Graph image for social sharing (1200x630px recommended).",
+          "format": "uri",
+          "maxLength": 500
+        },
+        "visual_reference_url": {
+          "type": "string",
+          "description": "Optional URL to a Figma file, competitor website, or moodboard for design reference.",
+          "format": "uri",
+          "maxLength": 500
+        }
+      }
+    },
+    "objetivo": {
+      "type": "string",
+      "description": "Primary website goal. Drives composition-playbook recipe selection.",
+      "enum": ["leads", "venta", "autoridad", "booking"]
+    },
+    "locale": {
+      "type": "string",
+      "description": "Language/locale for copy generation. Default 'es'. 'es-en' means bilingual site.",
+      "enum": ["es", "en", "es-en"],
+      "default": "es"
+    },
+    "dominio": {
+      "type": "string",
+      "description": "Target custom domain without protocol, e.g. 'pawers.com'. Null = use sslip.io staging URL.",
+      "pattern": "^([a-z0-9]+(-[a-z0-9]+)*\\.)+[a-z]{2,}$"
+    },
+    "seo": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Global SEO metadata for the site.",
+      "properties": {
+        "site_title": {
+          "type": "string",
+          "description": "Site-wide title tag, e.g. 'Pawers - Fulfillment DTC Garantizado'. Max 60 chars.",
+          "maxLength": 60
+        },
+        "meta_description": {
+          "type": "string",
+          "description": "Global meta description for the homepage and fallback for other pages. Max 160 chars.",
+          "maxLength": 160
+        },
+        "og_image_url": {
+          "type": "string",
+          "description": "Default OG image URL. Falls back to assets.og_image_url if not set.",
+          "format": "uri",
+          "maxLength": 500
+        }
+      }
+    },
+    "social": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Social media handles for footer social links. Keys are platform names, values are handles (with or without @) or full profile URLs.",
+      "properties": {
+        "instagram": {
+          "type": "string",
+          "description": "Instagram handle or profile URL.",
+          "maxLength": 100
+        },
+        "tiktok": {
+          "type": "string",
+          "description": "TikTok handle or profile URL.",
+          "maxLength": 100
+        },
+        "linkedin": {
+          "type": "string",
+          "description": "LinkedIn company page handle or URL.",
+          "maxLength": 100
+        },
+        "x": {
+          "type": "string",
+          "description": "X (formerly Twitter) handle or profile URL.",
+          "maxLength": 100
+        },
+        "youtube": {
+          "type": "string",
+          "description": "YouTube channel handle or URL.",
+          "maxLength": 100
+        }
+      }
+    },
+    "analytics": {
+      "type": "object",
+      "required": ["provider"],
+      "additionalProperties": false,
+      "description": "Analytics/tracking configuration.",
+      "properties": {
+        "provider": {
+          "type": "string",
+          "description": "Analytics provider. 'openpanel' is the Believe stack default (analytics.believe-global.com). 'none' to skip.",
+          "enum": ["openpanel", "ga4", "gtm", "none"]
+        },
+        "tracking_id": {
+          "type": "string",
+          "description": "Tracking ID or measurement ID for the analytics provider. Not required when provider is 'none'.",
+          "maxLength": 100
+        }
+      }
+    },
+    "pages": {
+      "type": "array",
+      "description": "Ordered list of pages to create. Must include at least one page with slug 'home'.",
+      "minItems": 1,
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "required": ["slug", "title", "sections"],
+        "additionalProperties": false,
+        "properties": {
+          "slug": {
+            "type": "string",
+            "description": "URL slug for the page. Use 'home' for the root page.",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+            "maxLength": 60
+          },
+          "title": {
+            "type": "string",
+            "description": "Human-readable page title shown in CMS nav.",
+            "maxLength": 100
+          },
+          "seo": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "Per-page SEO overrides.",
+            "properties": {
+              "meta_title": {
+                "type": "string",
+                "description": "Page-specific title tag. Max 60 chars.",
+                "maxLength": 60
+              },
+              "meta_description": {
+                "type": "string",
+                "description": "Page-specific meta description. Max 160 chars.",
+                "maxLength": 160
+              }
+            }
+          },
+          "sections": {
+            "type": "array",
+            "description": "Ordered blocks that compose the page. Maps to cms_create_page blocks array.",
+            "minItems": 1,
+            "maxItems": 20,
+            "items": {
+              "type": "object",
+              "required": ["blockType", "templateId", "intent"],
+              "additionalProperties": true,
+              "description": "additionalProperties: true allows copy fields (heading, subheading, items, etc.) passed verbatim to CMS.",
+              "properties": {
+                "blockType": {
+                  "type": "string",
+                  "description": "One of the 17 supported blockTypes.",
+                  "enum": [
+                    "header",
+                    "hero",
+                    "features",
+                    "pricing",
+                    "cta",
+                    "testimonials",
+                    "faq",
+                    "stats",
+                    "team",
+                    "logo-cloud",
+                    "gallery",
+                    "contact",
+                    "split-content",
+                    "video-embed",
+                    "newsletter",
+                    "blog-list",
+                    "footer"
+                  ]
+                },
+                "templateId": {
+                  "type": "string",
+                  "description": "Exact templateId from catalog, confirmed via cms_list_block_templates. E.g. 'hero.cover-image-ctas'. NEVER invented.",
+                  "pattern": "^[a-z0-9-]+\\.[a-z0-9-]+$"
+                },
+                "intent": {
+                  "type": "string",
+                  "description": "Why this block exists on this page. Used for copy generation context.",
+                  "maxLength": 200
+                },
+                "copy": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "Generated and validated copy for this block. Fields vary by blockType (heading, subheading, items, cta_text, etc.). Populated by Paso 3B and validated by 3B.8 checklist."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "leads": {
+      "type": "object",
+      "required": ["backend"],
+      "additionalProperties": false,
+      "description": "Lead capture configuration for cms_provision_leads.",
+      "properties": {
+        "backend": {
+          "type": "string",
+          "description": "Intended lead destination. 'maasy' stores in Maasy CRM; 'appwrite' stores in the brand's Appwrite project. The tool may override this based on available credentials.",
+          "enum": ["maasy", "appwrite"]
+        },
+        "actual_backend": {
+          "type": "string",
+          "description": "Actual sink used after cms_provision_leads runs. Populated post-execution. May differ from backend if credentials were not available.",
+          "enum": ["maasy_crm", "appwrite"]
+        },
+        "email_provider": {
+          "type": "string",
+          "description": "Transactional email for lead notifications. Passed as email param to cms_provision_leads.",
+          "enum": ["usesend", "plunk"]
+        },
+        "notification_email": {
+          "type": "string",
+          "description": "Email address that receives new lead notifications.",
+          "format": "email",
+          "maxLength": 100
+        }
+      }
+    },
+    "confirmado": {
+      "type": "boolean",
+      "description": "Set to true ONLY after Jorge has reviewed the brief summary in Paso 3E and said OK explicitly. Gates all dryRun:false calls.",
+      "default": false
+    },
+    "notas": {
+      "type": "string",
+      "description": "Free-text notes from the interview and gate checklists. Includes: copy quality checklist results (3B.8), excluded blocks (stats without data, video-embed without video), placeholder markers. Not passed to CMS tools.",
+      "maxLength": 3000
+    }
+  }
+}

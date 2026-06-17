@@ -11,3 +11,6 @@ node_modules/
 # CMS Puck: el contenido editable por tenant vive en un volumen persistente,
 # no en git. Los tenants (config) si se versionan en data/tenants/.
 data/pages/
+
+# git worktrees efímeros (no versionar)
+.claude/worktrees/
