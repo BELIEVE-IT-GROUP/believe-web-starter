@@ -93,4 +93,22 @@ ssh contabo-believe "cd /root/puck-cms && docker build -t puck-cms:latest . && b
 - Build verde.
 - `/s/<slug>` → 200, cert válido, **byte-for-byte vs el HTML aprobado** (solo difieren comentarios HTML).
 - `/admin/<slug>/home` → login Authelia, editor Puck carga, TODOS los items editables.
+
+## Dominio custom (cliente con su propio dominio)
+
+Modelo: **CNAME del cliente → puck.believe-global.com** + Traefik emite cert Let's
+Encrypt automatico. Router POR dominio (no catch-all) → cert solo para dominios conocidos
+(sin abuso de rate-limits). Para activar un dominio en un tenant:
+
+1. Agregar el/los dominios a `domains[]` del tenant en `data/tenants/<slug>.json`:
+   `"domains": ["www.cliente.com", "cliente.com"]` (o via MCP `puck_update_tenant`).
+2. El cliente crea en SU DNS un `CNAME www.cliente.com → puck.believe-global.com`
+   (apex `cliente.com`: A → IP de Contabo, o CNAME-flattening del proveedor).
+3. Redeploy (rsync + build + `run-puck.sh`): genera el router del dominio y Traefik
+   emite el cert al primer request (el CNAME debe estar activo ANTES del redeploy).
+4. Verificar: `https://www.cliente.com` sirve la web del tenant.
+
+Resolucion: `middleware.ts` reescribe el Host custom → `/s/<host>`; el page lo matchea
+por `domains[]` (`getTenantByDomain`). El contenido se sigue editando en
+`puck.believe-global.com/admin/<slug>` (el dominio custom es solo para el sitio publico).
 - Editar → publicar → persiste en volumen → visible en `/s/<slug>`.
