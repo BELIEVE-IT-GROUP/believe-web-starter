@@ -18,18 +18,51 @@ type FinalProps = {
 }
 
 function LeadForm({ placeholder, submitLabel, confirm }: { placeholder: string; submitLabel: string; confirm: string }) {
-  const [sent, setSent] = useState(false)
-  if (sent) {
+  const [email, setEmail] = useState('')
+  const [status, setStatus] = useState<'idle' | 'loading' | 'done' | 'error'>('idle')
+
+  if (status === 'done') {
     return (
       <form className="leadform">
         <p className="micro">{confirm}</p>
       </form>
     )
   }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setStatus('loading')
+    try {
+      const res = await fetch('/api/capitulo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+      setStatus(res.ok ? 'done' : 'error')
+    } catch {
+      setStatus('error')
+    }
+  }
+
   return (
-    <form className="leadform" onSubmit={(e) => { e.preventDefault(); setSent(true) }}>
-      <input type="email" required placeholder={placeholder} aria-label="Tu correo" />
-      <button className="btn btn--ghost" type="submit">{submitLabel}</button>
+    <form className="leadform" onSubmit={handleSubmit}>
+      <input
+        type="email"
+        required
+        placeholder={placeholder}
+        aria-label="Tu correo"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        disabled={status === 'loading'}
+      />
+      <button className="btn btn--ghost" type="submit" disabled={status === 'loading'}>
+        {status === 'loading' ? 'Enviando…' : submitLabel}
+      </button>
+      {status === 'error' && (
+        <p className="micro" style={{ color: '#f87171', marginTop: 8 }}>
+          Algo salió mal. Intenta de nuevo o escríbeme a jorge@believe-global.com
+        </p>
+      )}
     </form>
   )
 }
