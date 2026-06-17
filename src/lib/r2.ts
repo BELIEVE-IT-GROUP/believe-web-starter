@@ -23,10 +23,12 @@ const client = new AwsClient({
 
 /** Sube el buffer a R2 bajo `key` y devuelve la URL pública. */
 export async function uploadToR2(key: string, body: ArrayBuffer, contentType: string): Promise<string> {
+  // Blob (no ArrayBuffer crudo): undici SIEMPRE manda Content-Length con un Blob
+  // (conoce su .size). R2 exige Content-Length y rechaza chunked → error 411
+  // MissingContentLength. El Blob también lleva el content-type.
   const res = await client.fetch(`${ENDPOINT}/${BUCKET}/${key}`, {
     method: 'PUT',
-    body,
-    headers: { 'content-type': contentType },
+    body: new Blob([body], { type: contentType }),
   })
   if (!res.ok) {
     throw new Error(`R2 PUT ${res.status}: ${(await res.text()).slice(0, 200)}`)
