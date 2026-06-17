@@ -19,6 +19,10 @@ export async function fetchPayload<T = any>(
     const url = `${PAYLOAD_URL}${path}`
     const res = await fetch(url, {
       ...options,
+      // Payload (cms.believe-global.com) fue retirado. Timeout corto: si no
+      // responde, resolvemos a null y el render usa sus fallbacks (las páginas
+      // Puck no dependen de Payload). Evita colgar el render ~30s por request.
+      signal: AbortSignal.timeout(2500),
       headers: {
         'Content-Type': 'application/json',
         ...(options?.headers || {}),
