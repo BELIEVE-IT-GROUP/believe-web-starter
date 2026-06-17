@@ -8,7 +8,17 @@ const REMOTE_DIR = "/root/puck-cms";
 const IMAGE = "puck-cms:latest";
 // data/pages vive en el volumen Docker puck-cms-pages (no en el código); puck-cms-mcp
 // no es parte del build del CMS. Excluirlos evita que --delete toque nada raro.
-const EXCLUDES = [".git", "node_modules", ".next", ".claude", "puck-cms-mcp", "data/pages"];
+const EXCLUDES = [
+  ".git",
+  "node_modules",
+  ".next",
+  ".claude",
+  ".gstack",
+  "puck-cms-mcp",
+  "data/pages",
+  "backups",
+  "tsconfig.tsbuildinfo",
+];
 
 const rsyncArgs = [
   "-az",
