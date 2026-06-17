@@ -1,0 +1,65 @@
+puck-cms-mcp/src/lib/cms-api.ts
+  s_c1a2c31ddd6209::t_99bbdd3b8daaec 1-39
+deploy/run-puck.sh
+  s_c1a2c31ddd6209::t_e6176afcd99940 12
+puck-cms-mcp/src/lib/store.ts
+  s_c1a2c31ddd6209::t_f3019bc2d4535d 52-57,64
+  s_c1a2c31ddd6209::t_47dab6251dde2b 1-51,58-63,65-66
+puck-cms-mcp/src/tools/puck_list_blocks.ts
+  s_c1a2c31ddd6209::t_bd4d0f63fc1d99 1-22
+puck-cms-mcp/src/tools/_types.ts
+  s_c1a2c31ddd6209::t_3bcfc517d2dd41 1-45
+puck-cms-mcp/.gitignore
+  s_c1a2c31ddd6209::t_6b60c1bbef9d11 1-2
+puck-cms-mcp/smoke.mjs
+  s_c1a2c31ddd6209::t_62aef35e9d7291 1-41
+puck-cms-mcp/src/lib/repo.ts
+  s_c1a2c31ddd6209::t_52ed3d67bd9dd9 1-31
+src/app/api/svc/cms/[tenant]/[slug]/route.ts
+  s_c1a2c31ddd6209::t_737a7dcfce61db 1-57
+puck-cms-mcp/src/tools/puck_list_blocksets.ts
+  s_c1a2c31ddd6209::t_806b90ad3a4ab3 1-15
+puck-cms-mcp/tsconfig.json
+  s_c1a2c31ddd6209::t_872f13b25a7b58 1-16
+puck-cms-mcp/src/tools/puck_list_tenants.ts
+  s_c1a2c31ddd6209::t_76f8a68ef88c89 1-23
+puck-cms-mcp/src/index.ts
+  s_c1a2c31ddd6209::t_611fa414a4d3e2 1-116
+puck-cms-mcp/src/tools/puck_update_tenant.ts
+  s_c1a2c31ddd6209::t_f18c18ef8cb4c6 1-44
+puck-cms-mcp/src/tools/puck_deploy.ts
+  s_c1a2c31ddd6209::t_7a24dfcddbfa79 1-86
+puck-cms-mcp/src/tools/puck_set_tokens.ts
+  s_c1a2c31ddd6209::t_b03c5a6184f192 1-32
+puck-cms-mcp/package.json
+  s_c1a2c31ddd6209::t_a8f74b733ddf4e 1-15,18-29
+  s_c1a2c31ddd6209::t_02217af705f50a 16-17
+puck-cms-mcp/src/tools/puck_get_page.ts
+  s_c1a2c31ddd6209::t_d99f78d3c48cc7 1-28
+puck-cms-mcp/README.md
+  s_c1a2c31ddd6209::t_31888b5fd10f72 1-58
+.mcp.json
+  s_c1a2c31ddd6209::t_3346165cd359bb 1-8
+puck-cms-mcp/src/tools/puck_create_tenant.ts
+  s_c1a2c31ddd6209::t_d37dcb6a533c31 1-58
+puck-cms-mcp/src/tools/puck_get_tenant.ts
+  s_c1a2c31ddd6209::t_eb4ac535594c44 1-25
+puck-cms-mcp/src/tools/puck_publish_page.ts
+  s_c1a2c31ddd6209::t_0b79a67153041e 1-36
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.7",
+  "base_commit_sha": "be40eb7df8cf2d81111fc378ac3f470aa6671c4d",
+  "prompts": {},
+  "sessions": {
+    "s_c1a2c31ddd6209": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e3a5bbcf-d736-4dfc-89c6-267f948b8f2a",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
