@@ -1,0 +1,20 @@
+src/lib/payload.ts
+  s_4168ee688cda0f::t_a2a0c6a25696b0 150
+  s_4168ee688cda0f::t_cc24c2ee9baa7f 111-135
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.7",
+  "base_commit_sha": "13d781bf2110326f587e7911382b9e8041a3e1c2",
+  "prompts": {},
+  "sessions": {
+    "s_4168ee688cda0f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8331cd47-455d-4705-b306-022aa60aeee6",
+        "model": "unknown"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
