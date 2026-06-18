@@ -1,0 +1,23 @@
+public/.well-known/agent-card.json
+  s_12611a57b12267::t_f545a59fbc69ca 1-75
+public/robots.txt
+  s_12611a57b12267::t_57251b4056de85 3-38
+public/llms.txt
+  s_12611a57b12267::t_8903415043ba8c 1-60
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.8",
+  "base_commit_sha": "7cc142fc4cb998765a99624a9e535e42699c3c81",
+  "prompts": {},
+  "sessions": {
+    "s_12611a57b12267": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "edccf3ac-b1b1-41bf-b065-ebfee21cab97",
+        "model": "unknown"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
