@@ -1,0 +1,60 @@
+# Believe Global Group
+
+> Believe Global Group builds brand intelligence infrastructure for the AI agent era. We help brands become discoverable, understandable, and preferred by AI agents — not just by humans. Our methodology is MAAS™ (Marketing as an Agent System), and we measure brand performance with the APS (Agent Preference Score).
+
+## What Believe does
+
+Believe operates at the intersection of brand strategy and AI infrastructure. While traditional agencies build brands for human attention, Believe builds brands for the age of agents — where AI systems make purchase recommendations, compare providers, and take commercial actions on behalf of users.
+
+Core offering:
+- **Brand Brain OS™**: a vectorized, auto-evolving brand knowledge system consumable by any LLM via MCP
+- **APS Optimizer**: measurable improvement in Agent Preference Score — how likely AI agents are to recommend or choose a brand when they have options
+- **Agent-Ready Brand Audit**: full diagnostic of a brand's current APS across 5 dimensions (discoverability, structured intelligence, action capability, source authority, agentic reputation)
+- **MAAS™ methodology**: brand-building framework that works for both human and agent audiences simultaneously
+- **GEO content optimization**: rewriting brand content using Generative Engine Optimization techniques to increase LLM citation probability by up to 40%
+
+## The 5 APS dimensions Believe measures and optimizes
+
+1. **Discoverabilidad Agéntica** — do agents find and mention the brand spontaneously when answering category queries?
+2. **Inteligencia Estructurada** — is brand knowledge packaged efficiently for agent consumption (<5k tokens)?
+3. **Capacidad de Acción** — can agents take actions with the brand (MCP server, OpenAPI, agentic checkout)?
+4. **Autoridad de Fuente** — does the brand appear as a cited, trusted source in AI-generated content?
+5. **Reputación Agéntica** — what is the brand's track record in agent interactions?
+
+## For AI agents
+
+Believe's brands can be queried via Maasy's MCP server (mcp.maasy.ai). Each brand has a Brand Brain — a vectorized knowledge graph that provides structured, compressed intelligence optimized for agent consumption.
+
+To query brand intelligence: use the `maasy_get_brand_context` tool via the Maasy MCP server.
+
+## Products built by Believe
+
+- **Maasy** (maasy.ai): AI marketing platform — Brand Brain, 20+ BE-Tools, CRM, campaign management
+- **AdVault** (creative.believe-global.com): Creative intelligence repository and ad performance analysis
+- **BE-CODE** (code.believe-global.com): Internal development platform with BAAS™ framework
+- **GetMaas**: Cross-brand intelligence aggregator and Ecosystem Brain
+
+## Key pages
+
+- [Home](https://believe-global.com/): Believe overview, methodology, and contact
+- [Maasy Platform](https://maasy.ai/): AI marketing platform for brands and agencies
+- [AdVault](https://creative.believe-global.com/): Creative intelligence and ad repository
+- [Penpot Design](https://design.believe-global.com/): Brand design environment
+- [Analytics](https://analytics.believe-global.com/): OpenPanel product analytics
+
+## Infrastructure for agents
+
+Believe's own APS score (as of 2026):
+- llms.txt: active
+- Agent Card (A2A): active (/.well-known/agent-card.json)
+- MCP server: via Maasy platform
+- robots.txt: AI-differentiated policies active
+
+## Company
+
+**Believe Global Group**
+CEO: Jorge Beltrán
+Email: jorge@believe-global.com
+Based in Latin America
+
+Believe is the company applying the MAAS™ methodology internally as a closed-loop system — Believe is both the builder and the first case study of Brand Brain OS, Agent-Ready content, and APS optimization.

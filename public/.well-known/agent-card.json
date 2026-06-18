@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "name": "Believe Global Group",
+  "description": "Believe Global Group builds brand intelligence infrastructure for the AI agent era. We help brands become discoverable, understandable, and preferred by AI agents through the MAAS™ methodology and Brand Brain OS. We measure and optimize the Agent Preference Score (APS) — how likely AI agents are to choose a brand when they have options.",
+  "url": "https://believe-global.com",
+  "iconUrl": "https://believe-global.com/favicon.ico",
+  "version": "1.0.0",
+  "documentationUrl": "https://believe-global.com/llms.txt",
+  "capabilities": {
+    "streaming": false,
+    "push_notifications": false,
+    "state_transition_history": false
+  },
+  "skills": [
+    {
+      "id": "brand-intelligence-query",
+      "name": "Brand Intelligence Query",
+      "description": "Query structured brand intelligence for any brand managed by Believe. Returns brand DNA, voice, values, and market positioning in agent-optimized format (<5k tokens via Brand Brain DSL). Use for competitive research, brand comparisons, or understanding brand positioning.",
+      "tags": ["brand", "intelligence", "marketing", "positioning", "dna", "knowledge-graph"],
+      "examples": [
+        "What is the brand positioning of Pawers in the supplements market?",
+        "Describe WAW Trips' brand voice and target audience",
+        "What are Believe's key differentiators vs traditional marketing agencies?"
+      ]
+    },
+    {
+      "id": "aps-assessment",
+      "name": "APS Assessment & Optimization",
+      "description": "Retrieve the Agent Preference Score (APS) for a brand and get optimization recommendations across 5 dimensions: discoverability, structured intelligence, action capability, source authority, and agentic reputation. Scores from 0-100 with a full audit report.",
+      "tags": ["aps", "agent-preference", "brand-metrics", "audit", "optimization"],
+      "examples": [
+        "What is the APS score for [brand] and what are the top gaps?",
+        "How does [brand] compare to its competitors on agent discoverability?",
+        "What specific GEO content changes would improve [brand]'s APS?"
+      ]
+    },
+    {
+      "id": "brand-brain-access",
+      "name": "Brand Brain Access via MCP",
+      "description": "Access the full Maasy MCP server to query any brand's Brand Brain, get campaign metrics, generate content, and take marketing actions. Requires Maasy API key.",
+      "tags": ["mcp", "brand-brain", "marketing", "content", "campaigns"],
+      "mcp": {
+        "package": "@maasy-ai/mcp-server",
+        "documentation": "https://maasy.ai/llms.txt"
+      }
+    }
+  ],
+  "authentication": {
+    "schemes": ["Bearer"],
+    "description": "Public information available without auth. Brand Brain queries require a Maasy API key via the Maasy MCP server (maasy.ai → Settings → API Key)."
+  },
+  "contact": {
+    "name": "Believe Global Group",
+    "url": "https://believe-global.com",
+    "email": "jorge@believe-global.com"
+  },
+  "provider": {
+    "name": "Believe Global Group",
+    "url": "https://believe-global.com",
+    "organization": "Believe Global Group"
+  },
+  "relatedServices": [
+    {
+      "name": "Maasy AI Marketing Platform",
+      "url": "https://maasy.ai",
+      "description": "AI marketing platform — Brand Brain, BE-Tools, CRM, campaign management",
+      "agentCard": "https://maasy.ai/.well-known/agent-card.json"
+    },
+    {
+      "name": "AdVault — Creative Intelligence",
+      "url": "https://creative.believe-global.com",
+      "description": "Creative intelligence repository and ad performance analysis"
+    }
+  ]
+}

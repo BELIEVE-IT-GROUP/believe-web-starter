@@ -1,2 +1,38 @@
 User-agent: *
 Allow: /
+
+# AI search engines — allow full access for indexing
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# AI training crawlers — disallow (we allow search, not training)
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Bytespider
+Disallow: /
+
+# Agent discovery
+Sitemap: https://believe-global.com/sitemap.xml
+LLMs: https://believe-global.com/llms.txt
