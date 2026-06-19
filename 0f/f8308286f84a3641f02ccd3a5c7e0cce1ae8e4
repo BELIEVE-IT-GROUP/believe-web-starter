@@ -1,0 +1,19 @@
+believe-web-plugin/skills/believe-web/references/standalone-landings.md
+  s_004ca358afbd61::t_ec2a4b0da9aba6 199-278,283-285,288
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.9",
+  "base_commit_sha": "0ff8308286f84a3641f02ccd3a5c7e0cce1ae8e4",
+  "prompts": {},
+  "sessions": {
+    "s_004ca358afbd61": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "da096649-a71b-4777-870d-68b03b6b4caa",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
