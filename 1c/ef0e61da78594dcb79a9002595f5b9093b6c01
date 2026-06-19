@@ -1,0 +1,19 @@
+src/app/on-ongent/page.tsx
+  s_004ca358afbd61::t_832086d2dbb175 1-1183
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.8",
+  "base_commit_sha": "1cef0e61da78594dcb79a9002595f5b9093b6c01",
+  "prompts": {},
+  "sessions": {
+    "s_004ca358afbd61": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "da096649-a71b-4777-870d-68b03b6b4caa",
+        "model": "unknown"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
