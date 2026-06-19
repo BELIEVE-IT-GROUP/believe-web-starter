@@ -196,34 +196,93 @@ diseño (CSS) NO se toca: solo cambian los textos/datos.
 
 ---
 
-## Parte E — Publicar (deploy por tenant)
+## Parte E — Publicar: receta de 4 comandos
 
-El front de CADA tenant se publica con el **Paso 4 del SKILL** (no se improvisa ni se
-elige app a mano): `cms_create_tenant` captura `tenant.id`, y `cms_deploy({ tenantSlug,
-tenantId, domain? })` crea una app `web-<slug>` en Coolify Hetzner con su URL (sslip.io
-por defecto, o el dominio del brief). Esa es la forma canonica; nunca redeployes una app
-ajena ni infieras el target.
+> Prerequisito: `src/app/<slug>/page.tsx` ya pusheado a `main`.
 
-**Detalle del modo standalone:** la landing vive en `/<slug>`, pero el front del tenant
-debe servirse en su raiz `/`. El deploy setea `NEXT_PUBLIC_STANDALONE_SLUG=<slug>` (env
-build-time): el `next.config.mjs` reescribe `/` -> `/<slug>`, asi `web-birdman` muestra la
-landing en su dominio raiz. Si `cms_deploy` no acepta env extra, se setea con la Coolify
-API (`PATCH /applications/<uuid>/envs`, `is_build_time: true`) antes del deploy.
+Cada landing standalone tiene su propia app en Coolify Hetzner (proyecto `believe-landings`).
+Copia, pega y cambia `SLUG`:
 
-**El CMS se deploya aparte:** redeploy de la app CMS (Coolify VPSDime) para que la
-collection `landings` exista en prod, + push de schema (con `NODE_ENV=development` o por
-SQL, ver [[project_believe_web_factory]]). Hasta entonces la landing renderiza con su
-`content.ts` (fallback); la edicion por el tenant queda disponible una vez el CMS tiene
-`landings`.
+```bash
+SLUG="mi-landing"   # <-- solo cambiar esto
+
+# 1. Crear la app
+APP_UUID=$(~/.believe/bin/infra bash -c "
+  curl -s -X POST \
+    -H 'Authorization: Bearer \$COOLIFY_HETZNER_TOKEN' \
+    -H 'Content-Type: application/json' \
+    'https://coolify.backends.believe-global.com/api/v1/applications/public' \
+    -d '{
+      \"project_uuid\": \"sy6mbsp3b73r6f5k7jq9d6en\",
+      \"environment_name\": \"production\",
+      \"server_uuid\": \"o5de31aovlrol4bvhvy9wtk2\",
+      \"destination_uuid\": \"txzg68of4rbwautjac77pqfv\",
+      \"github_app_uuid\": \"c9l2y8paufjlitsqlr11jbkg\",
+      \"name\": \"web-$SLUG\",
+      \"git_repository\": \"https://github.com/BELIEVE-IT-GROUP/believe-web-starter\",
+      \"git_branch\": \"main\",
+      \"build_pack\": \"dockerfile\",
+      \"ports_exposes\": \"3000\"
+    }'" | python3 -c "import sys,json; print(json.load(sys.stdin)['uuid'])")
+echo "APP_UUID=$APP_UUID"
+
+# 2. Crear env var
+~/.believe/bin/infra bash -c "
+  curl -s -X POST \
+    -H 'Authorization: Bearer \$COOLIFY_HETZNER_TOKEN' \
+    -H 'Content-Type: application/json' \
+    'https://coolify.backends.believe-global.com/api/v1/applications/$APP_UUID/envs' \
+    -d '{\"key\": \"NEXT_PUBLIC_STANDALONE_SLUG\", \"value\": \"$SLUG\"}'" > /dev/null
+
+# 3. Marcarla build-time (campo exacto: is_buildtime sin guión)
+~/.believe/bin/infra bash -c "
+  curl -s -X PATCH \
+    -H 'Authorization: Bearer \$COOLIFY_HETZNER_TOKEN' \
+    -H 'Content-Type: application/json' \
+    'https://coolify.backends.believe-global.com/api/v1/applications/$APP_UUID/envs' \
+    -d '{\"key\": \"NEXT_PUBLIC_STANDALONE_SLUG\", \"value\": \"$SLUG\", \"is_buildtime\": true}'" > /dev/null
+
+# 4. Deploy
+~/.believe/bin/infra bash -c "
+  curl -s -X POST \
+    -H 'Authorization: Bearer \$COOLIFY_HETZNER_TOKEN' \
+    'https://coolify.backends.believe-global.com/api/v1/deploy?uuid=$APP_UUID&force=false'" \
+  | python3 -c "import sys,json; print(json.load(sys.stdin)['deployments'][0]['message'])"
+```
+
+La app queda en `http://<APP_UUID>.5.78.214.173.sslip.io`.
+Para dominio propio: `PATCH /applications/<APP_UUID>` con `{"fqdn": "https://tu-dominio.com"}`.
+
+### Constantes (nunca cambian)
+
+| Dato | Valor |
+|---|---|
+| Proyecto uuid | `sy6mbsp3b73r6f5k7jq9d6en` |
+| Server uuid | `o5de31aovlrol4bvhvy9wtk2` |
+| Destination uuid | `txzg68of4rbwautjac77pqfv` |
+| GitHub App uuid | `c9l2y8paufjlitsqlr11jbkg` |
+
+### Gotcha documentado (2026-06-19)
+
+- El campo build-time en la API es `is_buildtime` (sin guión). `is_build_time` devuelve 422.
+- POST crea, PATCH actualiza. No hay forma de pasar `is_buildtime` en el POST inicial.
+- El Dockerfile tiene ARG/ENV para `NEXT_PUBLIC_STANDALONE_SLUG` desde commit `1ebbae6e`.
+
+### Apps existentes
+
+| Slug | App UUID |
+|---|---|
+| birdman | `k2vq8ll1518at1w8v611axiu` |
+| on-ongent | `aqtb4yr4nkkex3zg6dnaf2ma` |
+
+---
 
 ## Flujo completo (resumen)
 
 ```
-1. Generar HTML nivel dios (Parte A)  ->  archivo .html autónomo, de clase mundial
-2. Portar fiel a Next (Parte B)        ->  src/app/<slug>/page.tsx + content.ts
-3. Aislar del chrome (Parte C)         ->  fuera de (chrome), sin globals.css
-4. Mapear al CMS (Parte D)             ->  schema Payload + fetch+merge + seed
-5. Deploy (gate del dueño)             ->  push a main + deploy CMS + tenant + cms_deploy
+1. Portar HTML a Next    →  src/app/<slug>/page.tsx  (fuera de (chrome), sin globals.css)
+2. git push origin main
+3. Receta Parte E        →  4 comandos, 1 minuto, deck publicado
 ```
 
-Caso de referencia vivo: `src/app/birdman/` (Birdman, Grupo ORVIA), portado fiel del HTML 2026-06-16.
+Casos de referencia: `src/app/birdman/` y `src/app/on-ongent/`.
