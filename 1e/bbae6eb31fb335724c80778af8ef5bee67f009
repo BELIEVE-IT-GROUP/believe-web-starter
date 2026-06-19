@@ -1,0 +1,19 @@
+Dockerfile
+  s_004ca358afbd61::t_46af6dfc8a9c21 11,15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.9",
+  "base_commit_sha": "1ebbae6eb31fb335724c80778af8ef5bee67f009",
+  "prompts": {},
+  "sessions": {
+    "s_004ca358afbd61": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "da096649-a71b-4777-870d-68b03b6b4caa",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
