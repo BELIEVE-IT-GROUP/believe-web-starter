@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation'
 import { getPage, getTenant, getTenantByDomain } from '@/cms/store'
 import { getSeed } from '@/cms/registry'
 import { PublicRender } from './PublicRender'
+import { RawReveal } from './RawReveal'
+import { fillTemplate } from '@/cms/blocks/raw/fill'
 
 export const dynamic = 'force-dynamic'
 
@@ -43,10 +45,35 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   }
 }
 
+type RawProps = { template?: string; texts?: { value?: string }[]; images?: { src?: string }[] }
+type RawData = {
+  root?: { props?: { fontsHtml?: string; css?: string } }
+  content?: { props?: RawProps }[]
+}
+
+/**
+ * Render público server-side del blockSet 'raw'. Puck <Render> es client-only y deja
+ * los marcadores {{tN}} crudos en el SSR (malo para SEO). Acá reconstruimos el HTML
+ * final en el servidor: cero marcadores, contenido indexable, mismo resultado que el
+ * preview del editor (comparten fillTemplate). El editor sigue usando Puck con campos.
+ */
+function RawPublic({ data }: { data: RawData }) {
+  const root = data.root?.props ?? {}
+  const sections = (data.content ?? []).map((c) => fillTemplate(c.props ?? {})).join('\n')
+  const html = `${root.fontsHtml || ''}<style>${root.css || ''}</style>${sections}`
+  return (
+    <>
+      <div dangerouslySetInnerHTML={{ __html: html }} />
+      <RawReveal />
+    </>
+  )
+}
+
 export default async function SitePage({ params }: { params: Params }) {
   const loaded = await loadPage(params)
   if (!loaded) notFound()
   const { t, data } = loaded
   if (!data) notFound()
+  if (t.blockSet === 'raw') return <RawPublic data={data as RawData} />
   return <PublicRender blockSet={t.blockSet} data={data} />
 }

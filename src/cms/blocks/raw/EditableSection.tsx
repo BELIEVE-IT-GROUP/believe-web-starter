@@ -1,4 +1,5 @@
 import type { ComponentConfig } from '@measured/puck'
+import { fillTemplate } from './fill'
 
 /**
  * Bloque editable por CAMPOS (no por HTML). El troceador extrae de cada sección
@@ -30,14 +31,7 @@ export const EditableSection: ComponentConfig<EditableSectionProps> = {
     template: { type: 'textarea' },
   } as never,
   defaultProps: { label: 'Sección', template: '', texts: [], images: [] },
-  render: ({ template, texts, images }) => {
-    let html = template || ''
-    ;(texts || []).forEach((t, i) => {
-      html = html.split(`{{t${i}}}`).join(t?.value ?? '')
-    })
-    ;(images || []).forEach((m, i) => {
-      html = html.split(`{{i${i}}}`).join(m?.src ?? '')
-    })
-    return <div dangerouslySetInnerHTML={{ __html: html }} />
-  },
+  render: ({ template, texts, images }) => (
+    <div dangerouslySetInnerHTML={{ __html: fillTemplate({ template, texts, images }) }} />
+  ),
 }
