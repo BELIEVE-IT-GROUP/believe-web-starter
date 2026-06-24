@@ -7,10 +7,13 @@ import { config as birdmanConfig } from './puck.config'
 import { buildBirdmanSeed } from './seed'
 import { neurorealidadConfig } from './blocks/neurorealidad/config'
 import { buildNeurorealidadSeed } from './blocks/neurorealidad/seed'
+import { rawConfig } from './blocks/raw/config'
 
 const CONFIGS: Record<string, Config> = {
   birdman: birdmanConfig,
   neurorealidad: neurorealidadConfig,
+  // blockSet genérico de Maasy: HTML verbatim editable, sin código por landing.
+  raw: rawConfig,
 }
 
 const SEEDS: Record<string, () => Data> = {
