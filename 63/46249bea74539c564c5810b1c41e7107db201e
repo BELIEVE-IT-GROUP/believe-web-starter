@@ -1,0 +1,22 @@
+landings-src/becall.html
+  s_ad0ec1dead9f17::t_b023d38dea6ca6 182-184
+  s_ad0ec1dead9f17::t_42db87f2f932dd 179-181
+  s_ad0ec1dead9f17::t_48ac57d1116e57 185-187
+  s_ad0ec1dead9f17::t_dbcceaf29a8bbd 1-178,188-452
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.12",
+  "base_commit_sha": "6346249bea74539c564c5810b1c41e7107db201e",
+  "prompts": {},
+  "sessions": {
+    "s_ad0ec1dead9f17": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "7476e254-acb6-4d0f-b484-ff9103dc8d6a",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
