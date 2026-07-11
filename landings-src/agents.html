@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Believe Agents OS · Agentes de IA operados por Believe</title>
+<meta name="description" content="El sistema operativo de agentes de tu empresa. Believe conecta tus herramientas, tus datos y los modelos en agentes que hacen trabajo real. Los montamos, los operamos y los medimos por ti. Sobre infraestructura propia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══ Believe Agents OS · Believe Brand System v.2026 · todo scopeado bajo .aos para embeber sin colisión ═══ */
+.aos{
+  --ao-paper:#fafaf7; --ao-paper-2:#f2f2ec;
+  --ao-blue:#0c3bb9; --ao-blue-900:#062778; --ao-cyan:#00aaff;
+  --ao-ink:#1a1a1a; --ao-mute:#6b6b65; --ao-line:#e4e4dc; --ao-line-2:#d5d5cc;
+  --ao-display:'Fraunces',Georgia,serif; --ao-body:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif; --ao-mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --ao-maxw:1180px; --ao-ease:cubic-bezier(.2,.6,.2,1);
+  position:relative; background:var(--ao-paper); color:var(--ao-ink);
+  font-family:var(--ao-body); font-size:17px; line-height:1.6; font-weight:400;
+  -webkit-font-smoothing:antialiased;
+}
+.aos *,.aos *::before,.aos *::after{ box-sizing:border-box; }
+/* papel granulado (marca) */
+.aos::before{ content:""; position:absolute; inset:0; z-index:0; pointer-events:none; opacity:.5; mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E"); }
+.aos > *{ position:relative; z-index:1; }
+.aos a{ color:inherit; text-decoration:none; }
+.aos img,.aos svg{ max-width:100%; display:block; }
+.aos .wrap{ max-width:var(--ao-maxw); margin:0 auto; padding:0 28px; }
+.aos .sec{ padding:104px 0; }
+.aos .num{ font-family:var(--ao-mono); font-variant-numeric:tabular-nums; }
+.aos .eyebrow{ font-family:var(--ao-mono); font-size:12px; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:var(--ao-mute); margin:0 0 20px; }
+.aos h2.title{ font-family:var(--ao-display); font-weight:400; font-size:clamp(30px,4vw,50px); line-height:1.04; letter-spacing:-.01em; margin:0 0 20px; max-width:16ch; text-wrap:balance; }
+.aos .lead{ font-size:19px; color:var(--ao-mute); max-width:58ch; margin:0 0 8px; }
+.aos .sig{ color:var(--ao-cyan); }
+
+/* ── Wordmark Agents OS· ── */
+.aos .aomark{ font-family:var(--ao-display); font-weight:500; font-size:23px; letter-spacing:-.025em; color:var(--ao-blue); display:inline-flex; align-items:baseline; }
+.aos .aomark .os{ font-family:var(--ao-mono); font-weight:500; font-size:13px; letter-spacing:.06em; color:var(--ao-mute); margin-left:.5em; text-transform:uppercase; }
+.aos .aomark .dot{ display:inline-block; width:.2em; height:.2em; border-radius:50%; background:var(--ao-cyan); margin-left:.06em; vertical-align:baseline; }
+
+/* ── Botones ── */
+.aos .btn{ font-family:var(--ao-body); font-size:15px; font-weight:600; letter-spacing:.01em; display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:50px; padding:0 26px; border-radius:4px; border:1px solid transparent; cursor:pointer; transition:background .2s var(--ao-ease),border-color .2s,color .2s; }
+.aos .btn--primary{ background:var(--ao-blue); color:#fff; }
+.aos .btn--primary:hover{ background:var(--ao-blue-900); }
+.aos .btn--ghost{ background:transparent; color:var(--ao-ink); border-color:var(--ao-line-2); }
+.aos .btn--ghost:hover{ border-color:var(--ao-blue); color:var(--ao-blue); }
+.aos .btn--block{ width:100%; }
+
+/* ── Nav ── */
+.aos .nav{ position:sticky; top:0; z-index:50; background:rgba(250,250,247,.82); backdrop-filter:blur(12px); border-bottom:1px solid var(--ao-line); }
+.aos .nav__row{ display:flex; align-items:center; gap:28px; height:70px; }
+.aos .nav__links{ display:flex; gap:6px; margin-left:auto; }
+.aos .nav__links a{ color:var(--ao-mute); font-size:14px; font-weight:500; padding:9px 12px; border-radius:5px; }
+.aos .nav__links a:hover{ color:var(--ao-ink); }
+.aos .nav__cta{ margin-left:8px; }
+
+/* ── Hero ── */
+.aos .hero{ padding:80px 0 96px; }
+.aos .hero__grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center; }
+.aos .hero h1{ font-family:var(--ao-display); font-weight:400; font-size:clamp(38px,5vw,64px); line-height:1.02; letter-spacing:-.02em; margin:0 0 22px; max-width:15ch; text-wrap:balance; }
+.aos .hero .sub{ font-size:20px; color:var(--ao-mute); max-width:48ch; margin:0 0 30px; }
+.aos .hero__cta{ display:flex; gap:12px; flex-wrap:wrap; }
+.aos .hero__note{ margin-top:26px; font-family:var(--ao-mono); font-size:12px; letter-spacing:.06em; color:var(--ao-mute); text-transform:uppercase; }
+
+/* ── Canvas de agente (flow nativo, mockup del builder) ── */
+.aos .flow{ background:#fff; border:1px solid var(--ao-line-2); border-radius:14px; padding:20px; }
+.aos .flow__bar{ display:flex; align-items:center; gap:10px; padding-bottom:14px; border-bottom:1px solid var(--ao-line); margin-bottom:16px; }
+.aos .flow__id{ font-family:var(--ao-mono); font-size:12px; color:var(--ao-mute); letter-spacing:.04em; }
+.aos .flow__live{ margin-left:auto; font-family:var(--ao-mono); font-size:11px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--ao-blue); display:flex; align-items:center; gap:7px; }
+.aos .flow__live::before{ content:""; width:7px; height:7px; border-radius:50%; background:var(--ao-cyan); animation:ao-pulse 1.6s infinite; }
+@keyframes ao-pulse{ 0%,100%{ opacity:1 } 50%{ opacity:.25 } }
+.aos .node{ position:relative; border:1px solid var(--ao-line-2); border-radius:10px; padding:13px 15px; background:var(--ao-paper); margin:0 0 26px; opacity:0; animation:ao-in .5s var(--ao-ease) forwards; }
+.aos .node:last-child{ margin-bottom:0; }
+.aos .node::after{ content:""; position:absolute; left:50%; bottom:-26px; width:2px; height:26px; background:var(--ao-line-2); transform:translateX(-50%); }
+.aos .node:last-child::after{ display:none; }
+.aos .node .pin{ position:absolute; left:50%; bottom:-8px; width:9px; height:9px; border-radius:50%; background:var(--ao-cyan); transform:translateX(-50%) scale(0); animation:ao-travel 3.4s var(--ao-ease) infinite; }
+.aos .node:last-child .pin{ display:none; }
+@keyframes ao-travel{ 0%,100%{ transform:translateX(-50%) scale(0) } 6%{ transform:translateX(-50%) scale(1) } }
+.aos .node .nk{ display:flex; align-items:center; gap:9px; }
+.aos .node .nk .b{ font-family:var(--ao-mono); font-size:10px; font-weight:500; letter-spacing:.06em; text-transform:uppercase; color:var(--ao-blue); background:rgba(12,59,185,.08); border-radius:5px; padding:3px 7px; }
+.aos .node .nt{ font-size:14px; font-weight:600; }
+.aos .node .nd{ font-family:var(--ao-mono); font-size:11px; color:var(--ao-mute); margin-top:7px; letter-spacing:.02em; }
+.aos .flow .n1{animation-delay:.15s}.aos .flow .n2{animation-delay:.5s}.aos .flow .n3{animation-delay:.85s}.aos .flow .n4{animation-delay:1.2s}.aos .flow .n5{animation-delay:1.55s}
+.aos .flow .n1 .pin{animation-delay:0s}.aos .flow .n2 .pin{animation-delay:.85s}.aos .flow .n3 .pin{animation-delay:1.7s}.aos .flow .n4 .pin{animation-delay:2.55s}
+@keyframes ao-in{ from{ opacity:0; transform:translateY(8px) } to{ opacity:1; transform:none } }
+
+/* ── Trust band (dogfooding stack) ── */
+.aos .trust{ border-top:1px solid var(--ao-line); border-bottom:1px solid var(--ao-line); padding:36px 0; }
+.aos .trust__k{ font-family:var(--ao-mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--ao-mute); text-align:center; margin:0 0 22px; }
+.aos .trust__row{ display:flex; flex-wrap:wrap; justify-content:center; gap:14px 40px; }
+.aos .trust__row span{ font-family:var(--ao-display); font-weight:500; font-size:19px; color:var(--ao-ink); opacity:.75; letter-spacing:-.01em; }
+
+/* ── Statement (Descríbelo) ── */
+.aos .stmt{ text-align:center; }
+.aos .stmt h2{ font-family:var(--ao-display); font-weight:400; font-size:clamp(30px,4.4vw,54px); line-height:1.05; letter-spacing:-.015em; margin:0 auto 18px; max-width:18ch; text-wrap:balance; }
+.aos .stmt p{ font-size:19px; color:var(--ao-mute); max-width:56ch; margin:0 auto; }
+
+/* ── 4 Pilares ── */
+.aos .pillars{ display:grid; grid-template-columns:repeat(4,1fr); gap:2px; margin-top:48px; background:var(--ao-line); border:1px solid var(--ao-line); border-radius:12px; overflow:hidden; }
+.aos .pillar{ background:var(--ao-paper); padding:30px 26px; }
+.aos .pillar .k{ font-family:var(--ao-mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--ao-blue); margin:0 0 14px; }
+.aos .pillar h3{ font-family:var(--ao-display); font-weight:500; font-size:21px; letter-spacing:-.01em; margin:0 0 10px; }
+.aos .pillar p{ margin:0; color:var(--ao-mute); font-size:14px; }
+
+/* ── Feature deep-dive (split alternado) ── */
+.aos .feat{ display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; }
+.aos .feat + .feat{ margin-top:88px; }
+.aos .feat.rev .feat__media{ order:-1; }
+.aos .feat .k{ font-family:var(--ao-mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--ao-blue); margin:0 0 16px; }
+.aos .feat h3{ font-family:var(--ao-display); font-weight:400; font-size:clamp(26px,3vw,36px); line-height:1.08; letter-spacing:-.01em; margin:0 0 14px; max-width:15ch; }
+.aos .feat p{ margin:0; color:var(--ao-mute); font-size:17px; max-width:44ch; }
+
+/* superficie: integraciones */
+.aos .surf{ background:#fff; border:1px solid var(--ao-line-2); border-radius:14px; padding:22px; }
+.aos .surf__bar{ display:flex; align-items:center; gap:8px; font-family:var(--ao-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--ao-mute); margin-bottom:16px; }
+.aos .surf__bar .c{ margin-left:auto; color:var(--ao-blue); }
+.aos .ints{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+.aos .int{ display:flex; align-items:center; gap:9px; background:var(--ao-paper); border:1px solid var(--ao-line); border-radius:8px; padding:11px 12px; font-size:13px; font-weight:500; }
+.aos .int .d{ width:9px; height:9px; border-radius:3px; flex-shrink:0; }
+.aos .int .m{ margin-left:auto; font-family:var(--ao-mono); font-size:9px; letter-spacing:.05em; text-transform:uppercase; color:var(--ao-cyan); }
+.aos .ints__more{ grid-column:1/-1; text-align:center; font-family:var(--ao-mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--ao-mute); padding-top:6px; }
+
+/* superficie: contexto/memoria */
+.aos .mem{ display:flex; flex-direction:column; gap:10px; }
+.aos .mrow{ display:flex; align-items:center; gap:12px; background:var(--ao-paper); border:1px solid var(--ao-line); border-radius:9px; padding:13px 15px; }
+.aos .mrow .mi{ width:34px; height:34px; border-radius:7px; background:rgba(12,59,185,.06); color:var(--ao-blue); display:grid; place-items:center; flex-shrink:0; }
+.aos .mrow .mi svg{ width:17px; height:17px; }
+.aos .mrow .mt{ font-size:14px; font-weight:600; }
+.aos .mrow .ms{ font-family:var(--ao-mono); font-size:11px; color:var(--ao-mute); margin-top:2px; }
+.aos .mrow .mv{ margin-left:auto; font-family:var(--ao-mono); font-size:11px; color:var(--ao-blue); background:rgba(12,59,185,.07); border-radius:20px; padding:4px 10px; }
+
+/* superficie: monitor (dark traces) ── reusa medida oscura */
+.aos .dash{ background:var(--ao-blue-900); color:#fff; border-radius:14px; padding:28px; }
+.aos .dash__bar{ display:flex; align-items:center; gap:8px; font-family:var(--ao-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:#8fb0ff; margin-bottom:18px; }
+.aos .dash__bar .live{ margin-left:auto; color:var(--ao-cyan); display:flex; align-items:center; gap:6px; }
+.aos .dash__bar .live::before{ content:""; width:6px; height:6px; border-radius:50%; background:var(--ao-cyan); }
+.aos .kpis{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:18px; }
+.aos .kpi{ background:rgba(255,255,255,.05); border-radius:10px; padding:16px; }
+.aos .kpi .kl{ font-family:var(--ao-mono); font-size:10px; letter-spacing:.05em; text-transform:uppercase; color:#8fb0ff; margin:0 0 8px; }
+.aos .kpi .kv{ font-family:var(--ao-display); font-weight:500; font-size:28px; line-height:1; }
+.aos .kpi .kd{ font-family:var(--ao-mono); font-size:10px; color:#c9d6f5; margin-top:6px; }
+.aos .rows{ display:flex; flex-direction:column; gap:8px; }
+.aos .r{ display:flex; align-items:center; gap:12px; background:rgba(255,255,255,.04); border-radius:8px; padding:10px 13px; font-size:13px; }
+.aos .r .rid{ font-family:var(--ao-mono); font-size:11px; color:#8fb0ff; }
+.aos .r .rd{ flex:1; color:#e6ecfb; }
+.aos .r .rc{ font-family:var(--ao-mono); font-size:11px; color:#c9d6f5; }
+.aos .r .rs{ font-family:var(--ao-mono); font-size:11px; padding:3px 9px; border-radius:20px; }
+.aos .r .rs.ok{ background:rgba(0,170,255,.16); color:var(--ao-cyan); }
+.aos .r .rs.go{ background:rgba(255,255,255,.1); color:#c9d6f5; }
+
+/* ── Cómo trabajamos (stepper) ── */
+.aos .steps{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-top:48px; }
+.aos .step{ position:relative; padding-top:26px; border-top:2px solid var(--ao-line); }
+.aos .step.on{ border-top-color:var(--ao-blue); }
+.aos .step .n{ font-family:var(--ao-mono); font-size:12px; font-weight:500; letter-spacing:.1em; color:var(--ao-blue); margin-bottom:10px; }
+.aos .step h3{ font-family:var(--ao-display); font-weight:500; font-size:20px; margin:0 0 8px; }
+.aos .step p{ margin:0; color:var(--ao-mute); font-size:14px; }
+
+/* ── Diferenciador (comparación) ── */
+.aos .vs{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:44px; }
+.aos .vscol{ border:1px solid var(--ao-line); border-radius:12px; padding:30px 28px; background:var(--ao-paper); }
+.aos .vscol.win{ border-color:var(--ao-blue); background:#fff; }
+.aos .vscol .vk{ font-family:var(--ao-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ao-mute); margin:0 0 6px; }
+.aos .vscol.win .vk{ color:var(--ao-blue); }
+.aos .vscol h3{ font-family:var(--ao-display); font-weight:500; font-size:23px; margin:0 0 20px; letter-spacing:-.01em; }
+.aos .vslist{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px; }
+.aos .vslist li{ display:flex; gap:11px; align-items:flex-start; font-size:15px; color:var(--ao-mute); }
+.aos .vslist li svg{ width:19px; height:19px; flex-shrink:0; margin-top:2px; }
+.aos .vscol.win .vslist li{ color:var(--ao-ink); }
+.aos .vscol.win .vslist li svg{ color:var(--ao-blue); }
+.aos .vscol .vslist li svg{ color:var(--ao-line-2); }
+
+/* ── Dogfooding proof ── */
+.aos .proof{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:44px; }
+.aos .pcard{ background:var(--ao-paper); border:1px solid var(--ao-line); border-radius:10px; padding:26px; }
+.aos .pcard .pk{ font-family:var(--ao-mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--ao-blue); margin:0 0 12px; }
+.aos .pcard h3{ font-size:18px; font-weight:600; margin:0 0 8px; }
+.aos .pcard p{ margin:0; color:var(--ao-mute); font-size:14px; }
+
+/* ── FAQ ── */
+.aos .faq{ margin-top:36px; border-top:1px solid var(--ao-line); }
+.aos .qa{ border-bottom:1px solid var(--ao-line); padding:26px 0; display:grid; grid-template-columns:.9fr 1.1fr; gap:32px; }
+.aos .qa h3{ font-family:var(--ao-display); font-weight:500; font-size:21px; margin:0; letter-spacing:-.01em; }
+.aos .qa p{ margin:0; color:var(--ao-mute); font-size:16px; }
+
+/* ── CTA cierre + form ── */
+.aos .close{ background:var(--ao-blue); color:#fff; border-radius:16px; }
+.aos .close__grid{ display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; padding:56px 48px; }
+.aos .close h2{ font-family:var(--ao-display); font-weight:400; font-size:clamp(30px,3.6vw,44px); line-height:1.05; letter-spacing:-.01em; margin:0 0 16px; color:#fff; max-width:16ch; }
+.aos .close .lead{ color:#d6e0fb; }
+.aos .form{ background:var(--ao-paper); border-radius:12px; padding:28px; }
+.aos .row2{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.aos .fld{ margin-bottom:12px; }
+.aos .fld label{ display:block; font-family:var(--ao-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--ao-mute); margin-bottom:6px; }
+.aos .inp{ width:100%; font-family:var(--ao-body); font-size:15px; color:var(--ao-ink); background:#fff; border:1px solid var(--ao-line-2); border-radius:7px; padding:12px 14px; }
+.aos .inp:focus{ outline:none; border-color:var(--ao-blue); }
+.aos .legal{ font-size:12px; color:var(--ao-mute); margin:12px 0 0; }
+
+/* ── Footer ── */
+.aos .foot{ border-top:1px solid var(--ao-line); padding:44px 0; }
+.aos .foot__row{ display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+.aos .foot__of{ font-family:var(--ao-mono); font-size:12px; letter-spacing:.04em; color:var(--ao-mute); }
+.aos .foot__links{ margin-left:auto; display:flex; gap:18px; }
+.aos .foot__links a{ font-size:14px; color:var(--ao-mute); }
+.aos .foot__links a:hover{ color:var(--ao-ink); }
+
+/* ── Reveal (visible por defecto; anima como enhancement — agent/DOM-safe) ── */
+.aos .reveal{ opacity:1; }
+.aos.js-anim .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s var(--ao-ease),transform .6s var(--ao-ease); }
+.aos.js-anim .reveal.vis{ opacity:1; transform:none; }
+
+/* ── Responsive ── */
+@media(max-width:900px){
+  .aos .hero__grid,.aos .feat,.aos .close__grid,.aos .qa{ grid-template-columns:1fr; }
+  .aos .feat.rev .feat__media{ order:0; }
+  .aos .pillars,.aos .ints{ grid-template-columns:repeat(2,1fr); }
+  .aos .steps,.aos .vs,.aos .proof,.aos .kpis{ grid-template-columns:1fr; }
+  .aos .sec{ padding:72px 0; }
+  .aos .close__grid,.aos .dash{ padding:32px 24px; }
+  .aos .nav__links{ display:none; }
+  .aos .nav__cta{ margin-left:auto; }
+  .aos .nav__row{ gap:16px; height:62px; }
+}
+</style>
+</head>
+<body style="margin:0;background:#fafaf7">
+<section data-section="AgentsOS" class="aos">
+
+<!-- ░░░ NAV ░░░ -->
+<div class="sec" data-section="Nav" style="padding:0">
+  <div class="nav">
+    <div class="wrap nav__row">
+      <a class="aomark" href="#top" id="top">Believe<span class="os">Agents OS</span><span class="dot"></span></a>
+      <nav class="nav__links">
+        <a href="#capacidades">Capacidades</a>
+        <a href="#trabajamos">Cómo trabajamos</a>
+        <a href="#diferencia">La diferencia</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="btn btn--primary nav__cta" href="#demo">Solicitar demo</a>
+    </div>
+  </div>
+</div>
+
+<!-- ░░░ HERO ░░░ -->
+<div class="sec hero" data-section="Hero">
+  <div class="wrap hero__grid">
+    <div>
+      <p class="eyebrow">Believe Agents OS</p>
+      <h1>Agentes que hacen el trabajo. Operados por Believe<span class="sig">.</span></h1>
+      <p class="sub">Conectamos más de 1.000 herramientas, tus datos y cada modelo en agentes que automatizan trabajo real. No te damos otra plataforma que administrar: los montamos, los operamos y los medimos por ti.</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="#demo">Solicitar demo</a>
+        <a class="btn btn--ghost" href="#capacidades">Ver cómo funciona</a>
+      </div>
+      <p class="hero__note">Sobre infraestructura propia · Operado por Believe</p>
+    </div>
+    <div class="feat__media">
+      <div class="flow reveal">
+        <div class="flow__bar">
+          <span class="flow__id">agente / calificar-leads</span>
+          <span class="flow__live">En vivo</span>
+        </div>
+        <div class="node n1">
+          <div class="nk"><span class="b">Disparador</span><span class="nt">Nuevo lead</span></div>
+          <div class="nd">fuente: formulario web</div>
+          <span class="pin"></span>
+        </div>
+        <div class="node n2">
+          <div class="nk"><span class="b">Acción</span><span class="nt">Enriquecer con datos de empresa</span></div>
+          <div class="nd">integración: Clearbit · HubSpot</div>
+          <span class="pin"></span>
+        </div>
+        <div class="node n3">
+          <div class="nk"><span class="b">Modelo</span><span class="nt">Calificar encaje</span></div>
+          <div class="nd">razona sobre tu contexto de marca</div>
+          <span class="pin"></span>
+        </div>
+        <div class="node n4">
+          <div class="nk"><span class="b">Acción</span><span class="nt">Postear a #ventas</span></div>
+          <div class="nd">canal: Slack</div>
+          <span class="pin"></span>
+        </div>
+        <div class="node n5">
+          <div class="nk"><span class="b">Registro</span><span class="nt">Guardar en tabla</span></div>
+          <div class="nd">trace + costo real de la corrida</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ░░░ TRUST / DOGFOODING ░░░ -->
+<div data-section="Trust" style="padding:0">
+  <div class="trust">
+    <div class="wrap">
+      <p class="trust__k">El stack de agentes que ya opera dentro de Believe</p>
+      <div class="trust__row">
+        <span>Company Brain</span><span>Omi</span><span>n8n</span><span>Maasy</span><span>Meilisearch</span><span>Be Chat</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ░░░ STATEMENT ░░░ -->
+<div class="sec" data-section="Statement">
+  <div class="wrap stmt reveal">
+    <h2>Descríbelo. Nosotros lo operamos<span class="sig">.</span></h2>
+    <p>Nos dices qué trabajo quieres automatizar, en español simple. Believe cablea los bloques, los modelos y las integraciones en un agente que corre en producción, monitoreado desde el primer día.</p>
+  </div>
+</div>
+
+<!-- ░░░ 4 PILARES ░░░ -->
+<div class="sec" data-section="Pilares" id="capacidades" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow reveal">Todo lo que un agente necesita, en un solo lugar</p>
+    <h2 class="title reveal">Integrar, dar contexto, construir y monitorear. Nosotros lo operamos<span class="sig">.</span></h2>
+    <div class="pillars reveal">
+      <div class="pillar">
+        <p class="k">Integrar</p>
+        <h3>Actúa sobre tu stack</h3>
+        <p>Un catálogo de más de 1.000 integraciones sobre las que tus agentes ejecutan trabajo real.</p>
+      </div>
+      <div class="pillar">
+        <p class="k">Contexto</p>
+        <h3>Razona sobre tus datos</h3>
+        <p>Tus datos guardados de forma semántica, como la memoria que el agente consulta para responder.</p>
+      </div>
+      <div class="pillar">
+        <p class="k">Construir</p>
+        <h3>Lógica montada por Believe</h3>
+        <p>La lógica del agente en un canvas visual, o se la describes a Believe y la montamos nosotros.</p>
+      </div>
+      <div class="pillar">
+        <p class="k">Monitorear</p>
+        <h3>Cada corrida, vigilada</h3>
+        <p>Traces en vivo, logs y costo real de cada ejecución. Nosotros la observamos por ti.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ░░░ FEATURE DEEP-DIVES ░░░ -->
+<div class="sec" data-section="Capacidades" style="padding-top:0">
+  <div class="wrap">
+
+    <!-- Integrar -->
+    <div class="feat reveal">
+      <div>
+        <p class="k">Integrar</p>
+        <h3>Conecta las herramientas sobre las que corre tu trabajo.</h3>
+        <p>Slack, HubSpot, Salesforce, Notion, Gmail, tu base de datos. Tus agentes actúan a través del stack que ya usas, no en una isla aparte.</p>
+      </div>
+      <div class="feat__media">
+        <div class="surf">
+          <div class="surf__bar"><span>Integraciones conectadas</span><span class="c">1.000+</span></div>
+          <div class="ints">
+            <div class="int"><span class="d" style="background:#4a154b"></span>Slack<span class="m">on</span></div>
+            <div class="int"><span class="d" style="background:#ff7a59"></span>HubSpot<span class="m">on</span></div>
+            <div class="int"><span class="d" style="background:#00a1e0"></span>Salesforce<span class="m">on</span></div>
+            <div class="int"><span class="d" style="background:#111"></span>Notion<span class="m">on</span></div>
+            <div class="int"><span class="d" style="background:#ea4335"></span>Gmail<span class="m">on</span></div>
+            <div class="int"><span class="d" style="background:#635bff"></span>Stripe<span class="m">on</span></div>
+            <div class="int"><span class="d" style="background:#336791"></span>Postgres<span class="m">on</span></div>
+            <div class="int"><span class="d" style="background:#0c3bb9"></span>Sheets<span class="m">on</span></div>
+            <div class="int"><span class="d" style="background:#00aaff"></span>Webhook<span class="m">on</span></div>
+            <div class="ints__more">y 1.000 más en el catálogo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contexto -->
+    <div class="feat rev reveal">
+      <div>
+        <p class="k">Contexto</p>
+        <h3>Datos sobre los que el agente sí puede razonar.</h3>
+        <p>Guardamos tus datos de forma semántica en tablas, archivos y bases de conocimiento. Cada respuesta del agente queda anclada a tu información, no a una conjetura.</p>
+      </div>
+      <div class="feat__media">
+        <div class="surf">
+          <div class="surf__bar"><span>Memoria del agente</span><span class="c">indexada</span></div>
+          <div class="mem">
+            <div class="mrow">
+              <div class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/></svg></div>
+              <div><div class="mt">Tablas de clientes</div><div class="ms">12.480 filas · sincronizadas</div></div>
+              <span class="mv">SQL</span>
+            </div>
+            <div class="mrow">
+              <div class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
+              <div><div class="mt">Documentos y contratos</div><div class="ms">340 archivos · embebidos</div></div>
+              <span class="mv">vector</span>
+            </div>
+            <div class="mrow">
+              <div class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></div>
+              <div><div class="mt">Base de conocimiento</div><div class="ms">tono, políticas, marca</div></div>
+              <span class="mv">RAG</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Construir -->
+    <div class="feat reveal">
+      <div>
+        <p class="k">Construir</p>
+        <h3>La lógica de tu agente, cableada por nosotros.</h3>
+        <p>Bloques, modelos e integraciones se componen en un canvas visual. Tú describes el trabajo; Believe lo arma, lo prueba y lo pone a correr. Sin equipo de ingeniería de IA de tu lado.</p>
+      </div>
+      <div class="feat__media">
+        <div class="flow">
+          <div class="flow__bar"><span class="flow__id">agente / triage-soporte</span><span class="flow__live">Listo</span></div>
+          <div class="node n1"><div class="nk"><span class="b">Disparador</span><span class="nt">Nuevo correo de soporte</span></div><div class="nd">de: clientes · sin leer</div><span class="pin"></span></div>
+          <div class="node n2"><div class="nk"><span class="b">Modelo</span><span class="nt">Clasificar y resumir</span></div><div class="nd">urgencia · tema · sentimiento</div><span class="pin"></span></div>
+          <div class="node n3"><div class="nk"><span class="b">Acción</span><span class="nt">Enrutar y responder</span></div><div class="nd">borrador + asignación</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Monitorear -->
+    <div class="feat rev reveal">
+      <div>
+        <p class="k">Monitorear</p>
+        <h3>Mira cada corrida, de punta a punta.</h3>
+        <p>Trazamos cada ejecución bloque por bloque, con logs completos y el costo real. Siempre sabes qué corrió, por qué y cuánto costó. La operación es nuestra; la visibilidad es tuya.</p>
+      </div>
+      <div class="feat__media">
+        <div class="dash">
+          <div class="dash__bar"><span>Panel de operación</span><span class="live">En vivo</span></div>
+          <div class="kpis">
+            <div class="kpi"><p class="kl">Corridas hoy</p><div class="kv num">1.284</div><p class="kd">agentes activos: 6</p></div>
+            <div class="kpi"><p class="kl">Éxito</p><div class="kv num">99,2%</div><p class="kd">reintentos automáticos</p></div>
+            <div class="kpi"><p class="kl">Costo / corrida</p><div class="kv num">$0,04</div><p class="kd">modelo por tarea</p></div>
+          </div>
+          <div class="rows">
+            <div class="r"><span class="rid">#4821</span><span class="rd">Calificar lead → #ventas</span><span class="rc">1,2s</span><span class="rs ok">ok</span></div>
+            <div class="r"><span class="rid">#4822</span><span class="rd">Triage de soporte</span><span class="rc">0,9s</span><span class="rs ok">ok</span></div>
+            <div class="r"><span class="rid">#4823</span><span class="rd">Reporte semanal</span><span class="rc">3,4s</span><span class="rs go">corriendo</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ░░░ CÓMO TRABAJAMOS ░░░ -->
+<div class="sec" data-section="Trabajamos" id="trabajamos">
+  <div class="wrap">
+    <p class="eyebrow reveal">Cómo trabajamos</p>
+    <h2 class="title reveal">Un servicio operado, no una licencia que administras<span class="sig">.</span></h2>
+    <p class="lead reveal">Cuatro fases. Tú decides el trabajo a automatizar; el montaje, la operación y la mejora corren por nuestra cuenta.</p>
+    <div class="steps reveal">
+      <div class="step on"><div class="n">01</div><h3>Diagnóstico</h3><p>Mapeamos qué trabajo repetitivo automatizar y el impacto de cada agente.</p></div>
+      <div class="step on"><div class="n">02</div><h3>Montamos</h3><p>Cableamos tus agentes: integraciones, tus datos como contexto y el modelo por tarea.</p></div>
+      <div class="step on"><div class="n">03</div><h3>Operamos</h3><p>Corren en producción sobre nuestra infraestructura, monitoreados de punta a punta.</p></div>
+      <div class="step on"><div class="n">04</div><h3>Medimos</h3><p>Traces, costo y resultados por cohort. Ajustamos y sumamos agentes con el dato en mano.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ░░░ DIFERENCIA ░░░ -->
+<div class="sec" data-section="Diferencia" id="diferencia" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow reveal">La diferencia</p>
+    <h2 class="title reveal">La ventaja no es la plataforma. Es quién la opera<span class="sig">.</span></h2>
+    <p class="lead reveal">Comprar una herramienta de agentes es fácil. Mantener a alguien montándolos, vigilándolos y mejorándolos es el trabajo real. Ese es el nuestro.</p>
+    <div class="vs reveal">
+      <div class="vscol">
+        <p class="vk">Plataforma self-serve</p>
+        <h3>La montas tú</h3>
+        <ul class="vslist">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>Tú cableas cada agente y sus integraciones</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>Tú lo pones en producción y lo mantienes</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>Tú monitoreas fallos, costos y modelos</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>El agente queda huérfano cuando cambia el equipo</li>
+        </ul>
+      </div>
+      <div class="vscol win">
+        <p class="vk">Believe Agents OS</p>
+        <h3>La operamos nosotros</h3>
+        <ul class="vslist">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Believe monta cada agente sobre tu stack y tus datos</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Corre en nuestra infraestructura, no en tu lista de pendientes</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Nosotros vigilamos traces, costo real y modelos</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Tú ves los resultados; la operación no depende de tu equipo</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ░░░ DOGFOODING ░░░ -->
+<div class="sec" data-section="Prueba" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow reveal">No lo leímos en un paper</p>
+    <h2 class="title reveal">Ya operamos agentes en casa. Todos los días<span class="sig">.</span></h2>
+    <p class="lead reveal">Believe corre su propia operación con agentes. El mismo enfoque que instalamos para ti lo vivimos primero nosotros.</p>
+    <div class="proof reveal">
+      <div class="pcard">
+        <p class="pk">Company Brain</p>
+        <h3>La operación, legible</h3>
+        <p>Captura de voz, chat y correo en un cerebro que los agentes consultan para razonar sobre el negocio.</p>
+      </div>
+      <div class="pcard">
+        <p class="pk">Omi · voz</p>
+        <h3>Voz a memoria</h3>
+        <p>Conversaciones reales convertidas en contexto vivo, sobre infraestructura propia, sin depender de terceros.</p>
+      </div>
+      <div class="pcard">
+        <p class="pk">n8n · Maasy</p>
+        <h3>Trabajo en piloto automático</h3>
+        <p>Decenas de flujos agénticos moviendo datos, contenido y decisiones entre sistemas, monitoreados de punta a punta.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ░░░ FAQ ░░░ -->
+<div class="sec" data-section="FAQ" id="faq" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow reveal">Preguntas frecuentes</p>
+    <h2 class="title reveal">Lo que preguntan antes de empezar<span class="sig">.</span></h2>
+    <div class="faq reveal">
+      <div class="qa"><h3>¿Mis datos quedan seguros?</h3><p>Tus agentes corren sobre infraestructura que operamos nosotros, aislada por cliente, no en un SaaS multiinquilino de terceros. Las llaves de los modelos viven server-side, nunca en manos de tu equipo.</p></div>
+      <div class="qa"><h3>¿Es self-hosted? ¿Me entregan la plataforma?</h3><p>No. Es un servicio operado: tú ves el producto, los agentes y las métricas; el montaje y la operación son nuestros. La base es abierta y portable, así que si algún día quieres llevártela, puedes.</p></div>
+      <div class="qa"><h3>¿Cuánto tarda tener el primer agente corriendo?</h3><p>Un primer agente en producción en semanas, no meses. Arrancamos por el trabajo de mayor impacto y sumamos desde ahí, con el dato en mano.</p></div>
+      <div class="qa"><h3>¿Qué modelos usan?</h3><p>El mejor por tarea, no uno amarrado. Combinamos los modelos líderes según el trabajo, y lo cambiamos cuando aparece uno mejor, sin que tengas que tocar nada.</p></div>
+      <div class="qa"><h3>¿Cómo empezamos?</h3><p>Con una demo. Te mostramos un agente operando de verdad y mapeamos juntos el primero para tu operación. Sin compromiso.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ░░░ CTA CIERRE ░░░ -->
+<div class="sec" data-section="Demo" id="demo">
+  <div class="wrap">
+    <div class="close">
+      <div class="close__grid">
+        <div>
+          <h2>Ve un agente operando. Después montamos el tuyo<span class="sig">.</span></h2>
+          <p class="lead">Una demo real, no diapositivas. Te mostramos agentes en producción y salimos con el primero tuyo mapeado.</p>
+        </div>
+        <form class="form" action="/api/contact" method="post">
+          <input type="hidden" name="_tenant" value="agents">
+          <input type="hidden" name="_subject" value="Demo Believe Agents OS">
+          <div class="row2">
+            <div class="fld"><label for="ao-nombre">Nombre</label><input class="inp" id="ao-nombre" name="nombre" required placeholder="Tu nombre"></div>
+            <div class="fld"><label for="ao-empresa">Empresa</label><input class="inp" id="ao-empresa" name="empresa" placeholder="Nombre de tu empresa"></div>
+          </div>
+          <div class="row2">
+            <div class="fld"><label for="ao-correo">Correo</label><input class="inp" id="ao-correo" name="correo" type="email" required placeholder="tu@empresa.com"></div>
+            <div class="fld"><label for="ao-tel">Teléfono</label><input class="inp" id="ao-tel" name="telefono" type="tel" placeholder="Opcional"></div>
+          </div>
+          <div class="fld"><label for="ao-trabajo">¿Qué trabajo te gustaría automatizar?</label>
+            <select class="inp" id="ao-trabajo" name="trabajo">
+              <option value="" disabled selected>Selecciona un área</option>
+              <option>Ventas / calificación de leads</option>
+              <option>Soporte / atención al cliente</option>
+              <option>Operaciones / datos entre sistemas</option>
+              <option>Marketing / contenido</option>
+              <option>Otro / aún no lo sé</option>
+            </select>
+          </div>
+          <button class="btn btn--primary btn--block" type="submit" style="margin-top:6px">Solicitar demo</button>
+          <p class="legal">Sin compromiso. Respuesta en menos de 24 horas. Al enviar aceptas ser contactado por Believe.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ░░░ FOOTER ░░░ -->
+<div class="sec" data-section="Footer" style="padding:0">
+  <div class="foot">
+    <div class="wrap foot__row">
+      <a class="aomark" href="#top">Believe<span class="os">Agents OS</span><span class="dot"></span></a>
+      <span class="foot__of">Un producto de Believe · Marketing as a system</span>
+      <nav class="foot__links">
+        <a href="#capacidades">Capacidades</a>
+        <a href="#trabajamos">Cómo trabajamos</a>
+        <a href="#demo">Solicitar demo</a>
+      </nav>
+    </div>
+  </div>
+</div>
+</section>
+<script>
+(function(){
+  var root=document.querySelector('.aos'); if(!root) return;
+  root.classList.add('js-anim');
+  var els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('vis')}); return; }
+  var io=new IntersectionObserver(function(en){en.forEach(function(x){ if(x.isIntersecting){x.target.classList.add('vis'); io.unobserve(x.target);} })},{threshold:.12});
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>
+</body>
+</html>
