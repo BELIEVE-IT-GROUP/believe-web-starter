@@ -1,0 +1,20 @@
+landings-src/agents.html
+  s_ad0ec1dead9f17::t_891f0155368c2b 1-378,380-601
+  s_ad0ec1dead9f17::t_28ce232622acb7 379
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.12",
+  "base_commit_sha": "9e9bd5702bbecec2d90d1af0255d3015ccf68749",
+  "prompts": {},
+  "sessions": {
+    "s_ad0ec1dead9f17": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "7476e254-acb6-4d0f-b484-ff9103dc8d6a",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
