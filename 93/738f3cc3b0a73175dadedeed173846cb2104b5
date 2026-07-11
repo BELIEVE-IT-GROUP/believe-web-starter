@@ -1,0 +1,28 @@
+src/app/api/contact/route.ts
+  s_ad0ec1dead9f17::t_7e3148a0d5f3dd 28,36,50,70,72-116
+  s_ad0ec1dead9f17::t_3f57818c2d97a2 151
+  s_ad0ec1dead9f17::t_0ed560e4bb0c17 25-27
+  s_ad0ec1dead9f17::t_7a9fc9a704cd84 29-31,33-35
+  s_ad0ec1dead9f17::t_16dc2d050cae61 37-39
+  s_ad0ec1dead9f17::t_33f12f68edf933 67-69
+  s_ad0ec1dead9f17::t_c43cef556bfcf2 71
+  s_ad0ec1dead9f17::t_5efc3e2cc1d732 117-119
+  s_ad0ec1dead9f17::t_e8684e2b17272c 148-150
+  s_ad0ec1dead9f17::t_38b6d76a08157b 2-3,5-24,32,40-48,52,54-66,120-128,131-145
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.12",
+  "base_commit_sha": "93738f3cc3b0a73175dadedeed173846cb2104b5",
+  "prompts": {},
+  "sessions": {
+    "s_ad0ec1dead9f17": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "7476e254-acb6-4d0f-b484-ff9103dc8d6a",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
