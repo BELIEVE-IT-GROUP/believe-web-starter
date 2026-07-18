@@ -1,0 +1,20 @@
+src/app/domain-purchased/page.tsx
+  s_6bbe309fa7c7ee::t_cfa8b5d856ff0c 23
+  s_6bbe309fa7c7ee::t_ea9e8353ccf9bd 1-22,24-115
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "752ea76c4d9c0fd234e3f12d2617c3d1213169b5",
+  "prompts": {},
+  "sessions": {
+    "s_6bbe309fa7c7ee": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "283f333b-c390-4b75-a821-0657a83c3772",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
