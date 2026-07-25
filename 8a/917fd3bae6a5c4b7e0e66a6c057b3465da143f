@@ -1,0 +1,117 @@
+src/middleware.ts
+  s_ad0ec1dead9f17::t_0e824000d44091 13-16
+data/aos/envia-ya-brand.json
+  s_ad0ec1dead9f17::t_84d964373223f5 1-71
+data/aos/trust-logistics-brand.json
+  s_ad0ec1dead9f17::t_5c34c796fbdecf 1-60
+data/tenants/envia-ya.json
+  s_ad0ec1dead9f17::t_50b159f5f99050 1-7
+data/tenants/orvia.json
+  s_ad0ec1dead9f17::t_44531316782f8a 1-7
+data/tenants/pawers-test.json
+  s_e1e4642d0b27d5::t_9fba1d2d7ff55a 1-7
+data/tenants/trust-logistics.json
+  s_ad0ec1dead9f17::t_59a563cd415832 1-7
+docs/leads-puck.md
+  s_ad0ec1dead9f17::t_803cdb3f58e455 1-86
+docs/puck-believe-2026-07-08.md
+  s_ad0ec1dead9f17::t_624a0f2a05efb0 1-81
+landings-src/envia-ya.html
+  s_ad0ec1dead9f17::t_7ab53aea935192 1-412
+landings-src/trust-logistics.html
+  s_ad0ec1dead9f17::t_befb6dfc536ea3 1-412
+next.config.mjs
+  s_ad0ec1dead9f17::t_0f30f704fae2c8 36-42
+puck-cms-mcp/src/tools/puck_publish_static_html.ts
+  s_e1e4642d0b27d5::t_e4a79dc201bf20 1-135
+src/app/admin/AdminHeader.tsx
+  s_ad0ec1dead9f17::t_990e3b4e2415d2 1-30
+src/app/admin/[tenant]/[slug]/Editor.tsx
+  s_ad0ec1dead9f17::t_0c7a32fb347d52 2,8-9,12-30,32-75
+src/app/admin/[tenant]/page.tsx
+  s_ad0ec1dead9f17::t_cbd021d9a5497a 4,13,15-54
+src/app/admin/admin.css
+  s_ad0ec1dead9f17::t_ed868e8f2dbdfe 1-78
+src/app/admin/layout.tsx
+  s_ad0ec1dead9f17::t_b59ad51e319795 1-7
+src/app/admin/page.tsx
+  s_ad0ec1dead9f17::t_6e9905a4759f4f 2-3,9-11,13-51
+src/app/api/cms/[tenant]/[slug]/aos/route.ts
+  s_ad0ec1dead9f17::t_588aeab2076030 1-64
+src/app/birdman/BirdmanLanding.tsx
+  s_ad0ec1dead9f17::t_fe421af802fd71 102-106,545-546,593,713-714,761
+src/app/birdman/content.ts
+  s_ad0ec1dead9f17::t_fe6f4760390252 250,252,264,267-271,273-274,308-309,320-321,328,643,645-647,660
+src/app/llms-full.txt/route.ts
+  s_ad0ec1dead9f17::t_484d4fabff6a10 1-35
+src/app/llms.txt/route.ts
+  s_ad0ec1dead9f17::t_0c9da18428bcff 1-38
+src/app/robots.ts
+  s_ad0ec1dead9f17::t_0f446a6deafce9 1-14
+src/app/s/[tenant]/[[...slug]]/RawReveal.tsx
+  s_ad0ec1dead9f17::t_ad581d54ee72c4 5-9,13-41
+src/app/s/[tenant]/[[...slug]]/page.tsx
+  s_ad0ec1dead9f17::t_547535c61e5537 8,35-42,48-49,51,54-71,91-96,110-124
+src/app/s/[tenant]/agent.json/route.ts
+  s_ad0ec1dead9f17::t_ee458b26b0d3b4 1-14
+src/app/s/[tenant]/brand.json/route.ts
+  s_ad0ec1dead9f17::t_6bdf24f20e4428 1-14
+src/app/s/[tenant]/llms-full.txt/route.ts
+  s_ad0ec1dead9f17::t_40c1d65c58464b 1-16
+src/app/s/[tenant]/llms.txt/route.ts
+  s_ad0ec1dead9f17::t_707555e637b26a 1-16
+src/app/s/[tenant]/opengraph-image.tsx
+  s_ad0ec1dead9f17::t_71c88e33c1b690 1-4,6-9,11-41,43,45-47
+src/app/sitemap.ts
+  s_ad0ec1dead9f17::t_ff835ad8391637 1-14
+src/app/well-known/agent.json/route.ts
+  s_ad0ec1dead9f17::t_b1883fb68804a6 1-41
+src/app/well-known/brand.json/route.ts
+  s_ad0ec1dead9f17::t_8ff0881f056fe3 1-26
+src/app/well-known/discovery.json/route.ts
+  s_ad0ec1dead9f17::t_70bbc62c708cf4 1-2
+src/cms/blocks/birdman/Diagnostico.tsx
+  s_ad0ec1dead9f17::t_21619f55b9e70d 104-127
+src/cms/blocks/birdman/Hero.tsx
+  s_ad0ec1dead9f17::t_c9cbf8d6c14378 114-115,169
+src/cms/blocks/birdman/Root.tsx
+  s_ad0ec1dead9f17::t_539f551646a5b8 206-211,233-235
+src/cms/blocks/birdman/Tecnologia.tsx
+  s_ad0ec1dead9f17::t_bc6715d7348ca9 96-97,144
+src/cms/blocks/birdman/birdman.css.ts
+  s_ad0ec1dead9f17::t_50faac3c578a6c 83-87,258-266
+src/cms/blocks/raw/EditableSection.tsx
+  s_ad0ec1dead9f17::t_36945f83383f99 1,4,28
+src/cms/blocks/raw/RootRaw.tsx
+  s_ad0ec1dead9f17::t_de65f23e6fa6b5 4,15-23,32,34-47,50-51,53
+src/lib/aos-store.ts
+  s_ad0ec1dead9f17::t_4a60b12a1732ff 1-18
+src/lib/aos.ts
+  s_ad0ec1dead9f17::t_de7f1136fd09bb 1-118
+src/lib/seo.ts
+  s_ad0ec1dead9f17::t_858a71a3b4da8a 1-189
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.16",
+  "base_commit_sha": "8a917fd3bae6a5c4b7e0e66a6c057b3465da143f",
+  "prompts": {},
+  "sessions": {
+    "s_ad0ec1dead9f17": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "7476e254-acb6-4d0f-b484-ff9103dc8d6a",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    },
+    "s_e1e4642d0b27d5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "agent-a443513e1c69d6cbb",
+        "model": "unknown"
+      },
+      "human_author": "Jbelieve <jorge@believe-global.com>"
+    }
+  }
+}
