@@ -30,7 +30,6 @@ export function buildBirdmanSeed(): Data {
       block('Calculadora', c.calculadora),
       block('Diagnostico', c.diagnostico),
       block('Recursos', c.recursos),
-      block('Blog', c.blog),
       block('Faq', c.faq),
     ],
   } as unknown as Data

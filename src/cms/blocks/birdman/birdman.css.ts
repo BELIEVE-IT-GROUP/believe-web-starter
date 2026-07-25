@@ -80,7 +80,11 @@ export const BIRDMAN_CSS = `
 
   /* Hero */
   .hero{ padding:72px 0 88px; }
-  .hero__grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:var(--s8); align-items:center; }
+  .hero__grid{ display:grid; grid-template-columns:.9fr 1.1fr; gap:var(--s8); align-items:center; }
+  .hero__media{ position:relative; display:flex; align-items:center; justify-content:flex-end; padding:16px; border-radius:16px; overflow:hidden; min-height:520px; }
+  .hero__media .hero__photo{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+  .hero__media .panel{ position:relative; z-index:1; width:min(388px,58%); margin:0; background:linear-gradient(180deg,rgba(22,22,22,.9),rgba(12,12,12,.96)); }
+  @media(max-width:760px){ .hero__media{ display:block; min-height:0; padding:0; } .hero__media .hero__photo{ position:static; height:auto; } .hero__media .panel{ width:auto; margin:-56px 12px 0; } }
   .tag{ display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:var(--w-strong); color:var(--muted);
     border:1px solid var(--border-2); border-radius:var(--pill); padding:6px 14px; margin-bottom:var(--s6); }
   .tag .dot{ width:7px; height:7px; border-radius:50%; background:var(--success); box-shadow:0 0 0 4px color-mix(in oklch,var(--success) 22%,transparent); }
@@ -251,9 +255,15 @@ export const BIRDMAN_CSS = `
   .foot .orvia{ font-size:14px; color:var(--muted); max-width:34ch; margin:14px 0 0; }
   .foot-bottom{ display:flex; justify-content:space-between; align-items:center; gap:var(--s5); margin-top:48px; padding-top:24px; border-top:1px solid var(--border); flex-wrap:wrap; }
   .foot-bottom small{ color:var(--faint); font-size:13px; }
-  .brands{ display:flex; gap:18px; align-items:center; }
-  .brands span{ font-weight:var(--w-strong); font-size:15px; color:var(--muted); }
-  .brands span.me{ color:var(--accent); }
+  .brands{ display:flex; gap:24px; align-items:center; flex-wrap:wrap; }
+  .brands img{ width:auto; opacity:.6; transition:opacity .2s; }
+  .brands .l-eya{ height:26px; }
+  .brands .l-trust{ height:26px; }
+  .brands .l-bird{ height:16px; }
+  .brands a:hover img{ opacity:1; }
+  .parent-of{ display:flex; align-items:center; gap:9px; margin:16px 0 0; }
+  .parent-of span{ font-size:11px; color:var(--faint); text-transform:uppercase; letter-spacing:.09em; font-weight:var(--w-strong); }
+  .parent-of img{ height:19px; width:auto; opacity:.9; }
 
   /* WhatsApp float */
   .wa{ position:fixed; right:22px; bottom:22px; z-index:60; width:58px; height:58px; border-radius:50%; background:var(--success); color:var(--on-success); display:grid; place-items:center; box-shadow:0 14px 36px -10px color-mix(in oklch,var(--success) 60%,transparent); transition:transform var(--dur); }

@@ -172,7 +172,6 @@ export const Root: RootConfig<RootProps> = {
               <svg className="logo" viewBox="0 0 708 124" aria-hidden="true">
                 <use href="#birdman-logo" />
               </svg>
-              <small>{nav.brand}</small>
             </a>
             <nav className="nav__links" aria-label="Principal">
               {nav.links.map((l) => (
@@ -204,6 +203,12 @@ export const Root: RootConfig<RootProps> = {
                   </svg>
                 </a>
                 <p className="orvia">{footer.brandText}</p>
+                <div className="parent-of">
+                  <span>Una empresa de</span>
+                  <a href="/s/orvia" aria-label="Grupo ORVIA">
+                    <img src="/logos/orvia.svg" alt="Grupo ORVIA" />
+                  </a>
+                </div>
               </div>
               {footer.columns.map((col) => (
                 <div key={col.title}>
@@ -225,11 +230,9 @@ export const Root: RootConfig<RootProps> = {
             </div>
             <div className="foot-bottom">
               <div className="brands">
-                {footer.brands.map((b, i) => (
-                  <span className={i === 0 ? 'me' : undefined} key={b}>
-                    {b}
-                  </span>
-                ))}
+                <a href="/s/envia-ya" aria-label="EnviaYa!"><img className="l-eya" src="/logos/enviaya.svg" alt="EnviaYa!" /></a>
+                <a href="/s/trust-logistics" aria-label="Trust Logistics"><img className="l-trust" src="/logos/trust.svg" alt="Trust Logistics" /></a>
+                <a href="/s/birdman" aria-label="Birdman Logistics"><img className="l-bird" src="/logos/birdman.svg" alt="Birdman Logistics" /></a>
               </div>
               <small>{footer.copyright}</small>
             </div>

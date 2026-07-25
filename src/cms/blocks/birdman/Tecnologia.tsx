@@ -93,6 +93,8 @@ export const Tecnologia: ComponentConfig<TecnologiaProps> = {
               ))}
             </ul>
           </div>
+          <div className="hero__media">
+          <img className="hero__photo" src="/img/birdman/tecnologia.webp" alt="Torre de control In-Plant de Birdman con dashboards y monitoreo de andenes en tiempo real" width={1536} height={1024} />
           <div className="panel reveal" aria-hidden="true">
             <div className="panel__bar">
               <div className="lights">
@@ -138,6 +140,7 @@ export const Tecnologia: ComponentConfig<TecnologiaProps> = {
                 </div>
               ))}
             </div>
+          </div>
           </div>
         </div>
       </div>

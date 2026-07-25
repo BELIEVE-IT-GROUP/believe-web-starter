@@ -111,6 +111,8 @@ export const Hero: ComponentConfig<HeroProps> = {
         </div>
 
         {/* Centro de monitoreo */}
+        <div className="hero__media">
+        <img className="hero__photo" src="/img/birdman/hero.webp" alt="Coordinador In-Plant de Birdman dirigiendo la carga en el andén del cliente" width={1536} height={1024} />
         <div className="panel reveal" aria-hidden="true">
           <div className="panel__bar">
             <div className="lights">
@@ -163,6 +165,7 @@ export const Hero: ComponentConfig<HeroProps> = {
               </div>
             ))}
           </div>
+        </div>
         </div>
       </div>
     </section>

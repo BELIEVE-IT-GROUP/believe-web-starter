@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getTenant, listPages } from '@/cms/store'
+import { AdminHeader } from '../AdminHeader'
 
 export const dynamic = 'force-dynamic'
 
@@ -9,35 +10,47 @@ export default async function TenantHome({ params }: { params: { tenant: string 
   if (!t) notFound()
   const pages = await listPages(params.tenant)
   const list = pages.length ? pages : ['home']
+  const domain = (t.domains ?? [])[0]
   return (
-    <main style={{ maxWidth: 720, margin: '64px auto', padding: 24, fontFamily: 'system-ui, sans-serif' }}>
-      <p style={{ marginBottom: 8 }}>
-        <Link href="/admin" style={{ color: '#999' }}>
-          ← Tenants
-        </Link>
-      </p>
-      <h1 style={{ fontSize: 28, marginBottom: 24 }}>{t.name}</h1>
-      <ul style={{ listStyle: 'none', padding: 0, display: 'grid', gap: 12 }}>
-        {list.map((slug) => (
-          <li
-            key={slug}
-            style={{
-              border: '1px solid #e5e5e5',
-              borderRadius: 12,
-              padding: 16,
-              display: 'flex',
-              justifyContent: 'space-between',
-            }}
-          >
-            <Link href={`/admin/${t.slug}/${slug}`} style={{ fontSize: 18, fontWeight: 600 }}>
-              {slug} (editar)
-            </Link>
-            <Link href={`/s/${t.slug}/${slug === 'home' ? '' : slug}`} target="_blank" style={{ color: '#0a7' }}>
-              ver publicado ↗
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </main>
+    <>
+      <AdminHeader
+        crumbs={[{ label: t.name }]}
+        right={
+          <a className="adm-btn adm-btn--ghost" href={`/s/${t.slug}`} target="_blank" rel="noopener">
+            Ver sitio ↗
+          </a>
+        }
+      />
+      <main className="adm-wrap">
+        <h1 className="adm-h1">{t.name}</h1>
+        <p className="adm-sub">
+          <span className="adm-chip accent">{t.blockSet}</span>{' '}
+          <span style={{ marginLeft: 6 }}>{domain ? domain : `/s/${t.slug}`}</span>
+        </p>
+        <div className="adm-grid">
+          {list.map((slug) => (
+            <div className="adm-card" key={slug}>
+              <div className="adm-card__top">
+                <span className="adm-card__name">{slug}</span>
+                <span className="adm-card__slug">página</span>
+              </div>
+              <div className="adm-card__actions">
+                <Link className="adm-btn adm-btn--primary" href={`/admin/${t.slug}/${slug}`}>
+                  Editar
+                </Link>
+                <a
+                  className="adm-btn adm-btn--ghost"
+                  href={`/s/${t.slug}${slug === 'home' ? '' : '/' + slug}`}
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Ver publicado ↗
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </main>
+    </>
   )
 }

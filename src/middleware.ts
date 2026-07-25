@@ -10,7 +10,10 @@ const SYSTEM_HOSTS = new Set(['puck.believe-global.com', 'cms.believe-global.com
  * (host del sistema) no toca nada. /admin, /api, /_next y assets quedan fuera (matcher).
  */
 export function middleware(req: NextRequest) {
-  const host = (req.headers.get('host') || '').toLowerCase().split(':')[0]
+  // Dominio custom vía worker de Cloudflare: viene en X-Forwarded-Host. Si no,
+  // el Host normal (acceso directo a puck.believe-global.com queda igual).
+  const fwd = (req.headers.get('x-forwarded-host') || '').toLowerCase().split(':')[0]
+  const host = fwd || (req.headers.get('host') || '').toLowerCase().split(':')[0]
   if (
     !host ||
     SYSTEM_HOSTS.has(host) ||

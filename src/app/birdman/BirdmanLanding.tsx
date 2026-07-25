@@ -99,7 +99,11 @@ const CSS = `
 
   /* Hero */
   .hero{ padding:72px 0 88px; }
-  .hero__grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:var(--s8); align-items:center; }
+  .hero__grid{ display:grid; grid-template-columns:.9fr 1.1fr; gap:var(--s8); align-items:center; }
+  .hero__media{ position:relative; display:flex; align-items:center; justify-content:flex-end; padding:16px; border-radius:16px; overflow:hidden; min-height:520px; }
+  .hero__media .hero__photo{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+  .hero__media .panel{ position:relative; z-index:1; width:min(388px,58%); margin:0; background:linear-gradient(180deg,rgba(22,22,22,.9),rgba(12,12,12,.96)); }
+  @media(max-width:760px){ .hero__media{ display:block; min-height:0; padding:0; } .hero__media .hero__photo{ position:static; height:auto; } .hero__media .panel{ width:auto; margin:-56px 12px 0; } }
   .tag{ display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:var(--w-strong); color:var(--muted);
     border:1px solid var(--border-2); border-radius:var(--pill); padding:6px 14px; margin-bottom:var(--s6); }
   .tag .dot{ width:7px; height:7px; border-radius:50%; background:var(--success); box-shadow:0 0 0 4px color-mix(in oklch,var(--success) 22%,transparent); }
@@ -538,6 +542,8 @@ export function BirdmanLanding({ content }: { content: BirdmanContent }) {
             </div>
 
             {/* Centro de monitoreo */}
+            <div className="hero__media">
+            <img className="hero__photo" src="/img/birdman/hero.webp" alt="Coordinador In-Plant de Birdman dirigiendo la carga en el andén del cliente" width={1536} height={1024} />
             <div className="panel reveal" aria-hidden="true">
               <div className="panel__bar">
                 <div className="lights">
@@ -583,6 +589,7 @@ export function BirdmanLanding({ content }: { content: BirdmanContent }) {
                   </div>
                 ))}
               </div>
+            </div>
             </div>
           </div>
         </section>
@@ -703,6 +710,8 @@ export function BirdmanLanding({ content }: { content: BirdmanContent }) {
                   ))}
                 </ul>
               </div>
+              <div className="hero__media">
+              <img className="hero__photo" src="/img/birdman/tecnologia.webp" alt="Torre de control In-Plant de Birdman con dashboards y monitoreo de andenes en tiempo real" width={1536} height={1024} />
               <div className="panel reveal" aria-hidden="true">
                 <div className="panel__bar">
                   <div className="lights">
@@ -748,6 +757,7 @@ export function BirdmanLanding({ content }: { content: BirdmanContent }) {
                     </div>
                   ))}
                 </div>
+              </div>
               </div>
             </div>
           </div>
@@ -955,24 +965,6 @@ export function BirdmanLanding({ content }: { content: BirdmanContent }) {
                   <h3>{r.title}</h3>
                   <p>{r.desc}</p>
                   <span className="go">{r.cta}</span>
-                </a>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ░░░ BLOG ░░░ */}
-        <section id="blog" style={{ background: 'var(--surface)' }}>
-          <div className="wrap">
-            <p className="eyebrow">{content.blog.eyebrow}</p>
-            <h2 className="title">{content.blog.title}</h2>
-            <div className="grid g3 reveal">
-              {content.blog.items.map((b) => (
-                <a className="res-card" href={b.href} key={b.title}>
-                  <span className="type">{b.type}</span>
-                  <h3>{b.title}</h3>
-                  <p>{b.desc}</p>
-                  <span className="go">Leer</span>
                 </a>
               ))}
             </div>

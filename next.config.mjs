@@ -33,7 +33,13 @@ const nextConfig = {
     // si no la home del tenant (que existe) gana y el rewrite nunca aplica.
     return {
       beforeFiles: slug ? [{ source: '/', destination: `/${slug}` }] : [],
-      afterFiles: [],
+      // Next ignora folders que empiezan con punto, así que /.well-known/* se sirve
+      // desde /well-known/* vía estos rewrites (discovery de agentes en el root real).
+      afterFiles: [
+        { source: '/.well-known/agent.json', destination: '/well-known/agent.json' },
+        { source: '/.well-known/discovery.json', destination: '/well-known/discovery.json' },
+        { source: '/.well-known/brand.json', destination: '/well-known/brand.json' },
+      ],
       fallback: [],
     }
   },

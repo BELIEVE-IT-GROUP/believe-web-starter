@@ -18,7 +18,6 @@ import { Casos } from './blocks/birdman/Casos'
 import { Calculadora } from './blocks/birdman/Calculadora'
 import { Diagnostico } from './blocks/birdman/Diagnostico'
 import { Recursos } from './blocks/birdman/Recursos'
-import { Blog } from './blocks/birdman/Blog'
 import { Faq } from './blocks/birdman/Faq'
 
 export const config = {
@@ -36,7 +35,6 @@ export const config = {
     Calculadora,
     Diagnostico,
     Recursos,
-    Blog,
     Faq,
   },
   categories: {
@@ -55,7 +53,6 @@ export const config = {
         'Calculadora',
         'Diagnostico',
         'Recursos',
-        'Blog',
         'Faq',
       ],
     },

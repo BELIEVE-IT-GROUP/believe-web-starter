@@ -1,5 +1,7 @@
+'use client'
 import type { ComponentConfig } from '@measured/puck'
 import { fillTemplate } from './fill'
+import { imageField } from '@/cms/fields/image'
 
 /**
  * Bloque editable por CAMPOS (no por HTML). El troceador extrae de cada sección
@@ -23,7 +25,7 @@ export const EditableSection: ComponentConfig<EditableSectionProps> = {
     },
     images: {
       type: 'array',
-      arrayFields: { alt: { type: 'text' }, src: { type: 'text' } },
+      arrayFields: { alt: { type: 'text' }, src: imageField('Imagen (subir o pegar URL)') },
       getItemSummary: (it: Partial<Img>) => it?.alt || 'Imagen',
     },
     // Markup de la sección con marcadores. Editable solo por devs; las personas

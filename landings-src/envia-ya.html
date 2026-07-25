@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EnviaYa! · Todos tus envíos desde una sola plataforma</title>
+<meta name="description" content="Plataforma multicarrier para comparar tarifas, generar guías y rastrear tus envíos nacionales e internacionales desde un solo lugar. Sin contrato. Tarifas preferenciales. Parte de Grupo ORVIA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#000000; --surface:#0b0b0b; --surface-2:#141414; --surface-3:#1c1c1c;
+  --text:#ffffff; --muted:#b7b7b7; --faint:#7c7c7c;
+  --accent:#ff8400; --accent-hover:#ff9a2e; --accent-soft:rgba(255,132,0,.12); --on-accent:#000000;
+  --success:#25d366; --danger:#ff4d3d;
+  --border:#242424; --border-2:#333333; --border-strong:#d5d8dc;
+  --font:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+  --s2:8px; --s3:10px; --s4:12px; --s5:20px; --s6:24px; --s7:32px; --s8:48px;
+  --radius:6px; --pill:50px; --dur:200ms; --ease:cubic-bezier(.2,.6,.2,1); --maxw:1200px;
+}
+*,*::before,*::after{box-sizing:border-box}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);font-weight:500;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--accent);color:var(--on-accent)}
+a{color:inherit;text-decoration:none}
+img,svg{max-width:100%;display:block}
+.num{font-variant-numeric:tabular-nums}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--s6)}
+section{padding:96px 0;position:relative}
+.eyebrow{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.16em;color:var(--accent);margin:0 0 var(--s4)}
+h2.title{font-size:clamp(30px,4vw,44px);line-height:1.05;font-weight:900;letter-spacing:-.03em;margin:0 0 var(--s5);text-wrap:balance;max-width:20ch}
+.lead{font-size:19px;color:var(--muted);max-width:60ch;margin:0 0 var(--s7)}
+.center{text-align:center}.center .title,.center .lead{margin-left:auto;margin-right:auto}
+
+/* Buttons */
+.btn{font-family:inherit;font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;line-height:1;display:inline-flex;align-items:center;justify-content:center;gap:var(--s2);min-height:50px;padding:0 26px;border-radius:var(--radius);border:1px solid transparent;cursor:pointer;transition:background var(--dur) var(--ease),border-color var(--dur),transform var(--dur)}
+.btn--primary{background:var(--accent);color:var(--on-accent)}
+.btn--primary:hover{background:var(--accent-hover)}
+.btn--primary:active{transform:translateY(1px)}
+.btn--ghost{background:transparent;color:var(--text);border-color:var(--border-2)}
+.btn--ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn--block{width:100%}
+
+/* Nav */
+.nav{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.78);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.nav__row{display:flex;align-items:center;gap:var(--s6);height:68px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:20px;letter-spacing:-.02em}
+.brand img{height:40px;width:auto}
+.nav__links{display:flex;gap:var(--s3);margin-left:auto}
+.nav__links a{color:var(--muted);padding:9px 12px;border-radius:6px;font-size:14px;font-weight:700}
+.nav__links a:hover{color:var(--text);background:var(--surface-2)}
+
+/* Hero */
+.hero{padding:78px 0 92px;overflow:hidden}
+.hero__grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:var(--s8);align-items:center}
+.tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);border:1px solid var(--accent);border-radius:var(--pill);padding:6px 14px;margin-bottom:var(--s6)}
+.tag .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 1.8s var(--ease) infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,132,0,.5)}50%{box-shadow:0 0 0 6px rgba(255,132,0,0)}}
+.hero h1{font-size:clamp(38px,5.4vw,68px);line-height:1.0;font-weight:900;letter-spacing:-.035em;margin:0 0 var(--s5);text-wrap:balance;text-transform:uppercase}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p.sub{font-size:20px;color:var(--muted);max-width:44ch;margin:0 0 var(--s7);font-weight:500}
+.hero__cta{display:flex;gap:var(--s4);flex-wrap:wrap}
+.hero__note{margin-top:var(--s6);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+.hero__note b{color:var(--accent)}
+
+/* Comparador panel */
+.panel{background:linear-gradient(180deg,var(--surface-2),var(--surface));border:1px solid var(--border-2);border-radius:12px;padding:18px;box-shadow:0 30px 80px -40px #000, 0 0 0 1px rgba(255,132,0,.06)}
+.panel__bar{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.panel__bar .ttl{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+.panel__bar .live{margin-left:auto;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:6px}
+.panel__bar .live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 1.8s infinite}
+.rate{display:flex;align-items:center;gap:12px;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:8px;opacity:0;animation:slidein .5s var(--ease) forwards}
+.rate:nth-child(1){animation-delay:.1s}.rate:nth-child(2){animation-delay:.25s}.rate:nth-child(3){animation-delay:.4s}
+.rate.best{border-color:var(--accent);background:linear-gradient(90deg,rgba(255,132,0,.08),var(--bg))}
+@keyframes slidein{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+.rate .car{font-weight:800;font-size:13px;letter-spacing:.02em;width:96px}
+.rate .eta{font-size:11px;color:var(--faint);flex:1;font-weight:600}
+.rate .price{font-weight:900;font-size:18px;font-variant-numeric:tabular-nums}
+.rate.best .price{color:var(--accent)}
+.rate .badge{font-size:9px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--on-accent);background:var(--accent);border-radius:var(--pill);padding:3px 8px}
+.panel__foot{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:14px;border-top:1px solid var(--border)}
+.panel__foot .save{font-size:12px;font-weight:700;color:var(--success)}
+.panel__foot .cta{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+
+/* Grids + cards */
+.grid{display:grid;gap:16px}.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:26px;transition:border-color var(--dur),background var(--dur)}
+.card:hover{border-color:var(--accent);background:var(--surface-2)}
+.card h3{font-size:19px;font-weight:800;margin:14px 0 8px;letter-spacing:-.01em}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.ico{width:44px;height:44px;border-radius:8px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);border:1px solid rgba(255,132,0,.3)}
+.ico svg{width:22px;height:22px}
+
+/* Problems */
+.prob-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:var(--s8)}
+.prob{display:flex;align-items:flex-start;gap:14px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:18px 20px}
+.prob .x{flex:none;width:26px;height:26px;border-radius:6px;display:grid;place-items:center;background:rgba(255,77,61,.14);color:var(--danger);border:1px solid rgba(255,77,61,.35);font-weight:900}
+.prob p{margin:0;font-size:15px;color:var(--text);font-weight:600}
+.cta-band{background:var(--accent);color:var(--on-accent);border-radius:10px;padding:30px 34px;display:flex;align-items:center;gap:var(--s6);flex-wrap:wrap}
+.cta-band p{margin:0;font-size:22px;font-weight:900;letter-spacing:-.02em;flex:1;min-width:240px;text-transform:uppercase}
+.cta-band .btn--primary{background:#000;color:var(--accent)}
+.cta-band .btn--primary:hover{background:#111}
+
+/* Diferenciadores */
+.feat{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.feat .f{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:22px;position:relative;overflow:hidden}
+.feat .f::before{content:"";position:absolute;top:0;left:0;width:26px;height:26px;border-top:2px solid var(--accent);border-left:2px solid var(--accent)}
+.feat .f h4{margin:0 0 6px;font-size:15px;font-weight:800;letter-spacing:-.01em}
+.feat .f p{margin:0;font-size:13px;color:var(--muted)}
+
+/* Ideal para */
+.ind{display:flex;flex-wrap:wrap;gap:12px}
+.ind .item{font-size:15px;font-weight:800;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:var(--pill);padding:12px 22px;transition:border-color var(--dur),color var(--dur)}
+.ind .item:hover{border-color:var(--accent);color:var(--accent)}
+
+/* Stats */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--border-2);border-radius:10px;overflow:hidden}
+.stats .s{padding:38px 28px;border-right:1px solid var(--border);text-align:center}
+.stats .s:last-child{border-right:0}
+.stats .s .n{font-size:clamp(40px,5vw,60px);font-weight:900;color:var(--accent);letter-spacing:-.04em;line-height:1}
+.stats .s .l{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-top:10px}
+
+/* Integraciones marquee */
+.carriers{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.carriers .c{font-size:14px;font-weight:800;letter-spacing:.02em;color:var(--muted);background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 20px}
+.carriers .c:hover{border-color:var(--accent);color:var(--text)}
+
+/* Form */
+.diag{display:grid;grid-template-columns:.9fr 1.1fr;gap:var(--s8);align-items:stretch}
+.diag__media{border-radius:16px;overflow:hidden}
+.diag__media .diag__photo{width:100%;height:100%;object-fit:cover;display:block;min-height:440px}
+.ticks{list-style:none;padding:0;margin:0}
+.ticks li{display:flex;gap:12px;align-items:flex-start;padding:9px 0;color:var(--muted);font-size:15px;font-weight:600}
+.ticks li svg{flex:none;width:20px;height:20px;color:var(--accent);margin-top:2px}
+.form{background:var(--surface);border:1px solid var(--border-2);border-radius:12px;padding:30px}
+.form .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.inp{font-family:inherit;font-size:16px;font-weight:500;color:var(--text);background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:13px 14px;width:100%;transition:border-color var(--dur)}
+.inp::placeholder{color:var(--faint)}
+.inp:focus{outline:none;border-color:var(--accent)}
+select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23999' stroke-width='2'%3E%3Cpath d='M2 4l4 4 4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:34px}
+.fld{margin-bottom:14px}
+.fld label{display:block;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:6px}
+.legal{font-size:12px;color:var(--faint);margin-top:14px;text-align:center}
+
+/* Footer */
+footer.ft{border-top:1px solid var(--border);padding:64px 0 40px;background:var(--surface)}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:var(--s7)}
+.foot h5{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--faint);margin:0 0 16px}
+.foot a{display:block;color:var(--muted);padding:6px 0;font-size:14px}
+.foot a:hover{color:var(--accent)}
+.foot .about{font-size:14px;color:var(--muted);max-width:34ch;margin:14px 0 0}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;gap:var(--s5);margin-top:48px;padding-top:24px;border-top:1px solid var(--border);flex-wrap:wrap}
+.foot-bottom small{color:var(--faint);font-size:13px}
+.brands{display:flex;gap:24px;align-items:center;flex-wrap:wrap}.brands img{width:auto;opacity:.6;transition:opacity .2s}.brands .l-eya{height:26px}.brands .l-trust{height:26px}.brands .l-bird{height:16px}.brands a:hover img{opacity:1}.parent-of{display:flex;align-items:center;gap:9px;margin:16px 0 0}.parent-of span{font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.09em;font-weight:700}.parent-of img{height:19px;width:auto;opacity:.9}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.reveal.visible{opacity:1;transform:none}
+
+@media (max-width:960px){
+  .hero__grid,.diag{grid-template-columns:1fr}
+  .g3,.feat{grid-template-columns:1fr 1fr}
+  .foot{grid-template-columns:1fr 1fr}
+  .nav__links{display:none}
+}
+@media (max-width:560px){
+  section{padding:64px 0}
+  .g3,.g2,.feat,.prob-grid,.form .row2,.stats{grid-template-columns:1fr}
+  .stats .s{border-right:0;border-bottom:1px solid var(--border)}
+  .hero h1{font-size:40px}
+}
+/* Fotos on-brand (feedback cliente: más vida) */
+.hero__media{position:relative;border-radius:16px;overflow:hidden;min-height:520px}
+.hero__media .hero__photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.hero__media .panel{position:absolute;right:14px;top:50%;transform:translateY(-50%);left:auto;bottom:auto;width:min(388px,58%);margin:0;background:linear-gradient(180deg,rgba(22,22,22,.9),rgba(12,12,12,.96))}
+.section-photo{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:16px;margin:22px 0 6px}
+@media(max-width:760px){.hero__media{min-height:0}.hero__media .hero__photo{position:static;height:auto}.hero__media .panel{position:static;left:auto;right:auto;top:auto;bottom:auto;transform:none;width:auto;margin:-56px 12px 0}}
+.feature-split{display:grid;grid-template-columns:1fr 1.05fr 1fr;gap:16px;align-items:stretch}
+.fs-col{display:flex;flex-direction:column;gap:16px}
+.fs-media{border-radius:16px;overflow:hidden}
+.fs-media img{width:100%;height:100%;object-fit:cover;display:block;min-height:340px}
+@media(max-width:900px){.feature-split{grid-template-columns:1fr}.fs-media{order:-1}.fs-media img{min-height:220px}}
+</style>
+</head>
+<body>
+
+<!-- ░░░ NAV ░░░ -->
+<section data-section="Nav" style="padding:0">
+  <header class="nav">
+    <div class="wrap nav__row">
+      <a class="brand" href="#top" aria-label="EnviaYa inicio">
+        <img src="/logos/enviaya.svg" alt="EnviaYa!">
+      </a>
+      <nav class="nav__links" aria-label="Principal">
+        <a href="#que-hacemos">Plataforma</a>
+        <a href="#diferenciadores">Ventajas</a>
+        <a href="#integraciones">Integraciones</a>
+        <a href="#cuenta">Precios</a>
+      </nav>
+      <a class="btn btn--primary" href="#cuenta" style="min-height:42px;padding:0 20px;font-size:13px">Crea tu cuenta gratis</a>
+    </div>
+  </header>
+</section>
+
+<main id="top">
+
+<!-- ░░░ HERO ░░░ -->
+<section data-section="Hero" class="hero">
+  <div class="wrap hero__grid">
+    <div>
+      <span class="tag"><span class="dot"></span>Sin contrato · Sin volumen mínimo</span>
+      <h1>Todos tus envíos desde <em>una sola plataforma</em></h1>
+      <p class="sub">Compara tarifas, genera guías y administra tus envíos nacionales e internacionales desde un solo lugar.</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="#cuenta">Crea tu cuenta gratis</a>
+        <a class="btn btn--ghost" href="#que-hacemos">Compara tarifas en 30s</a>
+      </div>
+      <p class="hero__note">Tarifas preferenciales · <b>desde $69 MXN</b> · Nacionales e internacionales</p>
+    </div>
+
+    <!-- Comparador de tarifas mock -->
+    <div class="hero__media">
+    <img class="hero__photo" src="/img/envia-ya/hero.webp" alt="Dueña de un negocio despachando sus envíos con EnviaYa!" width="1024" height="1536">
+    <div class="panel reveal" aria-hidden="true">
+      <div class="panel__bar">
+        <span class="ttl">Comparador de tarifas · CDMX → Monterrey</span>
+        <span class="live">En vivo</span>
+      </div>
+      <div class="rate">
+        <span class="car">Estafeta</span><span class="eta">2-3 días</span><span class="price">$89</span>
+      </div>
+      <div class="rate best">
+        <span class="car">Redpack</span><span class="eta">2-3 días</span><span class="badge">Mejor precio</span><span class="price">$69</span>
+      </div>
+      <div class="rate">
+        <span class="car">FedEx</span><span class="eta">1-2 días</span><span class="price">$124</span>
+      </div>
+      <div class="panel__foot">
+        <span class="save">Ahorras $55 vs. tu tarifa de mostrador</span>
+        <span class="cta">Generar guía →</span>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ QUÉ HACEMOS ░░░ -->
+<section data-section="Qué hacemos" id="que-hacemos">
+  <div class="wrap">
+    <p class="eyebrow">La plataforma</p>
+    <h2 class="title">Una plataforma multicarrier que conecta tu negocio con las principales paqueterías</h2>
+    <p class="lead">EnviaYa! automatiza toda la gestión de tus envíos: comparas, generas y rastreas sin saltar entre sistemas ni portales.</p>
+    <div class="feature-split reveal">
+      <div class="fs-col">
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M7 12h10M10 18h4"/></svg></div><h3>Comparador de tarifas</h3><p>Ve el precio de todas las paqueterías lado a lado y elige la mejor opción en segundos.</p></div>
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div><h3>Compra de guías</h3><p>Genera guías nacionales e internacionales al instante, con tarifas preferenciales.</p></div>
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3>Rastreo en tiempo real</h3><p>Sigue cada paquete en un solo tablero, sin entrar al portal de cada paquetería.</p></div>
+      </div>
+      <div class="fs-media"><img src="/img/envia-ya/como-funciona.webp" alt="Genera y pega la guía de tu envío en segundos con EnviaYa!" width="1536" height="1024" loading="lazy"></div>
+      <div class="fs-col">
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="9"/></svg></div><h3>Integración con tu tienda</h3><p>Plugins para Shopify, WooCommerce, Magento y TiendaNube. Conectas en minutos.</p></div>
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/></svg></div><h3>API para desarrolladores</h3><p>Integra la generación de guías y el rastreo directo en tu sistema con nuestra API.</p></div>
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 9v11"/></svg></div><h3>Marca blanca</h3><p>Ofrece envíos con tu propia marca: portal, tarifas y experiencia White Label.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ PROBLEMAS ░░░ -->
+<section data-section="Problemas" id="problemas" style="background:var(--surface)">
+  <div class="wrap">
+    <p class="eyebrow">Qué resolvemos</p>
+    <h2 class="title">Deja de perder dinero y tiempo en cada envío</h2>
+    <div class="prob-grid reveal">
+      <div class="prob"><span class="x">!</span><p>Pagar de más por los envíos</p></div>
+      <div class="prob"><span class="x">!</span><p>Administrar varias paqueterías por separado</p></div>
+      <div class="prob"><span class="x">!</span><p>Procesos manuales que no escalan</p></div>
+      <div class="prob"><span class="x">!</span><p>Falta de integración con tu tienda</p></div>
+      <div class="prob"><span class="x">!</span><p>Poco control sobre tus envíos</p></div>
+      <div class="prob"><span class="x">!</span><p>Escalabilidad limitada en temporada alta</p></div>
+    </div>
+    <div class="cta-band reveal">
+      <p>Un solo lugar para cotizar, generar y rastrear</p>
+      <a class="btn btn--primary" href="#cuenta">Empieza gratis</a>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ DIFERENCIADORES ░░░ -->
+<section data-section="Diferenciadores" id="diferenciadores">
+  <div class="wrap">
+    <p class="eyebrow">Por qué EnviaYa!</p>
+    <h2 class="title">Todo lo que necesitas para enviar mejor</h2>
+    <div class="feat reveal">
+      <div class="f"><h4>Plataforma multicarrier</h4><p>Todas las paqueterías del país en una sola cuenta.</p></div>
+      <div class="f"><h4>Tarifas preferenciales</h4><p>Precios de volumen desde tu primer envío, sin mínimos.</p></div>
+      <div class="f"><h4>Plugins para eCommerce</h4><p>Shopify, WooCommerce, Magento y TiendaNube listos.</p></div>
+      <div class="f"><h4>Integración por API</h4><p>Conecta tu sistema y automatiza guías y rastreo.</p></div>
+      <div class="f"><h4>Rastreo en tiempo real</h4><p>Un tablero único para todos tus paquetes.</p></div>
+      <div class="f"><h4>Automatización</h4><p>Genera guías en lote y ahorra horas de trabajo manual.</p></div>
+      <div class="f"><h4>Soporte especializado</h4><p>Gente que conoce logística, no un chatbot genérico.</p></div>
+      <div class="f"><h4>Ecosistema Grupo ORVIA</h4><p>Respaldo de fulfillment y operación de todo el grupo.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ STATS ░░░ -->
+<section data-section="Métricas" style="background:var(--surface);padding-top:0;padding-bottom:0">
+  <div class="wrap" style="padding-top:64px;padding-bottom:64px">
+    <div class="stats reveal">
+      <div class="s"><div class="n num">250,000</div><div class="l">Envíos gestionados al mes</div></div>
+      <div class="s"><div class="n num">$69</div><div class="l">Tarifa preferencial desde</div></div>
+      <div class="s"><div class="n num">Nal + Int</div><div class="l">Cobertura nacional e internacional</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ INTEGRACIONES ░░░ -->
+<section data-section="Integraciones" id="integraciones">
+  <div class="wrap center">
+    <p class="eyebrow">Integraciones</p>
+    <h2 class="title" style="max-width:none">Conecta las paqueterías y plataformas que ya usas</h2>
+    <p class="lead">Todas tus paqueterías y tu tienda, hablando en un solo lugar.</p>
+    <div class="carriers reveal" style="margin-bottom:26px">
+      <span class="c">Estafeta</span><span class="c">FedEx</span><span class="c">DHL</span><span class="c">Redpack</span><span class="c">Paquetexpress</span><span class="c">99 Minutos</span>
+    </div>
+    <div class="carriers reveal">
+      <span class="c">Shopify</span><span class="c">WooCommerce</span><span class="c">Magento</span><span class="c">TiendaNube</span><span class="c">API propia</span>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ IDEAL PARA ░░░ -->
+<section data-section="Ideal para" style="background:var(--surface)">
+  <div class="wrap">
+    <p class="eyebrow">Para quién</p>
+    <h2 class="title">Ideal para quien envía en serio</h2>
+    <div class="ind reveal">
+      <span class="item">Emprendedores</span>
+      <span class="item">eCommerce</span>
+      <span class="item">Marketplaces</span>
+      <span class="item">PyMES</span>
+      <span class="item">Empresas con alto volumen de envíos</span>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ CUENTA / FORM ░░░ -->
+<section data-section="Crear cuenta" id="cuenta">
+  <div class="wrap diag">
+    <div class="diag__media"><img class="diag__photo" src="/img/envia-ya/cta.webp" alt="Mensajero entregando envíos de EnviaYa! al atardecer" width="1536" height="1024" loading="lazy"></div>
+    <div class="diag__body">
+      <p class="eyebrow">Empieza hoy</p>
+      <h2 class="title">Abre tu cuenta y genera tu primera guía en minutos</h2>
+      <p class="lead">Sin contrato, sin volumen mínimo. Empieza a comparar tarifas y a ahorrar en tu próximo envío.</p>
+      <ul class="ticks">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Cuenta gratis, sin tarjeta</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Tarifas preferenciales desde el primer envío</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Integración con tu tienda en minutos</li>
+      </ul>
+      <form class="form" action="/api/contact" method="post">
+      <input type="hidden" name="_tenant" value="envia-ya">
+      <input type="hidden" name="_subject" value="Nueva cuenta EnviaYa!">
+      <div class="row2">
+        <div class="fld"><label for="f-nombre">Nombre</label><input class="inp" id="f-nombre" name="nombre" required placeholder="Tu nombre"></div>
+        <div class="fld"><label for="f-empresa">Empresa</label><input class="inp" id="f-empresa" name="empresa" placeholder="Nombre de tu negocio"></div>
+      </div>
+      <div class="row2">
+        <div class="fld"><label for="f-correo">Correo</label><input class="inp" id="f-correo" name="correo" type="email" required placeholder="tu@correo.com"></div>
+        <div class="fld"><label for="f-tel">Teléfono / WhatsApp</label><input class="inp" id="f-tel" name="telefono" type="tel" required placeholder="10 dígitos"></div>
+      </div>
+      <div class="fld"><label for="f-vol">Envíos al mes (aprox.)</label>
+        <select class="inp" id="f-vol" name="volumen">
+          <option value="" disabled selected>Selecciona un rango</option>
+          <option>1 - 50</option><option>51 - 200</option><option>201 - 1,000</option><option>1,000+</option>
+        </select>
+      </div>
+      <button class="btn btn--primary btn--block" type="submit" style="margin-top:8px">Crear mi cuenta gratis</button>
+      <p class="legal">Al enviar aceptas ser contactado por EnviaYa! (Grupo ORVIA). Tus datos están protegidos.</p>
+    </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ░░░ FOOTER ░░░ -->
+<section data-section="Footer" style="padding:0">
+  <footer class="ft">
+    <div class="wrap">
+      <div class="foot">
+        <div>
+          <a class="brand" href="#top"><img src="/logos/enviaya.svg" alt="EnviaYa!" style="height:40px"></a>
+          <p class="about">Plataforma multicarrier para automatizar la gestión de tus envíos.</p><div class="parent-of"><span>Una empresa de</span><a href="/s/orvia" aria-label="Grupo ORVIA"><img src="/logos/orvia.svg" alt="Grupo ORVIA"></a></div>
+        </div>
+        <div><h5>Plataforma</h5><a href="#que-hacemos">Comparador</a><a href="#que-hacemos">Guías</a><a href="#que-hacemos">Rastreo</a><a href="#integraciones">Integraciones</a></div>
+        <div><h5>Empresa</h5><a href="#diferenciadores">Ventajas</a><a href="#cuenta">Crear cuenta</a><a href="#">Grupo ORVIA</a></div>
+        <div><h5>Contacto</h5><a href="#cuenta">Ventas</a><a href="#cuenta">Soporte</a></div>
+      </div>
+      <div class="foot-bottom">
+        <div class="brands"><a href="/s/envia-ya"><img class="l-eya" src="/logos/enviaya.svg" alt="EnviaYa!"></a><a href="/s/trust-logistics"><img class="l-trust" src="/logos/trust.svg" alt="Trust Logistics"></a><a href="/s/birdman"><img class="l-bird" src="/logos/birdman.svg" alt="Birdman Logistics"></a></div>
+        <small>© Grupo ORVIA. Todos los derechos reservados.</small>
+      </div>
+    </div>
+  </footer>
+</section>
+
+</body>
+</html>

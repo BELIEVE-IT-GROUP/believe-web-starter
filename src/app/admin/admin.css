@@ -1,0 +1,78 @@
+/* Admin del CMS — Believe Brand System v.2026.
+   Paper · Ink · Signal. Azul es estructura, cian es señal (≤2×, nunca superficie),
+   papel respira, tinta habla. Fraunces (display) + Inter (body) + JetBrains Mono (data).
+   Cero gradientes, cero sombras, cero glows. Calma sobre euforia. */
+.adm {
+  --paper: #fafaf7;
+  --primary: #0c3bb9;   /* Believe Blue 700 — wordmark, énfasis, acción */
+  --deep: #062778;      /* Believe Blue 900 — KPI, full-bleed */
+  --signal: #00aaff;    /* Cyan 400 — SOLO señal, máx 2× */
+  --ink: #1a1a1a;       /* Ink 900 */
+  --mute: #6b6b65;      /* Ink 500 — metadata, labels mono */
+  --line: #e7e7e1;
+  --line-2: #d8d8d0;
+  --card: #ffffff;
+  --radius: 12px;
+  --display: var(--font-fraunces), Georgia, serif;
+  --body: var(--font-inter), system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --mono: var(--font-jetbrains), ui-monospace, Menlo, monospace;
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  -webkit-font-smoothing: antialiased;
+}
+.adm a { color: inherit; text-decoration: none; }
+.adm * { box-sizing: border-box; }
+
+/* Header */
+.adm-hd { position: sticky; top: 0; z-index: 20; background: rgba(250, 250, 247, 0.86); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.adm-hd__row { max-width: 1080px; margin: 0 auto; padding: 0 24px; height: 62px; display: flex; align-items: center; gap: 16px; }
+
+/* Wordmark "Believe." — Fraunces 500 azul, e rotada, punto cian (la firma) */
+.adm-brand { display: flex; align-items: baseline; gap: 11px; }
+.bw { font-family: var(--display); font-weight: 500; font-size: 23px; letter-spacing: -0.025em; color: var(--primary); display: inline-flex; align-items: baseline; }
+.bw-e { display: inline-block; transform: rotate(-18deg); transform-origin: 50% 65%; }
+.bw-dot { width: 0.24em; height: 0.24em; border-radius: 50%; background: var(--signal); margin-left: 0.28em; align-self: flex-end; margin-bottom: 0.14em; }
+.adm-brand__sub { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mute); }
+
+.adm-crumbs { display: flex; align-items: center; gap: 8px; color: var(--mute); font-size: 14px; }
+.adm-crumbs a:hover { color: var(--primary); }
+.adm-crumbs .sep { color: var(--line-2); }
+.adm-hd__spacer { margin-left: auto; }
+.adm-pill { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; }
+
+/* Layout */
+.adm-wrap { max-width: 1080px; margin: 0 auto; padding: 48px 24px 96px; }
+.adm-h1 { font-family: var(--display); font-weight: 400; font-size: 34px; letter-spacing: -0.02em; margin: 0 0 6px; color: var(--ink); }
+.adm-sub { color: var(--mute); font-size: 15px; line-height: 1.55; margin: 0 0 34px; }
+
+/* Cards (sin sombra — jerarquía por borde + aire) */
+.adm-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+.adm-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; transition: border-color .16s, background .16s; display: flex; flex-direction: column; gap: 14px; }
+.adm-card:hover { border-color: var(--primary); }
+.adm-card__top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.adm-card__name { font-family: var(--display); font-weight: 500; font-size: 20px; letter-spacing: -0.01em; }
+.adm-card__slug { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: var(--mute); }
+.adm-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.adm-chip { font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute); border: 1px solid var(--line); border-radius: 6px; padding: 4px 9px; }
+.adm-chip.accent { color: var(--primary); border-color: #c3d0f2; background: #f2f5fd; }
+.adm-card__actions { display: flex; gap: 8px; margin-top: 2px; }
+
+/* Botones */
+.adm .adm-btn { font-family: var(--body); font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; padding: 9px 15px; border-radius: 8px; border: 1px solid transparent; cursor: pointer; transition: background .15s, border-color .15s, color .15s; }
+.adm .adm-btn--primary { background: var(--primary); color: #ffffff; }
+.adm .adm-btn--primary:hover { background: var(--deep); color: #ffffff; }
+.adm .adm-btn--ghost { background: transparent; color: var(--ink); border-color: var(--line-2); }
+.adm .adm-btn--ghost:hover { border-color: var(--primary); color: var(--primary); }
+
+.adm-empty { color: var(--mute); background: var(--card); border: 1px dashed var(--line-2); border-radius: var(--radius); padding: 44px; text-align: center; }
+
+/* Editor: controles flotantes + toast (calma, sin euforia) */
+.ed-exit { position: fixed; left: 16px; bottom: 16px; z-index: 10000; display: flex; gap: 8px; }
+.ed-exit .adm-btn--ghost { background: rgba(255,255,255,.92); backdrop-filter: blur(6px); }
+.ed-toast { position: fixed; right: 20px; bottom: 20px; z-index: 10001; background: var(--deep); color: #fff; font-family: var(--body); font-size: 14px; font-weight: 600; padding: 12px 18px; border-radius: 10px; border: 1px solid rgba(255,255,255,.12); display: flex; align-items: center; gap: 10px; opacity: 0; transform: translateY(10px); pointer-events: none; transition: opacity .2s, transform .2s; }
+.ed-toast.show { opacity: 1; transform: none; pointer-events: auto; }
+.ed-toast.ok { border-color: var(--signal); }
+.ed-toast.err { background: #7a1f16; }
+.ed-toast a { color: var(--signal); text-decoration: underline; }

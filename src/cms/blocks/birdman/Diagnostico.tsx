@@ -101,6 +101,30 @@ export const Diagnostico: ComponentConfig<DiagnosticoProps> = {
               ;(first as HTMLInputElement | HTMLSelectElement | null)?.focus()
               return
             }
+            // Enviar el lead al CMS (respaldo + webhook) sin bloquear el éxito visual.
+            const val = (id: string) =>
+              (document.getElementById(id) as HTMLInputElement | HTMLSelectElement | null)?.value?.trim() || ''
+            const q = new URLSearchParams(window.location.search)
+            const utm = (k: string) => q.get('utm_' + k) || ''
+            void fetch('/api/contact', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                _tenant: 'birdman',
+                _subject: 'Diagnóstico Birdman Logistics',
+                _campaign: utm('campaign') || 'birdman-web',
+                _utm_source: utm('source'),
+                _utm_medium: utm('medium'),
+                _utm_content: utm('content'),
+                _utm_term: utm('term'),
+                empresa: val('f-empresa'),
+                industria: val('f-industria'),
+                volumen: val('f-volumen'),
+                estado: val('f-estado'),
+                correo: val('f-correo'),
+                telefono: val('f-tel'),
+              }),
+            }).catch(() => {})
             form.classList.add('sent')
             const ok2 = form.querySelector('.form__ok') as HTMLElement | null
             if (ok2) {

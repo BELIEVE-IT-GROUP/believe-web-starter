@@ -90,13 +90,6 @@ export interface ResourceItem {
   href: string
 }
 
-export interface BlogItem {
-  type: string
-  title: string
-  desc: string
-  href: string
-}
-
 export interface FaqItem {
   q: string
   a: string
@@ -237,11 +230,6 @@ export interface BirdmanContent {
     title: string
     items: ResourceItem[]
   }
-  blog: {
-    eyebrow: string
-    title: string
-    items: BlogItem[]
-  }
   faq: {
     eyebrow: string
     title: string
@@ -259,9 +247,9 @@ export interface BirdmanContent {
 
 export const birdmanContent: BirdmanContent = {
   meta: {
-    title: 'Birdman · Operador Logístico Corporativo',
+    title: 'Birdman Logistics · In-Plant Shipping Management | Grupo ORVIA',
     description:
-      'Birdman optimiza la operación logística end-to-end de empresas con alto volumen de envíos mediante tecnología, trazabilidad y una red nacional e internacional de aliados.',
+      'Birdman Logistics administra y optimiza el área de embarques dentro de tus instalaciones (In-Plant Shipping Management): operación end-to-end, administración multi-carrier, trazabilidad y KPIs. Parte de Grupo ORVIA.',
   },
   nav: {
     brand: 'Grupo ORVIA',
@@ -273,17 +261,17 @@ export const birdmanContent: BirdmanContent = {
       { label: 'Calculadora', href: '#calculadora' },
       { label: 'Recursos', href: '#recursos' },
     ],
-    cta: { label: 'Solicitar diagnóstico', href: '#diagnostico' },
+    cta: { label: 'Agenda un diagnóstico operativo', href: '#diagnostico' },
   },
   hero: {
-    tag: 'Operador Logístico Corporativo, impulsado por tecnología',
-    headlineBefore: 'Operación Logística ',
-    headlineEm: 'Inteligente',
-    headlineAfter: ' para empresas con alto volumen de envíos',
-    sub: 'Optimizamos toda tu operación logística end-to-end con tecnología, trazabilidad y una red nacional e internacional de aliados estratégicos.',
+    tag: 'In-Plant Shipping Management · Grupo ORVIA',
+    headlineBefore: 'Hacemos más eficiente la ',
+    headlineEm: 'operación logística',
+    headlineAfter: ' de tu empresa',
+    sub: 'Administración integral del área de embarques y paquetería dentro de tus instalaciones (In-Plant Shipping Management), con tecnología, trazabilidad y una red nacional e internacional de aliados.',
     ctas: [
-      { label: 'Solicitar diagnóstico', href: '#diagnostico', style: 'primary' },
-      { label: 'Agenda una reunión', href: '#diagnostico', style: 'ghost' },
+      { label: 'Agenda un diagnóstico operativo', href: '#diagnostico', style: 'primary' },
+      { label: 'Descubre cuánto puedes ahorrar', href: '#calculadora', style: 'ghost' },
     ],
     note: 'Diseñamos, administramos y optimizamos operaciones logísticas complejas de principio a fin. ',
     noteStrong: 'No vendemos guías ni transporte: vendemos control sobre tu operación.',
@@ -317,8 +305,8 @@ export const birdmanContent: BirdmanContent = {
         desc: 'Un solo tablero para todos tus transportistas. Comparamos, asignamos y auditamos por ti.',
       },
       {
-        title: 'Optimización Operativa',
-        desc: 'Reducimos tiempos, errores y costo por envío con procesos medibles y mejora continua.',
+        title: 'Optimización de Áreas de Embarque',
+        desc: 'Rediseñamos las áreas de embarque dentro de tus almacenes para reducir tiempos, errores y costo por envío.',
       },
       {
         title: 'Trazabilidad en Tiempo Real',
@@ -329,15 +317,15 @@ export const birdmanContent: BirdmanContent = {
         desc: 'Personal Birdman especializado operando dentro de tus instalaciones, como tu propio equipo.',
       },
       {
-        title: 'Soluciones Personalizadas',
-        desc: 'Diseñadas para la complejidad real de tu operación, no plantillas genéricas.',
+        title: 'Consultoría Logística',
+        desc: 'Diseñamos soluciones a la medida de la complejidad real de tu operación, con KPIs que prueban cada mejora.',
       },
     ],
   },
   problemas: {
     eyebrow: 'El reto',
     title: '¿Te identificas con alguno de estos retos?',
-    lead: 'Si dirige operaciones o supply chain en una empresa de alto volumen, probablemente reconozca más de uno.',
+    lead: 'Si diriges operaciones o supply chain en una empresa de alto volumen, probablemente reconozcas más de uno.',
     items: [
       'Demasiados proveedores logísticos y ningún control central.',
       'Falta de visibilidad: no sabes dónde está cada envío.',
@@ -612,48 +600,6 @@ export const birdmanContent: BirdmanContent = {
       },
     ],
   },
-  blog: {
-    eyebrow: 'Blog',
-    title: 'Ideas para operar mejor',
-    items: [
-      {
-        type: 'KPIs',
-        title: 'Los 7 KPIs logísticos que todo COO debería vigilar',
-        desc: 'Qué medir y cómo leerlo para decidir a tiempo.',
-        href: '#',
-      },
-      {
-        type: 'Supply Chain',
-        title: 'Supply Chain resiliente: del control a la anticipación',
-        desc: 'Cómo pasar de reaccionar a prever desviaciones.',
-        href: '#',
-      },
-      {
-        type: 'Última milla',
-        title: 'Última milla: dónde se esconde el costo oculto',
-        desc: 'Los puntos donde la operación pierde margen.',
-        href: '#',
-      },
-      {
-        type: 'Warehouse',
-        title: 'Warehouse Management sin fricción',
-        desc: 'Procesos para un almacén que no frena la operación.',
-        href: '#',
-      },
-      {
-        type: 'Costos',
-        title: 'Cómo reducir costos logísticos sin sacrificar servicio',
-        desc: 'El equilibrio entre ahorro y nivel de servicio.',
-        href: '#',
-      },
-      {
-        type: 'Lean',
-        title: 'Lean Logistics aplicado a operaciones de alto volumen',
-        desc: 'Eliminar desperdicio sin romper la cadena.',
-        href: '#',
-      },
-    ],
-  },
   faq: {
     eyebrow: 'Preguntas frecuentes',
     title: 'Lo que un director suele preguntar',
@@ -694,11 +640,11 @@ export const birdmanContent: BirdmanContent = {
         ],
       },
       {
-        title: 'Empresa',
+        title: 'Grupo ORVIA',
         links: [
-          { label: 'Casos de éxito', href: '#casos' },
-          { label: 'Recursos', href: '#recursos' },
-          { label: 'Blog', href: '#blog' },
+          { label: 'EnviaYa!', href: '/s/envia-ya' },
+          { label: 'Trust Logistics', href: '/s/trust-logistics' },
+          { label: 'Ver todo el grupo', href: '/s/orvia' },
           { label: 'Preguntas frecuentes', href: '#faq' },
         ],
       },
@@ -711,7 +657,7 @@ export const birdmanContent: BirdmanContent = {
         ],
       },
     ],
-    brands: ['Birdman', 'EnviaYa', 'Trust Logistics'],
+    brands: ['Birdman Logistics', 'EnviaYa!', 'Trust Logistics'],
     copyright: '© 2026 Grupo ORVIA. Todos los derechos reservados.',
     waLabel: 'Escríbenos por WhatsApp',
     waHref: 'https://wa.me/',

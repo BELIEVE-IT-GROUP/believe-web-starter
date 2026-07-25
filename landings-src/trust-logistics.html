@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trust Logistics · Fulfillment inteligente para marcas que crecen</title>
+<meta name="description" content="Fulfillment, almacenamiento y distribución para eCommerce y marcas DTC. Operación 24/7/365, COD, flotilla propia, WMS y TMS con monitoreo en tiempo real. Parte de Grupo ORVIA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#000000; --surface:#111111; --surface-2:#1a1a1a; --surface-3:#222222;
+  --text:#ffffff; --muted:#b7b7b7; --faint:#777777;
+  --accent:#ff8400; --accent-hover:#e07600; --accent-soft:rgba(255,132,0,.12); --on-accent:#000000;
+  --success:#2e7d32; --danger:#cc2200;
+  --border:#242424; --border-2:#2a2a2a; --border-strong:#d5d8dc;
+  --display:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  --font:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+  --s2:8px; --s3:10px; --s4:12px; --s5:20px; --s6:24px; --s7:32px; --s8:48px;
+  --radius:4px; --pill:9999px; --dur:200ms; --ease:cubic-bezier(.2,.6,.2,1); --maxw:1200px;
+}
+*,*::before,*::after{box-sizing:border-box}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);font-weight:400;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--accent);color:var(--on-accent)}
+a{color:inherit;text-decoration:none}
+img,svg{max-width:100%;display:block}
+.num{font-variant-numeric:tabular-nums}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--s6)}
+section{padding:96px 0;position:relative}
+.eyebrow{font-family:var(--font);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin:0 0 var(--s4)}
+h2.title{font-family:var(--display);font-size:clamp(30px,4vw,44px);line-height:1.05;font-weight:700;letter-spacing:-.02em;margin:0 0 var(--s5);text-wrap:balance;max-width:20ch;color:var(--accent)}
+.lead{font-size:18px;color:var(--muted);max-width:60ch;margin:0 0 var(--s7)}
+.center{text-align:center}.center .title,.center .lead{margin-left:auto;margin-right:auto}
+
+/* Buttons */
+.btn{font-family:var(--font);font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;line-height:1;display:inline-flex;align-items:center;justify-content:center;gap:var(--s2);min-height:50px;padding:0 26px;border-radius:var(--radius);border:1px solid transparent;cursor:pointer;transition:background var(--dur),border-color var(--dur),transform var(--dur)}
+.btn--primary{background:var(--accent);color:var(--on-accent)}
+.btn--primary:hover{background:var(--accent-hover)}
+.btn--primary:active{transform:translateY(1px)}
+.btn--ghost{background:transparent;color:var(--text);border-color:var(--border-2)}
+.btn--ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn--block{width:100%}
+
+/* Nav */
+.nav{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--border-2)}
+.nav__row{display:flex;align-items:center;gap:var(--s6);height:64px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand img{height:40px;width:auto}
+.nav__links{display:flex;gap:var(--s3);margin-left:auto}
+.nav__links a{color:var(--muted);padding:9px 12px;border-radius:6px;font-size:13px;font-weight:600;letter-spacing:.03em}
+.nav__links a:hover{color:var(--accent)}
+
+/* Hero */
+.hero{padding:78px 0 92px}
+.hero__grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:var(--s8);align-items:center}
+.tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);border:1px solid var(--accent);border-radius:var(--pill);padding:5px 12px;margin-bottom:var(--s6);font-family:var(--font)}
+.tag .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,132,0,.5)}50%{box-shadow:0 0 0 6px rgba(255,132,0,0)}}
+.hero h1{font-family:var(--display);font-size:clamp(36px,5vw,64px);line-height:1.02;font-weight:800;letter-spacing:-.03em;margin:0 0 var(--s5);text-wrap:balance;color:var(--accent)}
+.hero h1 span{color:var(--text)}
+.hero p.sub{font-size:20px;color:var(--muted);max-width:46ch;margin:0 0 var(--s7)}
+.hero__cta{display:flex;gap:var(--s4);flex-wrap:wrap}
+.hero__note{margin-top:var(--s6);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+.hero__note b{color:var(--accent)}
+
+/* Evidence panel */
+.panel{background:linear-gradient(180deg,var(--surface-2),var(--surface));border:1px solid var(--border-2);border-radius:8px;padding:18px;box-shadow:0 30px 80px -40px #000,0 0 0 1px rgba(255,132,0,.08)}
+.panel__bar{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.panel__bar .ttl{font-family:var(--font);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+.panel__bar .live{margin-left:auto;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--success);display:flex;align-items:center;gap:6px}
+.panel__bar .live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--success)}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+.kpi{background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:12px;border-left:3px solid var(--accent)}
+.kpi .k{font-family:var(--font);font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--faint);margin:0 0 6px;font-weight:700}
+.kpi .v{font-family:var(--display);font-size:26px;font-weight:800;line-height:1;margin:0;color:var(--accent);letter-spacing:-.02em}
+.kpi .d{font-family:var(--font);font-size:10px;margin:6px 0 0;color:var(--success);font-weight:700}
+.chartcard{background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:12px 12px 6px}
+.chartcard .ch-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;font-family:var(--font)}
+.chartcard .ch-h span{font-size:11px;color:var(--faint);font-weight:600}
+.chartcard .ch-h b{font-size:12px;color:var(--success);font-weight:800}
+.track{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+.track .row{display:flex;align-items:center;gap:10px;font-size:12px;font-family:var(--font)}
+.track .row .id{font-family:var(--mono);color:var(--muted);width:88px;font-size:11px}
+.track .row .dest{color:var(--muted);flex:1;font-weight:600}
+.pill-s{font-size:10px;font-weight:800;padding:2px 9px;border-radius:var(--pill);border:1px solid var(--border-2);color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.pill-s.ok{color:var(--success);border-color:rgba(46,125,50,.5)}
+.pill-s.go{color:var(--accent);border-color:rgba(255,132,0,.5)}
+
+/* Grids + cards */
+.grid{display:grid;gap:16px}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--surface);border:1px solid var(--border-2);border-radius:4px;padding:24px;transition:border-color var(--dur),background var(--dur)}
+.card:hover{border-color:var(--accent)}
+.card h3{font-family:var(--display);font-size:19px;font-weight:600;margin:12px 0 8px;color:var(--accent)}
+.card p{margin:0;color:var(--muted);font-size:14px}
+.ico{width:42px;height:42px;border-radius:4px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);border:1px solid rgba(255,132,0,.3)}
+.ico svg{width:22px;height:22px}
+
+/* Servicios chips grid */
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.svc .item{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--border-2);border-radius:4px;padding:16px 18px;font-weight:600;font-size:15px}
+.svc .item::before{content:"";width:8px;height:8px;background:var(--accent);flex:none}
+
+/* Pilares */
+.pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.pillar{background:var(--surface);border:1px solid var(--border-2);border-top:3px solid var(--accent);border-radius:4px;padding:26px 22px;position:relative}
+.pillar .sig{font-family:var(--display);font-size:13px;font-weight:800;letter-spacing:.12em;color:var(--accent);margin:0 0 12px}
+.pillar h3{font-family:var(--display);font-size:20px;font-weight:600;color:var(--text);margin:0 0 8px}
+.pillar p{margin:0;color:var(--muted);font-size:14px}
+
+/* Problems */
+.prob-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.prob{display:flex;align-items:flex-start;gap:14px;background:var(--surface);border:1px solid var(--border-2);border-radius:4px;padding:16px 20px}
+.prob .x{flex:none;width:24px;height:24px;border-radius:4px;display:grid;place-items:center;background:rgba(204,34,0,.16);color:var(--danger);border:1px solid rgba(204,34,0,.4);font-weight:900}
+.prob p{margin:0;font-size:15px;color:var(--text);font-weight:600}
+
+/* Diferenciadores */
+.feat{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.feat .f{background:var(--surface);border:1px solid var(--border-2);border-radius:4px;padding:22px;position:relative;overflow:hidden}
+.feat .f::before{content:"";position:absolute;top:0;left:0;width:24px;height:24px;border-top:2px solid var(--accent);border-left:2px solid var(--accent)}
+.feat .f::after{content:"";position:absolute;bottom:0;right:0;width:24px;height:24px;border-bottom:2px solid var(--accent);border-right:2px solid var(--accent)}
+.feat .f h4{font-family:var(--display);margin:0 0 6px;font-size:15px;font-weight:600;color:var(--text)}
+.feat .f p{margin:0;font-size:13px;color:var(--muted)}
+
+/* Evidence stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.stats .s{padding:28px 22px;border-left:3px solid var(--accent);background:var(--surface)}
+.stats .s .n{font-family:var(--display);font-size:clamp(34px,4vw,52px);font-weight:800;color:var(--accent);letter-spacing:-.03em;line-height:1}
+.stats .s .l{font-family:var(--font);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-top:10px}
+
+/* Sectores */
+.ind{display:flex;flex-wrap:wrap;gap:10px}
+.ind .item{font-size:14px;font-weight:700;color:var(--text);background:var(--surface);border:1px solid var(--border-2);border-radius:var(--pill);padding:10px 20px;transition:border-color var(--dur),color var(--dur)}
+.ind .item:hover{border-color:var(--accent);color:var(--accent)}
+
+/* Form */
+.diag{display:grid;grid-template-columns:.9fr 1.1fr;gap:var(--s8);align-items:stretch}
+.diag__media{border-radius:16px;overflow:hidden}
+.diag__media .diag__photo{width:100%;height:100%;object-fit:cover;display:block;min-height:440px}
+.ticks{list-style:none;padding:0;margin:0}
+.ticks li{display:flex;gap:12px;align-items:flex-start;padding:9px 0;color:var(--muted);font-size:15px;font-weight:600}
+.ticks li svg{flex:none;width:20px;height:20px;color:var(--accent);margin-top:2px}
+.form{background:var(--surface);border:1px solid var(--border-2);border-radius:8px;padding:30px}
+.form .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.inp{font-family:inherit;font-size:16px;color:var(--text);background:var(--bg);border:1px solid var(--border-2);border-radius:var(--radius);padding:13px 14px;width:100%;transition:border-color var(--dur)}
+.inp::placeholder{color:#666}
+.inp:focus{outline:none;border-color:var(--accent)}
+select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23999' stroke-width='2'%3E%3Cpath d='M2 4l4 4 4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:34px}
+.fld{margin-bottom:14px}
+.fld label{display:block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:6px}
+.legal{font-size:12px;color:var(--faint);margin-top:14px;text-align:center}
+
+/* Footer */
+footer.ft{border-top:1px solid var(--border-2);padding:64px 0 40px;background:var(--surface)}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:var(--s7)}
+.foot h5{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--faint);margin:0 0 16px}
+.foot a{display:block;color:var(--muted);padding:6px 0;font-size:14px}
+.foot a:hover{color:var(--accent)}
+.foot .about{font-size:14px;color:var(--muted);max-width:34ch;margin:14px 0 0}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;gap:var(--s5);margin-top:48px;padding-top:24px;border-top:1px solid var(--border-2);flex-wrap:wrap}
+.foot-bottom small{color:var(--faint);font-size:13px}
+.brands{display:flex;gap:24px;align-items:center;flex-wrap:wrap}.brands img{width:auto;opacity:.6;transition:opacity .2s}.brands .l-eya{height:26px}.brands .l-trust{height:26px}.brands .l-bird{height:16px}.brands a:hover img{opacity:1}.parent-of{display:flex;align-items:center;gap:9px;margin:16px 0 0}.parent-of span{font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.09em;font-weight:700}.parent-of img{height:19px;width:auto;opacity:.9}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.reveal.visible{opacity:1;transform:none}
+
+@media (max-width:960px){
+  .hero__grid,.diag{grid-template-columns:1fr}
+  .g3,.g4,.feat,.pillars,.svc,.stats{grid-template-columns:1fr 1fr}
+  .foot{grid-template-columns:1fr 1fr}
+  .nav__links{display:none}
+}
+@media (max-width:560px){
+  section{padding:64px 0}
+  .g3,.g4,.feat,.pillars,.svc,.stats,.prob-grid,.form .row2{grid-template-columns:1fr}
+  .hero h1{font-size:38px}
+}
+.hero__media{position:relative;border-radius:16px;overflow:hidden;min-height:520px}
+.hero__media .hero__photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.hero__media .panel{position:absolute;right:14px;top:50%;transform:translateY(-50%);left:auto;bottom:auto;width:min(388px,58%);margin:0;background:linear-gradient(180deg,rgba(22,22,22,.9),rgba(12,12,12,.96))}
+.section-photo{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:16px;margin:22px 0 6px}
+@media(max-width:760px){.hero__media{min-height:0}.hero__media .hero__photo{position:static;height:auto}.hero__media .panel{position:static;left:auto;right:auto;top:auto;bottom:auto;transform:none;width:auto;margin:-56px 12px 0}}
+</style>
+</head>
+<body>
+
+<!-- ░░░ NAV ░░░ -->
+<section data-section="Nav" style="padding:0">
+  <header class="nav">
+    <div class="wrap nav__row">
+      <a class="brand" href="#top" aria-label="Trust Logistics inicio">
+        <img src="/logos/trust.svg" alt="Trust Logistics">
+      </a>
+      <nav class="nav__links" aria-label="Principal">
+        <a href="#que-hacemos">Servicios</a>
+        <a href="#pilares">Pilares</a>
+        <a href="#evidencia">Evidencia</a>
+        <a href="#diagnostico">Diagnóstico</a>
+      </nav>
+      <a class="btn btn--primary" href="#diagnostico" style="min-height:42px;padding:0 20px;font-size:12px">Diagnóstico gratuito</a>
+    </div>
+  </header>
+</section>
+
+<main id="top">
+
+<!-- ░░░ HERO ░░░ -->
+<section data-section="Hero" class="hero">
+  <div class="wrap hero__grid">
+    <div>
+      <span class="tag"><span class="dot"></span>Operación 24/7/365</span>
+      <h1>Fulfillment inteligente para empresas que <span>quieren crecer sin complicaciones</span></h1>
+      <p class="sub">Administramos tu operación logística para que tú te concentres en vender.</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="#diagnostico">Solicita un diagnóstico logístico</a>
+        <a class="btn btn--ghost" href="#pilares">Conoce los pilares</a>
+      </div>
+      <p class="hero__note">WMS + TMS · Monitoreo en tiempo real · <b>Flotilla propia</b></p>
+    </div>
+
+    <!-- Panel de evidencia -->
+    <div class="hero__media">
+    <img class="hero__photo" src="/img/trust-logistics/hero.webp" alt="Operador de Trust Logistics monitoreando el panel de control de la operación en tiempo real" width="1536" height="1024">
+    <div class="panel reveal" aria-hidden="true">
+      <div class="panel__bar">
+        <span class="ttl">Panel de operación · Fulfillment center</span>
+        <span class="live">En vivo</span>
+      </div>
+      <div class="kpis">
+        <div class="kpi"><p class="k">Pick accuracy</p><p class="v num">98.4%</p><p class="d">SLA cumplido</p></div>
+        <div class="kpi"><p class="k">Órdenes</p><p class="v num">+300K</p><p class="d">Procesadas</p></div>
+        <div class="kpi"><p class="k">Errores</p><p class="v num">−30%</p><p class="d">vs. inicio</p></div>
+      </div>
+      <div class="chartcard">
+        <div class="ch-h"><span>Velocidad de entrega</span><b>+15%</b></div>
+        <svg viewBox="0 0 320 96" preserveAspectRatio="none" style="width:100%;height:96px">
+          <defs><linearGradient id="ar" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#ff8400" stop-opacity=".32"/><stop offset="1" stop-color="#ff8400" stop-opacity="0"/></linearGradient></defs>
+          <path d="M0,70 L46,62 L92,64 L138,50 L184,44 L230,34 L276,28 L320,20 L320,96 L0,96 Z" fill="url(#ar)"/>
+          <path d="M0,70 L46,62 L92,64 L138,50 L184,44 L230,34 L276,28 L320,20" fill="none" stroke="#ff8400" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="320" cy="20" r="4" fill="#ff8400"/>
+        </svg>
+      </div>
+      <div class="track">
+        <div class="row"><span class="id">ORD-48213</span><span class="dest">CDMX · Same Day</span><span class="pill-s ok">Entregado</span></div>
+        <div class="row"><span class="id">ORD-48219</span><span class="dest">GDL · Next Day</span><span class="pill-s go">En ruta</span></div>
+        <div class="row"><span class="id">ORD-48224</span><span class="dest">MTY · COD</span><span class="pill-s go">Pick &amp; Pack</span></div>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ QUÉ HACEMOS ░░░ -->
+<section data-section="Qué hacemos" id="que-hacemos">
+  <div class="wrap">
+    <p class="eyebrow">Qué hacemos</p>
+    <h2 class="title">Soluciones integrales de fulfillment de ciclo completo</h2>
+    <p class="lead">Operamos toda tu logística de principio a fin, con evidencia visible en cada etapa.</p>
+    <div class="svc reveal">
+      <div class="item">Warehousing</div>
+      <div class="item">Fulfillment</div>
+      <div class="item">Pick &amp; Pack</div>
+      <div class="item">Última milla</div>
+      <div class="item">Same Day</div>
+      <div class="item">Next Day</div>
+      <div class="item">Cash on Delivery (COD)</div>
+      <div class="item">Administración de inventarios</div>
+      <div class="item">Distribución nacional</div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ PROBLEMAS ░░░ -->
+<section data-section="Problemas" id="problemas" style="background:var(--surface)">
+  <div class="wrap">
+    <p class="eyebrow">Qué resolvemos</p>
+    <h2 class="title">De la incertidumbre logística al control demostrable</h2>
+    <div class="prob-grid reveal">
+      <div class="prob"><span class="x">!</span><p>Falta de espacio de almacenamiento</p></div>
+      <div class="prob"><span class="x">!</span><p>Errores en preparación de pedidos</p></div>
+      <div class="prob"><span class="x">!</span><p>Retrasos en entregas</p></div>
+      <div class="prob"><span class="x">!</span><p>Falta de visibilidad de la operación</p></div>
+      <div class="prob"><span class="x">!</span><p>Costos logísticos elevados</p></div>
+      <div class="prob"><span class="x">!</span><p>Operaciones que ya no escalan</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ PILARES ░░░ -->
+<section data-section="Pilares" id="pilares">
+  <div class="wrap">
+    <p class="eyebrow">Cómo lo garantizamos</p>
+    <h2 class="title">Cuatro pilares que convierten promesa en evidencia</h2>
+    <div class="pillars reveal">
+      <div class="pillar"><p class="sig">PANEL</p><h3>Visibilidad total</h3><p>Cada orden, inventario y entrega en un tablero en tiempo real.</p></div>
+      <div class="pillar"><p class="sig">POD</p><h3>Prueba de entrega</h3><p>Evidencia de ciclo completo: quién, cuándo y dónde se entregó.</p></div>
+      <div class="pillar"><p class="sig">SLA</p><h3>Ritmo medible</h3><p>Acuerdos de servicio con métricas que puedes auditar.</p></div>
+      <div class="pillar"><p class="sig">COD</p><h3>Cash on Delivery</h3><p>Cobro contra entrega con conciliación transparente.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ DIFERENCIADORES ░░░ -->
+<section data-section="Diferenciadores" id="diferenciadores" style="background:var(--surface)">
+  <div class="wrap">
+    <p class="eyebrow">Por qué Trust</p>
+    <h2 class="title">Certeza, no precio</h2>
+    <div class="feat reveal">
+      <div class="f"><h4>Operación 24/7/365</h4><p>Tu logística nunca se detiene, ni en temporada alta.</p></div>
+      <div class="f"><h4>Cash on Delivery</h4><p>COD con conciliación clara y trazable.</p></div>
+      <div class="f"><h4>Flotilla propia</h4><p>Control de última milla sin depender de terceros.</p></div>
+      <div class="f"><h4>WMS y TMS</h4><p>Tecnología de almacén y transporte integrada.</p></div>
+      <div class="f"><h4>Monitoreo en tiempo real</h4><p>Visibilidad de cada orden en cada etapa.</p></div>
+      <div class="f"><h4>Integración con marketplaces</h4><p>Conecta tus canales de venta a la operación.</p></div>
+      <div class="f"><h4>Seguridad y trazabilidad</h4><p>Evidencia de ciclo completo en cada envío.</p></div>
+      <div class="f"><h4>Soluciones flexibles</h4><p>Diseñadas para el ritmo de crecimiento de tu marca.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ EVIDENCIA ░░░ -->
+<section data-section="Evidencia" id="evidencia">
+  <div class="wrap">
+    <p class="eyebrow">La evidencia</p>
+    <h2 class="title">Números que prueban el control</h2>
+    <div class="stats reveal">
+      <div class="s"><div class="n num">+300K</div><div class="l">Órdenes procesadas</div></div>
+      <div class="s"><div class="n num">98.4%</div><div class="l">Pick accuracy</div></div>
+      <div class="s"><div class="n num">−30%</div><div class="l">Errores de picking</div></div>
+      <div class="s"><div class="n num">+15%</div><div class="l">Velocidad de entrega</div></div>
+    </div>
+    <img class="section-photo" src="/img/trust-logistics/evidencia.webp" alt="Escaneo y trazabilidad de cada paquete en la operación de Trust Logistics" width="1536" height="1024" loading="lazy">
+  </div>
+</section>
+
+<!-- ░░░ SECTORES ░░░ -->
+<section data-section="Sectores" style="background:var(--surface)">
+  <div class="wrap">
+    <p class="eyebrow">Para quién</p>
+    <h2 class="title">Marcas que crecen rápido y no pueden fallar</h2>
+    <div class="ind reveal">
+      <span class="item">eCommerce</span><span class="item">Retail</span><span class="item">DTC</span><span class="item">Importadores</span><span class="item">Consumo</span><span class="item">Salud</span><span class="item">Moda</span><span class="item">Electrónica</span>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ DIAGNÓSTICO ░░░ -->
+<section data-section="Diagnóstico" id="diagnostico">
+  <div class="wrap diag">
+    <div class="diag__media"><img class="diag__photo" src="/img/trust-logistics/cta.webp" alt="Responsable de operaciones de Trust Logistics en el centro de fulfillment" width="1536" height="1024" loading="lazy"></div>
+    <div class="diag__body">
+      <p class="eyebrow">Empieza aquí</p>
+      <h2 class="title">Solicita tu diagnóstico logístico gratuito</h2>
+      <p class="lead">Analizamos tu operación actual y te mostramos dónde recuperar control, tiempo y costo.</p>
+      <ul class="ticks">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Diagnóstico sin costo ni compromiso</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Análisis de tu operación real</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Plan de fulfillment a la medida</li>
+      </ul>
+      <form class="form" action="/api/contact" method="post">
+      <input type="hidden" name="_tenant" value="trust-logistics">
+      <input type="hidden" name="_subject" value="Diagnóstico Trust Logistics">
+      <div class="row2">
+        <div class="fld"><label for="f-empresa">Empresa</label><input class="inp" id="f-empresa" name="empresa" required placeholder="Nombre de tu empresa"></div>
+        <div class="fld"><label for="f-nombre">Nombre</label><input class="inp" id="f-nombre" name="nombre" required placeholder="Tu nombre"></div>
+      </div>
+      <div class="row2">
+        <div class="fld"><label for="f-correo">Correo</label><input class="inp" id="f-correo" name="correo" type="email" required placeholder="tu@empresa.com"></div>
+        <div class="fld"><label for="f-tel">Teléfono</label><input class="inp" id="f-tel" name="telefono" type="tel" required placeholder="10 dígitos"></div>
+      </div>
+      <div class="fld"><label for="f-vol">Órdenes al mes (aprox.)</label>
+        <select class="inp" id="f-vol" name="volumen">
+          <option value="" disabled selected>Selecciona un rango</option>
+          <option>Menos de 500</option><option>500 - 2,000</option><option>2,000 - 10,000</option><option>10,000+</option>
+        </select>
+      </div>
+      <button class="btn btn--primary btn--block" type="submit" style="margin-top:8px">Obtén tu diagnóstico gratuito</button>
+      <p class="legal">Al enviar aceptas ser contactado por Trust Logistics (Grupo ORVIA). Tus datos están protegidos.</p>
+    </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ░░░ FOOTER ░░░ -->
+<section data-section="Footer" style="padding:0">
+  <footer class="ft">
+    <div class="wrap">
+      <div class="foot">
+        <div>
+          <a class="brand" href="#top"><img src="/logos/trust.svg" alt="Trust Logistics" style="height:40px"></a>
+          <p class="about">Fulfillment, almacenamiento y distribución inteligente para marcas en crecimiento.</p><div class="parent-of"><span>Una empresa de</span><a href="/s/orvia" aria-label="Grupo ORVIA"><img src="/logos/orvia.svg" alt="Grupo ORVIA"></a></div>
+        </div>
+        <div><h5>Servicios</h5><a href="#que-hacemos">Fulfillment</a><a href="#que-hacemos">Última milla</a><a href="#que-hacemos">COD</a><a href="#pilares">Pilares</a></div>
+        <div><h5>Empresa</h5><a href="#evidencia">Evidencia</a><a href="#diagnostico">Diagnóstico</a><a href="#">Grupo ORVIA</a></div>
+        <div><h5>Contacto</h5><a href="#diagnostico">Ventas</a><a href="#diagnostico">Soporte</a></div>
+      </div>
+      <div class="foot-bottom">
+        <div class="brands"><a href="/s/envia-ya"><img class="l-eya" src="/logos/enviaya.svg" alt="EnviaYa!"></a><a href="/s/trust-logistics"><img class="l-trust" src="/logos/trust.svg" alt="Trust Logistics"></a><a href="/s/birdman"><img class="l-bird" src="/logos/birdman.svg" alt="Birdman Logistics"></a></div>
+        <small>© Grupo ORVIA. Todos los derechos reservados.</small>
+      </div>
+    </div>
+  </footer>
+</section>
+
+</body>
+</html>

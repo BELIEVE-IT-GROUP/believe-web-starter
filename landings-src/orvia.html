@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grupo ORVIA · Ecosistema integral de soluciones logísticas y tecnológicas</title>
+<meta name="description" content="Grupo ORVIA integra tecnología, logística y eficiencia operativa. EnviaYa!, Trust Logistics y Birdman Logistics en un solo ecosistema para automatizar envíos, fulfillment y optimización operativa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#000000; --surface:#111111; --surface-2:#1a1a1a; --surface-3:#222222;
+  --text:#ffffff; --muted:#b7b7b7; --faint:#777777;
+  --accent:#ff8400; --accent-hover:#e07600; --accent-soft:rgba(255,132,0,.12); --on-accent:#000000;
+  --success:#2e7d32; --danger:#cc2200;
+  --border:#242424; --border-2:#2a2a2a; --border-strong:#d5d8dc;
+  --display:'Syne',system-ui,sans-serif;
+  --font:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+  --s2:8px; --s3:10px; --s4:12px; --s5:20px; --s6:24px; --s7:32px; --s8:48px;
+  --radius:4px; --pill:9999px; --dur:200ms; --ease:cubic-bezier(.2,.6,.2,1); --maxw:1200px;
+}
+*,*::before,*::after{box-sizing:border-box}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);font-weight:400;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--accent);color:var(--on-accent)}
+a{color:inherit;text-decoration:none}
+img,svg{max-width:100%;display:block}
+.num{font-variant-numeric:tabular-nums}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--s6)}
+section{padding:96px 0;position:relative}
+.eyebrow{font-family:var(--font);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin:0 0 var(--s4)}
+h2.title{font-family:var(--display);font-size:clamp(30px,4vw,44px);line-height:1.05;font-weight:700;letter-spacing:-.02em;margin:0 0 var(--s5);text-wrap:balance;max-width:22ch;color:var(--accent)}
+.lead{font-size:18px;color:var(--muted);max-width:64ch;margin:0 0 var(--s7)}
+.center{text-align:center}.center .title,.center .lead{margin-left:auto;margin-right:auto}
+
+/* Buttons */
+.btn{font-family:var(--font);font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;line-height:1;display:inline-flex;align-items:center;justify-content:center;gap:var(--s2);min-height:50px;padding:0 26px;border-radius:var(--radius);border:1px solid transparent;cursor:pointer;transition:background var(--dur),border-color var(--dur),transform var(--dur)}
+.btn--primary{background:var(--accent);color:var(--on-accent)}
+.btn--primary:hover{background:var(--accent-hover)}
+.btn--primary:active{transform:translateY(1px)}
+.btn--ghost{background:transparent;color:var(--text);border-color:var(--border-2)}
+.btn--ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn--block{width:100%}
+.brand{display:flex;align-items:center}.brand img{width:auto;display:block}
+.wordmark b{color:var(--accent)}
+
+/* Nav */
+.nav{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--border-2)}
+.nav__row{display:flex;align-items:center;gap:var(--s6);height:64px}
+.nav__links{display:flex;gap:var(--s3);margin-left:auto}
+.nav__links a{color:var(--muted);padding:9px 12px;border-radius:6px;font-size:13px;font-weight:600;letter-spacing:.03em}
+.nav__links a:hover{color:var(--accent)}
+
+/* Hero */
+.hero{padding:78px 0 92px}
+.hero__grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:var(--s8);align-items:center}
+.tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);border:1px solid var(--accent);border-radius:var(--pill);padding:5px 12px;margin-bottom:var(--s6)}
+.tag .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,132,0,.5)}50%{box-shadow:0 0 0 6px rgba(255,132,0,0)}}
+.hero h1{font-family:var(--font);font-size:clamp(34px,4.6vw,56px);line-height:1.08;font-weight:600;letter-spacing:-.02em;margin:0 0 var(--s5);text-wrap:balance;color:var(--accent)}
+.hero h1 span{color:var(--text)}
+.hero p.sub{font-size:19px;color:var(--muted);max-width:52ch;margin:0 0 var(--s7)}
+.hero__cta{display:flex;gap:var(--s4);flex-wrap:wrap}
+
+/* Ecosystem panel */
+.panel{background:linear-gradient(180deg,var(--surface-2),var(--surface));border:1px solid var(--border-2);border-radius:8px;padding:22px;box-shadow:0 30px 80px -40px #000,0 0 0 1px rgba(255,132,0,.08)}
+.panel__bar{display:flex;align-items:center;gap:8px;margin-bottom:18px}
+.panel__bar .ttl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+.panel__bar .live{margin-left:auto;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:6px}
+.panel__bar .live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 1.8s infinite}
+.eco{text-align:center}
+.eco .top{display:inline-block;font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.02em;color:var(--on-accent);background:var(--accent);border-radius:4px;padding:10px 22px;margin-bottom:6px}
+.eco .stem{width:2px;height:22px;background:var(--border-2);margin:0 auto}
+.eco .row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:6px}
+.eco .node{background:var(--bg);border:1px solid var(--border-2);border-top:2px solid var(--accent);border-radius:4px;padding:14px 8px}
+.eco .node b{display:block;font-family:var(--display);font-weight:700;font-size:14px;color:var(--text)}
+.eco .node span{display:block;font-size:10px;color:var(--faint);margin-top:4px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.eco .base{margin-top:16px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+
+/* Qué hacemos chips */
+.svc{display:flex;flex-wrap:wrap;gap:10px}
+.svc .item{display:inline-flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border-2);border-radius:var(--pill);padding:10px 18px;font-weight:700;font-size:14px}
+.svc .item::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none}
+
+/* Empresas */
+.empresas{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.empresa{background:var(--surface);border:1px solid var(--border-2);border-radius:8px;padding:28px;display:flex;flex-direction:column;transition:border-color var(--dur)}
+.empresa:hover{border-color:var(--accent)}
+.empresa .logo-slot{height:44px;display:flex;align-items:center;margin:0 0 16px}
+.empresa .emp-logo{width:auto}.empresa .c-eya{height:40px}.empresa .c-trust{height:40px}.empresa .c-bird{height:26px}
+.empresa .emp-logo-img{height:26px;width:auto}
+.empresa .name{font-family:var(--display);font-size:22px;font-weight:800;color:var(--accent);letter-spacing:-.01em;margin:0 0 8px}
+.empresa .role{font-size:15px;color:var(--text);font-weight:600;margin:0 0 16px}
+.empresa ul{list-style:none;padding:0;margin:0 0 22px;flex:1}
+.empresa ul li{font-size:13px;color:var(--muted);padding:5px 0 5px 16px;position:relative}
+.empresa ul li::before{content:"";position:absolute;left:0;top:12px;width:6px;height:6px;background:var(--accent)}
+.empresa .btn{margin-top:auto}
+
+/* Por qué */
+.grid{display:grid;gap:16px}.g3{grid-template-columns:repeat(3,1fr)}
+.card{background:var(--surface);border:1px solid var(--border-2);border-radius:4px;padding:26px}
+.card:hover{border-color:var(--accent)}
+.card .ico{width:42px;height:42px;border-radius:4px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);border:1px solid rgba(255,132,0,.3);margin-bottom:14px}
+.card .ico svg{width:22px;height:22px}
+.card h3{font-family:var(--display);font-size:19px;font-weight:600;margin:0 0 8px;color:var(--text)}
+.card p{margin:0;color:var(--muted);font-size:14px}
+
+/* Sectores */
+.ind{display:flex;flex-wrap:wrap;gap:10px}
+.ind .item{font-size:14px;font-weight:700;color:var(--text);background:var(--surface);border:1px solid var(--border-2);border-radius:var(--pill);padding:10px 20px;transition:border-color var(--dur),color var(--dur)}
+.ind .item:hover{border-color:var(--accent);color:var(--accent)}
+
+/* Resultados */
+.results{display:grid;grid-template-columns:repeat(2,1fr);gap:12px 40px}
+.results li{display:flex;gap:12px;align-items:flex-start;font-size:16px;color:var(--text);font-weight:600;list-style:none}
+.results li svg{flex:none;width:22px;height:22px;color:var(--accent);margin-top:1px}
+.results{padding:0;margin:0}
+
+/* Metodología */
+.method{display:grid;grid-template-columns:repeat(5,1fr);gap:0;counter-reset:step;margin-top:var(--s7)}
+.step{position:relative;padding:0 12px;text-align:center}
+.step .node{width:14px;height:14px;border-radius:50%;background:var(--accent);margin:0 auto 16px;box-shadow:0 0 0 5px var(--accent-soft);position:relative;z-index:2}
+.step::after{content:"";position:absolute;top:7px;left:50%;width:100%;height:2px;background:var(--border-2);z-index:1}
+.step:last-child::after{display:none}
+.step .n{font-family:var(--mono);font-size:11px;color:var(--accent);display:block;margin-bottom:8px}
+.step h4{font-family:var(--display);font-size:16px;font-weight:700;margin:0 0 6px;color:var(--text)}
+.step p{font-size:13px;color:var(--muted);margin:0}
+
+/* Form */
+.diag{display:grid;grid-template-columns:.9fr 1.1fr;gap:var(--s8);align-items:stretch}
+.diag__media{border-radius:16px;overflow:hidden}
+.diag__media .diag__photo{width:100%;height:100%;object-fit:cover;display:block;min-height:440px}
+.form{background:var(--surface);border:1px solid var(--border-2);border-radius:8px;padding:30px}
+.form .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.inp{font-family:inherit;font-size:16px;color:var(--text);background:var(--bg);border:1px solid var(--border-2);border-radius:var(--radius);padding:13px 14px;width:100%;transition:border-color var(--dur)}
+.inp::placeholder{color:#666}
+.inp:focus{outline:none;border-color:var(--accent)}
+select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23999' stroke-width='2'%3E%3Cpath d='M2 4l4 4 4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:34px}
+.fld{margin-bottom:14px}
+.fld label{display:block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:6px}
+.legal{font-size:12px;color:var(--faint);margin-top:14px;text-align:center}
+
+/* Footer */
+footer.ft{border-top:1px solid var(--border-2);padding:64px 0 40px;background:var(--surface)}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:var(--s7)}
+.foot h5{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--faint);margin:0 0 16px}
+.foot a{display:block;color:var(--muted);padding:6px 0;font-size:14px}
+.foot a:hover{color:var(--accent)}
+.foot .about{font-size:14px;color:var(--muted);max-width:34ch;margin:14px 0 0}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;gap:var(--s5);margin-top:48px;padding-top:24px;border-top:1px solid var(--border-2);flex-wrap:wrap}
+.foot-bottom small{color:var(--faint);font-size:13px}.brands{display:flex;gap:24px;align-items:center;flex-wrap:wrap}.brands img{width:auto;opacity:.6;transition:opacity .2s}.brands .l-eya{height:26px}.brands .l-trust{height:26px}.brands .l-bird{height:16px}.brands a:hover img{opacity:1}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.reveal.visible{opacity:1;transform:none}
+
+@media (max-width:960px){
+  .hero__grid,.diag{grid-template-columns:1fr}
+  .empresas,.g3{grid-template-columns:1fr}
+  .method{grid-template-columns:1fr 1fr}.method .step::after{display:none}
+  .foot{grid-template-columns:1fr 1fr}
+  .nav__links{display:none}
+}
+@media (max-width:560px){
+  section{padding:64px 0}
+  .g3,.results,.form .row2,.ind{grid-template-columns:1fr}
+  .hero h1{font-size:36px}
+}
+.hero__media{position:relative;border-radius:16px;overflow:hidden;min-height:520px}
+.hero__media .hero__photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.hero__media .panel{position:absolute;right:14px;top:50%;transform:translateY(-50%);left:auto;bottom:auto;width:min(388px,58%);margin:0;background:linear-gradient(180deg,rgba(22,22,22,.9),rgba(12,12,12,.96))}
+.section-photo{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:16px;margin:22px 0 6px}
+@media(max-width:760px){.hero__media{min-height:0}.hero__media .hero__photo{position:static;height:auto}.hero__media .panel{position:static;left:auto;right:auto;top:auto;bottom:auto;transform:none;width:auto;margin:-56px 12px 0}}
+.feature-split{display:grid;grid-template-columns:1fr 1.05fr 1fr;gap:16px;align-items:stretch}
+.fs-col{display:flex;flex-direction:column;gap:16px}
+.fs-media{border-radius:16px;overflow:hidden}
+.fs-media img{width:100%;height:100%;object-fit:cover;display:block;min-height:340px}
+@media(max-width:900px){.feature-split{grid-template-columns:1fr}.fs-media{order:-1}.fs-media img{min-height:220px}}
+</style>
+</head>
+<body>
+
+<!-- ░░░ NAV ░░░ -->
+<section data-section="Nav" style="padding:0">
+  <header class="nav">
+    <div class="wrap nav__row">
+      <a class="brand" href="#top" aria-label="Grupo ORVIA inicio"><img src="/logos/orvia.svg" alt="Grupo ORVIA" style="height:30px"></a>
+      <nav class="nav__links" aria-label="Principal">
+        <a href="#empresas">Nuestras empresas</a>
+        <a href="#por-que">Por qué ORVIA</a>
+        <a href="#metodologia">Metodología</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <a class="btn btn--primary" href="#contacto" style="min-height:42px;padding:0 20px;font-size:12px">Solicita una asesoría</a>
+    </div>
+  </header>
+</section>
+
+<main id="top">
+
+<!-- ░░░ HERO ░░░ -->
+<section data-section="Hero" class="hero">
+  <div class="wrap hero__grid">
+    <div>
+      <span class="tag"><span class="dot"></span>Tecnología + Operación + Integración</span>
+      <h1>Impulsamos el crecimiento de tu empresa con un <span>ecosistema logístico integral</span></h1>
+      <p class="sub">Ayudamos a empresas de todos los tamaños a optimizar operaciones, reducir costos, automatizar procesos logísticos y mejorar la experiencia de sus clientes.</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="#contacto">Solicita una asesoría</a>
+        <a class="btn btn--ghost" href="#empresas">Conoce nuestras empresas</a>
+      </div>
+    </div>
+
+    <!-- Ecosistema mock -->
+    <div class="hero__media">
+    <img class="hero__photo" src="/img/orvia/hero.webp" alt="Patio logístico de Grupo ORVIA con contenedores al atardecer" width="1536" height="1024">
+    <div class="panel reveal" aria-hidden="true">
+      <div class="panel__bar">
+        <span class="ttl">Ecosistema Grupo ORVIA</span>
+        <span class="live">Integrado</span>
+      </div>
+      <div class="eco">
+        <span class="top">GRUPO ORVIA</span>
+        <div class="stem"></div>
+        <div class="row">
+          <div class="node"><b>EnviaYa!</b><span>Automatización de envíos</span></div>
+          <div class="node"><b>Trust</b><span>Fulfillment y distribución</span></div>
+          <div class="node"><b>Birdman</b><span>Optimización operativa</span></div>
+        </div>
+        <div class="base">Tecnología · Operación · Integración</div>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ QUÉ HACEMOS ░░░ -->
+<section data-section="Qué hacemos" id="que-hacemos">
+  <div class="wrap">
+    <p class="eyebrow">Qué hacemos</p>
+    <h2 class="title">Un solo grupo, múltiples soluciones para hacer crecer tu negocio</h2>
+    <p class="lead">Cada empresa de Grupo ORVIA fue creada para resolver una necesidad específica de la cadena de suministro. Juntas te acompañan desde la automatización de tus envíos hasta la administración integral de tu operación.</p>
+    <div class="svc reveal">
+      <span class="item">Plataforma tecnológica de envíos</span>
+      <span class="item">Fulfillment y distribución</span>
+      <span class="item">Optimización logística</span>
+      <span class="item">Freight &amp; Logistics Solutions</span>
+      <span class="item">Tecnología e integraciones</span>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ EMPRESAS ░░░ -->
+<section data-section="Nuestras empresas" id="empresas" style="background:var(--surface)">
+  <div class="wrap">
+    <p class="eyebrow">Nuestras empresas</p>
+    <h2 class="title">Tres unidades, un ecosistema que crece contigo</h2>
+    <div class="empresas reveal">
+      <div class="empresa">
+        <div class="logo-slot"><img class="emp-logo c-eya" src="/logos/enviaya.svg" alt="EnviaYa!"></div>
+        <p class="role">Automatiza la gestión de todos tus envíos desde una sola plataforma.</p>
+        <ul>
+          <li>Comparador de múltiples paqueterías</li>
+          <li>Guías nacionales e internacionales</li>
+          <li>Plugins Shopify, Woo, Magento, Tiendanube</li>
+          <li>API y soluciones White Label</li>
+          <li>Rastreo en tiempo real</li>
+          <li>Tarifas preferenciales</li>
+        </ul>
+        <a class="btn btn--ghost" href="/s/envia-ya">Conocer EnviaYa!</a>
+      </div>
+      <div class="empresa">
+        <div class="logo-slot"><img class="emp-logo c-trust" src="/logos/trust.svg" alt="Trust Logistics"></div>
+        <p class="role">Fulfillment, almacenamiento y distribución inteligente para empresas en crecimiento.</p>
+        <ul>
+          <li>Warehousing y Fulfillment</li>
+          <li>Pick &amp; Pack, última milla</li>
+          <li>Same Day y Next Day</li>
+          <li>Cash on Delivery (COD)</li>
+          <li>Operación 24/7/365, WMS y TMS</li>
+          <li>Monitoreo en tiempo real</li>
+        </ul>
+        <a class="btn btn--ghost" href="/s/trust-logistics">Conocer Trust Logistics</a>
+      </div>
+      <div class="empresa">
+        <div class="logo-slot"><img class="emp-logo c-bird" src="/logos/birdman.svg" alt="Birdman Logistics"></div>
+        <p class="role">Administración integral del área de embarques dentro de las instalaciones del cliente (In-Plant).</p>
+        <ul>
+          <li>Operación Inplant</li>
+          <li>Administración de transportistas</li>
+          <li>Gestión logística end to end</li>
+          <li>Trazabilidad y dashboards</li>
+          <li>Integración con aliados logísticos</li>
+        </ul>
+        <a class="btn btn--ghost" href="/s/birdman">Conocer Birdman</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ POR QUÉ ORVIA ░░░ -->
+<section data-section="Por qué ORVIA" id="por-que">
+  <div class="wrap">
+    <p class="eyebrow">Por qué Grupo ORVIA</p>
+    <h2 class="title">Un ecosistema diseñado para crecer contigo</h2>
+    <div class="feature-split reveal">
+      <div class="fs-col">
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17l6-6-6-6M12 19h8"/></svg></div><h3>Tecnología</h3><p>Automatizamos procesos para incrementar productividad y reducir errores.</p></div>
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/></svg></div><h3>Operación</h3><p>Infraestructura, personal especializado y procesos diseñados para escalar.</p></div>
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M9 6h6a3 3 0 0 1 3 3v6"/></svg></div><h3>Integración</h3><p>Conectamos plataformas, paqueterías, almacenes y sistemas como un solo ecosistema.</p></div>
+      </div>
+      <div class="fs-media"><img src="/img/orvia/ecosistema.webp" alt="Hub logístico integrado de Grupo ORVIA operando de noche" width="1536" height="1024" loading="lazy"></div>
+      <div class="fs-col">
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg></div><h3>Flexibilidad</h3><p>Soluciones adaptadas a las necesidades específicas de cada cliente.</p></div>
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M2 12h20M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></div><h3>Cobertura</h3><p>Operaciones nacionales e internacionales con una amplia red de aliados.</p></div>
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7-6.3-4.6L5.7 21 8 14 2 9.4h7.6z"/></svg></div><h3>Experiencia</h3><p>Un equipo con amplia trayectoria en logística, tecnología y transformación de operaciones.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ SECTORES ░░░ -->
+<section data-section="Sectores" style="background:var(--surface)">
+  <div class="wrap">
+    <p class="eyebrow">Sectores que atendemos</p>
+    <h2 class="title">Operamos para industrias que no pueden parar</h2>
+    <div class="ind reveal">
+      <span class="item">eCommerce</span><span class="item">Retail</span><span class="item">Manufactura</span><span class="item">Automotriz</span><span class="item">Electrónica</span><span class="item">Cosméticos</span><span class="item">Moda</span><span class="item">Consumo</span><span class="item">Salud</span><span class="item">Importadores</span><span class="item">Distribución</span><span class="item">Marketplaces</span>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ RESULTADOS ░░░ -->
+<section data-section="Resultados" id="resultados">
+  <div class="wrap">
+    <p class="eyebrow">Lo que obtienes</p>
+    <h2 class="title">Resultados que se sienten en toda la operación</h2>
+    <ul class="results reveal">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Reducción de costos logísticos</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Mayor productividad</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Mayor control operativo</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Visibilidad en tiempo real</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Automatización de procesos</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Mejor experiencia del cliente</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Escalabilidad sin fricción</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Un solo grupo para múltiples necesidades</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ░░░ METODOLOGÍA ░░░ -->
+<section data-section="Metodología" id="metodologia" style="background:var(--surface)">
+  <div class="wrap">
+    <p class="eyebrow">Cómo trabajamos</p>
+    <h2 class="title">Nuestra metodología</h2>
+    <div class="method reveal">
+      <div class="step"><div class="node"></div><span class="n">01</span><h4>Descubrimos</h4><p>Analizamos la operación actual.</p></div>
+      <div class="step"><div class="node"></div><span class="n">02</span><h4>Diseñamos</h4><p>Creamos una solución personalizada.</p></div>
+      <div class="step"><div class="node"></div><span class="n">03</span><h4>Implementamos</h4><p>Integramos tecnología y operación.</p></div>
+      <div class="step"><div class="node"></div><span class="n">04</span><h4>Operamos</h4><p>Acompañamos la ejecución diaria.</p></div>
+      <div class="step"><div class="node"></div><span class="n">05</span><h4>Mejoramos</h4><p>Medimos resultados y optimizamos.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ CONTACTO ░░░ -->
+<section data-section="Conversemos" id="contacto">
+  <div class="wrap diag">
+    <div class="diag__media"><img class="diag__photo" src="/img/orvia/cta.webp" alt="Centro de control de Grupo ORVIA monitoreando la operación logística" width="1536" height="1024" loading="lazy"></div>
+    <div class="diag__body">
+      <p class="eyebrow">Conversemos</p>
+      <h2 class="title">Descubre cómo Grupo ORVIA puede optimizar tu operación</h2>
+      <p class="lead">Cuéntanos de tu operación y te conectamos con la unidad de negocio adecuada, o diseñamos una solución integral para tu empresa.</p>
+      <form class="form" action="/api/contact" method="post">
+      <input type="hidden" name="_tenant" value="orvia">
+      <input type="hidden" name="_subject" value="Asesoría Grupo ORVIA">
+      <div class="row2">
+        <div class="fld"><label for="f-empresa">Empresa</label><input class="inp" id="f-empresa" name="empresa" required placeholder="Nombre de tu empresa"></div>
+        <div class="fld"><label for="f-nombre">Nombre</label><input class="inp" id="f-nombre" name="nombre" required placeholder="Tu nombre"></div>
+      </div>
+      <div class="row2">
+        <div class="fld"><label for="f-cargo">Cargo</label><input class="inp" id="f-cargo" name="cargo" placeholder="Tu cargo"></div>
+        <div class="fld"><label for="f-tel">Teléfono</label><input class="inp" id="f-tel" name="telefono" type="tel" required placeholder="10 dígitos"></div>
+      </div>
+      <div class="fld"><label for="f-correo">Correo</label><input class="inp" id="f-correo" name="correo" type="email" required placeholder="tu@empresa.com"></div>
+      <div class="row2">
+        <div class="fld"><label for="f-envios">Envíos mensuales (aprox.)</label>
+          <select class="inp" id="f-envios" name="envios"><option value="" disabled selected>Selecciona</option><option>Menos de 500</option><option>500 - 2,000</option><option>2,000 - 10,000</option><option>10,000+</option></select>
+        </div>
+        <div class="fld"><label for="f-servicio">Servicio de interés</label>
+          <select class="inp" id="f-servicio" name="servicio"><option value="" disabled selected>Selecciona</option><option>EnviaYa!</option><option>Trust Logistics</option><option>Birdman Logistics</option><option>Solución integral</option></select>
+        </div>
+      </div>
+      <button class="btn btn--primary btn--block" type="submit" style="margin-top:8px">Solicitar asesoría</button>
+      <p class="legal">Al enviar aceptas ser contactado por Grupo ORVIA. Tus datos están protegidos.</p>
+    </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ░░░ FOOTER ░░░ -->
+<section data-section="Footer" style="padding:0">
+  <footer class="ft">
+    <div class="wrap">
+      <div class="foot">
+        <div>
+          <a class="brand" href="#top"><img src="/logos/orvia.svg" alt="Grupo ORVIA" style="height:34px"></a>
+          <p class="about">Un ecosistema de soluciones logísticas y tecnológicas para empresas que quieren crecer.</p>
+        </div>
+        <div><h5>Empresas</h5><a href="/s/envia-ya">EnviaYa!</a><a href="/s/trust-logistics">Trust Logistics</a><a href="/s/birdman">Birdman Logistics</a></div>
+        <div><h5>Grupo</h5><a href="#por-que">Por qué ORVIA</a><a href="#metodologia">Metodología</a><a href="#contacto">Contacto</a></div>
+        <div><h5>Contacto</h5><a href="#contacto">Teléfono</a><a href="#contacto">WhatsApp</a><a href="#contacto">Correo</a></div>
+      </div>
+      <div class="foot-bottom"><div class="brands"><a href="/s/envia-ya"><img class="l-eya" src="/logos/enviaya.svg" alt="EnviaYa!"></a><a href="/s/trust-logistics"><img class="l-trust" src="/logos/trust.svg" alt="Trust Logistics"></a><a href="/s/birdman"><img class="l-bird" src="/logos/birdman.svg" alt="Birdman Logistics"></a></div><small>© Grupo ORVIA. Todos los derechos reservados.</small></div>
+    </div>
+  </footer>
+</section>
+
+</body>
+</html>
